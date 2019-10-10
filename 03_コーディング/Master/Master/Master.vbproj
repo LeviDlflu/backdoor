@@ -77,12 +77,6 @@
     <Compile Include="common\CmnXML.vb" />
     <Compile Include="common\Conn.vb" />
     <Compile Include="common\UserControl1.Designer.vb" />
-    <Compile Include="form\SC-M00.Designer.vb">
-      <DependentUpon>SC-M00.vb</DependentUpon>
-    </Compile>
-    <Compile Include="form\SC-M00.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="form\SC-M10.Designer.vb">
       <DependentUpon>SC-M10.vb</DependentUpon>
     </Compile>
@@ -149,6 +143,12 @@
     <Compile Include="form\SC-M22.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-MXX.Designer.vb">
+      <DependentUpon>SC-MXX.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-MXX.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="form\SC_M20.Designer.vb">
       <DependentUpon>SC_M20.vb</DependentUpon>
     </Compile>
@@ -172,9 +172,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="form\SC-M00.resx">
-      <DependentUpon>SC-M00.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\SC-M10.resx">
       <DependentUpon>SC-M10.vb</DependentUpon>
     </EmbeddedResource>
@@ -207,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-M22.resx">
       <DependentUpon>SC-M22.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-MXX.resx">
+      <DependentUpon>SC-MXX.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC_M20.resx">
       <DependentUpon>SC_M20.vb</DependentUpon>

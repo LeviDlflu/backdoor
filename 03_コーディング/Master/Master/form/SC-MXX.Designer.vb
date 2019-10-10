@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class SC_M00
+Partial Class SC_MXX
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -397,7 +397,7 @@ Partial Class SC_M00
         Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
         Me.btnEnd.UseVisualStyleBackColor = False
         '
-        'SC_M00
+        'SC_MXX
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -408,7 +408,7 @@ Partial Class SC_M00
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.stsFooter)
         Me.Controls.Add(Me.grpHeader)
-        Me.Name = "SC_M00"
+        Me.Name = "SC_MXX"
         Me.Text = "[SC_MXX]Master manage menu(マスタ管理メニュー) Ver.1.0.0"
         Me.grpHeader.ResumeLayout(False)
         Me.grpHeader.PerformLayout()
