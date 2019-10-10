@@ -271,6 +271,8 @@ Public Class SC_M22
 
         connent.subCnClose(cn)
 
+        btnSearch_Click(sender, e)
+
         Me.txtManagementNoType.Text = String.Empty
         Me.txtFixedPart.Text = String.Empty
         Me.txtNumber.Text = String.Empty
@@ -291,8 +293,6 @@ Public Class SC_M22
         For i As Integer = 0 To gridData.Rows.Count - 1
 
             '横位置
-            'Dim Checked As Boolean = CType(gridData.Rows(i).Cells(0).Value, Boolean)
-
             If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
 
             Else
@@ -316,49 +316,9 @@ Public Class SC_M22
 
         Next
 
-
-        'If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
-        '    gridData.EndEdit()
-        '    Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
-
-        '    If Checked Then
-
-        '        For i As Integer = 1 To 4
-
-        '            Select Case i
-        '                Case 1
-        '                    cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-        '                    cmd.Parameters("@PNAME").Value = gridData.CurrentRow.Cells(i).Value
-        '                Case 2
-        '                    cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-        '                    cmd.Parameters("@POSITION").Value = gridData.CurrentRow.Cells(i).Value
-        '                Case 3
-        '                    cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
-        '                    cmd.Parameters("@NUM").Value = Decimal.Parse(gridData.CurrentRow.Cells(i).Value)
-        '                Case 4
-        '                    cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
-        '                    cmd.Parameters("@TEAM").Value = gridData.CurrentRow.Cells(i).Value
-        '            End Select
-
-        '            'MessageBox.Show(gridData.CurrentRow.Cells(i).Value)
-        '        Next
-        '    End If
-        'End If
-
-        'cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-        'cmd.Parameters("@PNAME").Value = txtManagementNoType.Text
-
-        'cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-        'cmd.Parameters("@POSITION").Value = txtFixedPart.Text
-
-        'cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
-        'cmd.Parameters("@TEAM").Value = txtFluctuationDataSection.Text
-
-        'cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
-        'cmd.Parameters("@NUM").Value = Decimal.Parse(txtNumber.Text)
-
-
         connent.subCnClose(cn)
+
+        btnSearch_Click(sender, e)
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
@@ -370,28 +330,29 @@ Public Class SC_M22
 
         Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
 
-        cmd = New SqlCommand(sqlstr, cn)
 
-        If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
-            gridData.EndEdit()
-            Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
+        For i As Integer = 0 To gridData.Rows.Count - 1
 
-            If Checked Then
+            '横位置
+            If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
 
-                For i As Integer = 1 To 2
-                    MessageBox.Show(gridData.CurrentRow.Cells(i).Value)
-                Next
+            Else
+
+                cmd = New SqlCommand(sqlstr, cn)
+
+                cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
+                cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
+
+                cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
+                cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
+
+                cmd.ExecuteNonQuery()
             End If
-        End If
 
-        cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-        cmd.Parameters("@PNAME").Value = txtManagementNoType.Text
-
-        cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-        cmd.Parameters("@POSITION").Value = txtFixedPart.Text
-
-        cmd.ExecuteNonQuery()
+        Next
 
         connent.subCnClose(cn)
+
+        btnSearch_Click(sender, e)
     End Sub
 End Class
