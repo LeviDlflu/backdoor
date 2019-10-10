@@ -11,6 +11,14 @@
     Private Const COL_REMARKS As String = "Remarks" & vbCrLf & "(備考)"
     Private Sub Init()
 
+        Me.txtCode.Text = String.Empty
+        Me.txtCodeName.Text = String.Empty
+        Me.txtDivision.Text = String.Empty
+        Me.txtItem1.Text = String.Empty
+        Me.txtItem2.Text = String.Empty
+        Me.txtItem3.Text = String.Empty
+        Me.txtItem4.Text = String.Empty
+        Me.txtItem5.Text = String.Empty
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
@@ -29,7 +37,7 @@
         e.InheritedRowStyle.Font,
         rect,
         e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
 
@@ -76,10 +84,10 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_CODE
-                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-                Case Else
+                Case COL_CODE_NAME, COL_ITEM1, COL_ITEM2, COL_ITEM3, COL_ITEM4, COL_ITEM5, COL_REMARKS
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End Select
 
         Next
@@ -99,9 +107,12 @@
         gridData.Columns(1).Width = 200
         gridData.Columns(2).Width = 200
         gridData.Columns(3).Width = 350
-        gridData.Columns(4).Width = 300
-        gridData.Columns(5).Width = 300
+        gridData.Columns(4).Width = 200
+        gridData.Columns(5).Width = 200
         gridData.Columns(6).Width = 300
+        gridData.Columns(7).Width = 200
+        gridData.Columns(8).Width = 200
+        gridData.Columns(9).Width = 300
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -132,8 +143,8 @@
             Select Case i
                 Case 0
                     addRow(COL_CODE) = "A01"
-                    addRow(COL_CODE_NAME) = "B01"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "日本"
+                    addRow(COL_CODE_DIVISION) = "B01"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -142,8 +153,8 @@
                     addRow(COL_REMARKS) = "備考欄テスト"
                 Case 1
                     addRow(COL_CODE) = "A02"
-                    addRow(COL_CODE_NAME) = "B02"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "渋谷"
+                    addRow(COL_CODE_DIVISION) = "B02"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -152,8 +163,8 @@
                     addRow(COL_REMARKS) = "備考欄テスト"
                 Case 2
                     addRow(COL_CODE) = "A02"
-                    addRow(COL_CODE_NAME) = "B02"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "恵比寿"
+                    addRow(COL_CODE_DIVISION) = "B03"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -162,8 +173,8 @@
                     addRow(COL_REMARKS) = "備考欄テスト"
                 Case 3
                     addRow(COL_CODE) = "A03"
-                    addRow(COL_CODE_NAME) = "B03"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "恵比寿"
+                    addRow(COL_CODE_DIVISION) = "B03"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -172,8 +183,8 @@
                     addRow(COL_REMARKS) = "備考欄テスト"
                 Case 4
                     addRow(COL_CODE) = "A04"
-                    addRow(COL_CODE_NAME) = "B04"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "品川"
+                    addRow(COL_CODE_DIVISION) = "B04"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -182,8 +193,8 @@
                     addRow(COL_REMARKS) = "備考欄テスト"
                 Case 5
                     addRow(COL_CODE) = "A05"
-                    addRow(COL_CODE_NAME) = "B05"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "大崎"
+                    addRow(COL_CODE_DIVISION) = "B05"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -193,8 +204,8 @@
                     addRow(COL_REMARKS) = "落下"
                 Case 6
                     addRow(COL_CODE) = "A06"
-                    addRow(COL_CODE_NAME) = "B06"
-                    addRow(COL_CODE_DIVISION) = "日本"
+                    addRow(COL_CODE_NAME) = "田町"
+                    addRow(COL_CODE_DIVISION) = "B06"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"

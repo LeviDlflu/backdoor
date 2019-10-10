@@ -7,17 +7,16 @@
 
     Private Sub Init()
 
-        Me.txtNameCD.Enabled = False
-        Me.txtFullName.Enabled = False
-        '初期設定
-        Me.Text = getTitle(GAMEN_SC_M17)
+        Me.txtName.Text = String.Empty
+        Me.txtFullNM.Text = String.Empty
+        Me.txtRemarks.Text = String.Empty
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
 
     Private Sub SC_M17_Load(sender As Object, e As EventArgs) Handles MyBase.Load, MyBase.Activated
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
-        ''Init()
+        Init()
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click

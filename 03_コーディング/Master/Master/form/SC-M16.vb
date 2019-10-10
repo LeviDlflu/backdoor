@@ -7,7 +7,11 @@
     Private Const COL_AUTHORITY_NAME As String = "Authority name" & vbCrLf & "(権限名)"
 
     Private Sub Init()
-
+        Me.txtFormID.Text = String.Empty
+        Me.txtProgram.Text = String.Empty
+        Me.txtFormName.Text = String.Empty
+        Me.cmbGroup.Text = String.Empty
+        Me.cmbAuthority.Text = String.Empty
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
