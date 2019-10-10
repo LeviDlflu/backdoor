@@ -1,184 +1,17 @@
 ﻿Public Class SC_M16
+    Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
+    Private Const COL_PROGRAM_ID As String = "Program ID" & vbCrLf & "(プログラムID)"
+    Private Const COL_FORM_ID As String = "Form ID" & vbCrLf & "(画面ID)"
+    Private Const COL_FORM_NAME As String = "Form name" & vbCrLf & "(画面名称)"
+    Private Const COL_GROUP_ID As String = "Group ID" & vbCrLf & "(グループID)"
+    Private Const COL_AUTHORITY_NAME As String = "Authority name" & vbCrLf & "(権限名)"
 
     Private Sub Init()
-        Me.cmbMode.SelectedIndex = 0
-        Me.txtProgram.Enabled = False
-        Me.txtFormID.Enabled = False
-        Me.txtFormName.Enabled = False
-        Me.cmbGroup.Enabled = False
-        Me.cmbAuthority.Enabled = False
-
-        Me.txtProgram.Text = String.Empty
         Me.txtFormID.Text = String.Empty
+        Me.txtProgram.Text = String.Empty
         Me.txtFormName.Text = String.Empty
-        Me.cmbGroup.SelectedIndex = -1
-        Me.cmbAuthority.SelectedIndex = -1
-
-        Dim dt As New DataTable
-
-        dt.Columns.Add("プログラムID")
-        dt.Columns.Add("画面ID")
-        dt.Columns.Add("画面名称")
-        dt.Columns.Add("グループID")
-        dt.Columns.Add("権限")
-
-        Dim dr As DataRow
-
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_001"
-        dr.Item("画面ID") = "FRMSYS1"
-        dr.Item("画面名称") = "画面管理画面"
-        dr.Item("グループID") = "99"
-        dr.Item("権限") = "2"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_A01"
-        dr.Item("画面ID") = "FAB0100"
-        dr.Item("画面名称") = "3ヶ月内示登録画面"
-        dr.Item("グループID") = "10"
-        dr.Item("権限") = "1"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_A01"
-        dr.Item("画面ID") = "FAB0100"
-        dr.Item("画面名称") = "3ヶ月内示登録画面"
-        dr.Item("グループID") = "70"
-        dr.Item("権限") = "1"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_A01"
-        dr.Item("画面ID") = "FBB0100"
-        dr.Item("画面名称") = "受注データ登録画面"
-        dr.Item("グループID") = "20"
-        dr.Item("権限") = "1"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_B01"
-        dr.Item("画面ID") = "FAC0100"
-        dr.Item("画面名称") = "外部データ取込み画面"
-        dr.Item("グループID") = "30"
-        dr.Item("権限") = "2"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_B01"
-        dr.Item("画面ID") = "FAC0100"
-        dr.Item("画面名称") = "外部データ取込み画面"
-        dr.Item("グループID") = "40"
-        dr.Item("権限") = "1"
-        dt.Rows.Add(dr)
-        dr = dt.NewRow()
-        dr.Item("プログラムID") = "Pro_C01"
-        dr.Item("画面ID") = "FCA0100"
-        dr.Item("画面名称") = "3ヶ月生産計画画面(製品)"
-        dr.Item("グループID") = "60"
-        dr.Item("権限") = "2"
-        dt.Rows.Add(dr)
-
-        gridData.Columns.Clear()
-        gridData.DataSource = dt
-        gridData.Columns.Item(0).ReadOnly = True
-        'gridData.Columns.Item(0).DefaultCellStyle.BackColor = Color.LightGray
-        gridData.Columns.Item(0).HeaderText = "Program ID" & vbCrLf & "(プログラムID)"
-        gridData.Columns.Item(0).Width = 200
-        gridData.Columns.Item(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-
-        gridData.Columns.Item(1).ReadOnly = True
-        'gridData.Columns.Item(1).DefaultCellStyle.BackColor = Color.LightGray
-        gridData.Columns.Item(1).HeaderText = "Form ID" & vbCrLf & "(画面ID)"
-        gridData.Columns.Item(1).Width = 200
-        gridData.Columns.Item(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        gridData.Columns.Item(2).ReadOnly = True
-        'gridData.Columns.Item(2).DefaultCellStyle.BackColor = Color.LightGray
-        gridData.Columns.Item(2).HeaderText = "Form name" & vbCrLf & "(画面名称)"
-        gridData.Columns.Item(2).Width = 350
-
-        gridData.Columns.Item(3).Visible = False
-        gridData.Columns.Item(4).Visible = False
-
-        'グループID
-        Dim dtGroup As New DataTable
-        dtGroup.Columns.Add("Value")
-        dtGroup.Columns.Add("Text")
-
-        Dim dr1 As DataRow
-
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "10"
-        dr1.Item(1) = "10：生産"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "20"
-        dr1.Item(1) = "20：資材"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "30"
-        dr1.Item(1) = "30：経理"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "40"
-        dr1.Item(1) = "40：製造"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "50"
-        dr1.Item(1) = "50：品保"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "60"
-        dr1.Item(1) = "60：総務"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "70"
-        dr1.Item(1) = "70：一般"
-        dtGroup.Rows.Add(dr1)
-        dr1 = dtGroup.NewRow()
-        dr1.Item(0) = "99"
-        dr1.Item(1) = "99：システム"
-        dtGroup.Rows.Add(dr1)
-
-        Dim column As New DataGridViewComboBoxColumn()
-        column.DataPropertyName = "グループID"
-        column.ReadOnly = False
-        column.HeaderText = "Group ID" & vbCrLf & "(グループID)"
-        column.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
-        column.DataSource = dtGroup
-        column.DisplayMember = "Text"
-        column.ValueMember = "Value"
-        gridData.Columns.Add(column)
-
-        '権限
-        Dim dtAuto As New DataTable
-        dtAuto.Columns.Add("Value")
-        dtAuto.Columns.Add("Text")
-
-        dr1 = dtAuto.NewRow()
-        dr1.Item(0) = "1"
-        dr1.Item(1) = "1：参照のみ"
-        dtAuto.Rows.Add(dr1)
-        dr1 = dtAuto.NewRow()
-        dr1.Item(0) = "2"
-        dr1.Item(1) = "2：すべて"
-        dtAuto.Rows.Add(dr1)
-
-        column = New DataGridViewComboBoxColumn()
-        column.DataPropertyName = "権限"
-        column.ReadOnly = False
-        column.HeaderText = "Authority name" & vbCrLf & "(権限)"
-        column.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
-        column.DataSource = dtAuto
-        column.DisplayMember = "Text"
-        column.ValueMember = "Value"
-        gridData.Columns.Add(column)
-
-        'gridData.AutoResizeColumns()
-
-        gridData.Columns.Item(0).SortMode = DataGridViewColumnSortMode.NotSortable
-        gridData.Columns.Item(1).SortMode = DataGridViewColumnSortMode.NotSortable
-        gridData.Columns.Item(2).SortMode = DataGridViewColumnSortMode.NotSortable
-        gridData.Columns.Item(3).SortMode = DataGridViewColumnSortMode.NotSortable
-        gridData.Columns.Item(4).SortMode = DataGridViewColumnSortMode.NotSortable
-
+        Me.cmbGroup.Text = String.Empty
+        Me.cmbAuthority.Text = String.Empty
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
@@ -197,7 +30,7 @@
         e.InheritedRowStyle.Font,
         rect,
         e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
 
@@ -208,4 +41,154 @@
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
         Me.Close()
     End Sub
+
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        setGrid(createGridData())
+    End Sub
+
+    ''' <summary>
+    ''' 　グリッドを設定する
+    ''' </summary>
+    ''' <param name="dtData">データソース</param>
+    Private Sub setGrid(ByRef dtData As DataTable)
+        If gridData.Rows.Count > 0 Then
+            gridData.Columns.Clear()
+        End If
+        For Each col As DataColumn In dtData.Columns
+            If col.ColumnName = COL_SENTAKU Then
+                Dim addCol As New DataGridViewCheckBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = "sentaku"
+                gridData.Columns.Add(addCol)
+            ElseIf col.ColumnName = COL_GROUP_ID Or col.ColumnName = COL_AUTHORITY_NAME Then
+                Dim addCol As New DataGridViewComboBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = col.ColumnName
+                gridData.Columns.Add(addCol)
+
+            Else
+                Dim addCol As New DataGridViewTextBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = col.ColumnName
+                gridData.Columns.Add(addCol)
+            End If
+        Next
+        gridData.DataSource = dtData.Copy
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        For i As Integer = 0 To gridData.Columns.Count - 1
+            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
+
+            '横位置
+            Select Case gridData.Columns(i).Name
+                Case COL_FORM_NAME
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End Select
+
+            gridData.AutoResizeColumns()
+
+        Next
+
+        For Each col As DataGridViewColumn In gridData.Columns
+            Select Case col.Name
+                Case "sentaku"
+                    col.ReadOnly = False
+                    col.DefaultCellStyle.BackColor = Color.LightSkyBlue
+                Case Else
+                    col.ReadOnly = True
+            End Select
+        Next
+
+        gridData.Columns(0).Width = 50
+        gridData.Columns(1).Width = 100
+        gridData.Columns(2).Width = 100
+        gridData.Columns(3).Width = 300
+        gridData.Columns(4).Width = 150
+        gridData.Columns(5).Width = 200
+
+        '複数選択不可
+        gridData.MultiSelect = False
+        '編集不可
+        gridData.AllowUserToDeleteRows = False
+        gridData.AllowUserToAddRows = False
+        gridData.AllowUserToResizeRows = False
+    End Sub
+
+    ''' <summary>
+    ''' 　グリッド用のデータを作成
+    ''' </summary>
+    Private Function createGridData() As DataTable
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
+        dt.Columns.Add(New DataColumn(COL_PROGRAM_ID, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_FORM_ID, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_FORM_NAME, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_GROUP_ID, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_AUTHORITY_NAME, GetType(System.String)))
+
+        For i As Integer = 0 To 6
+            Dim addRow As DataRow = dt.NewRow
+            Select Case i
+                Case 0
+                    addRow(COL_PROGRAM_ID) = "P10001"
+                    addRow(COL_FORM_ID) = "M1001"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 1
+                    addRow(COL_PROGRAM_ID) = "P10002"
+                    addRow(COL_FORM_ID) = "M1002"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 2
+                    addRow(COL_PROGRAM_ID) = "P10003"
+                    addRow(COL_FORM_ID) = "M1003"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 3
+                    addRow(COL_PROGRAM_ID) = "P10004"
+                    addRow(COL_FORM_ID) = "M1004"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 4
+                    addRow(COL_PROGRAM_ID) = "P10005"
+                    addRow(COL_FORM_ID) = "M1005"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 5
+                    addRow(COL_PROGRAM_ID) = "P10006"
+                    addRow(COL_FORM_ID) = "M1006"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+                Case 6
+                    addRow(COL_PROGRAM_ID) = "P10007"
+                    addRow(COL_FORM_ID) = "M1007"
+                    addRow(COL_FORM_NAME) = "権限マスタ001"
+
+            End Select
+            dt.Rows.Add(addRow)
+        Next
+
+        Return dt
+
+    End Function
+
+    ''' <summary>
+    ''' 　チェックボックス事件
+    ''' </summary>
+    Private Sub gridData_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles gridData.CurrentCellDirtyStateChanged
+
+        If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
+            gridData.EndEdit()
+            Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
+            If Checked Then
+                For i As Integer = 1 To 5
+                    gridData.CurrentRow.Cells(i).ReadOnly = False
+                Next
+            Else
+                For i As Integer = 1 To 5
+                    gridData.CurrentRow.Cells(i).ReadOnly = True
+                Next
+            End If
+        End If
+
+    End Sub
+
 End Class

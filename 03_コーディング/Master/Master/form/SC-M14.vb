@@ -24,8 +24,7 @@ Public Class SC_M14
         sqlstr.Append("select ")
         sqlstr.Append("ＩＰアドレス,")
         sqlstr.Append("設備コード + ':設備_' + right(設備コード,2),")
-        sqlstr.Append("稼動区分 + ':稼動_' + right(稼動区分,1),")
-        sqlstr.Append("用途区分 + ':用途_' + right(用途区分,2),")
+        sqlstr.Append("case 稼動区分 when 0 then '0:予備' else '1:稼動' end,")
         sqlstr.Append("機種,")
         sqlstr.Append("備考")
         sqlstr.Append(" from Ｍ＿ＩＰアドレス管理マスタ")
@@ -47,9 +46,8 @@ Public Class SC_M14
         gridData.Columns(1).HeaderText = "IP address" & vbCrLf & "(ＩＰアドレス)"
         gridData.Columns(2).HeaderText = "Facility" & vbCrLf & "(設備)"
         gridData.Columns(3).HeaderText = "Operation division" & vbCrLf & "(稼働区分)"
-        gridData.Columns(4).HeaderText = "Application" & vbCrLf & "(用途)"
-        gridData.Columns(5).HeaderText = "Equipment type" & vbCrLf & "(機種)"
-        gridData.Columns(6).HeaderText = "Remarks" & vbCrLf & "(備考)"
+        gridData.Columns(4).HeaderText = "Equipment type" & vbCrLf & "(機種)"
+        gridData.Columns(5).HeaderText = "Remarks" & vbCrLf & "(備考)"
 
 
         gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -74,9 +72,8 @@ Public Class SC_M14
         gridData.Columns(1).Width = 90
         gridData.Columns(2).Width = 180
         gridData.Columns(3).Width = 180
-        gridData.Columns(4).Width = 180
-        gridData.Columns(5).Width = 160
-        gridData.Columns(6).Width = 320
+        gridData.Columns(4).Width = 160
+        gridData.Columns(5).Width = 320
 
         '複数選択不可
         gridData.MultiSelect = False

@@ -7,17 +7,16 @@
 
     Private Sub Init()
 
-        Me.txtNameCD.Enabled = False
-        Me.txtFullName.Enabled = False
-        '初期設定
-        Me.Text = getTitle(GAMEN_SC_M17)
+        Me.txtName.Text = String.Empty
+        Me.txtFullNM.Text = String.Empty
+        Me.txtRemarks.Text = String.Empty
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
 
     Private Sub SC_M17_Load(sender As Object, e As EventArgs) Handles MyBase.Load, MyBase.Activated
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
-        ''Init()
+        Init()
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -56,7 +55,7 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_NAME_CODE
+                Case COL_FULL_NAME, COL_REMARKS
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -102,43 +101,43 @@
             Dim addRow As DataRow = dt.NewRow
             Select Case i
                 Case 0
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "森田森田森田森田森,森田森田森田森田森,森田森田森田森田森田"
                     addRow(COL_REMARKS) = "成田建築基準法電波障成田建築基準法電波障成田建築基準法電波障成田建築基準法電波障成田建築基準法電波障"
                 Case 1
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "佐々木"
                     addRow(COL_REMARKS) = "備考なし"
                 Case 2
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "市野"
                     addRow(COL_REMARKS) = "東京営業所"
                 Case 3
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "笹森"
                     addRow(COL_REMARKS) = "新宿出張所"
                 Case 4
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "早川"
                     addRow(COL_REMARKS) = "渋谷営業所"
                 Case 5
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "渡辺"
                     addRow(COL_REMARKS) = "備考なし"
                 Case 6
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "山辺"
                     addRow(COL_REMARKS) = "備考なし"
                 Case 7
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "森永"
                     addRow(COL_REMARKS) = "大崎建築"
                 Case 8
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "明治"
                     addRow(COL_REMARKS) = "品川入力装置"
                 Case 9
-                    addRow(COL_NAME_CODE) = "E2019100" + i.ToString
+                    addRow(COL_NAME_CODE) = "E10" + i.ToString
                     addRow(COL_FULL_NAME) = "令和"
                     addRow(COL_REMARKS) = "日立製作所"
             End Select

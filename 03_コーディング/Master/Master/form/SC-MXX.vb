@@ -1,7 +1,7 @@
-﻿Public Class SC_M00
+﻿Public Class SC_MXX
 
 
-    Private Sub SC_M00_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub SC_MXX_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         btn01.Text = "Parts configuration master" + Environment.NewLine + "部品構成マスタ(M-01)"
         btn10.Text = "Equipment master" + Environment.NewLine + "設備マスタ(M-10)"

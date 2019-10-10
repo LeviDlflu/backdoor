@@ -3,78 +3,12 @@
     Private Const COL_PROCESS_CODE As String = "Process code" & vbCrLf & "(工程コード)"
     Private Const COL_DEFECT_CODE As String = "Defect code" & vbCrLf & "(不良コード)"
     Private Const COL_DEFECT_PHENOMENON_NAME As String = "Defect phenomenon name" & vbCrLf & "(不良現象名)"
+    Private Const COL_REMARKS As String = "Remarks" & vbCrLf & "(備考)"
+    Private Const COL_DISPLAY_DIVISION As String = "Display division" & vbCrLf & "(表示区分)"
 
     Private Sub Init()
         Me.txtDefect.Text = String.Empty
         Me.txtDefectName.Text = String.Empty
-        'Me.cmbHinsyu.SelectedIndex = -1
-
-        'Dim dt As New DataTable
-
-        'dt.Columns.Add("工程コード")
-        'dt.Columns.Add("不良コード")
-        'dt.Columns.Add("不良現象名")
-
-        'Dim dr As DataRow
-
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "11"
-        'dr.Item("不良現象名") = "落下"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "12"
-        'dr.Item("不良現象名") = "キズ"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "25"
-        'dr.Item("不良現象名") = "凹凸"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "30"
-        'dr.Item("不良現象名") = "溶着不良"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "40"
-        'dr.Item("不良現象名") = "生地不良(ゲット)"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "42"
-        'dr.Item("不良現象名") = "変形"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr.Item("工程コード") = "FAS"
-        'dr.Item("不良コード") = "47"
-        'dr.Item("不良現象名") = "クラック"
-        'dt.Rows.Add(dr)
-
-        'gridData.DataSource = dt
-        'gridData.Columns.Item(0).ReadOnly = True
-        'gridData.Columns.Item(0).DefaultCellStyle.BackColor = Color.LightGray
-        'gridData.Columns.Item(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
-        'gridData.Columns.Item(0).Width = 200
-        'gridData.Columns.Item(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        'gridData.Columns.Item(1).ReadOnly = True
-        ''gridData.Columns.Item(1).DefaultCellStyle.BackColor = Color.LightGray
-        'gridData.Columns.Item(1).HeaderText = "Defect code" & vbCrLf & "(不良コード)"
-        'gridData.Columns.Item(1).Width = 200
-        'gridData.Columns.Item(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        'gridData.Columns.Item(2).ReadOnly = True
-        ''gridData.Columns.Item(2).DefaultCellStyle.BackColor = Color.LightGray
-        'gridData.Columns.Item(2).HeaderText = "Defect phenomenon name" & vbCrLf & "(不良現象名)"
-        'gridData.Columns.Item(2).Width = 400
-        ''gridData.AutoResizeColumns()
-
-        'gridData.Columns.Item(0).SortMode = DataGridViewColumnSortMode.NotSortable
-        'gridData.Columns.Item(1).SortMode = DataGridViewColumnSortMode.NotSortable
-        'gridData.Columns.Item(2).SortMode = DataGridViewColumnSortMode.NotSortable
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -94,7 +28,7 @@
         e.InheritedRowStyle.Font,
         rect,
         e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
     Private Sub SC_M13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -125,6 +59,12 @@
                 addCol.HeaderText = col.ColumnName
                 addCol.Name = "sentaku"
                 gridData.Columns.Add(addCol)
+            ElseIf col.ColumnName = COL_DISPLAY_DIVISION Then
+                Dim addCol As New DataGridViewComboBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = col.ColumnName
+                gridData.Columns.Add(addCol)
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
@@ -140,7 +80,7 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_PROCESS_CODE
+                Case COL_DEFECT_PHENOMENON_NAME, COL_REMARKS
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -160,9 +100,11 @@
         Next
 
         gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 200
-        gridData.Columns(2).Width = 200
+        gridData.Columns(1).Width = 150
+        gridData.Columns(2).Width = 150
         gridData.Columns(3).Width = 400
+        gridData.Columns(4).Width = 400
+        gridData.Columns(5).Width = 100
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -181,6 +123,8 @@
         dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_DEFECT_CODE, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_DEFECT_PHENOMENON_NAME, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_REMARKS, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_DISPLAY_DIVISION, GetType(System.String)))
 
         For i As Integer = 0 To 6
             Dim addRow As DataRow = dt.NewRow
@@ -189,30 +133,37 @@
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "11"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "落下"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 1
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "12"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "キズ"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 2
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "25"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "凹凸"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 3
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "30"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "溶着不良"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 4
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "40"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "生地不良(ゲット)"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 5
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "42"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "変形"
+                    addRow(COL_REMARKS) = "製造工場"
                 Case 6
                     addRow(COL_PROCESS_CODE) = "FAS"
                     addRow(COL_DEFECT_CODE) = "47"
                     addRow(COL_DEFECT_PHENOMENON_NAME) = "クラック"
+                    addRow(COL_REMARKS) = "製造工場"
 
             End Select
             dt.Rows.Add(addRow)
@@ -231,11 +182,11 @@
             gridData.EndEdit()
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
-                For i As Integer = 1 To 3
+                For i As Integer = 1 To 5
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                 Next
             Else
-                For i As Integer = 1 To 3
+                For i As Integer = 1 To 5
                     gridData.CurrentRow.Cells(i).ReadOnly = True
                 Next
             End If

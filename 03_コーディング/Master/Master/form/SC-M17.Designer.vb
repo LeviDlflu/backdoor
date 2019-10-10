@@ -22,6 +22,7 @@ Partial Class SC_M17
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
@@ -57,19 +58,20 @@ Partial Class SC_M17
         Me.btnExcel = New System.Windows.Forms.Button()
         Me.btnClear = New System.Windows.Forms.Button()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.txtDefect = New System.Windows.Forms.TextBox()
+        Me.txtName = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtFullNM = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.cmb_Kbn = New System.Windows.Forms.ComboBox()
+        Me.txtNameCode = New System.Windows.Forms.ComboBox()
         Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,19 +371,27 @@ Partial Class SC_M17
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridData.Location = New System.Drawing.Point(12, 224)
+        Me.gridData.Name = "gridData"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
-        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridData.Location = New System.Drawing.Point(12, 224)
-        Me.gridData.Name = "gridData"
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1330, 265)
+        Me.gridData.Size = New System.Drawing.Size(1330, 295)
         Me.gridData.TabIndex = 128
         '
         'Panel1
@@ -467,15 +477,15 @@ Partial Class SC_M17
         Me.Label20.TabIndex = 179
         Me.Label20.Text = "(氏名コード)"
         '
-        'txtDefect
+        'txtName
         '
-        Me.txtDefect.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtDefect.Location = New System.Drawing.Point(25, 595)
-        Me.txtDefect.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtDefect.Name = "txtDefect"
-        Me.txtDefect.Size = New System.Drawing.Size(159, 21)
-        Me.txtDefect.TabIndex = 178
-        Me.txtDefect.Text = "XX"
+        Me.txtName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtName.Location = New System.Drawing.Point(25, 595)
+        Me.txtName.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtName.Name = "txtName"
+        Me.txtName.Size = New System.Drawing.Size(159, 21)
+        Me.txtName.TabIndex = 178
+        Me.txtName.Text = "XX"
         '
         'Label21
         '
@@ -521,15 +531,15 @@ Partial Class SC_M17
         Me.Label9.TabIndex = 182
         Me.Label9.Text = "(氏名)"
         '
-        'TextBox2
+        'txtFullNM
         '
-        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.Location = New System.Drawing.Point(229, 595)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(214, 21)
-        Me.TextBox2.TabIndex = 181
-        Me.TextBox2.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        Me.txtFullNM.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtFullNM.Location = New System.Drawing.Point(229, 595)
+        Me.txtFullNM.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFullNM.Name = "txtFullNM"
+        Me.txtFullNM.Size = New System.Drawing.Size(214, 21)
+        Me.txtFullNM.TabIndex = 181
+        Me.txtFullNM.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label16
         '
@@ -553,15 +563,15 @@ Partial Class SC_M17
         Me.Label19.TabIndex = 185
         Me.Label19.Text = "(備考)"
         '
-        'TextBox3
+        'txtRemarks
         '
-        Me.TextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.Location = New System.Drawing.Point(485, 595)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(328, 21)
-        Me.TextBox3.TabIndex = 184
-        Me.TextBox3.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+        Me.txtRemarks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtRemarks.Location = New System.Drawing.Point(485, 595)
+        Me.txtRemarks.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtRemarks.Name = "txtRemarks"
+        Me.txtRemarks.Size = New System.Drawing.Size(328, 21)
+        Me.txtRemarks.TabIndex = 184
+        Me.txtRemarks.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label22
         '
@@ -584,15 +594,16 @@ Partial Class SC_M17
         Me.Label29.TabIndex = 209
         Me.Label29.Text = "(氏名コード)"
         '
-        'cmb_Kbn
+        'txtNameCode
         '
-        Me.cmb_Kbn.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_Kbn.BackColor = System.Drawing.Color.White
-        Me.cmb_Kbn.FormattingEnabled = True
-        Me.cmb_Kbn.Location = New System.Drawing.Point(11, 173)
-        Me.cmb_Kbn.Name = "cmb_Kbn"
-        Me.cmb_Kbn.Size = New System.Drawing.Size(156, 20)
-        Me.cmb_Kbn.TabIndex = 207
+        Me.txtNameCode.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.txtNameCode.BackColor = System.Drawing.Color.White
+        Me.txtNameCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
+        Me.txtNameCode.FormattingEnabled = True
+        Me.txtNameCode.Location = New System.Drawing.Point(11, 173)
+        Me.txtNameCode.Name = "txtNameCode"
+        Me.txtNameCode.Size = New System.Drawing.Size(156, 20)
+        Me.txtNameCode.TabIndex = 207
         '
         'Label30
         '
@@ -604,22 +615,34 @@ Partial Class SC_M17
         Me.Label30.TabIndex = 208
         Me.Label30.Text = "Name code"
         '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label24.Location = New System.Drawing.Point(173, 177)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(17, 11)
+        Me.Label24.TabIndex = 210
+        Me.Label24.Text = "～"
+        '
         'SC_M17
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1350, 689)
+        Me.Controls.Add(Me.Label24)
         Me.Controls.Add(Me.Label29)
-        Me.Controls.Add(Me.cmb_Kbn)
+        Me.Controls.Add(Me.txtNameCode)
         Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.Label19)
-        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.txtRemarks)
         Me.Controls.Add(Me.Label22)
         Me.Controls.Add(Me.Label9)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtFullNM)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.Label20)
-        Me.Controls.Add(Me.txtDefect)
+        Me.Controls.Add(Me.txtName)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label7)
@@ -686,17 +709,18 @@ Partial Class SC_M17
     Friend WithEvents btnExcel As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents Label20 As Label
-    Friend WithEvents txtDefect As TextBox
+    Friend WithEvents txtName As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label9 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtFullNM As TextBox
     Friend WithEvents Label16 As Label
     Friend WithEvents Label19 As Label
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents txtRemarks As TextBox
     Friend WithEvents Label22 As Label
     Friend WithEvents Label29 As Label
-    Friend WithEvents cmb_Kbn As ComboBox
+    Friend WithEvents txtNameCode As ComboBox
     Friend WithEvents Label30 As Label
+    Friend WithEvents Label24 As Label
 End Class

@@ -5,63 +5,16 @@ Imports System.Text
 
 
 Public Class SC_M19
+    Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
+    Private Const COL_PROCESS_CODE As String = "Process code" & vbCrLf & "(工程コード)"
+    Private Const COL_DIVISION As String = "Division" & vbCrLf & "(区分)"
+    Private Const COL_LINE_DIVISION As String = "Line Division" & vbCrLf & "(ライン区分)"
+    Private Const COL_BREAK_START_TIME As String = "Break start time" & vbCrLf & "(休憩開始時間)"
+    Private Const COL_BREAK_END_TIME As String = "Break end time" & vbCrLf & "(休憩終了時間)"
+    Private Const COL_DATE_CHANGE_INDICATOR As String = "Date change indicator" & vbCrLf & "(日付変更区分)"
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-
-        Dim cn As SqlConnection
-        Dim da As SqlDataAdapter
-        Dim dt As DataTable
-
-        Dim cnStr As String = "Data Source=WIN-CPGPKU87FDV;Initial Catalog=BackDoor;user id=backdooruser;password=pass@word2;"
-
-        Dim sqlstr As New StringBuilder
-
-        sqlstr.Append("select ")
-        sqlstr.Append("工程コード+':'+工程略称")
-        sqlstr.Append(",ラインロット区分-1")
-        sqlstr.Append(",ラインロット区分")
-        sqlstr.Append(",'12:00'")
-        sqlstr.Append(",'14:00'")
-        sqlstr.Append(",120")
-        sqlstr.Append(",ラインロット区分+1 ")
-        sqlstr.Append("from 工程マスタ")
-
-        cn = New SqlConnection(cnStr)
-        da = New SqlDataAdapter(sqlstr.ToString, cn)
-        dt = New DataTable()
-
-        da.Fill(dt)
-        gridData.DataSource = dt
-
-        gridData.Columns(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
-        gridData.Columns(1).HeaderText = "Division" & vbCrLf & "(区分)"
-        gridData.Columns(2).HeaderText = "Line Division" & vbCrLf & "(ライン区分)"
-        gridData.Columns(3).HeaderText = "Break start time" & vbCrLf & "(休憩開始時間)"
-        gridData.Columns(4).HeaderText = "Break end time" & vbCrLf & "(休憩終了時間)"
-        gridData.Columns(5).HeaderText = "Break time" & vbCrLf & "(休憩時間)"
-        gridData.Columns(6).HeaderText = "Date change indicator" & vbCrLf & "(日付変更区分)"
-
-        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        Dim ii As Integer
-        For ii = 0 To gridData.Columns.Count - 1
-            gridData.Columns(ii).SortMode = DataGridViewColumnSortMode.NotSortable
-            gridData.Columns(ii).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        Next
-
-        gridData.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-
-        gridData.Columns(0).Width = 125
-        gridData.Columns(1).Width = 90
-        gridData.Columns(2).Width = 90
-        gridData.Columns(3).Width = 110
-        gridData.Columns(4).Width = 110
-        gridData.Columns(5).Width = 100
-        gridData.Columns(6).Width = 130
-
-        Label12.Visible = True
-        Label20.Visible = True
-        gridData.Visible = True
+        setGrid(createGridData())
 
     End Sub
 
@@ -79,7 +32,7 @@ Public Class SC_M19
         e.InheritedRowStyle.Font,
         rect,
         e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.HorizontalCenter Or TextFormatFlags.VerticalCenter)
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
 
@@ -94,56 +47,16 @@ Public Class SC_M19
 
 
     Private Sub SC_M19_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cmbKoutei.Enabled = False
-        cmbKubun.Enabled = False
-        cmbLine.Enabled = False
-        txtStart.Enabled = False
-        txtEnd.Enabled = False
-        cmbHenkou.Enabled = False
+        Me.cmbKoutei.Text = String.Empty
+        Me.cmbKubun.Text = String.Empty
+        Me.cmbLine.Text = String.Empty
+        Me.txtStart.Text = String.Empty
+        Me.txtEnd.Text = String.Empty
+        Me.cmbHenkou.Text = String.Empty
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
 
-        Label12.Visible = False
-        Label20.Visible = False
-        gridData.Visible = False
 
-    End Sub
-
-    Private Sub cmbMode_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbMode.SelectedIndexChanged
-
-        Select Case cmbMode.Text
-            Case "参照"
-                cmbKoutei.Enabled = False
-                cmbKubun.Enabled = False
-                cmbLine.Enabled = False
-                txtStart.Enabled = False
-                txtEnd.Enabled = False
-                cmbHenkou.Enabled = False
-            Case "追加"
-                cmbKoutei.Enabled = True
-                cmbKubun.Enabled = True
-                cmbLine.Enabled = True
-                txtStart.Enabled = True
-                txtEnd.Enabled = True
-                cmbHenkou.Enabled = True
-            Case "修正"
-                cmbKoutei.Enabled = False
-                cmbKubun.Enabled = False
-                cmbLine.Enabled = False
-                txtStart.Enabled = False
-                txtEnd.Enabled = False
-                cmbHenkou.Enabled = False
-            Case "削除"
-                cmbKoutei.Enabled = False
-                cmbKubun.Enabled = False
-                cmbLine.Enabled = False
-                txtStart.Enabled = False
-                txtEnd.Enabled = False
-                cmbHenkou.Enabled = False
-
-        End Select
-
-        If cmbMode.Text = "" Then
-
-        End If
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
@@ -162,4 +75,165 @@ Public Class SC_M19
         End If
 
     End Sub
+
+    Private Sub setGrid(ByRef dtData As DataTable)
+
+        If gridData.Rows.Count > 0 Then
+            'gridData.Rows.Clear()
+            gridData.Columns.Clear()
+        End If
+
+        For Each col As DataColumn In dtData.Columns
+            If col.ColumnName = COL_SENTAKU Then
+                Dim addCol As New DataGridViewCheckBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = "sentaku"
+                gridData.Columns.Add(addCol)
+            ElseIf col.ColumnName = COL_DATE_CHANGE_INDICATOR Then
+                Dim addCol As New DataGridViewComboBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = col.ColumnName
+                gridData.Columns.Add(addCol)
+            Else
+
+                Dim addCol As New DataGridViewTextBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = col.ColumnName
+                addCol.Name = col.ColumnName
+                gridData.Columns.Add(addCol)
+            End If
+        Next
+        gridData.DataSource = dtData.Copy
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        For i As Integer = 0 To gridData.Columns.Count - 1
+            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
+
+            '横位置
+            Select Case gridData.Columns(i).Name
+                Case COL_DIVISION, COL_LINE_DIVISION
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End Select
+        Next
+        gridData.AutoResizeColumns()
+
+        For Each col As DataGridViewColumn In gridData.Columns
+            Select Case col.Name
+                Case "sentaku"
+                    col.ReadOnly = False
+                    col.DefaultCellStyle.BackColor = Color.LightSkyBlue
+                Case Else
+                    col.ReadOnly = True
+            End Select
+        Next
+
+        gridData.Columns(0).Width = 50
+        gridData.Columns(1).Width = 125
+        gridData.Columns(2).Width = 90
+        gridData.Columns(3).Width = 90
+        gridData.Columns(4).Width = 110
+        gridData.Columns(5).Width = 110
+        gridData.Columns(6).Width = 200
+
+        '複数選択不可
+        gridData.MultiSelect = False
+        '編集不可
+        gridData.AllowUserToDeleteRows = False
+        gridData.AllowUserToAddRows = False
+        gridData.AllowUserToResizeRows = False
+    End Sub
+
+    ''' <summary>
+    ''' 　グリッド用のデータを作成
+    ''' </summary>
+    Private Function createGridData() As DataTable
+        Dim dt As New DataTable
+        dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
+        dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_DIVISION, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_LINE_DIVISION, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_BREAK_START_TIME, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_BREAK_END_TIME, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_DATE_CHANGE_INDICATOR, GetType(System.String)))
+
+        For i As Integer = 0 To 6
+            Dim addRow As DataRow = dt.NewRow
+            Select Case i
+                Case 0
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 1
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 2
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 3
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 4
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 5
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+                Case 6
+                    addRow(COL_PROCESS_CODE) = "P2001"
+                    addRow(COL_DIVISION) = "C01"
+                    addRow(COL_LINE_DIVISION) = "落下"
+                    addRow(COL_BREAK_START_TIME) = "09:00"
+                    addRow(COL_BREAK_END_TIME) = "18:00"
+
+            End Select
+            dt.Rows.Add(addRow)
+        Next
+
+        Return dt
+
+    End Function
+
+    ''' <summary>
+    ''' 　チェックボックス事件
+    ''' </summary>
+    Private Sub gridData_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles gridData.CurrentCellDirtyStateChanged
+
+        If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
+            gridData.EndEdit()
+            Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
+            If Checked Then
+
+                For i As Integer = 2 To 6
+                    gridData.CurrentRow.Cells(i).ReadOnly = False
+                Next
+            Else
+
+                For i As Integer = 2 To 6
+                    gridData.CurrentRow.Cells(i).ReadOnly = True
+                Next
+            End If
+        End If
+
+    End Sub
+
 End Class
