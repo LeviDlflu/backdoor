@@ -56,7 +56,7 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_NAME_CODE
+                Case COL_FULL_NAME, COL_REMARKS
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter

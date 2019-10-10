@@ -49,6 +49,8 @@
 
         gridData.DataSource = dt
 
+        gridData.Columns.Item(0).DefaultCellStyle.BackColor = Color.LightSkyBlue
+
         gridData.Columns.Item(1).ReadOnly = True
         'gridData.Columns.Item(0).DefaultCellStyle.BackColor = Color.LightGray
         gridData.Columns.Item(1).HeaderText = "Variety" & vbCrLf & "(品種コード)"
