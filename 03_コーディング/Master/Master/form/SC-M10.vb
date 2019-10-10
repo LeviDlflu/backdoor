@@ -115,12 +115,13 @@ Public Class SC_M10
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_SNAME, COL_LABEL
+                Case COL_SNAME, COL_LABEL, COL_BIKOU
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End Select
         Next
+
         gridData.AutoResizeColumns()
 
         For Each col As DataGridViewColumn In gridData.Columns
