@@ -1,3 +1,7 @@
 定数クラス：Constant	⇒ファイル名：Constant.vb
 DB接続クラス：Conn		⇒ファイル名：Conn.vb
 共通クラス：Common		⇒ファイル名：Common.vb
+
+
+
+test
