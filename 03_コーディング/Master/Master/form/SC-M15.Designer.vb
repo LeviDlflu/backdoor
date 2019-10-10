@@ -112,7 +112,7 @@ Partial Class SC_M15
         Me.txtCodeName.Location = New System.Drawing.Point(445, 579)
         Me.txtCodeName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCodeName.Name = "txtCodeName"
-        Me.txtCodeName.Size = New System.Drawing.Size(369, 21)
+        Me.txtCodeName.Size = New System.Drawing.Size(369, 19)
         Me.txtCodeName.TabIndex = 199
         Me.txtCodeName.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
@@ -354,7 +354,7 @@ Partial Class SC_M15
         Me.TextBox1.Location = New System.Drawing.Point(1231, 31)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(120, 21)
+        Me.TextBox1.Size = New System.Drawing.Size(120, 19)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.TabStop = False
         Me.TextBox1.Text = "本番環境"
@@ -365,7 +365,7 @@ Partial Class SC_M15
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.txtLoginUser.Location = New System.Drawing.Point(1231, 10)
         Me.txtLoginUser.Name = "txtLoginUser"
-        Me.txtLoginUser.Size = New System.Drawing.Size(120, 21)
+        Me.txtLoginUser.Size = New System.Drawing.Size(120, 19)
         Me.txtLoginUser.TabIndex = 4
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
@@ -460,7 +460,7 @@ Partial Class SC_M15
         Me.gridData.Name = "gridData"
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -496,7 +496,7 @@ Partial Class SC_M15
         Me.txtCode.Location = New System.Drawing.Point(217, 579)
         Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCode.Name = "txtCode"
-        Me.txtCode.Size = New System.Drawing.Size(160, 21)
+        Me.txtCode.Size = New System.Drawing.Size(160, 19)
         Me.txtCode.TabIndex = 199
         Me.txtCode.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -528,9 +528,9 @@ Partial Class SC_M15
         Me.txtDivision.Location = New System.Drawing.Point(13, 579)
         Me.txtDivision.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDivision.Name = "txtDivision"
-        Me.txtDivision.Size = New System.Drawing.Size(99, 21)
+        Me.txtDivision.Size = New System.Drawing.Size(165, 19)
         Me.txtDivision.TabIndex = 199
-        Me.txtDivision.Text = "XXX"
+        Me.txtDivision.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
         'Label24
         '
@@ -560,7 +560,7 @@ Partial Class SC_M15
         Me.txtItem1.Location = New System.Drawing.Point(919, 579)
         Me.txtItem1.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem1.Name = "txtItem1"
-        Me.txtItem1.Size = New System.Drawing.Size(160, 21)
+        Me.txtItem1.Size = New System.Drawing.Size(160, 19)
         Me.txtItem1.TabIndex = 199
         Me.txtItem1.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -570,7 +570,7 @@ Partial Class SC_M15
         Me.txtItem2.Location = New System.Drawing.Point(1125, 579)
         Me.txtItem2.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem2.Name = "txtItem2"
-        Me.txtItem2.Size = New System.Drawing.Size(160, 21)
+        Me.txtItem2.Size = New System.Drawing.Size(160, 19)
         Me.txtItem2.TabIndex = 203
         Me.txtItem2.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -602,7 +602,7 @@ Partial Class SC_M15
         Me.txtItem3.Location = New System.Drawing.Point(445, 631)
         Me.txtItem3.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem3.Name = "txtItem3"
-        Me.txtItem3.Size = New System.Drawing.Size(369, 21)
+        Me.txtItem3.Size = New System.Drawing.Size(369, 19)
         Me.txtItem3.TabIndex = 206
         Me.txtItem3.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
@@ -634,7 +634,7 @@ Partial Class SC_M15
         Me.txtItem4.Location = New System.Drawing.Point(919, 631)
         Me.txtItem4.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem4.Name = "txtItem4"
-        Me.txtItem4.Size = New System.Drawing.Size(160, 21)
+        Me.txtItem4.Size = New System.Drawing.Size(160, 19)
         Me.txtItem4.TabIndex = 209
         Me.txtItem4.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -666,7 +666,7 @@ Partial Class SC_M15
         Me.txtItem5.Location = New System.Drawing.Point(1125, 631)
         Me.txtItem5.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem5.Name = "txtItem5"
-        Me.txtItem5.Size = New System.Drawing.Size(160, 21)
+        Me.txtItem5.Size = New System.Drawing.Size(160, 19)
         Me.txtItem5.TabIndex = 212
         Me.txtItem5.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
