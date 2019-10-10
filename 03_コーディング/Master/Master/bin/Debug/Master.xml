@@ -35,11 +35,6 @@ Master
  <param name="cmb">コンボボックス</param>
  <param name="itemList">リストの内容</param>
 </member>
-<member name="M:Master.SC_M00.TimeSys_Tick(System.Object,System.EventArgs)">
- <summary>
- １秒毎に発生するイベント
- </summary>
-</member>
 <member name="M:Master.SC_M10.createGridData">
  <summary>
  　グリッド用のデータを作成
@@ -122,6 +117,38 @@ Master
  　チェックボックス事件
  </summary>
 </member>
+<member name="M:Master.SC_M15.setGrid(System.Data.DataTable@)">
+ <summary>
+ 　グリッドを設定する
+ </summary>
+ <param name="dtData">データソース</param>
+</member>
+<member name="M:Master.SC_M15.createGridData">
+ <summary>
+ 　グリッド用のデータを作成
+ </summary>
+</member>
+<member name="M:Master.SC_M15.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M16.setGrid(System.Data.DataTable@)">
+ <summary>
+ 　グリッドを設定する
+ </summary>
+ <param name="dtData">データソース</param>
+</member>
+<member name="M:Master.SC_M16.createGridData">
+ <summary>
+ 　グリッド用のデータを作成
+ </summary>
+</member>
+<member name="M:Master.SC_M16.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
+ </summary>
+</member>
 <member name="M:Master.SC_M17.setGrid(System.Data.DataTable@)">
  <summary>
  　グリッドを設定する
@@ -143,9 +170,29 @@ Master
  　チェックボックス事件
  </summary>
 </member>
+<member name="M:Master.SC_M18.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
+ <summary>
+ 　・行ヘッダーに行番号書き込み
+ </summary>
+</member>
 <member name="M:Master.SC_M18.TimeSys_Tick(System.Object,System.EventArgs)">
  <summary>
  １秒毎に発生するイベント
+ </summary>
+</member>
+<member name="M:Master.SC_M18.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　クリアボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M18.btnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　終了ボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M18.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
  </summary>
 </member>
 <member name="M:Master.SC_M19.TimeSys_Tick(System.Object,System.EventArgs)">
@@ -159,14 +206,24 @@ Master
  </summary>
  <param name="dtData">データソース</param>
 </member>
-<member name="M:Master.SC_M22.btnExcel_Click(System.Object,System.EventArgs)">
+<member name="M:Master.SC_M22.btnEnd_Click(System.Object,System.EventArgs)">
  <summary>
- 　EXCELボタン押下
+ 　終了ボタン押下
  </summary>
 </member>
 <member name="M:Master.SC_M22.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_MXX.TimeSys_Tick(System.Object,System.EventArgs)">
+ <summary>
+ １秒毎に発生するイベント
+ </summary>
+</member>
+<member name="M:Master.SC_MXX.btnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　終了ボタン押下
  </summary>
 </member>
 <member name="M:Master.SC_M20.tmrClockSec_Tick(System.Object,System.EventArgs)">
@@ -193,6 +250,11 @@ Master
 <member name="M:Master.SC_M20.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
  <summary>
  　・行ヘッダーに行番号書き込み
+ </summary>
+</member>
+<member name="M:Master.SC_M20.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
  </summary>
 </member>
 </members>
