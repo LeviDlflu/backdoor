@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<SC-M22>
+	<select id="select_001">
+		SELECT 管理ＮＯ種別,固定部,変動データ部,番号 FROM 採番マスタ
+	</select>
+	<update id="update_001">
+		UPDATE 採番マスタ set 変動データ部=@TEAM,番号=@NUM WHERE 管理ＮＯ種別=@PNAME AND 固定部=@POSITION
+	</update>
+	<insert id="insert_001">
+		INSERT INTO 採番マスタ(管理ＮＯ種別,固定部,変動データ部,番号) VALUES (@PNAME,@POSITION,@TEAM,@NUM)
+	</insert>
+	<delete id="delete_001">
+		DELETE FROM 採番マスタ WHERE 管理ＮＯ種別=@PNAME AND 固定部=@POSITION
+	</delete>
+</SC-M22>

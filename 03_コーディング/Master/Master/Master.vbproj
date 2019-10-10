@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B5BCA1D-4B9D-4B2F-AE11-648E05CA9783}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Master.My.MyApplication</StartupObject>
+    <RootNamespace>Master</RootNamespace>
+    <AssemblyName>Master</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Master.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Master.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="common\cmnUtil.vb" />
+    <Compile Include="common\CmnXML.vb" />
+    <Compile Include="common\Conn.vb" />
+    <Compile Include="common\UserControl1.Designer.vb" />
+    <Compile Include="form\SC-M00.Designer.vb">
+      <DependentUpon>SC-M00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M10.Designer.vb">
+      <DependentUpon>SC-M10.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M10.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M11.designer.vb">
+      <DependentUpon>SC-M11.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M11.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M12.Designer.vb">
+      <DependentUpon>SC-M12.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M12.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M13.Designer.vb">
+      <DependentUpon>SC-M13.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M13.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M14.Designer.vb">
+      <DependentUpon>SC-M14.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M14.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M15.Designer.vb">
+      <DependentUpon>SC-M15.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M15.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M16.Designer.vb">
+      <DependentUpon>SC-M16.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M16.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M17.Designer.vb">
+      <DependentUpon>SC-M17.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M17.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M18.Designer.vb">
+      <DependentUpon>SC-M18.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M18.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M19.Designer.vb">
+      <DependentUpon>SC-M19.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M19.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-M22.Designer.vb">
+      <DependentUpon>SC-M22.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-M22.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC_M20.Designer.vb">
+      <DependentUpon>SC_M20.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC_M20.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="form\SC-M00.resx">
+      <DependentUpon>SC-M00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M10.resx">
+      <DependentUpon>SC-M10.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M11.resx">
+      <DependentUpon>SC-M11.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M12.resx">
+      <DependentUpon>SC-M12.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M13.resx">
+      <DependentUpon>SC-M13.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M14.resx">
+      <DependentUpon>SC-M14.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M15.resx">
+      <DependentUpon>SC-M15.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M16.resx">
+      <DependentUpon>SC-M16.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M17.resx">
+      <DependentUpon>SC-M17.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M18.resx">
+      <DependentUpon>SC-M18.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M19.resx">
+      <DependentUpon>SC-M19.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-M22.resx">
+      <DependentUpon>SC-M22.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC_M20.resx">
+      <DependentUpon>SC_M20.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomControl\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
