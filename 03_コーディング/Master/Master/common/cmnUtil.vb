@@ -56,7 +56,7 @@
         '使用するブラシ
         Dim b = New SolidBrush(e.ForeColor)
         '文字列を描画する
-        Dim ym As Single = _
+        Dim ym As Single =
             (e.Bounds.Height - e.Graphics.MeasureString(txt, f).Height) / 2
         e.Graphics.DrawString(txt, f, b, e.Bounds.X, e.Bounds.Y + ym)
 
@@ -66,4 +66,27 @@
         'フォーカスを示す四角形を描画
         e.DrawFocusRectangle()
     End Sub
+
+    ''' <summary>
+    ''' 　画面メッセージ取得
+    ''' </summary>
+    ''' <param name="messageId">メッセージID</param>
+    Public Function GetMessageStr(ByVal messageId As String, Optional name As String = "", Optional size As String = "") As String
+        Dim messageStr As String = ""
+
+        Dim messageXML As New CmnXML("message.xml")
+
+        messageStr = messageXML.GetMessage(messageId)
+
+        If Not name.Equals(String.Empty) Then
+            messageStr = messageStr.Replace("@NAME", name)
+        End If
+
+        If Not size.Equals(String.Empty) Then
+            messageStr = messageStr.Replace("@SIZE", size)
+        End If
+
+        Return messageStr
+    End Function
+
 End Module

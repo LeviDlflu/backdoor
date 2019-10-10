@@ -5,17 +5,21 @@ Imports System.Data.SqlClient
 
 Public Class SC_M22
 
-    Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
+    Dim headerName As Hashtable = New Hashtable From {
+                             {"選択", "Select" & vbCrLf & "(選択)"},
+                             {"管理ＮＯ種別", "Management NO type" & vbCrLf & "(管理ＮＯ種別)"},
+                             {"固定部", "Fixed part" & vbCrLf & "(固定部)"},
+                             {"番号", "Number" & vbCrLf & "(番号)"},
+                             {"変動データ部", "Fluctuation data section" & vbCrLf & "(変動データ部)"},
+                             {"備考", "Remarks" & vbCrLf & "(備考)"}
+                            }
+
+    Private Const COL_SENTAKU As String = "選択"
     Private Const COL_SNOTYPE As String = "管理ＮＯ種別"
     Private Const COL_SFIXEDPART As String = "固定部"
     Private Const COL_SNUMBER As String = "番号"
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
-    'Private Const COL_SNOTYPE As String = "Management NO type" & vbCrLf & "(管理ＮＯ種別)"
-    'Private Const COL_SFIXEDPART As String = "Fixed part" & vbCrLf & "(固定部)"
-    'Private Const COL_SNUMBER As String = "Number" & vbCrLf & "(番号)"
-    'Private Const COL_SSECTION As String = "Fluctuation data section" & vbCrLf & "(変動データ部)"
-    'Private Const COL_SBIKOU As String = "Remarks" & vbCrLf & "(備考)"
 
     Dim xml As New CmnXML("SC-M22.xml")
 
@@ -33,6 +37,8 @@ Public Class SC_M22
         Me.txtFluctuationDataSection.Text = String.Empty
         Me.txtRemartks.Text = String.Empty
         Me.cmbDivision.SelectedIndex = -1
+
+        xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -55,13 +61,13 @@ Public Class SC_M22
             If col.ColumnName = COL_SENTAKU Then
                 Dim addCol As New DataGridViewCheckBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
+                addCol.HeaderText = headerName(col.ColumnName)
                 addCol.Name = "sentaku"
                 gridData.Columns.Add(addCol)
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
+                addCol.HeaderText = headerName(col.ColumnName)
                 addCol.Name = col.ColumnName
                 gridData.Columns.Add(addCol)
             End If
@@ -134,7 +140,7 @@ Public Class SC_M22
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
 
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel, "生産管理システム") Then
+        If MsgBox(cmnUtil.GetMessageStr("M0001"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
             Me.Close()
         End If
     End Sub
@@ -161,51 +167,6 @@ Public Class SC_M22
         dt.Columns.Add(New DataColumn(COL_SBIKOU, GetType(System.String)))
 
         da.Fill(dt)
-
-        'Dim dr As DataRow
-
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "01"
-        'dr(COL_SFIXEDPART) = "AAAAAA"
-        'dr(COL_SNUMBER) = "1"
-        'dr(COL_SSECTION) = "00001"
-        'dr(COL_SBIKOU) = "備考01"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "02"
-        'dr(COL_SFIXEDPART) = "AAAAAB"
-        'dr(COL_SNUMBER) = "2"
-        'dr(COL_SSECTION) = "00002"
-        'dr(COL_SBIKOU) = "備考02"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "03"
-        'dr(COL_SFIXEDPART) = "AAAAAC"
-        'dr(COL_SNUMBER) = "3"
-        'dr(COL_SSECTION) = "00003"
-        'dr(COL_SBIKOU) = "備考03"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "04"
-        'dr(COL_SFIXEDPART) = "AAAAAD"
-        'dr(COL_SNUMBER) = "4"
-        'dr(COL_SSECTION) = "00004"
-        'dr(COL_SBIKOU) = "備考04"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "05"
-        'dr(COL_SFIXEDPART) = "AAAAAE"
-        'dr(COL_SNUMBER) = "5"
-        'dr(COL_SSECTION) = "00005"
-        'dr(COL_SBIKOU) = "備考05"
-        'dt.Rows.Add(dr)
-        'dr = dt.NewRow()
-        'dr(COL_SNOTYPE) = "06"
-        'dr(COL_SFIXEDPART) = "AAAAAF"
-        'dr(COL_SNUMBER) = "6"
-        'dr(COL_SSECTION) = "00006"
-        'dr(COL_SBIKOU) = "備考06"
-        'dt.Rows.Add(dr)
 
         setGrid(dt)
 
@@ -241,118 +202,152 @@ Public Class SC_M22
     End Sub
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        gridData.Columns.Clear()
+
+        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+            gridData.Columns.Clear()
+        End If
     End Sub
 
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
 
-        Dim connent As New Conn
-        Dim cn As New SqlConnection
-        Dim cmd As SqlCommand
-        connent.fncCnOpen(cn)
+        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
 
-        Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
+            If txtManagementNoType.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
+                txtManagementNoType.BackColor = Color.Red
+                Return
+            Else
+                txtManagementNoType.BackColor = Color.White
+            End If
 
-        cmd = New SqlCommand(sqlstr, cn)
+            If txtFixedPart.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "固定部"))
+                txtFixedPart.BackColor = Color.Red
+                Return
+            Else
+                txtFixedPart.BackColor = Color.White
+            End If
 
-        cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-        cmd.Parameters("@PNAME").Value = txtManagementNoType.Text
+            If txtNumber.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "番号"))
+                txtNumber.BackColor = Color.Red
+                Return
+            Else
+                txtNumber.BackColor = Color.White
+            End If
 
-        cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-        cmd.Parameters("@POSITION").Value = txtFixedPart.Text
+            Dim connent As New Conn
+            Dim cn As New SqlConnection
+            Dim cmd As SqlCommand
+            connent.fncCnOpen(cn)
 
-        cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
-        cmd.Parameters("@TEAM").Value = txtFluctuationDataSection.Text
+            Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
 
-        cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
-        cmd.Parameters("@NUM").Value = Decimal.Parse(txtNumber.Text)
+            cmd = New SqlCommand(sqlstr, cn)
 
-        cmd.ExecuteNonQuery()
+            cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
+            cmd.Parameters("@PNAME").Value = txtManagementNoType.Text
 
-        connent.subCnClose(cn)
+            cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
+            cmd.Parameters("@POSITION").Value = txtFixedPart.Text
 
-        btnSearch_Click(sender, e)
+            cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
+            cmd.Parameters("@TEAM").Value = txtFluctuationDataSection.Text
 
-        Me.txtManagementNoType.Text = String.Empty
-        Me.txtFixedPart.Text = String.Empty
-        Me.txtNumber.Text = String.Empty
-        Me.txtFluctuationDataSection.Text = String.Empty
-        Me.txtRemartks.Text = String.Empty
+            cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
+            cmd.Parameters("@NUM").Value = Decimal.Parse(txtNumber.Text)
 
+            cmd.ExecuteNonQuery()
+
+            connent.subCnClose(cn)
+
+            btnSearch_Click(sender, e)
+
+            Me.txtManagementNoType.Text = String.Empty
+            Me.txtFixedPart.Text = String.Empty
+            Me.txtNumber.Text = String.Empty
+            Me.txtFluctuationDataSection.Text = String.Empty
+            Me.txtRemartks.Text = String.Empty
+        End If
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
-        Dim connent As New Conn
-        Dim cn As New SqlConnection
-        Dim cmd As SqlCommand
-        connent.fncCnOpen(cn)
+        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+            Dim connent As New Conn
+            Dim cn As New SqlConnection
+            Dim cmd As SqlCommand
+            connent.fncCnOpen(cn)
 
-        Dim sqlstr As String = xml.GetSQL("update", "update_001")
+            Dim sqlstr As String = xml.GetSQL("update", "update_001")
 
-        For i As Integer = 0 To gridData.Rows.Count - 1
+            For i As Integer = 0 To gridData.Rows.Count - 1
 
-            '横位置
-            If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
+                '横位置
+                If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
 
-            Else
+                Else
 
-                cmd = New SqlCommand(sqlstr, cn)
+                    cmd = New SqlCommand(sqlstr, cn)
 
-                cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-                cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
+                    cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
+                    cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
 
-                cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-                cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
+                    cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
+                    cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
 
-                cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
-                cmd.Parameters("@NUM").Value = Decimal.Parse(gridData.Rows(i).Cells(3).Value)
+                    cmd.Parameters.Add("@NUM", SqlDbType.Decimal, 10)
+                    cmd.Parameters("@NUM").Value = Decimal.Parse(gridData.Rows(i).Cells(3).Value)
 
-                cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
-                cmd.Parameters("@TEAM").Value = gridData.Rows(i).Cells(4).Value
+                    cmd.Parameters.Add("@TEAM", SqlDbType.VarChar, 10)
+                    cmd.Parameters("@TEAM").Value = gridData.Rows(i).Cells(4).Value
 
-                cmd.ExecuteNonQuery()
-            End If
+                    cmd.ExecuteNonQuery()
+                End If
 
-        Next
+            Next
 
-        connent.subCnClose(cn)
+            connent.subCnClose(cn)
 
-        btnSearch_Click(sender, e)
+            btnSearch_Click(sender, e)
+        End If
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        Dim connent As New Conn
-        Dim cn As New SqlConnection
-        Dim cmd As SqlCommand
-        connent.fncCnOpen(cn)
+        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+            Dim connent As New Conn
+            Dim cn As New SqlConnection
+            Dim cmd As SqlCommand
+            connent.fncCnOpen(cn)
 
-        Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+            Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
 
 
-        For i As Integer = 0 To gridData.Rows.Count - 1
+            For i As Integer = 0 To gridData.Rows.Count - 1
 
-            '横位置
-            If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
+                '横位置
+                If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
 
-            Else
+                Else
 
-                cmd = New SqlCommand(sqlstr, cn)
+                    cmd = New SqlCommand(sqlstr, cn)
 
-                cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-                cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
+                    cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
+                    cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
 
-                cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-                cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
+                    cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
+                    cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
 
-                cmd.ExecuteNonQuery()
-            End If
+                    cmd.ExecuteNonQuery()
+                End If
 
-        Next
+            Next
 
-        connent.subCnClose(cn)
+            connent.subCnClose(cn)
 
-        btnSearch_Click(sender, e)
+            btnSearch_Click(sender, e)
+        End If
     End Sub
+
 End Class

@@ -59,4 +59,35 @@ Public Class CmnXML
         Return sqlstr
     End Function
 
+    Public Function GetMessage(ByVal MESSAGE_ID As String) As String
+
+        Dim messagestr As String = ""
+
+        Dim nodeList As XmlNodeList = mXmlDoc.GetElementsByTagName("messageid")
+
+        'Dim node As XmlNode = mXmlDoc.GetElementsByTagName(element)
+        For Each node In nodeList
+
+            If node IsNot Nothing Then
+                If node.Attributes(0).Value = MESSAGE_ID Then
+                    messagestr = node.InnerText.Trim()
+                End If
+            End If
+        Next
+
+        Return messagestr
+    End Function
+
+    Public Sub InitUser(loginUser As Object, loginEnv As Object)
+
+        Dim userXML As New CmnXML("user.xml")
+
+        loginUser.Text = userXML.GetElement("UserInf", "LoginUser")
+        loginUser.ReadOnly = True
+
+        loginEnv.Text = userXML.GetElement("UserInf", "LoginEnv")
+        loginEnv.ReadOnly = True
+
+    End Sub
+
 End Class
