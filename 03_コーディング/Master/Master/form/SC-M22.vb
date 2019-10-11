@@ -1,5 +1,4 @@
-﻿Imports Master.Conn
-Imports System.Text
+﻿Imports System.Text
 Imports System.Data
 Imports System.Data.SqlClient
 
@@ -24,7 +23,6 @@ Public Class SC_M22
     Dim xml As New CmnXML("SC-M22.xml")
 
     Dim da As SqlDataAdapter
-    Dim dt As DataTable
     Private Sub Init()
         Me.txtManagementNoType.Enabled = True
         Me.txtFixedPart.Enabled = True
@@ -57,21 +55,22 @@ Public Class SC_M22
 
         End If
 
+        '選択
+        Dim addColSentaku As New DataGridViewCheckBoxColumn()
+        addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
+        addColSentaku.HeaderText = headerName(COL_SENTAKU)
+        addColSentaku.Name = "sentaku"
+        gridData.Columns.Add(addColSentaku)
+
         For Each col As DataColumn In dtData.Columns
-            If col.ColumnName = COL_SENTAKU Then
-                Dim addCol As New DataGridViewCheckBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = headerName(col.ColumnName)
-                addCol.Name = "sentaku"
-                gridData.Columns.Add(addCol)
-            Else
-                Dim addCol As New DataGridViewTextBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = headerName(col.ColumnName)
-                addCol.Name = col.ColumnName
-                gridData.Columns.Add(addCol)
-            End If
+
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            addCol.HeaderText = headerName(col.ColumnName)
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
         Next
+
         gridData.DataSource = dtData.Copy
         gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         For i As Integer = 0 To gridData.Columns.Count - 1
@@ -147,30 +146,27 @@ Public Class SC_M22
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-        Dim connent As New Conn
-        Dim cn As New SqlConnection
-        connent.fncCnOpen(cn)
+        Try
 
-        Dim da As SqlDataAdapter
+            If clsSQLServer.Connect() Then
 
-        Dim sqlstr As String = xml.GetSQL("select", "select_001")
+                Dim sqlstr As String = xml.GetSQL("select", "select_001")
 
-        da = New SqlDataAdapter(sqlstr, cn)
+                Dim dt As New DataTable()
 
-        dt = New DataTable()
+                dt = clsSQLServer.GetDataTable(sqlstr)
 
-        dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
-        dt.Columns.Add(New DataColumn(COL_SNOTYPE, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SFIXEDPART, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SNUMBER, GetType(System.Decimal)))
-        dt.Columns.Add(New DataColumn(COL_SSECTION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SBIKOU, GetType(System.String)))
+                dt.Columns.Add(New DataColumn(COL_SBIKOU, GetType(System.String)))
 
-        da.Fill(dt)
+                setGrid(dt)
 
-        setGrid(dt)
+                clsSQLServer.Disconnect()
 
-        connent.subCnClose(cn)
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
     ''' <summary>
