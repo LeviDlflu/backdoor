@@ -129,7 +129,7 @@ Partial Class SC_M22
         Me.txtFixedPart.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFixedPart.Name = "txtFixedPart"
         Me.txtFixedPart.Size = New System.Drawing.Size(100, 19)
-        Me.txtFixedPart.TabIndex = 240
+        Me.txtFixedPart.TabIndex = 238
         Me.txtFixedPart.Text = "XXXXXXXX"
         '
         'Label23
@@ -341,7 +341,7 @@ Partial Class SC_M22
         Me.txtNumber.Margin = New System.Windows.Forms.Padding(2)
         Me.txtNumber.Name = "txtNumber"
         Me.txtNumber.Size = New System.Drawing.Size(106, 19)
-        Me.txtNumber.TabIndex = 238
+        Me.txtNumber.TabIndex = 239
         Me.txtNumber.Text = "XXXXXXXXXX"
         '
         'slblMargin
@@ -543,7 +543,7 @@ Partial Class SC_M22
         Me.txtFluctuationDataSection.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFluctuationDataSection.Name = "txtFluctuationDataSection"
         Me.txtFluctuationDataSection.Size = New System.Drawing.Size(106, 19)
-        Me.txtFluctuationDataSection.TabIndex = 239
+        Me.txtFluctuationDataSection.TabIndex = 240
         Me.txtFluctuationDataSection.Text = "XXXXXXXXXX"
         '
         'txtRemartks
@@ -553,7 +553,7 @@ Partial Class SC_M22
         Me.txtRemartks.Margin = New System.Windows.Forms.Padding(2)
         Me.txtRemartks.Name = "txtRemartks"
         Me.txtRemartks.Size = New System.Drawing.Size(363, 19)
-        Me.txtRemartks.TabIndex = 244
+        Me.txtRemartks.TabIndex = 241
         Me.txtRemartks.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label10
