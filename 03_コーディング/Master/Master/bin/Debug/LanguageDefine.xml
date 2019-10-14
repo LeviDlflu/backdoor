@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <form formID="SC-M19">
+    <master enu="Work table master maintenance" jpn="勤務テーブルマスタメンテ" chs="工作表"/>
+    <lable id="btnMenu0" enu="Search" jpn="検索" chs="检索"/>
+    <lable id="btnMenu1" enu="Insert" jpn="追加" chs="添加"/>
+    <lable id="btnMenu2" enu="Update" jpn="更新" chs="更新"/>
+    <lable id="btnMenu3" enu="Delete" jpn="削除" chs="删除"/>
+    <lable id="btnMenu4" enu="Clear" jpn="クリア" chs="清空"/>
+    <lable id="btnMenu5" enu="Finish" jpn="終了" chs="结束"/>
+
+    <lable id="dgvHeader0" enu="Select" jpn="選択" chs="结束"/>
+    <lable id="dgvHeader1" enu="Process code" jpn="工程コード" chs="工程番号"/>
+    <lable id="dgvHeader2" enu="Division" jpn="区分" chs="区分"/>
+    <lable id="dgvHeader3" enu="Line Division" jpn="ライン区分" chs="行区分"/>
+    <lable id="dgvHeader4" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
+    <lable id="dgvHeader5" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
+    <lable id="dgvHeader6" enu="Break time" jpn="休憩時間" chs="休息时间"/>
+    <lable id="dgvHeader7" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
+
+    <lable id="lblTitle0" enu="Search criteria" jpn="検索条件" chs="查询条件"/>
+    <lable id="lblTitle1" enu="Process code" jpn="工程コード" chs="工程番号"/>
+    <lable id="lblTitle2" enu="Search results" jpn="検索結果" chs="查询结果"/>
+    <lable id="lblTitle3" enu="Add To" jpn="追加" chs="添加"/>
+    <lable id="lblTitle4" enu="Process" jpn="工程コード" chs="工程番号"/>
+    <lable id="lblTitle5" enu="Division" jpn="区分" chs="区分"/>
+    <lable id="lblTitle6" enu="Line Division" jpn="ライン区分" chs="行区分"/>
+    <lable id="lblTitle7" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
+    <lable id="lblTitle8" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
+    <lable id="lblTitle9" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
+  </form>
+
+  <form formID="SC-M20">
+    <master id="workTable" enu="Work table master maintenance" jpn="勤務テーブルマスタメンテ" chs="工作表"/>
+    <lable id="btnMenu0" enu="Search" jpn="検索" chs="检索"/>
+    <lable id="btnMenu1" enu="Insert" jpn="追加" chs="添加"/>
+    <lable id="btnMenu2" enu="Update" jpn="更新" chs="更新"/>
+    <lable id="btnMenu3" enu="Delete" jpn="削除" chs="删除"/>
+    <lable id="btnMenu4" enu="Clear" jpn="クリア" chs="清空"/>
+    <lable id="btnMenu5" enu="Finish" jpn="終了" chs="结束"/>
+  </form>
+</languages>
