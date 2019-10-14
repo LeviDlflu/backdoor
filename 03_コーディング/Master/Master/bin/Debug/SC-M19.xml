@@ -1,0 +1,30 @@
+﻿<?xml version="1.0"?>
+<SC-M19>
+	<select id="select_001">
+		SELECT 工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,休憩時間,日付変更区分 FROM Ｍ＿勤務テーブルマスタ
+	</select>
+	<select id="select_002">
+		SELECT '00000' AS 工程コード, '' AS 工程略称 UNION SELECT 工程コード,工程略称 FROM 工程マスタ
+	</select>
+	<select id="select_003">
+		SELECT '00000' AS コード, '' AS コード名称 UNION SELECT コード,コード名称 FROM コードマスタ WHERE コード区分='{0}'
+	</select>
+	<select id="select_004">
+		SELECT 工程コード,区分,ライン区分 FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+	</select>
+	<where id="where_001">
+		WHERE 工程コード='{0}'
+	</where>
+	<sort id="sort_001">
+		ORDER BY 工程コード,区分,ライン区分
+	</sort>
+	<update id="update_001">
+		UPDATE Ｍ＿勤務テーブルマスタ set 休憩開始時間='{3}',休憩終了時間='{4}' ,日付変更区分='{5}' WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+	</update>
+	<insert id="insert_001">
+		INSERT INTO Ｍ＿勤務テーブルマスタ(工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,日付変更区分) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')
+	</insert>
+	<delete id="delete_001">
+		DELETE FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+	</delete>
+</SC-M19>
