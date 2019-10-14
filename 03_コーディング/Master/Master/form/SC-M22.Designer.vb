@@ -56,7 +56,7 @@ Partial Class SC_M22
         Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbDivision = New System.Windows.Forms.ComboBox()
+        Me.cmbManagementNoType = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -443,15 +443,15 @@ Partial Class SC_M22
         Me.Label12.TabIndex = 222
         Me.Label12.Text = "Search results"
         '
-        'cmbDivision
+        'cmbManagementNoType
         '
-        Me.cmbDivision.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbDivision.BackColor = System.Drawing.Color.White
-        Me.cmbDivision.FormattingEnabled = True
-        Me.cmbDivision.Location = New System.Drawing.Point(175, 162)
-        Me.cmbDivision.Name = "cmbDivision"
-        Me.cmbDivision.Size = New System.Drawing.Size(99, 20)
-        Me.cmbDivision.TabIndex = 218
+        Me.cmbManagementNoType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbManagementNoType.BackColor = System.Drawing.Color.White
+        Me.cmbManagementNoType.FormattingEnabled = True
+        Me.cmbManagementNoType.Location = New System.Drawing.Point(175, 162)
+        Me.cmbManagementNoType.Name = "cmbManagementNoType"
+        Me.cmbManagementNoType.Size = New System.Drawing.Size(99, 20)
+        Me.cmbManagementNoType.TabIndex = 218
         '
         'Label16
         '
@@ -609,7 +609,7 @@ Partial Class SC_M22
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.cmbDivision)
+        Me.Controls.Add(Me.cmbManagementNoType)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.grpHeader)
         Me.Controls.Add(Me.stsFooter)
@@ -655,7 +655,7 @@ Partial Class SC_M22
     Friend WithEvents slblDay As ToolStripStatusLabel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents cmbDivision As ComboBox
+    Friend WithEvents cmbManagementNoType As ComboBox
     Friend WithEvents Label16 As Label
     Friend WithEvents grpHeader As GroupBox
     Friend WithEvents TextBox1 As TextBox

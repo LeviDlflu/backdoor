@@ -22,9 +22,6 @@ Public Class SC_M22
 
     Dim xml As New CmnXML("SC-M22.xml")
 
-    Dim xmlcom As New clsXML
-
-    Dim da As SqlDataAdapter
     Private Sub Init()
         Me.txtManagementNoType.Enabled = True
         Me.txtFixedPart.Enabled = True
@@ -36,15 +33,49 @@ Public Class SC_M22
         Me.txtNumber.Text = String.Empty
         Me.txtFluctuationDataSection.Text = String.Empty
         Me.txtRemartks.Text = String.Empty
-        Me.cmbDivision.SelectedIndex = -1
 
-        xmlcom.LoadXML("Message.xml")
+        setManagementNoType()
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
+    End Sub
+
+
+    Private Sub setManagementNoType()
+
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                Dim sqlstr As String = xml.GetSQL("select", "select_001")
+
+                Dim dt As New DataTable()
+
+                dt = clsSQLServer.GetDataTable(sqlstr)
+
+                Dim drWork As DataRow = dt.NewRow
+
+                drWork(dt.Columns.Item(0).ColumnName) = "00"
+                drWork(dt.Columns.Item(0).ColumnName) = ""
+                dt.Rows.InsertAt(drWork, 0)
+
+                Me.cmbManagementNoType.DataSource = dt
+
+                ' 表示用の列を設定
+                Me.cmbManagementNoType.DisplayMember = dt.Columns.Item(0).ColumnName
+                ' データ用の列を設定
+                Me.cmbManagementNoType.ValueMember = dt.Columns.Item(0).ColumnName
+
+                clsSQLServer.Disconnect()
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
     ''' <summary>
@@ -138,13 +169,10 @@ Public Class SC_M22
     ''' 　終了ボタン押下
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-
-        '    If MsgBox(cmnUtil.GetMessageStr("M0001"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
-        '        Me.Close()
-        '    End If
-        'If MsgBox(xmlcom.GetXmlData("I008", "I008"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
-        Me.Close()
-        'End If
+        Dim msg As New clsMessage("I0001")
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -153,11 +181,25 @@ Public Class SC_M22
 
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                Dim sqlstr As String = xml.GetSQL("select", "select_001")
+                Dim sqlstr As String
+
+                If Me.cmbManagementNoType.Text.Equals(String.Empty) Then
+                    sqlstr = xml.GetSQL("select", "select_002")
+                Else
+                    sqlstr = xml.GetSQL("select", "select_003")
+                    sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
+                End If
 
                 Dim dt As New DataTable()
 
                 dt = clsSQLServer.GetDataTable(sqlstr)
+
+                If dt.Rows.Count = 0 Then
+                    Dim msg As New clsMessage("W0008")
+
+                    MsgBox(msg.Show, vbCritical, "生産管理システム")
+
+                End If
 
                 setGrid(dt)
 
@@ -200,14 +242,14 @@ Public Class SC_M22
 
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
             gridData.Columns.Clear()
         End If
     End Sub
 
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
 
             If txtManagementNoType.Text.Equals(String.Empty) Then
                 MessageBox.Show(cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
@@ -250,6 +292,8 @@ Public Class SC_M22
 
                     btnSearch_Click(sender, e)
 
+                    setManagementNoType()
+
                 End If
 
             Catch ex As Exception
@@ -266,7 +310,7 @@ Public Class SC_M22
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
 
             Try
 
@@ -303,7 +347,7 @@ Public Class SC_M22
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
 
             Try
 
@@ -326,41 +370,14 @@ Public Class SC_M22
                     Next
 
                     clsSQLServer.Disconnect()
+
                     btnSearch_Click(sender, e)
+
+                    setManagementNoType()
                 End If
             Catch ex As Exception
                 Throw
             End Try
-
-            'Dim connent As New Conn
-            'Dim cn As New SqlConnection
-            'Dim cmd As SqlCommand
-            'connent.fncCnOpen(cn)
-
-            ''Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
-
-
-            'For i As Integer = 0 To gridData.Rows.Count - 1
-
-            '    '横位置
-            '    If Not IsDBNull(gridData.Rows(i).Cells(0).Value) Then
-
-            '        cmd = New SqlCommand(sqlstr, cn)
-
-            '        cmd.Parameters.Add("@PNAME", SqlDbType.VarChar, 2)
-            '        cmd.Parameters("@PNAME").Value = gridData.Rows(i).Cells(1).Value
-
-            '        cmd.Parameters.Add("@POSITION", SqlDbType.VarChar, 8)
-            '        cmd.Parameters("@POSITION").Value = gridData.Rows(i).Cells(2).Value
-
-            '        cmd.ExecuteNonQuery()
-            '    End If
-
-            'Next
-
-            'connent.subCnClose(cn)
-
-            'btnSearch_Click(sender, e)
         End If
     End Sub
 

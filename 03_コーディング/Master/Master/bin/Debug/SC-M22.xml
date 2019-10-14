@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0"?>
 <SC-M22>
 	<select id="select_001">
+		SELECT 管理ＮＯ種別 FROM 採番マスタ
+	</select>
+	<select id="select_002">
 		SELECT 管理ＮＯ種別,固定部,番号,変動データ部,備考 FROM 採番マスタ
+	</select>
+	<select id="select_003">
+		SELECT 管理ＮＯ種別,固定部,番号,変動データ部,備考 FROM 採番マスタ WHERE 管理ＮＯ種別='{0}'
 	</select>
 	<update id="update_001">
 		UPDATE 採番マスタ set 変動データ部='{3}',番号={2},備考='{4}' WHERE 管理ＮＯ種別='{0}' AND 固定部='{1}'
