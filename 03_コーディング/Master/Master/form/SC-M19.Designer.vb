@@ -23,17 +23,17 @@ Partial Class SC_M19
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnInsert = New System.Windows.Forms.Button()
+        Me.btnMenu3 = New System.Windows.Forms.Button()
+        Me.btnMenu2 = New System.Windows.Forms.Button()
+        Me.btnMenu1 = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnEnd = New System.Windows.Forms.Button()
-        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnMenu4 = New System.Windows.Forms.Button()
+        Me.btnMenu5 = New System.Windows.Forms.Button()
+        Me.btnMenu0 = New System.Windows.Forms.Button()
         Me.lblHLine = New System.Windows.Forms.Label()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -42,95 +42,95 @@ Partial Class SC_M19
         Me.Label18 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtLoginUser = New System.Windows.Forms.TextBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.lblTitle00 = New System.Windows.Forms.Label()
+        Me.lblTitle0 = New System.Windows.Forms.Label()
+        Me.lblTitle11 = New System.Windows.Forms.Label()
         Me.cmb_Koutei = New System.Windows.Forms.ComboBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.gridData = New System.Windows.Forms.DataGridView()
+        Me.lblTitle1 = New System.Windows.Forms.Label()
+        Me.lblTitle22 = New System.Windows.Forms.Label()
+        Me.lblTitle2 = New System.Windows.Forms.Label()
         Me.cmbKoutei = New System.Windows.Forms.ComboBox()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label24 = New System.Windows.Forms.Label()
+        Me.lblTitle44 = New System.Windows.Forms.Label()
+        Me.lblTitle33 = New System.Windows.Forms.Label()
+        Me.lblTitle4 = New System.Windows.Forms.Label()
+        Me.lblTitle3 = New System.Windows.Forms.Label()
         Me.stsFooter = New System.Windows.Forms.StatusStrip()
         Me.slblMargin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.cmbKubun = New System.Windows.Forms.ComboBox()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.lblTitle55 = New System.Windows.Forms.Label()
+        Me.lblTitle5 = New System.Windows.Forms.Label()
         Me.cmbLine = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.lblTitle66 = New System.Windows.Forms.Label()
+        Me.lblTitle6 = New System.Windows.Forms.Label()
+        Me.lblTitle77 = New System.Windows.Forms.Label()
+        Me.lblTitle7 = New System.Windows.Forms.Label()
         Me.txtStart = New System.Windows.Forms.TextBox()
         Me.txtEnd = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
+        Me.lblTitle88 = New System.Windows.Forms.Label()
+        Me.lblTitle8 = New System.Windows.Forms.Label()
         Me.cmbHenkou = New System.Windows.Forms.ComboBox()
-        Me.Label25 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
+        Me.lblTitle99 = New System.Windows.Forms.Label()
+        Me.lblTitle9 = New System.Windows.Forms.Label()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
+        Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.grpHeader.SuspendLayout()
-        CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.stsFooter.SuspendLayout()
+        CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.btnDelete)
-        Me.Panel1.Controls.Add(Me.btnUpdate)
-        Me.Panel1.Controls.Add(Me.btnInsert)
+        Me.Panel1.Controls.Add(Me.btnMenu3)
+        Me.Panel1.Controls.Add(Me.btnMenu2)
+        Me.Panel1.Controls.Add(Me.btnMenu1)
         Me.Panel1.Controls.Add(Me.Label9)
-        Me.Panel1.Controls.Add(Me.btnClear)
-        Me.Panel1.Controls.Add(Me.btnEnd)
-        Me.Panel1.Controls.Add(Me.btnSearch)
+        Me.Panel1.Controls.Add(Me.btnMenu4)
+        Me.Panel1.Controls.Add(Me.btnMenu5)
+        Me.Panel1.Controls.Add(Me.btnMenu0)
         Me.Panel1.Controls.Add(Me.lblHLine)
         Me.Panel1.Location = New System.Drawing.Point(0, 59)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1351, 67)
         Me.Panel1.TabIndex = 85
         '
-        'btnDelete
+        'btnMenu3
         '
-        Me.btnDelete.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDelete.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(332, 9)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(102, 49)
-        Me.btnDelete.TabIndex = 132
-        Me.btnDelete.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
-        Me.btnDelete.UseVisualStyleBackColor = False
+        Me.btnMenu3.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu3.Location = New System.Drawing.Point(332, 9)
+        Me.btnMenu3.Name = "btnMenu3"
+        Me.btnMenu3.Size = New System.Drawing.Size(102, 49)
+        Me.btnMenu3.TabIndex = 132
+        Me.btnMenu3.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
+        Me.btnMenu3.UseVisualStyleBackColor = False
         '
-        'btnUpdate
+        'btnMenu2
         '
-        Me.btnUpdate.BackColor = System.Drawing.SystemColors.Control
-        Me.btnUpdate.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(224, 9)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(102, 49)
-        Me.btnUpdate.TabIndex = 131
-        Me.btnUpdate.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
-        Me.btnUpdate.UseVisualStyleBackColor = False
+        Me.btnMenu2.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu2.Location = New System.Drawing.Point(224, 9)
+        Me.btnMenu2.Name = "btnMenu2"
+        Me.btnMenu2.Size = New System.Drawing.Size(102, 49)
+        Me.btnMenu2.TabIndex = 131
+        Me.btnMenu2.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
+        Me.btnMenu2.UseVisualStyleBackColor = False
         '
-        'btnInsert
+        'btnMenu1
         '
-        Me.btnInsert.BackColor = System.Drawing.SystemColors.Control
-        Me.btnInsert.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnInsert.Location = New System.Drawing.Point(118, 9)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(100, 49)
-        Me.btnInsert.TabIndex = 130
-        Me.btnInsert.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
-        Me.btnInsert.UseVisualStyleBackColor = False
+        Me.btnMenu1.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu1.Location = New System.Drawing.Point(118, 9)
+        Me.btnMenu1.Name = "btnMenu1"
+        Me.btnMenu1.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu1.TabIndex = 130
+        Me.btnMenu1.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
+        Me.btnMenu1.UseVisualStyleBackColor = False
         '
         'Label9
         '
@@ -142,39 +142,39 @@ Partial Class SC_M19
         Me.Label9.Size = New System.Drawing.Size(1366, 2)
         Me.Label9.TabIndex = 120
         '
-        'btnClear
+        'btnMenu4
         '
-        Me.btnClear.BackColor = System.Drawing.SystemColors.Control
-        Me.btnClear.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(440, 9)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(102, 49)
-        Me.btnClear.TabIndex = 10
-        Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
-        Me.btnClear.UseVisualStyleBackColor = False
+        Me.btnMenu4.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu4.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu4.Location = New System.Drawing.Point(440, 9)
+        Me.btnMenu4.Name = "btnMenu4"
+        Me.btnMenu4.Size = New System.Drawing.Size(102, 49)
+        Me.btnMenu4.TabIndex = 10
+        Me.btnMenu4.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
+        Me.btnMenu4.UseVisualStyleBackColor = False
         '
-        'btnEnd
+        'btnMenu5
         '
-        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
-        Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnEnd.Location = New System.Drawing.Point(1236, 9)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 9
-        Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.btnEnd.UseVisualStyleBackColor = False
+        Me.btnMenu5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMenu5.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu5.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu5.Location = New System.Drawing.Point(1236, 9)
+        Me.btnMenu5.Name = "btnMenu5"
+        Me.btnMenu5.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu5.TabIndex = 9
+        Me.btnMenu5.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
+        Me.btnMenu5.UseVisualStyleBackColor = False
         '
-        'btnSearch
+        'btnMenu0
         '
-        Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
-        Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(12, 9)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(100, 49)
-        Me.btnSearch.TabIndex = 6
-        Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
-        Me.btnSearch.UseVisualStyleBackColor = False
+        Me.btnMenu0.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu0.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu0.Location = New System.Drawing.Point(12, 9)
+        Me.btnMenu0.Name = "btnMenu0"
+        Me.btnMenu0.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu0.TabIndex = 6
+        Me.btnMenu0.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
+        Me.btnMenu0.UseVisualStyleBackColor = False
         '
         'lblHLine
         '
@@ -276,35 +276,35 @@ Partial Class SC_M19
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
         '
-        'Label7
+        'lblTitle00
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(151, 139)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(67, 12)
-        Me.Label7.TabIndex = 122
-        Me.Label7.Text = "(検索条件)"
+        Me.lblTitle00.AutoSize = True
+        Me.lblTitle00.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle00.Location = New System.Drawing.Point(151, 139)
+        Me.lblTitle00.Name = "lblTitle00"
+        Me.lblTitle00.Size = New System.Drawing.Size(67, 12)
+        Me.lblTitle00.TabIndex = 122
+        Me.lblTitle00.Text = "(検索条件)"
         '
-        'Label3
+        'lblTitle0
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(10, 133)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(145, 19)
-        Me.Label3.TabIndex = 121
-        Me.Label3.Text = "Search criteria"
+        Me.lblTitle0.AutoSize = True
+        Me.lblTitle0.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle0.Location = New System.Drawing.Point(10, 133)
+        Me.lblTitle0.Name = "lblTitle0"
+        Me.lblTitle0.Size = New System.Drawing.Size(145, 19)
+        Me.lblTitle0.TabIndex = 121
+        Me.lblTitle0.Text = "Search criteria"
         '
-        'Label10
+        'lblTitle11
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label10.Location = New System.Drawing.Point(106, 165)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(65, 11)
-        Me.Label10.TabIndex = 126
-        Me.Label10.Text = "(工程コード)"
+        Me.lblTitle11.AutoSize = True
+        Me.lblTitle11.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.lblTitle11.Location = New System.Drawing.Point(106, 165)
+        Me.lblTitle11.Name = "lblTitle11"
+        Me.lblTitle11.Size = New System.Drawing.Size(65, 11)
+        Me.lblTitle11.TabIndex = 126
+        Me.lblTitle11.Text = "(工程コード)"
         '
         'cmb_Koutei
         '
@@ -316,74 +316,35 @@ Partial Class SC_M19
         Me.cmb_Koutei.Size = New System.Drawing.Size(229, 20)
         Me.cmb_Koutei.TabIndex = 123
         '
-        'Label16
+        'lblTitle1
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label16.Location = New System.Drawing.Point(12, 163)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(98, 14)
-        Me.Label16.TabIndex = 124
-        Me.Label16.Text = "Process code"
+        Me.lblTitle1.AutoSize = True
+        Me.lblTitle1.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle1.Location = New System.Drawing.Point(12, 163)
+        Me.lblTitle1.Name = "lblTitle1"
+        Me.lblTitle1.Size = New System.Drawing.Size(98, 14)
+        Me.lblTitle1.TabIndex = 124
+        Me.lblTitle1.Text = "Process code"
         '
-        'Label20
+        'lblTitle22
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label20.Location = New System.Drawing.Point(155, 219)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(67, 12)
-        Me.Label20.TabIndex = 128
-        Me.Label20.Text = "(検索結果)"
+        Me.lblTitle22.AutoSize = True
+        Me.lblTitle22.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle22.Location = New System.Drawing.Point(155, 219)
+        Me.lblTitle22.Name = "lblTitle22"
+        Me.lblTitle22.Size = New System.Drawing.Size(67, 12)
+        Me.lblTitle22.TabIndex = 128
+        Me.lblTitle22.Text = "(検索結果)"
         '
-        'Label12
+        'lblTitle2
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label12.Location = New System.Drawing.Point(10, 212)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(142, 19)
-        Me.Label12.TabIndex = 127
-        Me.Label12.Text = "Search results"
-        '
-        'gridData
-        '
-        Me.gridData.AllowDrop = True
-        Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gridData.EnableHeadersVisualStyles = False
-        Me.gridData.Location = New System.Drawing.Point(12, 236)
-        Me.gridData.Name = "gridData"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1330, 340)
-        Me.gridData.TabIndex = 129
+        Me.lblTitle2.AutoSize = True
+        Me.lblTitle2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle2.Location = New System.Drawing.Point(10, 212)
+        Me.lblTitle2.Name = "lblTitle2"
+        Me.lblTitle2.Size = New System.Drawing.Size(142, 19)
+        Me.lblTitle2.TabIndex = 127
+        Me.lblTitle2.Text = "Search results"
         '
         'cmbKoutei
         '
@@ -396,49 +357,49 @@ Partial Class SC_M19
         Me.cmbKoutei.Size = New System.Drawing.Size(174, 20)
         Me.cmbKoutei.TabIndex = 158
         '
-        'Label19
+        'lblTitle44
         '
-        Me.Label19.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label19.AutoSize = True
-        Me.Label19.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label19.Location = New System.Drawing.Point(105, 616)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(65, 11)
-        Me.Label19.TabIndex = 157
-        Me.Label19.Text = "(工程コード)"
+        Me.lblTitle44.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle44.AutoSize = True
+        Me.lblTitle44.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle44.Location = New System.Drawing.Point(105, 616)
+        Me.lblTitle44.Name = "lblTitle44"
+        Me.lblTitle44.Size = New System.Drawing.Size(65, 11)
+        Me.lblTitle44.TabIndex = 157
+        Me.lblTitle44.Text = "(工程コード)"
         '
-        'Label21
+        'lblTitle33
         '
-        Me.Label21.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label21.Location = New System.Drawing.Point(81, 593)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(41, 12)
-        Me.Label21.TabIndex = 155
-        Me.Label21.Text = "(追加)"
+        Me.lblTitle33.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle33.AutoSize = True
+        Me.lblTitle33.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle33.Location = New System.Drawing.Point(81, 593)
+        Me.lblTitle33.Name = "lblTitle33"
+        Me.lblTitle33.Size = New System.Drawing.Size(41, 12)
+        Me.lblTitle33.TabIndex = 155
+        Me.lblTitle33.Text = "(追加)"
         '
-        'Label23
+        'lblTitle4
         '
-        Me.Label23.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label23.Location = New System.Drawing.Point(11, 614)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(98, 14)
-        Me.Label23.TabIndex = 152
-        Me.Label23.Text = "Process code"
+        Me.lblTitle4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle4.AutoSize = True
+        Me.lblTitle4.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle4.Location = New System.Drawing.Point(11, 614)
+        Me.lblTitle4.Name = "lblTitle4"
+        Me.lblTitle4.Size = New System.Drawing.Size(98, 14)
+        Me.lblTitle4.TabIndex = 152
+        Me.lblTitle4.Text = "Process code"
         '
-        'Label24
+        'lblTitle3
         '
-        Me.Label24.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label24.AutoSize = True
-        Me.Label24.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label24.Location = New System.Drawing.Point(8, 587)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(72, 19)
-        Me.Label24.TabIndex = 151
-        Me.Label24.Text = "Add To"
+        Me.lblTitle3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle3.AutoSize = True
+        Me.lblTitle3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle3.Location = New System.Drawing.Point(8, 587)
+        Me.lblTitle3.Name = "lblTitle3"
+        Me.lblTitle3.Size = New System.Drawing.Size(72, 19)
+        Me.lblTitle3.TabIndex = 151
+        Me.lblTitle3.Text = "Add To"
         '
         'stsFooter
         '
@@ -488,27 +449,27 @@ Partial Class SC_M19
         Me.cmbKubun.Size = New System.Drawing.Size(174, 20)
         Me.cmbKubun.TabIndex = 162
         '
-        'Label4
+        'lblTitle55
         '
-        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(289, 613)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(37, 11)
-        Me.Label4.TabIndex = 161
-        Me.Label4.Text = "(区分)"
+        Me.lblTitle55.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle55.AutoSize = True
+        Me.lblTitle55.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle55.Location = New System.Drawing.Point(289, 613)
+        Me.lblTitle55.Name = "lblTitle55"
+        Me.lblTitle55.Size = New System.Drawing.Size(37, 11)
+        Me.lblTitle55.TabIndex = 161
+        Me.lblTitle55.Text = "(区分)"
         '
-        'Label5
+        'lblTitle5
         '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(219, 611)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(60, 14)
-        Me.Label5.TabIndex = 160
-        Me.Label5.Text = "Division"
+        Me.lblTitle5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle5.AutoSize = True
+        Me.lblTitle5.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle5.Location = New System.Drawing.Point(219, 611)
+        Me.lblTitle5.Name = "lblTitle5"
+        Me.lblTitle5.Size = New System.Drawing.Size(60, 14)
+        Me.lblTitle5.TabIndex = 160
+        Me.lblTitle5.Text = "Division"
         '
         'cmbLine
         '
@@ -521,49 +482,49 @@ Partial Class SC_M19
         Me.cmbLine.Size = New System.Drawing.Size(174, 20)
         Me.cmbLine.TabIndex = 165
         '
-        'Label6
+        'lblTitle66
         '
-        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(524, 613)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(64, 11)
-        Me.Label6.TabIndex = 164
-        Me.Label6.Text = "(ライン区分)"
+        Me.lblTitle66.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle66.AutoSize = True
+        Me.lblTitle66.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle66.Location = New System.Drawing.Point(524, 613)
+        Me.lblTitle66.Name = "lblTitle66"
+        Me.lblTitle66.Size = New System.Drawing.Size(64, 11)
+        Me.lblTitle66.TabIndex = 164
+        Me.lblTitle66.Text = "(ライン区分)"
         '
-        'Label8
+        'lblTitle6
         '
-        Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(430, 611)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(94, 14)
-        Me.Label8.TabIndex = 163
-        Me.Label8.Text = "Line Division"
+        Me.lblTitle6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle6.AutoSize = True
+        Me.lblTitle6.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle6.Location = New System.Drawing.Point(430, 611)
+        Me.lblTitle6.Name = "lblTitle6"
+        Me.lblTitle6.Size = New System.Drawing.Size(94, 14)
+        Me.lblTitle6.TabIndex = 163
+        Me.lblTitle6.Text = "Line Division"
         '
-        'Label13
+        'lblTitle77
         '
-        Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label13.Location = New System.Drawing.Point(750, 615)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(85, 11)
-        Me.Label13.TabIndex = 167
-        Me.Label13.Text = "(休憩開始時間)"
+        Me.lblTitle77.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle77.AutoSize = True
+        Me.lblTitle77.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle77.Location = New System.Drawing.Point(750, 615)
+        Me.lblTitle77.Name = "lblTitle77"
+        Me.lblTitle77.Size = New System.Drawing.Size(85, 11)
+        Me.lblTitle77.TabIndex = 167
+        Me.lblTitle77.Text = "(休憩開始時間)"
         '
-        'Label14
+        'lblTitle7
         '
-        Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(635, 613)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(118, 14)
-        Me.Label14.TabIndex = 166
-        Me.Label14.Text = "Break start time"
+        Me.lblTitle7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle7.AutoSize = True
+        Me.lblTitle7.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle7.Location = New System.Drawing.Point(635, 613)
+        Me.lblTitle7.Name = "lblTitle7"
+        Me.lblTitle7.Size = New System.Drawing.Size(118, 14)
+        Me.lblTitle7.TabIndex = 166
+        Me.lblTitle7.Text = "Break start time"
         '
         'txtStart
         '
@@ -583,27 +544,27 @@ Partial Class SC_M19
         Me.txtEnd.Size = New System.Drawing.Size(194, 21)
         Me.txtEnd.TabIndex = 172
         '
-        'Label17
+        'lblTitle88
         '
-        Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label17.Location = New System.Drawing.Point(977, 615)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(85, 11)
-        Me.Label17.TabIndex = 171
-        Me.Label17.Text = "(休憩終了時間)"
+        Me.lblTitle88.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle88.AutoSize = True
+        Me.lblTitle88.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle88.Location = New System.Drawing.Point(977, 615)
+        Me.lblTitle88.Name = "lblTitle88"
+        Me.lblTitle88.Size = New System.Drawing.Size(85, 11)
+        Me.lblTitle88.TabIndex = 171
+        Me.lblTitle88.Text = "(休憩終了時間)"
         '
-        'Label22
+        'lblTitle8
         '
-        Me.Label22.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label22.Location = New System.Drawing.Point(871, 613)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(109, 14)
-        Me.Label22.TabIndex = 170
-        Me.Label22.Text = "Break end time"
+        Me.lblTitle8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle8.AutoSize = True
+        Me.lblTitle8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle8.Location = New System.Drawing.Point(871, 613)
+        Me.lblTitle8.Name = "lblTitle8"
+        Me.lblTitle8.Size = New System.Drawing.Size(109, 14)
+        Me.lblTitle8.TabIndex = 170
+        Me.lblTitle8.Text = "Break end time"
         '
         'cmbHenkou
         '
@@ -611,32 +572,33 @@ Partial Class SC_M19
         Me.cmbHenkou.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbHenkou.BackColor = System.Drawing.Color.White
         Me.cmbHenkou.FormattingEnabled = True
+        Me.cmbHenkou.Items.AddRange(New Object() {" ", "Y", "N"})
         Me.cmbHenkou.Location = New System.Drawing.Point(1103, 629)
         Me.cmbHenkou.Name = "cmbHenkou"
         Me.cmbHenkou.Size = New System.Drawing.Size(233, 20)
         Me.cmbHenkou.TabIndex = 175
         '
-        'Label25
+        'lblTitle99
         '
-        Me.Label25.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label25.Location = New System.Drawing.Point(1251, 616)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(85, 11)
-        Me.Label25.TabIndex = 174
-        Me.Label25.Text = "(日付変更区分)"
+        Me.lblTitle99.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle99.AutoSize = True
+        Me.lblTitle99.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle99.Location = New System.Drawing.Point(1251, 616)
+        Me.lblTitle99.Name = "lblTitle99"
+        Me.lblTitle99.Size = New System.Drawing.Size(85, 11)
+        Me.lblTitle99.TabIndex = 174
+        Me.lblTitle99.Text = "(日付変更区分)"
         '
-        'Label26
+        'lblTitle9
         '
-        Me.Label26.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label26.Location = New System.Drawing.Point(1100, 612)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(156, 14)
-        Me.Label26.TabIndex = 173
-        Me.Label26.Text = "Date change indicator"
+        Me.lblTitle9.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblTitle9.AutoSize = True
+        Me.lblTitle9.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblTitle9.Location = New System.Drawing.Point(1100, 612)
+        Me.lblTitle9.Name = "lblTitle9"
+        Me.lblTitle9.Size = New System.Drawing.Size(156, 14)
+        Me.lblTitle9.TabIndex = 173
+        Me.lblTitle9.Text = "Date change indicator"
         '
         'Label27
         '
@@ -653,6 +615,45 @@ Partial Class SC_M19
         Me.TimeSys.Enabled = True
         Me.TimeSys.Interval = 1000
         '
+        'gridData
+        '
+        Me.gridData.AllowDrop = True
+        Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.DefaultCellStyle = DataGridViewCellStyle5
+        Me.gridData.EnableHeadersVisualStyles = False
+        Me.gridData.Location = New System.Drawing.Point(12, 236)
+        Me.gridData.Name = "gridData"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle6
+        Me.gridData.RowTemplate.Height = 21
+        Me.gridData.Size = New System.Drawing.Size(1330, 340)
+        Me.gridData.TabIndex = 129
+        '
         'SC_M19
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -661,34 +662,34 @@ Partial Class SC_M19
         Me.ClientSize = New System.Drawing.Size(1350, 689)
         Me.Controls.Add(Me.Label27)
         Me.Controls.Add(Me.cmbHenkou)
-        Me.Controls.Add(Me.Label25)
-        Me.Controls.Add(Me.Label26)
+        Me.Controls.Add(Me.lblTitle99)
+        Me.Controls.Add(Me.lblTitle9)
         Me.Controls.Add(Me.txtEnd)
-        Me.Controls.Add(Me.Label17)
-        Me.Controls.Add(Me.Label22)
+        Me.Controls.Add(Me.lblTitle88)
+        Me.Controls.Add(Me.lblTitle8)
         Me.Controls.Add(Me.txtStart)
-        Me.Controls.Add(Me.Label13)
-        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.lblTitle77)
+        Me.Controls.Add(Me.lblTitle7)
         Me.Controls.Add(Me.cmbLine)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.lblTitle66)
+        Me.Controls.Add(Me.lblTitle6)
         Me.Controls.Add(Me.cmbKubun)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblTitle55)
+        Me.Controls.Add(Me.lblTitle5)
         Me.Controls.Add(Me.stsFooter)
         Me.Controls.Add(Me.cmbKoutei)
-        Me.Controls.Add(Me.Label19)
-        Me.Controls.Add(Me.Label21)
-        Me.Controls.Add(Me.Label23)
-        Me.Controls.Add(Me.Label24)
+        Me.Controls.Add(Me.lblTitle44)
+        Me.Controls.Add(Me.lblTitle33)
+        Me.Controls.Add(Me.lblTitle4)
+        Me.Controls.Add(Me.lblTitle3)
         Me.Controls.Add(Me.gridData)
-        Me.Controls.Add(Me.Label20)
-        Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.lblTitle22)
+        Me.Controls.Add(Me.lblTitle2)
+        Me.Controls.Add(Me.lblTitle11)
         Me.Controls.Add(Me.cmb_Koutei)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.lblTitle1)
+        Me.Controls.Add(Me.lblTitle00)
+        Me.Controls.Add(Me.lblTitle0)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.grpHeader)
         Me.Name = "SC_M19"
@@ -696,9 +697,9 @@ Partial Class SC_M19
         Me.Panel1.ResumeLayout(False)
         Me.grpHeader.ResumeLayout(False)
         Me.grpHeader.PerformLayout()
-        CType(Me.gridData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.stsFooter.ResumeLayout(False)
         Me.stsFooter.PerformLayout()
+        CType(Me.gridData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -706,9 +707,9 @@ Partial Class SC_M19
 
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label9 As Label
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnEnd As Button
-    Friend WithEvents btnSearch As Button
+    Friend WithEvents btnMenu4 As Button
+    Friend WithEvents btnMenu5 As Button
+    Friend WithEvents btnMenu0 As Button
     Friend WithEvents lblHLine As Label
     Friend WithEvents grpHeader As GroupBox
     Friend WithEvents Label15 As Label
@@ -717,41 +718,41 @@ Partial Class SC_M19
     Friend WithEvents Label18 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents txtLoginUser As TextBox
-    Friend WithEvents Label7 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label10 As Label
+    Friend WithEvents lblTitle00 As Label
+    Friend WithEvents lblTitle0 As Label
+    Friend WithEvents lblTitle11 As Label
     Friend WithEvents cmb_Koutei As ComboBox
-    Friend WithEvents Label16 As Label
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label12 As Label
-    Public WithEvents gridData As DataGridView
+    Friend WithEvents lblTitle1 As Label
+    Friend WithEvents lblTitle22 As Label
+    Friend WithEvents lblTitle2 As Label
     Friend WithEvents cmbKoutei As ComboBox
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Label21 As Label
-    Friend WithEvents Label23 As Label
-    Friend WithEvents Label24 As Label
+    Friend WithEvents lblTitle44 As Label
+    Friend WithEvents lblTitle33 As Label
+    Friend WithEvents lblTitle4 As Label
+    Friend WithEvents lblTitle3 As Label
     Friend WithEvents stsFooter As StatusStrip
     Friend WithEvents slblMargin As ToolStripStatusLabel
     Friend WithEvents slblDay As ToolStripStatusLabel
     Friend WithEvents slblTime As ToolStripStatusLabel
     Friend WithEvents cmbKubun As ComboBox
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblTitle55 As Label
+    Friend WithEvents lblTitle5 As Label
     Friend WithEvents cmbLine As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label8 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label14 As Label
+    Friend WithEvents lblTitle66 As Label
+    Friend WithEvents lblTitle6 As Label
+    Friend WithEvents lblTitle77 As Label
+    Friend WithEvents lblTitle7 As Label
     Friend WithEvents txtStart As TextBox
     Friend WithEvents txtEnd As TextBox
-    Friend WithEvents Label17 As Label
-    Friend WithEvents Label22 As Label
+    Friend WithEvents lblTitle88 As Label
+    Friend WithEvents lblTitle8 As Label
     Friend WithEvents cmbHenkou As ComboBox
-    Friend WithEvents Label25 As Label
-    Friend WithEvents Label26 As Label
+    Friend WithEvents lblTitle99 As Label
+    Friend WithEvents lblTitle9 As Label
     Friend WithEvents Label27 As Label
     Friend WithEvents TimeSys As Timer
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents btnUpdate As Button
-    Friend WithEvents btnInsert As Button
+    Friend WithEvents btnMenu3 As Button
+    Friend WithEvents btnMenu2 As Button
+    Friend WithEvents btnMenu1 As Button
+    Public WithEvents gridData As DataGridView
 End Class
