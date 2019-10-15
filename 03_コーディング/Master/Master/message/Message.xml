@@ -256,6 +256,9 @@
       <Message ID="W002">
         <Text>　CUP連携でワーニングエラーが発生しました。詳細はログファイルを確認してください。</Text>
       </Message>
+      <Message ID="W901">
+        <Text>レコードを選択してください。</Text>
+      </Message>
     </Warning>
   </Messages>
 </Configuration>

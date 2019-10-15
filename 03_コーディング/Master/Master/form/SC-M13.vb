@@ -17,6 +17,8 @@ Public Class SC_M13
     Private Const COL_REMARKS As String = "備考"
     Private Const COL_DISPLAY_DIVISION As String = "表示区分"
 
+    Private Const CONST_MASTER_NAME = "不良現象マスタ"
+
     Dim xml As New CmnXML("SC-M13.xml")
 
     Private Sub Init()
@@ -25,6 +27,9 @@ Public Class SC_M13
         Me.txtDefectName.Text = String.Empty
         Me.txtRemarks.Text = String.Empty
         Me.txtDisplaydivision.Text = String.Empty
+        setManagementNoType()
+
+        xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -58,15 +63,25 @@ Public Class SC_M13
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         Try
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-                Dim sqlStr As String = xml.GetSQL("select", "select_001")
+                Dim sqlStr As String
+                If Me.cmbProcessCode.Text.Equals(String.Empty) Then
+                    sqlStr = xml.GetSQL("select", "select_001")
+                Else
+                    sqlStr = xml.GetSQL("select", "select_003")
+                    sqlStr = String.Format(sqlStr, cmbProcessCode.Text)
+                End If
                 Dim dt As New DataTable()
                 dt = clsSQLServer.GetDataTable(sqlStr)
+                If dt.Rows.Count = 0 Then
+                    Dim msg As New clsMessage("W0008")
 
-                'setGrid(createGridData(dt))
+                    MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                End If
+
                 setGrid(dt)
                 clsSQLServer.Disconnect()
-
             End If
+
 
         Catch ex As Exception
         End Try
@@ -94,6 +109,13 @@ Public Class SC_M13
             addCol.DataPropertyName = col.ColumnName
             addCol.HeaderText = headerName(col.ColumnName)
             addCol.Name = col.ColumnName
+            If col.ColumnName = COL_DEFECT_PHENOMENON_NAME Then
+                addCol.MaxInputLength = 14
+            ElseIf col.ColumnName = COL_REMARKS Then
+                addCol.MaxInputLength = 50
+            ElseIf col.ColumnName = COL_DISPLAY_DIVISION Then
+                addCol.MaxInputLength = 1
+            End If
             gridData.Columns.Add(addCol)
         Next
         gridData.DataSource = dtData.Copy
@@ -129,6 +151,7 @@ Public Class SC_M13
         gridData.Columns(4).Width = 400
         gridData.Columns(5).Width = 100
 
+
         '複数選択不可
         gridData.MultiSelect = False
         '編集不可
@@ -137,31 +160,6 @@ Public Class SC_M13
         gridData.AllowUserToResizeRows = False
     End Sub
 
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData(ByRef dtData As DataTable) As DataTable
-        'Dim dt As New DataTable
-        'dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
-        'dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
-        'dt.Columns.Add(New DataColumn(COL_DEFECT_CODE, GetType(System.String)))
-        'dt.Columns.Add(New DataColumn(COL_DEFECT_PHENOMENON_NAME, GetType(System.String)))
-        'dt.Columns.Add(New DataColumn(COL_REMARKS, GetType(System.String)))
-        'dt.Columns.Add(New DataColumn(COL_DISPLAY_DIVISION, GetType(System.String)))
-
-        'For i As Integer = 0 To dtData.Rows.Count - 1
-        '    Dim addRow As DataRow = dt.NewRow
-        '    addRow(COL_PROCESS_CODE) = dtData.Rows(i).Item("工程コード")
-        '    addRow(COL_DEFECT_CODE) = dtData.Rows(i).Item("不良コード")
-        '    addRow(COL_DEFECT_PHENOMENON_NAME) = dtData.Rows(i).Item("不良現象名")
-        '    addRow(COL_REMARKS) = dtData.Rows(i).Item("備考")
-
-        '    dt.Rows.Add(addRow)
-        'Next
-
-        'Return dt
-
-    End Function
 
     ''' <summary>
     ''' 　チェックボックス事件
@@ -191,7 +189,7 @@ Public Class SC_M13
     ''' </summary>
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
 
             If cmbProcess.Text.Equals(String.Empty) Then
                 MessageBox.Show(cmnUtil.GetMessageStr("W0001", "工程コード"))
@@ -231,6 +229,7 @@ Public Class SC_M13
                                                             "0"))
                     clsSQLServer.Disconnect()
                     btnSearch_Click(sender, e)
+                    setManagementNoType()
 
                 End If
 
@@ -250,10 +249,10 @@ Public Class SC_M13
     ''' 更新処理
     ''' </summary>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                 For i As Integer = 0 To gridData.Rows.Count - 1
-                    If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                    If gridData.Rows(i).Cells(0).Value = True Then
                         Dim sqlstr As String = xml.GetSQL("update", "update_001")
                         clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                 gridData.Rows(i).Cells(1).Value,
@@ -272,32 +271,44 @@ Public Class SC_M13
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, "不良現象マスタ") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, CONST_MASTER_NAME) = DialogResult.OK Then
 
+            Dim msg As New clsMessage("W901")
             Try
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                        Return
+                    End If
                     For i As Integer = 0 To gridData.Rows.Count - 1
                         '横位置
-                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                        If gridData.Rows(i).Cells(0).Value = True Then
 
                             Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
                                                                     gridData.Rows(i).Cells(2).Value))
-
+                            selectedCount = True
                         End If
 
                     Next
-
-                    clsSQLServer.Disconnect()
-
-                    btnSearch_Click(sender, e)
-
-                    'setManagementNoType()
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                        Return
+                    End If
                 End If
             Catch ex As Exception
                 Throw
+            Finally
+                clsSQLServer.Disconnect()
+
+                btnSearch_Click(sender, e)
+
+                setManagementNoType()
             End Try
         End If
     End Sub
@@ -307,9 +318,43 @@ Public Class SC_M13
     ''' </summary>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
             gridData.Columns.Clear()
         End If
+    End Sub
+
+    Private Sub setManagementNoType()
+
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                Dim sqlstr As String = xml.GetSQL("select", "select_002")
+
+                Dim dt As New DataTable()
+
+                dt = clsSQLServer.GetDataTable(sqlstr)
+
+                Dim drWork As DataRow = dt.NewRow
+
+                drWork(dt.Columns.Item(0).ColumnName) = "00"
+                drWork(dt.Columns.Item(0).ColumnName) = ""
+                dt.Rows.InsertAt(drWork, 0)
+
+                Me.cmbProcessCode.DataSource = dt
+
+                ' 表示用の列を設定
+                Me.cmbProcessCode.DisplayMember = dt.Columns.Item(0).ColumnName
+                ' データ用の列を設定
+                Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
+
+                clsSQLServer.Disconnect()
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
 End Class

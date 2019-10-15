@@ -3,6 +3,12 @@
 	<select id="select_001">
     SELECT 工程コード,不良コード,不良現象名,備考,表示区分 FROM 不良現象マスタ
   </select>
+  <select id="select_002">
+    SELECT DISTINCT(工程コード) FROM 不良現象マスタ
+  </select>
+  <select id="select_003">
+    SELECT 工程コード,不良コード,不良現象名,備考,表示区分 FROM 不良現象マスタ WHERE 工程コード='{0}'
+  </select>
 	<update id="update_001">
     UPDATE 不良現象マスタ set 不良現象名='{2}',備考='{3}',表示区分='{4}' WHERE 工程コード='{0}' AND 不良コード='{1}'
   </update>
@@ -10,6 +16,6 @@
     INSERT INTO 不良現象マスタ(工程コード,不良コード,不良現象名,備考,表示区分) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')
   </insert>
 	<delete id="delete_001">
-    DELETE FROM 不良現象マスタ WHERE 工程コード=@PROCESS
+    DELETE FROM 不良現象マスタ WHERE 工程コード='{0}' AND 不良コード='{1}'
   </delete>
 </SC-M13>
