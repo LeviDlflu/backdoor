@@ -173,46 +173,47 @@ Public Class SC_M19
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
-        'データベース接続
-        connent.fncCnOpen(cn)
+        Try
+            Dim strSelect As String
+            Dim dt As New DataTable
 
-        Dim dsDataSet As DataSet = New DataSet
-        Dim dsDataSet2 As DataSet = New DataSet
-        Dim sdaAdapter As SqlDataAdapter
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-        '工程コード
-        Dim strSelect As String = xml.GetSQL("select", "select_002")
-        sdaAdapter = New SqlDataAdapter(strSelect, cn)
-        sdaAdapter.Fill(dsDataSet)
-        Me.cmbKoutei.DataSource = dsDataSet.Tables(0)
-        Me.cmbKoutei.ValueMember = "工程コード"
-        Me.cmbKoutei.DisplayMember = "工程略称"
+                '工程コード
+                strSelect = xml.GetSQL("select", "select_002")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbKoutei.DataSource = dt
+                Me.cmbKoutei.ValueMember = "工程コード"
+                Me.cmbKoutei.DisplayMember = "工程略称"
 
-        sdaAdapter.Fill(dsDataSet2)
-        Me.cmb_Koutei.DataSource = dsDataSet2.Tables(0)
-        Me.cmb_Koutei.ValueMember = "工程コード"
-        Me.cmb_Koutei.DisplayMember = "工程略称"
+                '検索条件　工程コード
+                Dim dt2 As New DataTable
+                dt2 = clsSQLServer.GetDataTable(strSelect)
+                Me.cmb_Koutei.DataSource = dt2
+                Me.cmb_Koutei.ValueMember = "工程コード"
+                Me.cmb_Koutei.DisplayMember = "工程略称"
 
-        '区分
-        dsDataSet = New DataSet
-        strSelect = xml.GetSQL("select", "select_003")
-        sdaAdapter = New SqlDataAdapter(String.Format(strSelect, "45"), cn)
-        sdaAdapter.Fill(dsDataSet)
-        Me.cmbKubun.DataSource = dsDataSet.Tables(0)
-        Me.cmbKubun.ValueMember = "コード"
-        Me.cmbKubun.DisplayMember = "コード名称"
+                '区分
+                strSelect = xml.GetSQL("select", "select_003")
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, "45"))
+                Me.cmbKubun.DataSource = dt
+                Me.cmbKubun.ValueMember = "コード"
+                Me.cmbKubun.DisplayMember = "コード名称"
 
-        'ライン区分
-        dsDataSet = New DataSet
-        strSelect = xml.GetSQL("select", "select_003")
-        sdaAdapter = New SqlDataAdapter(String.Format(strSelect, "87"), cn)
-        sdaAdapter.Fill(dsDataSet)
-        Me.cmbLine.DataSource = dsDataSet.Tables(0)
-        Me.cmbLine.ValueMember = "コード"
-        Me.cmbLine.DisplayMember = "コード名称"
+                'ライン区分
+                strSelect = xml.GetSQL("select", "select_003")
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, "87"))
+                Me.cmbLine.DataSource = dt
+                Me.cmbLine.ValueMember = "コード"
+                Me.cmbLine.DisplayMember = "コード名称"
 
-        connent.subCnClose(cn)
+                clsSQLServer.Disconnect()
+            End If
 
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
     ''' <summary>
