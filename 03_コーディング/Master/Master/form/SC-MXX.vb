@@ -4,19 +4,19 @@
     Private Sub SC_MXX_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         btn01.Text = "Parts configuration master" + Environment.NewLine + "部品構成マスタ(M-01)"
-        btn10.Text = "Equipment master" + Environment.NewLine + "設備マスタ(M-10)"
+        btn10.Text = "Facility master" + Environment.NewLine + "設備マスタ(M-10)"
         btn11.Text = "Variety master" + Environment.NewLine + "品種マスタ(M-11)"
-        btn12.Text = "Car type master" + Environment.NewLine + "車種マスタ(M-12)"
-        btn13.Text = "Failure phenomena master" + Environment.NewLine + "不良現象マスタ(M-13)"
+        btn12.Text = "Vehicle type master" + Environment.NewLine + "車種マスタ(M-12)"
+        btn13.Text = "Defect phenomena master" + Environment.NewLine + "不良現象マスタ(M-13)"
         btn14.Text = "IP address manage master" + Environment.NewLine + "ＩＰアドレス管理マスタ(M-14)"
         btn15.Text = "Code master" + Environment.NewLine + "コードマスタ(M-15)"
-        btn16.Text = "Authorization master" + Environment.NewLine + "権限マスタ(M-16)"
+        btn16.Text = "Authority master" + Environment.NewLine + "権限マスタ(M-16)"
         btn17.Text = "Employee master" + Environment.NewLine + "社員マスタ(M-17)"
         btn18.Text = "Assistance master" + Environment.NewLine + "補助マスタ(M-18)"
         btn19.Text = "Work table master" + Environment.NewLine + "勤務テーブルマスタ(M-19)"
         btn20.Text = "Customer calendar master" + Environment.NewLine + "顧客カレンダーマスタ(M-20)"
         'btn21.Text = "Message master" + Environment.NewLine + "メッセージマスタ(M-21)"
-        btn22.Text = "Numbering master" + Environment.NewLine + "採番マスタ(M-22)"
+        btn22.Text = "Picking master" + Environment.NewLine + "採番マスタ(M-22)"
 
     End Sub
 

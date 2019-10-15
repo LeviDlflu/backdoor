@@ -220,7 +220,7 @@ Partial Class SC_MXX
         Me.btn22.Name = "btn22"
         Me.btn22.Size = New System.Drawing.Size(275, 49)
         Me.btn22.TabIndex = 23
-        Me.btn22.Text = "Numbering master採番マスタ(M-22)"
+        Me.btn22.Text = "Picking master採番マスタ(M-22)"
         Me.btn22.UseVisualStyleBackColor = False
         '
         'btn20
@@ -286,7 +286,7 @@ Partial Class SC_MXX
         Me.btn16.Name = "btn16"
         Me.btn16.Size = New System.Drawing.Size(275, 49)
         Me.btn16.TabIndex = 16
-        Me.btn16.Text = "Authorization master権限マスタ(M-16)"
+        Me.btn16.Text = "Authority master権限マスタ(M-16)"
         Me.btn16.UseVisualStyleBackColor = False
         '
         'btn14
@@ -308,7 +308,7 @@ Partial Class SC_MXX
         Me.btn13.Name = "btn13"
         Me.btn13.Size = New System.Drawing.Size(275, 49)
         Me.btn13.TabIndex = 14
-        Me.btn13.Text = "Failure phenomena master不良現象マスタ(M-13)"
+        Me.btn13.Text = "Defect phenomena master不良現象マスタ(M-13)"
         Me.btn13.UseVisualStyleBackColor = False
         '
         'btn12
@@ -331,7 +331,7 @@ Partial Class SC_MXX
         Me.btn10.Name = "btn10"
         Me.btn10.Size = New System.Drawing.Size(275, 49)
         Me.btn10.TabIndex = 11
-        Me.btn10.Text = "Equipment master設備マスタ(M-10)"
+        Me.btn10.Text = "Facility master設備マスタ(M-10)"
         Me.btn10.UseVisualStyleBackColor = False
         '
         'btn11
