@@ -2,7 +2,9 @@
     Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
     Private Const COL_CODE As String = "Code" & vbCrLf & "(コード)"
     Private Const COL_CODE_NAME As String = "Code name" & vbCrLf & "(コード名称)"
+    Private Const COL_CODE_NAME_ENGLISH As String = "Code division(english)" & vbCrLf & "(コード名称（英語）)"
     Private Const COL_CODE_DIVISION As String = "Code division" & vbCrLf & "(コード区分)"
+    Private Const COL_DISPLAY_ORDER As String = "Display order" & vbCrLf & "(表示順序)"
     Private Const COL_ITEM1 As String = "Item 1" & vbCrLf & "(項目１)"
     Private Const COL_ITEM2 As String = "Item 2" & vbCrLf & "(項目２)"
     Private Const COL_ITEM3 As String = "Item 3" & vbCrLf & "(項目３)"
@@ -84,7 +86,7 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_CODE_NAME, COL_ITEM1, COL_ITEM2, COL_ITEM3, COL_ITEM4, COL_ITEM5, COL_REMARKS
+                Case COL_CODE_NAME, COL_CODE_NAME_ENGLISH, COL_ITEM2, COL_ITEM3, COL_ITEM4, COL_ITEM5, COL_REMARKS
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -104,15 +106,17 @@
         Next
 
         gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 200
-        gridData.Columns(2).Width = 200
-        gridData.Columns(3).Width = 350
-        gridData.Columns(4).Width = 200
-        gridData.Columns(5).Width = 200
-        gridData.Columns(6).Width = 300
+        gridData.Columns(1).Width = 100
+        gridData.Columns(2).Width = 300
+        gridData.Columns(3).Width = 300
+        gridData.Columns(4).Width = 100
+        gridData.Columns(5).Width = 100
+        gridData.Columns(6).Width = 200
         gridData.Columns(7).Width = 200
-        gridData.Columns(8).Width = 200
-        gridData.Columns(9).Width = 300
+        gridData.Columns(8).Width = 300
+        gridData.Columns(9).Width = 200
+        gridData.Columns(10).Width = 200
+        gridData.Columns(11).Width = 300
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -130,6 +134,8 @@
         dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
         dt.Columns.Add(New DataColumn(COL_CODE, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CODE_NAME, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_CODE_NAME_ENGLISH, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_DISPLAY_ORDER, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CODE_DIVISION, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_ITEM1, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_ITEM2, GetType(System.String)))
@@ -144,7 +150,9 @@
                 Case 0
                     addRow(COL_CODE) = "A01"
                     addRow(COL_CODE_NAME) = "日本"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Japan"
                     addRow(COL_CODE_DIVISION) = "B01"
+                    addRow(COL_DISPLAY_ORDER) = "001"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -154,7 +162,9 @@
                 Case 1
                     addRow(COL_CODE) = "A02"
                     addRow(COL_CODE_NAME) = "渋谷"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Shibuya"
                     addRow(COL_CODE_DIVISION) = "B02"
+                    addRow(COL_DISPLAY_ORDER) = "002"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -164,7 +174,9 @@
                 Case 2
                     addRow(COL_CODE) = "A02"
                     addRow(COL_CODE_NAME) = "恵比寿"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Ebisu"
                     addRow(COL_CODE_DIVISION) = "B03"
+                    addRow(COL_DISPLAY_ORDER) = "003"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -174,7 +186,9 @@
                 Case 3
                     addRow(COL_CODE) = "A03"
                     addRow(COL_CODE_NAME) = "恵比寿"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Ebisu"
                     addRow(COL_CODE_DIVISION) = "B03"
+                    addRow(COL_DISPLAY_ORDER) = "003"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -184,7 +198,9 @@
                 Case 4
                     addRow(COL_CODE) = "A04"
                     addRow(COL_CODE_NAME) = "品川"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Shinagawa"
                     addRow(COL_CODE_DIVISION) = "B04"
+                    addRow(COL_DISPLAY_ORDER) = "004"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -194,7 +210,9 @@
                 Case 5
                     addRow(COL_CODE) = "A05"
                     addRow(COL_CODE_NAME) = "大崎"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Osaki"
                     addRow(COL_CODE_DIVISION) = "B05"
+                    addRow(COL_DISPLAY_ORDER) = "005"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -205,7 +223,9 @@
                 Case 6
                     addRow(COL_CODE) = "A06"
                     addRow(COL_CODE_NAME) = "田町"
+                    addRow(COL_CODE_NAME_ENGLISH) = "Tamachi"
                     addRow(COL_CODE_DIVISION) = "B06"
+                    addRow(COL_DISPLAY_ORDER) = "006"
                     addRow(COL_ITEM1) = "テスト１"
                     addRow(COL_ITEM2) = "テスト２"
                     addRow(COL_ITEM3) = "テスト３"
@@ -230,11 +250,11 @@
             gridData.EndEdit()
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
-                For i As Integer = 1 To 9
+                For i As Integer = 1 To 11
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                 Next
             Else
-                For i As Integer = 1 To 9
+                For i As Integer = 1 To 11
                     gridData.CurrentRow.Cells(i).ReadOnly = True
                 Next
             End If
