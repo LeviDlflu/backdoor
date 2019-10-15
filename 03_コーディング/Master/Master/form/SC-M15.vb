@@ -2,7 +2,7 @@
     Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
     Private Const COL_CODE As String = "Code" & vbCrLf & "(コード)"
     Private Const COL_CODE_NAME As String = "Code name" & vbCrLf & "(コード名称)"
-    Private Const COL_CODE_NAME_ENGLISH As String = "Code division(english)" & vbCrLf & "(コード名称（英語）)"
+    Private Const COL_CODE_NAME_ENGLISH As String = "Code division(English)" & vbCrLf & "(コード名称（英語）)"
     Private Const COL_CODE_DIVISION As String = "Code division" & vbCrLf & "(コード区分)"
     Private Const COL_DISPLAY_ORDER As String = "Display order" & vbCrLf & "(表示順序)"
     Private Const COL_ITEM1 As String = "Item 1" & vbCrLf & "(項目１)"
@@ -15,6 +15,8 @@
 
         Me.txtCode.Text = String.Empty
         Me.txtCodeName.Text = String.Empty
+        Me.txtCodeNameEng.Text = String.Empty
+        Me.txtDisplayorder.Text = String.Empty
         Me.txtDivision.Text = String.Empty
         Me.txtItem1.Text = String.Empty
         Me.txtItem2.Text = String.Empty
@@ -107,9 +109,9 @@
 
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 100
-        gridData.Columns(2).Width = 300
+        gridData.Columns(2).Width = 100
         gridData.Columns(3).Width = 300
-        gridData.Columns(4).Width = 100
+        gridData.Columns(4).Width = 300
         gridData.Columns(5).Width = 100
         gridData.Columns(6).Width = 200
         gridData.Columns(7).Width = 200
@@ -132,11 +134,11 @@
     Private Function createGridData() As DataTable
         Dim dt As New DataTable
         dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
+        dt.Columns.Add(New DataColumn(COL_CODE_DIVISION, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CODE, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CODE_NAME, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CODE_NAME_ENGLISH, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_DISPLAY_ORDER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_CODE_DIVISION, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_ITEM1, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_ITEM2, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_ITEM3, GetType(System.String)))

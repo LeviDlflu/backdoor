@@ -1,14 +1,30 @@
-﻿Public Class SC_M13
-    Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
-    Private Const COL_PROCESS_CODE As String = "Process code" & vbCrLf & "(工程コード)"
-    Private Const COL_DEFECT_CODE As String = "Defect code" & vbCrLf & "(不良コード)"
-    Private Const COL_DEFECT_PHENOMENON_NAME As String = "Defect phenomenon name" & vbCrLf & "(不良現象名)"
-    Private Const COL_REMARKS As String = "Remarks" & vbCrLf & "(備考)"
-    Private Const COL_DISPLAY_DIVISION As String = "Display division" & vbCrLf & "(表示区分)"
+﻿Imports PUCCommon.clsGlobal
+Public Class SC_M13
+
+    Dim headerName As Hashtable = New Hashtable From {
+                             {"選択", "Select" & vbCrLf & "(選択)"},
+                             {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
+                             {"不良コード", "Defect code" & vbCrLf & "(不良コード)"},
+                             {"不良現象名", "Defect phenomenon name" & vbCrLf & "(不良現象名)"},
+                             {"備考", "Remarks" & vbCrLf & "(備考)"},
+                             {"表示区分", "Display division" & vbCrLf & "(表示区分)"}
+                            }
+
+    Private Const COL_SENTAKU As String = "選択"
+    Private Const COL_PROCESS_CODE As String = "工程コード"
+    Private Const COL_DEFECT_CODE As String = "不良コード"
+    Private Const COL_DEFECT_PHENOMENON_NAME As String = "不良現象名"
+    Private Const COL_REMARKS As String = "備考"
+    Private Const COL_DISPLAY_DIVISION As String = "表示区分"
+
+    Dim xml As New CmnXML("SC-M13.xml")
 
     Private Sub Init()
+        Me.cmbProcess.Text = String.Empty
         Me.txtDefect.Text = String.Empty
         Me.txtDefectName.Text = String.Empty
+        Me.txtRemarks.Text = String.Empty
+        Me.txtDisplaydivision.Text = String.Empty
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -40,7 +56,20 @@
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        setGrid(createGridData())
+        Try
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                Dim sqlStr As String = xml.GetSQL("select", "select_001")
+                Dim dt As New DataTable()
+                dt = clsSQLServer.GetDataTable(sqlStr)
+
+                'setGrid(createGridData(dt))
+                setGrid(dt)
+                clsSQLServer.Disconnect()
+
+            End If
+
+        Catch ex As Exception
+        End Try
     End Sub
 
     ''' <summary>
@@ -49,29 +78,23 @@
     ''' <param name="dtData">データソース</param>
     Private Sub setGrid(ByRef dtData As DataTable)
         If gridData.Rows.Count > 0 Then
-            'gridData.Rows.Clear()
             gridData.Columns.Clear()
         End If
+
+        '選択
+        Dim addColSentaku As New DataGridViewCheckBoxColumn()
+        addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
+        addColSentaku.HeaderText = headerName(COL_SENTAKU)
+        addColSentaku.Name = "sentaku"
+        gridData.Columns.Add(addColSentaku)
+
         For Each col As DataColumn In dtData.Columns
-            If col.ColumnName = COL_SENTAKU Then
-                Dim addCol As New DataGridViewCheckBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
-                addCol.Name = "sentaku"
-                gridData.Columns.Add(addCol)
-            ElseIf col.ColumnName = COL_DISPLAY_DIVISION Then
-                Dim addCol As New DataGridViewComboBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
-                addCol.Name = col.ColumnName
-                gridData.Columns.Add(addCol)
-            Else
-                Dim addCol As New DataGridViewTextBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
-                addCol.Name = col.ColumnName
-                gridData.Columns.Add(addCol)
-            End If
+
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            addCol.HeaderText = headerName(col.ColumnName)
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
         Next
         gridData.DataSource = dtData.Copy
         gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -117,59 +140,26 @@
     ''' <summary>
     ''' 　グリッド用のデータを作成
     ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-        dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
-        dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_DEFECT_CODE, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_DEFECT_PHENOMENON_NAME, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_REMARKS, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_DISPLAY_DIVISION, GetType(System.String)))
+    Private Function createGridData(ByRef dtData As DataTable) As DataTable
+        'Dim dt As New DataTable
+        'dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
+        'dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
+        'dt.Columns.Add(New DataColumn(COL_DEFECT_CODE, GetType(System.String)))
+        'dt.Columns.Add(New DataColumn(COL_DEFECT_PHENOMENON_NAME, GetType(System.String)))
+        'dt.Columns.Add(New DataColumn(COL_REMARKS, GetType(System.String)))
+        'dt.Columns.Add(New DataColumn(COL_DISPLAY_DIVISION, GetType(System.String)))
 
-        For i As Integer = 0 To 6
-            Dim addRow As DataRow = dt.NewRow
-            Select Case i
-                Case 0
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "11"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "落下"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 1
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "12"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "キズ"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 2
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "25"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "凹凸"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 3
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "30"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "溶着不良"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 4
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "40"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "生地不良(ゲット)"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 5
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "42"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "変形"
-                    addRow(COL_REMARKS) = "製造工場"
-                Case 6
-                    addRow(COL_PROCESS_CODE) = "FAS"
-                    addRow(COL_DEFECT_CODE) = "47"
-                    addRow(COL_DEFECT_PHENOMENON_NAME) = "クラック"
-                    addRow(COL_REMARKS) = "製造工場"
+        'For i As Integer = 0 To dtData.Rows.Count - 1
+        '    Dim addRow As DataRow = dt.NewRow
+        '    addRow(COL_PROCESS_CODE) = dtData.Rows(i).Item("工程コード")
+        '    addRow(COL_DEFECT_CODE) = dtData.Rows(i).Item("不良コード")
+        '    addRow(COL_DEFECT_PHENOMENON_NAME) = dtData.Rows(i).Item("不良現象名")
+        '    addRow(COL_REMARKS) = dtData.Rows(i).Item("備考")
 
-            End Select
-            dt.Rows.Add(addRow)
-        Next
+        '    dt.Rows.Add(addRow)
+        'Next
 
-        Return dt
+        'Return dt
 
     End Function
 
@@ -182,16 +172,144 @@
             gridData.EndEdit()
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
-                For i As Integer = 1 To 5
+                For i As Integer = 3 To 5
+                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.Yellow
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                 Next
             Else
-                For i As Integer = 1 To 5
+                For i As Integer = 3 To 5
+                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
                     gridData.CurrentRow.Cells(i).ReadOnly = True
                 Next
             End If
         End If
 
+    End Sub
+
+    ''' <summary>
+    '''   追加処理
+    ''' </summary>
+    Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
+
+        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+
+            If cmbProcess.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "工程コード"))
+                cmbProcess.BackColor = Color.Red
+                Return
+            Else
+                cmbProcess.BackColor = Color.White
+            End If
+
+            If txtDefect.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "不良コード"))
+                txtDefect.BackColor = Color.Red
+                Return
+            Else
+                txtDefect.BackColor = Color.White
+            End If
+
+            If txtDefectName.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "不良現象名"))
+                txtDefectName.BackColor = Color.Red
+                Return
+            Else
+                txtDefectName.BackColor = Color.White
+            End If
+
+            Try
+
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                    Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
+
+                    clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                            cmbProcess.Text.Substring(0, 2),
+                                                            txtDefect.Text,
+                                                            txtDefectName.Text,
+                                                            txtRemarks.Text,
+                                                            "0"))
+                    clsSQLServer.Disconnect()
+                    btnSearch_Click(sender, e)
+
+                End If
+
+            Catch ex As Exception
+                Throw
+            End Try
+
+            Me.cmbProcess.Text = String.Empty
+            Me.txtDefect.Text = String.Empty
+            Me.txtDefectName.Text = String.Empty
+            Me.txtRemarks.Text = String.Empty
+            Me.txtDisplaydivision.Text = String.Empty
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' 更新処理
+    ''' </summary>
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                For i As Integer = 0 To gridData.Rows.Count - 1
+                    If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                        Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                        clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                                gridData.Rows(i).Cells(1).Value,
+                                                                gridData.Rows(i).Cells(2).Value,
+                                                                gridData.Rows(i).Cells(3).Value,
+                                                                gridData.Rows(i).Cells(4).Value,
+                                                                gridData.Rows(i).Cells(5).Value))
+                    End If
+                Next
+                clsSQLServer.Disconnect()
+                btnSearch_Click(sender, e)
+
+            End If
+        End If
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, "不良現象マスタ") = DialogResult.OK Then
+
+            Try
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                    For i As Integer = 0 To gridData.Rows.Count - 1
+                        '横位置
+                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+
+                            Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                                    gridData.Rows(i).Cells(1).Value,
+                                                                    gridData.Rows(i).Cells(2).Value))
+
+                        End If
+
+                    Next
+
+                    clsSQLServer.Disconnect()
+
+                    btnSearch_Click(sender, e)
+
+                    'setManagementNoType()
+                End If
+            Catch ex As Exception
+                Throw
+            End Try
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' クリア処理
+    ''' </summary>
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
+        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, "不良現象マスタ") = DialogResult.OK Then
+            gridData.Columns.Clear()
+        End If
     End Sub
 
 End Class
