@@ -211,6 +211,8 @@ Public Class SC_M19
         Me.cmbLine.ValueMember = "コード"
         Me.cmbLine.DisplayMember = "コード名称"
 
+        connent.subCnClose(cn)
+
     End Sub
 
     ''' <summary>
