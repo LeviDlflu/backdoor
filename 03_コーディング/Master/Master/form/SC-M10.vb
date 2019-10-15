@@ -12,6 +12,7 @@ Public Class SC_M10
     Private Const COL_HKOUTEI As String = "Standard passing process code" & vbCrLf & "(標準通過工程コード)"
     Private Const COL_LINE As String = "Line Code" & vbCrLf & "(ラインコード)"
     Private Const COL_KOUTEI As String = "Process code" & vbCrLf & "(工程コード)"
+    Private Const COL_ORDER As String = "Display order" & vbCrLf & "(表示順序)"
     Private Const COL_LABEL As String = "Auto label flag" & vbCrLf & "(自動ラベルフラグ)"
     Private Const COL_BIKOU As String = "Remarks" & vbCrLf & "(備考)"
 
@@ -26,6 +27,7 @@ Public Class SC_M10
         dt.Columns.Add(New DataColumn(COL_HKOUTEI, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_LINE, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_KOUTEI, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_ORDER, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_LABEL, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_BIKOU, GetType(System.String)))
 
@@ -39,6 +41,7 @@ Public Class SC_M10
                     addRow(COL_HKOUTEI) = "smd"
                     addRow(COL_LINE) = "1"
                     addRow(COL_KOUTEI) = "2B"
+                    addRow(COL_ORDER) = "1"
                     addRow(COL_LABEL) = "０：手動ラベル"
                     addRow(COL_BIKOU) = "備考"
                 Case 1
@@ -47,6 +50,7 @@ Public Class SC_M10
                     addRow(COL_HKOUTEI) = "smd"
                     addRow(COL_LINE) = "1"
                     addRow(COL_KOUTEI) = "2B"
+                    addRow(COL_ORDER) = "2"
                     addRow(COL_LABEL) = "０：手動ラベル"
                     addRow(COL_BIKOU) = "備考"
                 Case 2
@@ -55,6 +59,7 @@ Public Class SC_M10
                     addRow(COL_HKOUTEI) = "smd"
                     addRow(COL_LINE) = "1"
                     addRow(COL_KOUTEI) = "2B"
+                    addRow(COL_ORDER) = "3"
                     addRow(COL_LABEL) = "０：手動ラベル"
                     addRow(COL_BIKOU) = "備考"
                 Case 3
@@ -63,6 +68,7 @@ Public Class SC_M10
                     addRow(COL_HKOUTEI) = "smd"
                     addRow(COL_LINE) = "1"
                     addRow(COL_KOUTEI) = "2B"
+                    addRow(COL_ORDER) = "4"
                     addRow(COL_LABEL) = "０：手動ラベル"
                     addRow(COL_BIKOU) = "備考"
                 Case 4
@@ -71,6 +77,7 @@ Public Class SC_M10
                     addRow(COL_HKOUTEI) = "smd"
                     addRow(COL_LINE) = "1"
                     addRow(COL_KOUTEI) = "2B"
+                    addRow(COL_ORDER) = "5"
                     addRow(COL_LABEL) = "０：手動ラベル"
                     addRow(COL_BIKOU) = "備考"
 
@@ -121,7 +128,6 @@ Public Class SC_M10
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End Select
         Next
-
         gridData.AutoResizeColumns()
 
         For Each col As DataGridViewColumn In gridData.Columns
@@ -140,8 +146,9 @@ Public Class SC_M10
         gridData.Columns(3).Width = 180
         gridData.Columns(4).Width = 110
         gridData.Columns(5).Width = 110
-        gridData.Columns(6).Width = 120
-        gridData.Columns(7).Width = 320
+        gridData.Columns(6).Width = 90
+        gridData.Columns(7).Width = 120
+        gridData.Columns(8).Width = 320
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -254,12 +261,12 @@ Public Class SC_M10
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
 
-                For i As Integer = 2 To 7
+                For i As Integer = 2 To 8
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                 Next
             Else
 
-                For i As Integer = 2 To 7
+                For i As Integer = 2 To 8
                     gridData.CurrentRow.Cells(i).ReadOnly = True
                 Next
             End If
