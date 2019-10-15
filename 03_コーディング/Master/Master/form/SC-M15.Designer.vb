@@ -78,6 +78,12 @@ Partial Class SC_M15
         Me.txtItem5 = New System.Windows.Forms.TextBox()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
+        Me.txtCodeNameEng = New System.Windows.Forms.TextBox()
+        Me.txtDisplayorder = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -100,7 +106,7 @@ Partial Class SC_M15
         Me.Label20.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label20.Location = New System.Drawing.Point(529, 563)
+        Me.Label20.Location = New System.Drawing.Point(579, 563)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(65, 11)
         Me.Label20.TabIndex = 200
@@ -109,10 +115,10 @@ Partial Class SC_M15
         'txtCodeName
         '
         Me.txtCodeName.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtCodeName.Location = New System.Drawing.Point(445, 579)
+        Me.txtCodeName.Location = New System.Drawing.Point(495, 579)
         Me.txtCodeName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCodeName.Name = "txtCodeName"
-        Me.txtCodeName.Size = New System.Drawing.Size(369, 19)
+        Me.txtCodeName.Size = New System.Drawing.Size(369, 21)
         Me.txtCodeName.TabIndex = 199
         Me.txtCodeName.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
@@ -140,7 +146,7 @@ Partial Class SC_M15
         Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(261, 563)
+        Me.Label14.Location = New System.Drawing.Point(315, 563)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(41, 11)
         Me.Label14.TabIndex = 195
@@ -191,7 +197,7 @@ Partial Class SC_M15
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(214, 561)
+        Me.Label8.Location = New System.Drawing.Point(268, 561)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(41, 14)
         Me.Label8.TabIndex = 187
@@ -354,7 +360,7 @@ Partial Class SC_M15
         Me.TextBox1.Location = New System.Drawing.Point(1231, 31)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(120, 19)
+        Me.TextBox1.Size = New System.Drawing.Size(120, 21)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.TabStop = False
         Me.TextBox1.Text = "本番環境"
@@ -365,7 +371,7 @@ Partial Class SC_M15
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.txtLoginUser.Location = New System.Drawing.Point(1231, 10)
         Me.txtLoginUser.Name = "txtLoginUser"
-        Me.txtLoginUser.Size = New System.Drawing.Size(120, 19)
+        Me.txtLoginUser.Size = New System.Drawing.Size(120, 21)
         Me.txtLoginUser.TabIndex = 4
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
@@ -424,7 +430,7 @@ Partial Class SC_M15
         Me.Label21.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label21.Location = New System.Drawing.Point(442, 561)
+        Me.Label21.Location = New System.Drawing.Point(492, 561)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(81, 14)
         Me.Label21.TabIndex = 198
@@ -460,7 +466,7 @@ Partial Class SC_M15
         Me.gridData.Name = "gridData"
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
         DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
@@ -493,12 +499,11 @@ Partial Class SC_M15
         'txtCode
         '
         Me.txtCode.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtCode.Location = New System.Drawing.Point(217, 579)
+        Me.txtCode.Location = New System.Drawing.Point(271, 579)
         Me.txtCode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtCode.Name = "txtCode"
-        Me.txtCode.Size = New System.Drawing.Size(160, 19)
+        Me.txtCode.Size = New System.Drawing.Size(160, 21)
         Me.txtCode.TabIndex = 199
-        Me.txtCode.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
         'Label22
         '
@@ -528,9 +533,8 @@ Partial Class SC_M15
         Me.txtDivision.Location = New System.Drawing.Point(13, 579)
         Me.txtDivision.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDivision.Name = "txtDivision"
-        Me.txtDivision.Size = New System.Drawing.Size(165, 19)
+        Me.txtDivision.Size = New System.Drawing.Size(165, 21)
         Me.txtDivision.TabIndex = 199
-        Me.txtDivision.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
         'Label24
         '
@@ -560,7 +564,7 @@ Partial Class SC_M15
         Me.txtItem1.Location = New System.Drawing.Point(919, 579)
         Me.txtItem1.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem1.Name = "txtItem1"
-        Me.txtItem1.Size = New System.Drawing.Size(160, 19)
+        Me.txtItem1.Size = New System.Drawing.Size(160, 21)
         Me.txtItem1.TabIndex = 199
         Me.txtItem1.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -570,7 +574,7 @@ Partial Class SC_M15
         Me.txtItem2.Location = New System.Drawing.Point(1125, 579)
         Me.txtItem2.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem2.Name = "txtItem2"
-        Me.txtItem2.Size = New System.Drawing.Size(160, 19)
+        Me.txtItem2.Size = New System.Drawing.Size(160, 21)
         Me.txtItem2.TabIndex = 203
         Me.txtItem2.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -599,10 +603,10 @@ Partial Class SC_M15
         'txtItem3
         '
         Me.txtItem3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtItem3.Location = New System.Drawing.Point(445, 631)
+        Me.txtItem3.Location = New System.Drawing.Point(495, 631)
         Me.txtItem3.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem3.Name = "txtItem3"
-        Me.txtItem3.Size = New System.Drawing.Size(369, 19)
+        Me.txtItem3.Size = New System.Drawing.Size(369, 21)
         Me.txtItem3.TabIndex = 206
         Me.txtItem3.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
@@ -611,7 +615,7 @@ Partial Class SC_M15
         Me.Label28.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label28.Location = New System.Drawing.Point(497, 617)
+        Me.Label28.Location = New System.Drawing.Point(547, 617)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(44, 11)
         Me.Label28.TabIndex = 205
@@ -622,7 +626,7 @@ Partial Class SC_M15
         Me.Label29.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label29.Location = New System.Drawing.Point(442, 615)
+        Me.Label29.Location = New System.Drawing.Point(492, 615)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(49, 14)
         Me.Label29.TabIndex = 204
@@ -634,7 +638,7 @@ Partial Class SC_M15
         Me.txtItem4.Location = New System.Drawing.Point(919, 631)
         Me.txtItem4.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem4.Name = "txtItem4"
-        Me.txtItem4.Size = New System.Drawing.Size(160, 19)
+        Me.txtItem4.Size = New System.Drawing.Size(160, 21)
         Me.txtItem4.TabIndex = 209
         Me.txtItem4.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -666,7 +670,7 @@ Partial Class SC_M15
         Me.txtItem5.Location = New System.Drawing.Point(1125, 631)
         Me.txtItem5.Margin = New System.Windows.Forms.Padding(2)
         Me.txtItem5.Name = "txtItem5"
-        Me.txtItem5.Size = New System.Drawing.Size(160, 19)
+        Me.txtItem5.Size = New System.Drawing.Size(160, 21)
         Me.txtItem5.TabIndex = 212
         Me.txtItem5.Text = "XXXXXXXXXXXXXXXXXXXX"
         '
@@ -692,12 +696,80 @@ Partial Class SC_M15
         Me.Label33.TabIndex = 210
         Me.Label33.Text = "Item 5"
         '
+        'txtCodeNameEng
+        '
+        Me.txtCodeNameEng.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtCodeNameEng.Location = New System.Drawing.Point(13, 631)
+        Me.txtCodeNameEng.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtCodeNameEng.Name = "txtCodeNameEng"
+        Me.txtCodeNameEng.Size = New System.Drawing.Size(165, 21)
+        Me.txtCodeNameEng.TabIndex = 217
+        '
+        'txtDisplayorder
+        '
+        Me.txtDisplayorder.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtDisplayorder.Location = New System.Drawing.Point(271, 631)
+        Me.txtDisplayorder.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtDisplayorder.Name = "txtDisplayorder"
+        Me.txtDisplayorder.Size = New System.Drawing.Size(160, 21)
+        Me.txtDisplayorder.TabIndex = 218
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label6.Location = New System.Drawing.Point(146, 617)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(97, 11)
+        Me.Label6.TabIndex = 215
+        Me.Label6.Text = "(コード名称(英語))"
+        '
+        'Label7
+        '
+        Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(374, 615)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(61, 11)
+        Me.Label7.TabIndex = 216
+        Me.Label7.Text = "(表示順序)"
+        '
+        'Label10
+        '
+        Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label10.Location = New System.Drawing.Point(10, 615)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(137, 14)
+        Me.Label10.TabIndex = 213
+        Me.Label10.Text = "Code name(english)"
+        '
+        'Label17
+        '
+        Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label17.Location = New System.Drawing.Point(268, 613)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(100, 14)
+        Me.Label17.TabIndex = 214
+        Me.Label17.Text = "Display Order"
+        '
         'SC_M15
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1350, 689)
+        Me.Controls.Add(Me.txtCodeNameEng)
+        Me.Controls.Add(Me.txtDisplayorder)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label17)
         Me.Controls.Add(Me.txtItem5)
         Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.Label33)
@@ -802,4 +874,10 @@ Partial Class SC_M15
     Friend WithEvents btnDelete As Button
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnInsert As Button
+    Friend WithEvents txtCodeNameEng As TextBox
+    Friend WithEvents txtDisplayorder As TextBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label17 As Label
 End Class
