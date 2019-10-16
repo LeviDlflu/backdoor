@@ -137,7 +137,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("{0}\message")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("..\..\message")>  _
         Public ReadOnly Property Message() As String
             Get
                 Return CType(Me("Message"),String)

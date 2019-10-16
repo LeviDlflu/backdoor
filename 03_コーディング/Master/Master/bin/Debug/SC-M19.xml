@@ -1,30 +1,59 @@
 ﻿<?xml version="1.0"?>
-<SC-M19>
-	<select id="select_001">
-		SELECT 工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,休憩時間,日付変更区分 FROM Ｍ＿勤務テーブルマスタ
-	</select>
-	<select id="select_002">
-		SELECT '00000' AS 工程コード, '' AS 工程略称 UNION SELECT 工程コード,工程略称 FROM 工程マスタ
-	</select>
-	<select id="select_003">
-		SELECT '00000' AS コード, '' AS コード名称 UNION SELECT コード,コード名称 FROM コードマスタ WHERE コード区分='{0}'
-	</select>
-	<select id="select_004">
-		SELECT 工程コード,区分,ライン区分 FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
-	</select>
-	<where id="where_001">
-		WHERE 工程コード='{0}'
-	</where>
-	<sort id="sort_001">
-		ORDER BY 工程コード,区分,ライン区分
-	</sort>
-	<update id="update_001">
-		UPDATE Ｍ＿勤務テーブルマスタ set 休憩開始時間='{3}',休憩終了時間='{4}' ,日付変更区分='{5}' WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
-	</update>
-	<insert id="insert_001">
-		INSERT INTO Ｍ＿勤務テーブルマスタ(工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,日付変更区分) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}')
-	</insert>
-	<delete id="delete_001">
-		DELETE FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
-	</delete>
-</SC-M19>
+<Configuration>
+  <SC-M19>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT 工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,休憩時間,日付変更区分 FROM Ｍ＿勤務テーブルマスタ {0} ORDER BY 工程コード,区分,ライン区分
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT '00' AS 工程コード, '' AS 工程略称 UNION SELECT 工程コード,(工程コード+ ':' +工程略称) as 工程略称 FROM 工程マスタ ORDER BY 工程コード
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT '00' AS コード, '' AS コード名称 UNION SELECT コード,(コード+ ':' +コード名称) as コード名称 FROM コードマスタ WHERE コード区分='{0}' ORDER BY コード
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT 工程コード,区分,ライン区分 FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+        </Text>
+      </SQL>
+    </Selects>
+
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          WHERE 工程コード='{0}'
+        </Text>
+      </SQL>
+    </Wheres>
+
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE Ｍ＿勤務テーブルマスタ set 休憩開始時間='{3}',休憩終了時間='{4}' ,日付変更区分='{5}' ,休憩時間='{6}' WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+        </Text>
+      </SQL>
+    </Updates>
+
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO Ｍ＿勤務テーブルマスタ(工程コード,区分,ライン区分,休憩開始時間,休憩終了時間,日付変更区分,休憩時間) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')
+        </Text>
+      </SQL>
+    </Inserts>
+
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE FROM Ｍ＿勤務テーブルマスタ WHERE 工程コード='{0}' AND 区分='{1}' AND ライン区分='{2}'
+        </Text>
+      </SQL>
+    </Deletes>
+  </SC-M19>
+</Configuration>

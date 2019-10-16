@@ -6,16 +6,17 @@ Imports System.Text.RegularExpressions
 Imports System.Xml
 Public Class SC_M20
 
-    Dim headerName As Hashtable = New Hashtable From {
-                             {"選択", "Select" & vbCrLf & "(選択)"},
-                             {"稼働年月", "Working days_YM" & vbCrLf & "(稼働年月)"},
-                             {"稼働日", "Working days_D" & vbCrLf & "(稼働日)"},
-                             {"稼働年月日", "Working days_YMD" & vbCrLf & "(稼働年月日)"},
-                             {"直区分", "Direct division" & vbCrLf & "(直区分)"},
-                             {"稼働区分", "Operation category" & vbCrLf & "(稼働区分)"},
-                             {"稼働区分２", "Operation category2" & vbCrLf & "(稼働区分２)"},
-                             {"稼働区分３", "Operation category3" & vbCrLf & "(稼働区分３)"}
-                            }
+    Dim HEADER_NAME As Hashtable = New Hashtable
+    'From {
+    '                         {"選択", "Select" & vbCrLf & "(選択)"},
+    '                         {"稼働年月", "Working days_YM" & vbCrLf & "(稼働年月)"},
+    '                         {"稼働日", "Working days_D" & vbCrLf & "(稼働日)"},
+    '                         {"稼働年月日", "Working days_YMD" & vbCrLf & "(稼働年月日)"},
+    '                         {"直区分", "Direct division" & vbCrLf & "(直区分)"},
+    '                         {"稼働区分", "Operation category" & vbCrLf & "(稼働区分)"},
+    '                         {"稼働区分２", "Operation category2" & vbCrLf & "(稼働区分２)"},
+    '                         {"稼働区分３", "Operation category3" & vbCrLf & "(稼働区分３)"}
+    '                        }
 
     Private Const COL_SENTAKU As String = "選択"
     Private Const COL_WORKING_YM As String = "稼働年月"
@@ -25,10 +26,12 @@ Public Class SC_M20
     Private Const COL_CATEGORY As String = "稼働区分"
     Private Const COL_CATEGORY_2 As String = "稼働区分２"
     Private Const COL_CATEGORY_3 As String = "稼働区分３"
+    Private Const TABLENAME As String = "顧客カレンダーマスタ"
+    Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
 
-    Dim xml As New CmnXML("SC-M20.xml")
+    Dim xml As New CmnXML("SC-M20.xml", "SC-M20")
     Dim strLanguage As String = "chs"
-    Dim lngXml As New CmnXML("LanguageDefine.xml")
+    Dim lngXml As New CmnXML("LanguageDefine.xml", "")
     Dim mXmlDoc As New XmlDocument
 
     ''' <summary>
@@ -42,46 +45,42 @@ Public Class SC_M20
     Private Sub SC_M20_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '初期設定
         'Me.Text = getTitle(GAMEN_SC_M20)
+        SetControlsLable()
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
         InitCombox4Value()
     End Sub
 
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnMenu0.Click
         Try
-            'gridData.Columns.Clear()
-            Dim connent As New Conn
-            Dim cn As New SqlConnection
-            connent.fncCnOpen(cn)
 
-            Dim da As SqlDataAdapter
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-            Dim sqlstr As String = xml.GetSQL("select", "select_001")
+                Dim sqlstr As String
 
-            da = New SqlDataAdapter(sqlstr, cn)
-            Dim dt = New DataTable()
-            dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
-            dt.Columns.Add(New DataColumn(COL_WORKING_YM, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_WORKING_D, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_WORKING_YMD, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_DIRECT, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_CATEGORY, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_CATEGORY_2, GetType(System.String)))
-            dt.Columns.Add(New DataColumn(COL_CATEGORY_3, GetType(System.String)))
+                If Me.ComboBox4.Text.Equals(String.Empty) Then
+                    sqlstr = xml.GetSQL_Str("SELECT_004")
+                Else
+                    sqlstr = xml.GetSQL_Str("SELECT_001")
+                    sqlstr = String.Format(sqlstr, ComboBox4.Text)
+                End If
 
-            da.SelectCommand.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-            da.SelectCommand.Parameters("@WORKING_YM").Value = Me.ComboBox4.Text
+                Dim dt As New DataTable()
 
-            Dim count = da.Fill(dt)
-            If count < 0 Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0008", "データが存在していません。"))
-                Me.ComboBox4.SelectedIndex = -1
-                Return
-            Else
+                dt = clsSQLServer.GetDataTable(sqlstr)
+
+                If dt.Rows.Count = 0 Then
+                    Dim msg As New clsMessage("W0008")
+
+                    MsgBox(msg.Show, vbCritical, TABLENAME)
+
+                End If
 
                 setGrid(dt)
+
+                clsSQLServer.Disconnect()
+
             End If
-            connent.subCnClose(cn)
         Catch ex As Exception
             MsgBox(ex.Message)
             gridData.DataSource = Nothing
@@ -92,10 +91,71 @@ Public Class SC_M20
     ''' <summary>
     ''' 　終了ボタン押下
     ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnMenu5.Click
         If MsgBox("画面を閉じてよろしいですか？", vbYesNo) = MsgBoxResult.Yes Then
             Me.Close()
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 名前設定
+    ''' </summary>
+    Public Sub SetControlsLable()
+        mXmlDoc.Load("LanguageDefine.xml")
+        Dim xmlResult As XmlNode = GetElement("languages", "form")
+        'Header
+        Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("master")
+        Me.Label18.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
+        Me.Label15.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
+
+        Dim xmlLables As XmlNodeList = xmlResult.SelectNodes("lable")
+        For Each lblXml As XmlNode In xmlLables
+            'Button
+            For i As Integer = 0 To 5
+                Dim btnName As String = "btnMenu" & i.ToString()
+                If lblXml.Attributes(0).Value = btnName Then
+                    Dim btnControl As Button = Panel1.Controls.Find(btnName, True).First
+                    btnControl.Text = lblXml.Attributes.GetNamedItem("enu").Value & vbCrLf & "(" & lblXml.Attributes.GetNamedItem(strLanguage).Value & ")"
+                End If
+            Next
+
+            ''Lable
+            'For i As Integer = 0 To 9
+            '    Dim lblName As String = "lblTitle" & i.ToString()
+            '    Dim lblName2 As String = "lblTitle" & i.ToString() & i.ToString()
+            '    If lblXml.Attributes(0).Value = lblName Then
+            '        Dim lblControl As Label = Me.Controls.Find(lblName, True).First
+            '        Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
+            '        lblControl.Text = lblXml.Attributes.GetNamedItem("enu").Value
+            '        lblControl2.Text = "(" & lblXml.Attributes.GetNamedItem(strLanguage).Value & ")"
+            '    End If
+            'Next
+
+            'DataGridView
+            For i As Integer = 0 To 7
+                Dim dgvName As String = "dgvHeader" & i.ToString()
+                If lblXml.Attributes(0).Value = dgvName Then
+                    Dim headName As String = lblXml.Attributes.GetNamedItem("enu").Value
+                    Dim headName2 As String = lblXml.Attributes.GetNamedItem(strLanguage).Value
+                    Select Case i
+                        Case 0
+                            HEADER_NAME.Add(COL_SENTAKU, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 1
+                            HEADER_NAME.Add(COL_WORKING_YM, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 2
+                            HEADER_NAME.Add(COL_WORKING_D, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 3
+                            HEADER_NAME.Add(COL_WORKING_YMD, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 4
+                            HEADER_NAME.Add(COL_DIRECT, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 5
+                            HEADER_NAME.Add(COL_CATEGORY, String.Format(HEADER_FORMAT, headName, headName2))
+                        Case 6
+                            HEADER_NAME.Add(COL_CATEGORY_2, String.Format(HEADER_FORMAT, headName, headName2))
+                    End Select
+                End If
+            Next
+        Next
     End Sub
 
     ''' <summary>
@@ -110,7 +170,6 @@ Public Class SC_M20
         dt.Columns.Add(New DataColumn(COL_DIRECT, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CATEGORY, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_CATEGORY_2, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_CATEGORY_3, GetType(System.String)))
 
         Return dt
 
@@ -123,29 +182,29 @@ Public Class SC_M20
     Private Sub setGrid(ByRef dtData As DataTable)
         'gridData.Rows.Clear()
         gridData.Columns.Clear()
+
+        Dim addColSentaku As New DataGridViewCheckBoxColumn()
+        addColSentaku.DataPropertyName = HEADER_NAME(COL_SENTAKU)
+        addColSentaku.HeaderText = HEADER_NAME(COL_SENTAKU)
+        addColSentaku.Name = "sentaku"
+        gridData.Columns.Add(addColSentaku)
         For Each col As DataColumn In dtData.Columns
-            If col.ColumnName = COL_SENTAKU Then
-                Dim addCol As New DataGridViewCheckBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = headerName(col.ColumnName)
-                addCol.Name = "sentaku"
-                gridData.Columns.Add(addCol)
-            ElseIf col.ColumnName = COL_CATEGORY Or col.ColumnName = COL_CATEGORY_2 Or col.ColumnName = COL_CATEGORY_3 Then
+            If col.ColumnName = COL_CATEGORY Or col.ColumnName = COL_CATEGORY_2 Then
                 Dim addCol As New DataGridViewComboBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
+                addCol.HeaderText = HEADER_NAME(col.ColumnName)
                 addCol.Name = col.ColumnName
-                addCol.DefaultCellStyle.BackColor = Color.LightGray
+                addCol.DefaultCellStyle.BackColor = Color.White
                 addCol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
                 addCol.FlatStyle = FlatStyle.Flat
                 addCol.Items.Add(" ")
-                addCol.Items.Add("1")
-                addCol.Items.Add("2")
+                addCol.Items.Add("1:稼働")
+                addCol.Items.Add("2:非稼働")
                 gridData.Columns.Add(addCol)
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = headerName(col.ColumnName)
+                addCol.HeaderText = HEADER_NAME(col.ColumnName)
                 addCol.Name = col.ColumnName
                 addCol.DefaultCellStyle.BackColor = Color.LightGray
                 gridData.Columns.Add(addCol)
@@ -180,7 +239,6 @@ Public Class SC_M20
         gridData.Columns(4).Width = 150
         gridData.Columns(5).Width = 150
         gridData.Columns(6).Width = 150
-        gridData.Columns(7).Width = 150
 
 
         '複数選択不可
@@ -231,15 +289,15 @@ Public Class SC_M20
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
 
-                For i As Integer = 5 To 7
+                For i As Integer = 5 To 6
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                     gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
                 Next
             Else
 
-                For i As Integer = 5 To 7
+                For i As Integer = 5 To 6
                     gridData.CurrentRow.Cells(i).ReadOnly = True
-                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.LightGray
+                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
                 Next
             End If
         End If
@@ -249,14 +307,13 @@ Public Class SC_M20
     ''' <summary>
     ''' 
     ''' </summary>
-    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnMenu4.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
             gridData.Columns.Clear()
             ComboBox4.SelectedIndex = -1
             Me.dtpWorkingYMD.Value = Now
             Me.cmbProcess.Text = String.Empty
-            Me.ComboBox1.Text = String.Empty
             Me.ComboBox2.Text = String.Empty
             Me.ComboBox3.Text = String.Empty
         End If
@@ -265,10 +322,10 @@ Public Class SC_M20
     ''' <summary>
     ''' 
     ''' </summary>
-    Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
+    Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnMenu1.Click
+        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
             If dtpWorkingYMD.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "稼働年月日"))
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_WORKING_YMD))
                 dtpWorkingYMD.BackColor = Color.Red
                 Return
             Else
@@ -276,255 +333,174 @@ Public Class SC_M20
             End If
 
             If cmbProcess.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "直区分"))
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_DIRECT))
                 cmbProcess.BackColor = Color.Red
                 Return
             Else
                 cmbProcess.BackColor = Color.White
             End If
 
-            Dim conn As New Conn
-            Dim sqlcn As New SqlConnection
-            Dim da As SqlDataAdapter
-            conn.fncCnOpen(sqlcn)
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-            Dim sqlselect2 As String = xml.GetSQL("select", "select_002")
-
-            da = New SqlDataAdapter(sqlselect2, sqlcn)
-
-            Dim dt = createGridData()
-
-            da.SelectCommand.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-            da.SelectCommand.Parameters("@WORKING_YM").Value = Format(dtpWorkingYMD.Value, "yyyyMM")
-
-            da.SelectCommand.Parameters.Add("@WORKING_D", SqlDbType.VarChar, 2)
-            da.SelectCommand.Parameters("@WORKING_D").Value = Format(dtpWorkingYMD.Value, "dd")
-
-            da.SelectCommand.Parameters.Add("@WORKING_YMD", SqlDbType.Date)
-            da.SelectCommand.Parameters("@WORKING_YMD").Value = dtpWorkingYMD.Value
-
-            da.SelectCommand.Parameters.Add("@DIRECT", SqlDbType.VarChar, 1)
-            da.SelectCommand.Parameters("@DIRECT").Value = cmbProcess.Text
-
-            Dim count = da.Fill(dt)
-
-            conn.subCnClose(sqlcn)
-
-            If count > 0 Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0009", "データが既に存在しています。"))
-                Me.dtpWorkingYMD.Value = Now
-                Me.cmbProcess.Text = String.Empty
-                Me.ComboBox1.Text = String.Empty
-                Me.ComboBox2.Text = String.Empty
-                Me.ComboBox3.Text = String.Empty
-                Return
-            Else
-                Dim connent As New Conn
-                Dim cn As New SqlConnection
-                Dim cmd As SqlCommand
-                connent.fncCnOpen(cn)
-
-                Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
-
-                cmd = New SqlCommand(sqlstr, cn)
-
-                cmd.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-                cmd.Parameters("@WORKING_YM").Value = Format(dtpWorkingYMD.Value, "yyyyMM")
-
-                cmd.Parameters.Add("@WORKING_D", SqlDbType.VarChar, 2)
-                cmd.Parameters("@WORKING_D").Value = Format(dtpWorkingYMD.Value, "dd")
-
-                cmd.Parameters.Add("@WORKING_YMD", SqlDbType.Date)
-                cmd.Parameters("@WORKING_YMD").Value = dtpWorkingYMD.Value
-
-                cmd.Parameters.Add("@DIRECT", SqlDbType.VarChar, 1)
-                cmd.Parameters("@DIRECT").Value = cmbProcess.Text
-
-                cmd.Parameters.Add("@CATEGORY", SqlDbType.VarChar, 1)
-                If IsDBNull(ComboBox3.Text) Then
-                    cmd.Parameters("@CATEGORY").Value = ComboBox3.Text.Substring(0, 1)
+                Dim selectSql As String
+                selectSql = xml.GetSQL_Str("SELECT_002")
+                Dim dt As New DataTable()
+                dt = clsSQLServer.GetDataTable(String.Format(selectSql, Format(dtpWorkingYMD.Value, "yyyyMM"), Format(dtpWorkingYMD.Value, "dd"), dtpWorkingYMD.Value, cmbProcess.Text))
+                If dt.Rows.Count = 1 Then
+                    MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
+                    Me.dtpWorkingYMD.Value = Now
+                    Me.cmbProcess.Text = String.Empty
+                    Me.ComboBox2.Text = String.Empty
+                    Me.ComboBox3.Text = String.Empty
+                    clsSQLServer.Disconnect()
+                    Return
                 Else
-                    cmd.Parameters("@CATEGORY").Value = String.Empty
+                    Dim CATEGORY As String
+                    Dim CATEGORY2 As String
+                    If String.IsNullOrEmpty(ComboBox3.Text) Then
+                        CATEGORY = String.Empty
+                    Else
+                        CATEGORY = ComboBox3.Text.Substring(0, 1)
+                    End If
+
+                    If String.IsNullOrEmpty(ComboBox2.Text) Then
+                        CATEGORY2 = String.Empty
+                    Else
+                        CATEGORY2 = ComboBox2.Text.Substring(0, 1)
+                    End If
+
+
+                    Dim insertsql As String = xml.GetSQL_Str("INSERT_001")
+
+                    clsSQLServer.ExecuteQuery(String.Format(insertsql,
+                                                            Format(dtpWorkingYMD.Value, "yyyyMM"),
+                                                            Format(dtpWorkingYMD.Value, "dd"),
+                                                            dtpWorkingYMD.Value, cmbProcess.Text,
+                                                            CATEGORY, CATEGORY2, Now))
+                    clsSQLServer.Disconnect()
+                    MessageBox.Show(cmnUtil.GetMessageStr("Q0001"))
+                    Me.dtpWorkingYMD.Value = Now
+                    Me.cmbProcess.Text = String.Empty
+                    Me.ComboBox2.Text = String.Empty
+                    Me.ComboBox3.Text = String.Empty
+                    btnSearch_Click(sender, e)
+                    InitCombox4Value()
                 End If
-
-                cmd.Parameters.Add("@CATEGORY_2", SqlDbType.VarChar, 1)
-                If IsDBNull(ComboBox3.Text) Then
-                    cmd.Parameters("@CATEGORY_2").Value = ComboBox2.Text.Substring(0, 1)
-                Else
-                    cmd.Parameters("@CATEGORY_2").Value = String.Empty
-                End If
-
-                cmd.Parameters.Add("@CATEGORY_3", SqlDbType.VarChar, 1)
-                If IsDBNull(ComboBox3.Text) Then
-                    cmd.Parameters("@CATEGORY_3").Value = ComboBox1.Text.Substring(0, 1)
-                Else
-                    cmd.Parameters("@CATEGORY_3").Value = String.Empty
-                End If
-
-                cmd.Parameters.Add("@INSERTTIME", SqlDbType.Date)
-                cmd.Parameters("@INSERTTIME").Value = Now
-
-                cmd.ExecuteNonQuery()
-
-                connent.subCnClose(cn)
-                MessageBox.Show(cmnUtil.GetMessageStr("Q0001", "追加しますか。"))
-                Me.dtpWorkingYMD.Value = Now
-                Me.cmbProcess.Text = String.Empty
-                Me.ComboBox1.Text = String.Empty
-                Me.ComboBox2.Text = String.Empty
-                Me.ComboBox3.Text = String.Empty
-                btnSearch_Click(sender, e)
-                InitCombox4Value()
-
             End If
         End If
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
-            Dim connent As New Conn
-            Dim cn As New SqlConnection
-            Dim cmd As SqlCommand
-            connent.fncCnOpen(cn)
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnMenu3.Click
+        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+            Try
 
-            Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
 
-            For i As Integer = 0 To gridData.Rows.Count - 1
+                    For i As Integer = 0 To gridData.Rows.Count - 1
 
-                '横位置
-                If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
+                        '横位置
+                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
 
-                Else
+                            Dim deletesql As String = xml.GetSQL_Str("DELETE_001")
 
-                    cmd = New SqlCommand(sqlstr, cn)
+                            clsSQLServer.ExecuteQuery(String.Format(deletesql,
+                                                                    gridData.Rows(i).Cells(1).Value,
+                                                                    gridData.Rows(i).Cells(2).Value,
+                                                                    gridData.Rows(i).Cells(3).Value,
+                                                                    gridData.Rows(i).Cells(4).Value))
 
-                    cmd.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-                    cmd.Parameters("@WORKING_YM").Value = gridData.Rows(i).Cells(1).Value
+                        End If
 
-                    cmd.Parameters.Add("@WORKING_D", SqlDbType.VarChar, 2)
-                    cmd.Parameters("@WORKING_D").Value = gridData.Rows(i).Cells(2).Value
+                    Next
 
-                    cmd.Parameters.Add("@WORKING_YMD", SqlDbType.Date)
-                    cmd.Parameters("@WORKING_YMD").Value = gridData.Rows(i).Cells(3).Value
+                    clsSQLServer.Disconnect()
 
-                    cmd.Parameters.Add("@DIRECT", SqlDbType.VarChar, 1)
-                    cmd.Parameters("@DIRECT").Value = gridData.Rows(i).Cells(4).Value
+                    btnSearch_Click(sender, e)
 
-                    cmd.ExecuteNonQuery()
                 End If
-
-            Next
-
-            connent.subCnClose(cn)
-
-            btnSearch_Click(sender, e)
+            Catch ex As Exception
+                Throw
+            End Try
         End If
     End Sub
 
     Private Sub InitCombox4Value()
-        Dim conn As New Conn
-        Dim sqlcn As New SqlConnection
-        Dim da As SqlDataAdapter
-        conn.fncCnOpen(sqlcn)
+        Try
+            Dim selectSql As String
+            selectSql = xml.GetSQL_Str("SELECT_003")
+            Dim dt As New DataTable()
+            dt = clsSQLServer.GetDataTable(selectSql)
 
-        Dim sqlselect3 As String = xml.GetSQL("select", "select_003")
+            Me.ComboBox4.ValueMember = COL_WORKING_YM
+            Me.ComboBox4.DisplayMember = COL_WORKING_YM
+            Me.ComboBox4.DataSource = dt
 
-        da = New SqlDataAdapter(sqlselect3, sqlcn)
-
-        Dim dt = createGridData()
-        da.Fill(dt)
-
-        Me.ComboBox4.ValueMember = "稼働年月"
-        Me.ComboBox4.DisplayMember = "稼働年月"
-        Me.ComboBox4.DataSource = dt
-
-        ComboBox4.SelectedIndex = -1
-        conn.subCnClose(sqlcn)
+            ComboBox4.SelectedIndex = -1
+            clsSQLServer.Disconnect()
+        Catch ex As Exception
+            Throw
+        End Try
     End Sub
 
-    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, "生産管理システム") = DialogResult.OK Then
-            Dim connent As New Conn
-            Dim cn As New SqlConnection
-            Dim cmd As SqlCommand
-            connent.fncCnOpen(cn)
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnMenu2.Click
+        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+            Try
 
-            Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-            For i As Integer = 0 To gridData.Rows.Count - 1
+                    For i As Integer = 0 To gridData.Rows.Count - 1
 
-                '横位置
-                If IsDBNull(gridData.Rows(i).Cells(0).Value) Then
+                        '横位置
+                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                            Dim selectSql As String
+                            selectSql = xml.GetSQL_Str("SELECT_002")
+                            Dim dt As New DataTable()
+                            dt = clsSQLServer.GetDataTable(String.Format(selectSql,
+                                                                         gridData.Rows(i).Cells(1).Value,
+                                                                         gridData.Rows(i).Cells(2).Value,
+                                                                         gridData.Rows(i).Cells(3).Value,
+                                                                         gridData.Rows(i).Cells(4).Value))
+                            If dt.Rows.Count = 0 Then
+                                MessageBox.Show(cmnUtil.GetMessageStr("W0003"))
+                                clsSQLServer.Disconnect()
+                                Return
+                            Else
+                                Dim CATEGORY As String
+                                Dim CATEGORY2 As String
+                                If String.IsNullOrEmpty(gridData.Rows(i).Cells(5).Value) Then
+                                    CATEGORY = String.Empty
+                                Else
+                                    CATEGORY = gridData.Rows(i).Cells(5).Value.Substring(0, 1)
+                                End If
 
-                Else
-                    Dim conn As New Conn
-                    Dim sqlcn As New SqlConnection
-                    Dim da As SqlDataAdapter
-                    conn.fncCnOpen(sqlcn)
+                                If String.IsNullOrEmpty(gridData.Rows(i).Cells(6).Value) Then
+                                    CATEGORY2 = String.Empty
+                                Else
+                                    CATEGORY2 = gridData.Rows(i).Cells(6).Value.Substring(0, 1)
+                                End If
+                                Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
-                    Dim sqlselect2 As String = xml.GetSQL("select", "select_002")
+                                clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                            gridData.Rows(i).Cells(1).Value,
+                                                            gridData.Rows(i).Cells(2).Value,
+                                                            gridData.Rows(i).Cells(3).Value,
+                                                            gridData.Rows(i).Cells(4).Value,
+                                                            gridData.Rows(i).Cells(5).Value,
+                                                            gridData.Rows(i).Cells(6).Value,
+                                                            Now))
+                            End If
 
-                    da = New SqlDataAdapter(sqlselect2, sqlcn)
+                        End If
 
-                    Dim dt = createGridData()
+                    Next
 
-                    da.SelectCommand.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-                    da.SelectCommand.Parameters("@WORKING_YM").Value = gridData.Rows(i).Cells(1).Value
-
-                    da.SelectCommand.Parameters.Add("@WORKING_D", SqlDbType.VarChar, 2)
-                    da.SelectCommand.Parameters("@WORKING_D").Value = gridData.Rows(i).Cells(2).Value
-
-                    da.SelectCommand.Parameters.Add("@WORKING_YMD", SqlDbType.Date)
-                    da.SelectCommand.Parameters("@WORKING_YMD").Value = gridData.Rows(i).Cells(3).Value
-
-                    da.SelectCommand.Parameters.Add("@DIRECT", SqlDbType.VarChar, 1)
-                    da.SelectCommand.Parameters("@DIRECT").Value = gridData.Rows(i).Cells(4).Value
-
-                    Dim count = da.Fill(dt)
-
-                    conn.subCnClose(sqlcn)
-                    If count <= 0 Then
-                        MessageBox.Show(cmnUtil.GetMessageStr("W0003", "データが存在していません。"))
-                        btnSearch_Click(sender, e)
-                        Return
-                    Else
-                        cmd = New SqlCommand(sqlstr, cn)
-
-                        cmd.Parameters.Add("@WORKING_YM", SqlDbType.VarChar, 6)
-                        cmd.Parameters("@WORKING_YM").Value = gridData.Rows(i).Cells(1).Value
-
-                        cmd.Parameters.Add("@WORKING_D", SqlDbType.VarChar, 2)
-                        cmd.Parameters("@WORKING_D").Value = gridData.Rows(i).Cells(2).Value
-
-                        cmd.Parameters.Add("@WORKING_YMD", SqlDbType.Date)
-                        cmd.Parameters("@WORKING_YMD").Value = gridData.Rows(i).Cells(3).Value
-
-                        cmd.Parameters.Add("@DIRECT", SqlDbType.VarChar, 1)
-                        cmd.Parameters("@DIRECT").Value = gridData.Rows(i).Cells(4).Value
-
-                        cmd.Parameters.Add("@CATEGORY", SqlDbType.VarChar, 1)
-                        cmd.Parameters("@CATEGORY").Value = gridData.Rows(i).Cells(5).Value
-
-                        cmd.Parameters.Add("@CATEGORY_2", SqlDbType.VarChar, 1)
-                        cmd.Parameters("@CATEGORY_2").Value = gridData.Rows(i).Cells(6).Value
-
-                        cmd.Parameters.Add("@CATEGORY_3", SqlDbType.VarChar, 1)
-                        cmd.Parameters("@CATEGORY_3").Value = gridData.Rows(i).Cells(7).Value
-
-                        cmd.Parameters.Add("@UPDATETIME", SqlDbType.Date)
-                        cmd.Parameters("@UPDATETIME").Value = Now
-
-                        cmd.ExecuteNonQuery()
-                    End If
-
+                    clsSQLServer.Disconnect()
+                    btnSearch_Click(sender, e)
                 End If
-
-            Next
-
-            connent.subCnClose(cn)
-
-            btnSearch_Click(sender, e)
+            Catch ex As Exception
+                Throw
+            End Try
         End If
     End Sub
     Public Function GetElement(ByVal node As String, ByVal element As String) As XmlNode
@@ -532,7 +508,7 @@ Public Class SC_M20
         Dim mXmlNode As XmlNode = mXmlDoc.SelectSingleNode("//" + node)
         Dim xmlNodes As XmlNodeList = mXmlNode.SelectNodes(element)
         For Each fNode As XmlNode In xmlNodes
-            If fNode.Attributes(0).Value = "SC-M19" Then
+            If fNode.Attributes(0).Value = "SC-M20" Then
                 xmlResult = fNode
                 Exit For
             End If
