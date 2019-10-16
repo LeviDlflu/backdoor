@@ -1,21 +1,30 @@
 ﻿<?xml version="1.0"?>
 <SC-M20>
   <select id="select_001">
-    SELECT 稼働年月,稼働日,FORMAT(稼働年月日,'yyyy/MM/dd') as 稼働年月日,直区分,稼働区分,稼働区分２,稼働区分３ FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月 >= @WORKING_YM ORDER BY 稼働年月日,直区分
+    SELECT 稼働年月,稼働日,FORMAT(稼働年月日,'yyyy/MM/dd') as 稼働年月日,直区分,
+    CASE 稼働区分 WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分,
+    CASE 稼働区分２ WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分２
+    FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月 >='{0}' ORDER BY 稼働年月日,直区分
   </select>
   <select id="select_002">
-    SELECT 稼働年月 FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月=@WORKING_YM AND 稼働日=@WORKING_D AND 稼働年月日=@WORKING_YMD AND 直区分=@DIRECT
+    SELECT 稼働年月 FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
   </select>
   <select id="select_003">
     SELECT 稼働年月 FROM Ｍ＿顧客カレンダーマスタ GROUP BY 稼働年月
   </select>
-	<update id="update_001">
-    UPDATE Ｍ＿顧客カレンダーマスタ set 稼働区分=@CATEGORY,稼働区分２=@CATEGORY_2,稼働区分３=@CATEGORY_3,更新日時 =@UPDATETIME WHERE 稼働年月=@WORKING_YM AND 稼働日=@WORKING_D AND 稼働年月日=@WORKING_YMD AND 直区分=@DIRECT
+  <select id="select_004">
+    SELECT 稼働年月,稼働日,FORMAT(稼働年月日,'yyyy/MM/dd') AS 稼働年月日,直区分,
+    CASE 稼働区分 WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分,
+    CASE 稼働区分２ WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分２
+    FROM Ｍ＿顧客カレンダーマスタ  ORDER BY 稼働年月日,直区分
+  </select>
+  <update id="update_001">
+    UPDATE Ｍ＿顧客カレンダーマスタ set 稼働区分='{4}',稼働区分２='{5}',更新日時 ='{6}' WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
   </update>
-	<insert id="insert_001">
-    INSERT INTO Ｍ＿顧客カレンダーマスタ(稼働年月,稼働日,稼働年月日,直区分,稼働区分,稼働区分２,稼働区分３,登録日時) VALUES (@WORKING_YM,@WORKING_D,@WORKING_YMD,@DIRECT,@CATEGORY,@CATEGORY_2,@CATEGORY_3,@INSERTTIME)
+  <insert id="insert_001">
+    INSERT INTO Ｍ＿顧客カレンダーマスタ(稼働年月,稼働日,稼働年月日,直区分,稼働区分,稼働区分２,登録日時) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')
   </insert>
-	<delete id="delete_001">
-    DELETE FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月=@WORKING_YM AND 稼働日=@WORKING_D AND 稼働年月日=@WORKING_YMD AND 直区分=@DIRECT
+  <delete id="delete_001">
+    DELETE FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
   </delete>
 </SC-M20>
