@@ -74,7 +74,7 @@
     Public Function GetMessageStr(ByVal messageId As String, Optional name As String = "", Optional size As String = "") As String
         Dim messageStr As String = ""
 
-        Dim messageXML As New CmnXML("message.xml")
+        Dim messageXML As New CmnXML("message.xml", "")
 
         messageStr = messageXML.GetMessage(messageId)
 

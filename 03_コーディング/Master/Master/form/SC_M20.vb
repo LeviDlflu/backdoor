@@ -29,9 +29,9 @@ Public Class SC_M20
     Private Const TABLENAME As String = "顧客カレンダーマスタ"
     Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
 
-    Dim xml As New CmnXML("SC-M20.xml")
+    Dim xml As New CmnXML("SC-M20.xml", "SC-M20")
     Dim strLanguage As String = "chs"
-    Dim lngXml As New CmnXML("LanguageDefine.xml")
+    Dim lngXml As New CmnXML("LanguageDefine.xml", "")
     Dim mXmlDoc As New XmlDocument
 
     ''' <summary>
@@ -59,9 +59,9 @@ Public Class SC_M20
                 Dim sqlstr As String
 
                 If Me.ComboBox4.Text.Equals(String.Empty) Then
-                    sqlstr = xml.GetSQL("select", "select_004")
+                    sqlstr = xml.GetSQL_Str("SELECT_004")
                 Else
-                    sqlstr = xml.GetSQL("select", "select_001")
+                    sqlstr = xml.GetSQL_Str("SELECT_001")
                     sqlstr = String.Format(sqlstr, ComboBox4.Text)
                 End If
 
@@ -343,7 +343,7 @@ Public Class SC_M20
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim selectSql As String
-                selectSql = xml.GetSQL("select", "select_002")
+                selectSql = xml.GetSQL_Str("SELECT_002")
                 Dim dt As New DataTable()
                 dt = clsSQLServer.GetDataTable(String.Format(selectSql, Format(dtpWorkingYMD.Value, "yyyyMM"), Format(dtpWorkingYMD.Value, "dd"), dtpWorkingYMD.Value, cmbProcess.Text))
                 If dt.Rows.Count = 1 Then
@@ -370,7 +370,7 @@ Public Class SC_M20
                     End If
 
 
-                    Dim insertsql As String = xml.GetSQL("insert", "insert_001")
+                    Dim insertsql As String = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(insertsql,
                                                             Format(dtpWorkingYMD.Value, "yyyyMM"),
@@ -402,7 +402,7 @@ Public Class SC_M20
                         '横位置
                         If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
 
-                            Dim deletesql As String = xml.GetSQL("delete", "delete_001")
+                            Dim deletesql As String = xml.GetSQL_Str("DELETE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(deletesql,
                                                                     gridData.Rows(i).Cells(1).Value,
@@ -428,7 +428,7 @@ Public Class SC_M20
     Private Sub InitCombox4Value()
         Try
             Dim selectSql As String
-            selectSql = xml.GetSQL("select", "select_003")
+            selectSql = xml.GetSQL_Str("SELECT_003")
             Dim dt As New DataTable()
             dt = clsSQLServer.GetDataTable(selectSql)
 
@@ -454,7 +454,7 @@ Public Class SC_M20
                         '横位置
                         If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
                             Dim selectSql As String
-                            selectSql = xml.GetSQL("select", "select_002")
+                            selectSql = xml.GetSQL_Str("SELECT_002")
                             Dim dt As New DataTable()
                             dt = clsSQLServer.GetDataTable(String.Format(selectSql,
                                                                          gridData.Rows(i).Cells(1).Value,
@@ -479,7 +479,7 @@ Public Class SC_M20
                                 Else
                                     CATEGORY2 = gridData.Rows(i).Cells(6).Value.Substring(0, 1)
                                 End If
-                                Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                                Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
                                 clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                             gridData.Rows(i).Cells(1).Value,
