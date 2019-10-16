@@ -548,7 +548,6 @@ Public Class SC_M19
     ''' </summary>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnMenu2.Click
 
-        Dim bolSelect As Boolean = False
         Dim gridCells As DataGridViewCellCollection
 
         Try
