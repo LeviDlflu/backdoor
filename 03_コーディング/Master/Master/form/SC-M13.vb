@@ -201,7 +201,7 @@ Public Class SC_M13
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                    Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
+                    Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                             cmbProcess.Text.Substring(0, 2),
@@ -235,7 +235,7 @@ Public Class SC_M13
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     For i As Integer = 0 To gridData.Rows.Count - 1
                         If gridData.Rows(i).Cells(0).Value = True Then
-                            Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                            Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
                                                                     gridData.Rows(i).Cells(2).Value,
@@ -275,7 +275,7 @@ Public Class SC_M13
                         '横位置
                         If gridData.Rows(i).Cells(0).Value = True Then
 
-                            Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+                            Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
@@ -320,7 +320,7 @@ Public Class SC_M13
 
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                Dim sqlstr As String = xml.GetSQL("select", "select_004")
+                Dim sqlstr As String = xml.GetSQL_Str("SELECT_004")
 
                 Dim dt As New DataTable()
 
@@ -366,9 +366,9 @@ Public Class SC_M13
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                 Dim sqlStr As String
                 If Me.cmbProcessCode.Text.Equals(String.Empty) Then
-                    sqlStr = xml.GetSQL("select", "select_001")
+                    sqlStr = xml.GetSQL_Str("SELECT_001")
                 Else
-                    sqlStr = xml.GetSQL("select", "select_003")
+                    sqlStr = xml.GetSQL_Str("SELECT_003")
                     sqlStr = String.Format(sqlStr, (cmbProcessCode.Text).Substring(0, 2))
                 End If
                 Dim dt As New DataTable()
