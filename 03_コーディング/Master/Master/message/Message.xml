@@ -247,6 +247,21 @@
       <Message ID="I105">
         <Text>　警告メール送信終了：正常</Text>
       </Message>
+      <Message ID="I0001">
+        <Text>追加しますか？</Text>
+      </Message>
+      <Message ID="I0002">
+        <Text>更新しますか?</Text>
+      </Message>
+      <Message ID="I0003">
+        <Text>削除しますか?</Text>
+      </Message>
+      <Message ID="I0009">
+        <Text>検索結果をクリアしてよろしいですか？</Text>
+      </Message>
+      <Message ID="I00099">
+        <Text>画面を閉じてよろしいですか？</Text>
+      </Message>
 
     </Information>
     <Warning>
@@ -256,7 +271,31 @@
       <Message ID="W002">
         <Text>　CUP連携でワーニングエラーが発生しました。詳細はログファイルを確認してください。</Text>
       </Message>
-      <Message ID="W901">
+      <Message ID="W0001">
+        <Text>{0}を入力してください。</Text>
+      </Message>
+      <Message ID="W0003">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0008">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0009">
+        <Text>データが既に存在しています。</Text>
+      </Message>
+      <Message ID="W0014">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0030">
+        <Text>{0}は{1}桁で入力してください。</Text>
+      </Message>
+      <Message ID="W0066">
+        <Text>更新対象データが消されました。</Text>
+      </Message>
+      <Message ID="W0099">
+        <Text>修正内容が更新されていません。</Text>
+      </Message>
+      <Message ID="W9001">
         <Text>レコードを選択してください。</Text>
       </Message>
     </Warning>
