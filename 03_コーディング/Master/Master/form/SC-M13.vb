@@ -19,7 +19,7 @@ Public Class SC_M13
 
     Private Const CONST_MASTER_NAME = "不良現象マスタ"
 
-    Dim xml As New CmnXML("SC-M13.xml")
+    Dim xml As New CmnXML("SC-M13.xml", "SC-M13")
 
     Private Sub Init()
         controlClear()
@@ -309,7 +309,7 @@ Public Class SC_M13
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         Dim msg As New clsMessage("I0009")
         'クリア確認メッセージ
-        If MsgBox(msg.Show, vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
             gridData.Columns.Clear()
         End If
     End Sub
