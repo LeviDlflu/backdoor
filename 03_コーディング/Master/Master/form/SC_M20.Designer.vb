@@ -23,8 +23,8 @@ Partial Class SC_M20
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
@@ -37,12 +37,12 @@ Partial Class SC_M20
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtLoginUser = New System.Windows.Forms.TextBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnDelete = New System.Windows.Forms.Button()
-        Me.btnUpdate = New System.Windows.Forms.Button()
-        Me.btnInsert = New System.Windows.Forms.Button()
-        Me.btnEnd = New System.Windows.Forms.Button()
-        Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnMenu3 = New System.Windows.Forms.Button()
+        Me.btnMenu2 = New System.Windows.Forms.Button()
+        Me.btnMenu1 = New System.Windows.Forms.Button()
+        Me.btnMenu5 = New System.Windows.Forms.Button()
+        Me.btnMenu4 = New System.Windows.Forms.Button()
+        Me.btnMenu0 = New System.Windows.Forms.Button()
         Me.lblHLine = New System.Windows.Forms.Label()
         Me.stsFooter = New System.Windows.Forms.StatusStrip()
         Me.slblMargin = New System.Windows.Forms.ToolStripStatusLabel()
@@ -225,84 +225,84 @@ Partial Class SC_M20
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.btnDelete)
-        Me.Panel1.Controls.Add(Me.btnUpdate)
-        Me.Panel1.Controls.Add(Me.btnInsert)
-        Me.Panel1.Controls.Add(Me.btnEnd)
-        Me.Panel1.Controls.Add(Me.btnClear)
-        Me.Panel1.Controls.Add(Me.btnSearch)
+        Me.Panel1.Controls.Add(Me.btnMenu3)
+        Me.Panel1.Controls.Add(Me.btnMenu2)
+        Me.Panel1.Controls.Add(Me.btnMenu1)
+        Me.Panel1.Controls.Add(Me.btnMenu5)
+        Me.Panel1.Controls.Add(Me.btnMenu4)
+        Me.Panel1.Controls.Add(Me.btnMenu0)
         Me.Panel1.Controls.Add(Me.lblHLine)
         Me.Panel1.Location = New System.Drawing.Point(0, 43)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1353, 76)
         Me.Panel1.TabIndex = 29
         '
-        'btnDelete
+        'btnMenu3
         '
-        Me.btnDelete.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDelete.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnDelete.Location = New System.Drawing.Point(335, 9)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(102, 49)
-        Me.btnDelete.TabIndex = 126
-        Me.btnDelete.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
-        Me.btnDelete.UseVisualStyleBackColor = False
+        Me.btnMenu3.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu3.Location = New System.Drawing.Point(335, 9)
+        Me.btnMenu3.Name = "btnMenu3"
+        Me.btnMenu3.Size = New System.Drawing.Size(102, 49)
+        Me.btnMenu3.TabIndex = 126
+        Me.btnMenu3.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
+        Me.btnMenu3.UseVisualStyleBackColor = False
         '
-        'btnUpdate
+        'btnMenu2
         '
-        Me.btnUpdate.BackColor = System.Drawing.SystemColors.Control
-        Me.btnUpdate.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnUpdate.Location = New System.Drawing.Point(227, 9)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(102, 49)
-        Me.btnUpdate.TabIndex = 125
-        Me.btnUpdate.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
-        Me.btnUpdate.UseVisualStyleBackColor = False
+        Me.btnMenu2.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu2.Location = New System.Drawing.Point(227, 9)
+        Me.btnMenu2.Name = "btnMenu2"
+        Me.btnMenu2.Size = New System.Drawing.Size(102, 49)
+        Me.btnMenu2.TabIndex = 125
+        Me.btnMenu2.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
+        Me.btnMenu2.UseVisualStyleBackColor = False
         '
-        'btnInsert
+        'btnMenu1
         '
-        Me.btnInsert.BackColor = System.Drawing.SystemColors.Control
-        Me.btnInsert.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnInsert.Location = New System.Drawing.Point(120, 9)
-        Me.btnInsert.Name = "btnInsert"
-        Me.btnInsert.Size = New System.Drawing.Size(100, 49)
-        Me.btnInsert.TabIndex = 124
-        Me.btnInsert.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
-        Me.btnInsert.UseVisualStyleBackColor = False
+        Me.btnMenu1.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu1.Location = New System.Drawing.Point(120, 9)
+        Me.btnMenu1.Name = "btnMenu1"
+        Me.btnMenu1.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu1.TabIndex = 124
+        Me.btnMenu1.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
+        Me.btnMenu1.UseVisualStyleBackColor = False
         '
-        'btnEnd
+        'btnMenu5
         '
-        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
-        Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnEnd.Location = New System.Drawing.Point(1238, 9)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 9
-        Me.btnEnd.Text = "終了" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Finish)"
-        Me.btnEnd.UseVisualStyleBackColor = False
+        Me.btnMenu5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnMenu5.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu5.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu5.Location = New System.Drawing.Point(1238, 9)
+        Me.btnMenu5.Name = "btnMenu5"
+        Me.btnMenu5.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu5.TabIndex = 9
+        Me.btnMenu5.Text = "終了" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Finish)"
+        Me.btnMenu5.UseVisualStyleBackColor = False
         '
-        'btnClear
+        'btnMenu4
         '
-        Me.btnClear.BackColor = System.Drawing.SystemColors.Control
-        Me.btnClear.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(443, 9)
-        Me.btnClear.Name = "btnClear"
-        Me.btnClear.Size = New System.Drawing.Size(100, 49)
-        Me.btnClear.TabIndex = 7
-        Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
-        Me.btnClear.UseVisualStyleBackColor = False
+        Me.btnMenu4.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu4.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu4.Location = New System.Drawing.Point(443, 9)
+        Me.btnMenu4.Name = "btnMenu4"
+        Me.btnMenu4.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu4.TabIndex = 7
+        Me.btnMenu4.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
+        Me.btnMenu4.UseVisualStyleBackColor = False
         '
-        'btnSearch
+        'btnMenu0
         '
-        Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
-        Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(12, 9)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(100, 49)
-        Me.btnSearch.TabIndex = 6
-        Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
-        Me.btnSearch.UseVisualStyleBackColor = False
+        Me.btnMenu0.BackColor = System.Drawing.SystemColors.Control
+        Me.btnMenu0.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnMenu0.Location = New System.Drawing.Point(12, 9)
+        Me.btnMenu0.Name = "btnMenu0"
+        Me.btnMenu0.Size = New System.Drawing.Size(100, 49)
+        Me.btnMenu0.TabIndex = 6
+        Me.btnMenu0.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
+        Me.btnMenu0.UseVisualStyleBackColor = False
         '
         'lblHLine
         '
@@ -400,25 +400,25 @@ Partial Class SC_M20
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(12, 220)
         Me.gridData.Name = "gridData"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1326, 341)
         Me.gridData.TabIndex = 78
@@ -680,9 +680,9 @@ Partial Class SC_M20
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents btnEnd As Button
-    Friend WithEvents btnClear As Button
-    Friend WithEvents btnSearch As Button
+    Friend WithEvents btnMenu5 As Button
+    Friend WithEvents btnMenu4 As Button
+    Friend WithEvents btnMenu0 As Button
     Friend WithEvents lblHLine As Label
     Friend WithEvents stsFooter As StatusStrip
     Friend WithEvents slblMargin As ToolStripStatusLabel
@@ -707,9 +707,9 @@ Partial Class SC_M20
     Friend WithEvents Label19 As Label
     Friend WithEvents Label20 As Label
     Friend WithEvents Label21 As Label
-    Friend WithEvents btnDelete As Button
-    Friend WithEvents btnUpdate As Button
-    Friend WithEvents btnInsert As Button
+    Friend WithEvents btnMenu3 As Button
+    Friend WithEvents btnMenu2 As Button
+    Friend WithEvents btnMenu1 As Button
     Friend WithEvents cmbProcess As ComboBox
     Friend WithEvents ComboBox1 As ComboBox
     Friend WithEvents ComboBox2 As ComboBox
