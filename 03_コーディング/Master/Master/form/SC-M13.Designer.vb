@@ -99,6 +99,7 @@ Partial Class SC_M13
         '
         Me.cmbProcessCode.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbProcessCode.BackColor = System.Drawing.Color.White
+        Me.cmbProcessCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbProcessCode.FormattingEnabled = True
         Me.cmbProcessCode.Location = New System.Drawing.Point(7, 171)
         Me.cmbProcessCode.Name = "cmbProcessCode"
@@ -509,8 +510,8 @@ Partial Class SC_M13
         Me.cmbProcess.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbProcess.BackColor = System.Drawing.Color.White
+        Me.cmbProcess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbProcess.FormattingEnabled = True
-        Me.cmbProcess.Items.AddRange(New Object() {"1A:コード1", "1B:コード2", "BA:コード3", "BX:コード4"})
         Me.cmbProcess.Location = New System.Drawing.Point(185, 588)
         Me.cmbProcess.Name = "cmbProcess"
         Me.cmbProcess.Size = New System.Drawing.Size(180, 20)
@@ -576,7 +577,7 @@ Partial Class SC_M13
         Me.txtDisplaydivision.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtDisplaydivision.Location = New System.Drawing.Point(770, 620)
         Me.txtDisplaydivision.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtDisplaydivision.MaxLength = 8
+        Me.txtDisplaydivision.MaxLength = 1
         Me.txtDisplaydivision.Name = "txtDisplaydivision"
         Me.txtDisplaydivision.Size = New System.Drawing.Size(76, 21)
         Me.txtDisplaydivision.TabIndex = 182

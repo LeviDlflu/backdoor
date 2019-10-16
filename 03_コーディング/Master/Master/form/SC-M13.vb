@@ -22,11 +22,7 @@ Public Class SC_M13
     Dim xml As New CmnXML("SC-M13.xml")
 
     Private Sub Init()
-        Me.cmbProcess.Text = String.Empty
-        Me.txtDefect.Text = String.Empty
-        Me.txtDefectName.Text = String.Empty
-        Me.txtRemarks.Text = String.Empty
-        Me.txtDisplaydivision.Text = String.Empty
+        controlClear()
         setProcessCodeType()
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
@@ -57,7 +53,10 @@ Public Class SC_M13
     End Sub
 
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        Me.Close()
+        Dim msg As New clsMessage("I0099")
+        If MsgBox(msg.Show, vbYesNo + vbQuestion, CONST_MASTER_NAME) = DialogResult.Yes Then
+            Me.Close()
+        End If
     End Sub
 
 
@@ -174,6 +173,7 @@ Public Class SC_M13
                 '工程コード必須入力メッセージ
                 MsgBox(String.Format(wMsg.Show, COL_PROCESS_CODE), vbExclamation, COL_PROCESS_CODE)
                 cmbProcess.BackColor = Color.Red
+                cmbProcess.Focus()
                 Return
             Else
                 cmbProcess.BackColor = Color.White
@@ -208,7 +208,7 @@ Public Class SC_M13
                                                             txtDefect.Text,
                                                             txtDefectName.Text,
                                                             txtRemarks.Text,
-                                                            "0"))
+                                                            txtDisplaydivision.Text))
                     getDataToGrid(False)
                     setProcessCodeType()
 
@@ -218,13 +218,9 @@ Public Class SC_M13
                 Throw
             Finally
                 clsSQLServer.Disconnect()
+                controlClear()
             End Try
 
-            Me.cmbProcess.Text = String.Empty
-            Me.txtDefect.Text = String.Empty
-            Me.txtDefectName.Text = String.Empty
-            Me.txtRemarks.Text = String.Empty
-            Me.txtDisplaydivision.Text = String.Empty
         End If
     End Sub
 
@@ -256,6 +252,7 @@ Public Class SC_M13
             Throw
         Finally
             clsSQLServer.Disconnect()
+            controlClear()
         End Try
 
     End Sub
@@ -301,6 +298,7 @@ Public Class SC_M13
                 Throw
             Finally
                 clsSQLServer.Disconnect()
+                controlClear()
             End Try
         End If
     End Sub
@@ -322,29 +320,44 @@ Public Class SC_M13
 
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                Dim sqlstr As String = xml.GetSQL("select", "select_002")
+                Dim sqlstr As String = xml.GetSQL("select", "select_004")
 
                 Dim dt As New DataTable()
 
                 dt = clsSQLServer.GetDataTable(sqlstr)
+                Dim dt2 As New DataTable()
+
+                dt2 = clsSQLServer.GetDataTable(sqlstr)
 
                 Dim drWork As DataRow = dt.NewRow
 
-                drWork(dt.Columns.Item(0).ColumnName) = "00"
-                drWork(dt.Columns.Item(0).ColumnName) = ""
+                drWork(dt.Columns.Item(0).ColumnName) = "0"
+                drWork(dt.Columns.Item(1).ColumnName) = " "
+                drWork("工程コード_略称") = ""
                 dt.Rows.InsertAt(drWork, 0)
 
+                Dim drWork2 As DataRow = dt2.NewRow
+
+                drWork2(dt2.Columns.Item(0).ColumnName) = "0"
+                drWork2(dt2.Columns.Item(1).ColumnName) = " "
+                drWork2("工程コード_略称") = ""
+                dt2.Rows.InsertAt(drWork2, 0)
+
                 Me.cmbProcessCode.DataSource = dt
+                Me.cmbProcess.DataSource = dt2
 
                 ' 表示用の列を設定
-                Me.cmbProcessCode.DisplayMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcessCode.DisplayMember = "工程コード_略称"
+                Me.cmbProcess.DisplayMember = "工程コード_略称"
                 ' データ用の列を設定
                 Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcess.ValueMember = dt2.Columns.Item(0).ColumnName
             End If
         Catch ex As Exception
             Throw
         Finally
             clsSQLServer.Disconnect()
+            controlClear()
         End Try
     End Sub
 
@@ -356,7 +369,7 @@ Public Class SC_M13
                     sqlStr = xml.GetSQL("select", "select_001")
                 Else
                     sqlStr = xml.GetSQL("select", "select_003")
-                    sqlStr = String.Format(sqlStr, cmbProcessCode.Text)
+                    sqlStr = String.Format(sqlStr, (cmbProcessCode.Text).Substring(0, 2))
                 End If
                 Dim dt As New DataTable()
                 dt = clsSQLServer.GetDataTable(sqlStr)
@@ -377,5 +390,15 @@ Public Class SC_M13
         Finally
             clsSQLServer.Disconnect()
         End Try
+    End Sub
+
+    '画面コントロールをクリアする
+    Private Sub controlClear()
+        Me.cmbProcessCode.Text = String.Empty
+        Me.cmbProcess.Text = String.Empty
+        Me.txtDefect.Text = String.Empty
+        Me.txtDefectName.Text = String.Empty
+        Me.txtRemarks.Text = String.Empty
+        Me.txtDisplaydivision.Text = String.Empty
     End Sub
 End Class

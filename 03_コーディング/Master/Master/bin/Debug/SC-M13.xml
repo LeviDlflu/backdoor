@@ -9,6 +9,9 @@
   <select id="select_003">
     SELECT 工程コード,不良コード,不良現象名,備考,表示区分 FROM 不良現象マスタ WHERE 工程コード='{0}'
   </select>
+  <select id="select_004">
+    SELECT 工程コード AS 工程コード,工程略称 AS 工程略称,(工程コード +':'+ 工程略称) AS 工程コード_略称 FROM 工程マスタ
+  </select>
 	<update id="update_001">
     UPDATE 不良現象マスタ set 不良現象名='{2}',備考='{3}',表示区分='{4}' WHERE 工程コード='{0}' AND 不良コード='{1}'
   </update>
