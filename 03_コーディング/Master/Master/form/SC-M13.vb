@@ -27,7 +27,7 @@ Public Class SC_M13
         Me.txtDefectName.Text = String.Empty
         Me.txtRemarks.Text = String.Empty
         Me.txtDisplaydivision.Text = String.Empty
-        setManagementNoType()
+        setProcessCodeType()
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
@@ -60,31 +60,9 @@ Public Class SC_M13
         Me.Close()
     End Sub
 
+
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Try
-            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-                Dim sqlStr As String
-                If Me.cmbProcessCode.Text.Equals(String.Empty) Then
-                    sqlStr = xml.GetSQL("select", "select_001")
-                Else
-                    sqlStr = xml.GetSQL("select", "select_003")
-                    sqlStr = String.Format(sqlStr, cmbProcessCode.Text)
-                End If
-                Dim dt As New DataTable()
-                dt = clsSQLServer.GetDataTable(sqlStr)
-                If dt.Rows.Count = 0 Then
-                    Dim msg As New clsMessage("W0008")
-
-                    MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
-                End If
-
-                setGrid(dt)
-                clsSQLServer.Disconnect()
-            End If
-
-
-        Catch ex As Exception
-        End Try
+        getDataToGrid(True)
     End Sub
 
     ''' <summary>
@@ -188,11 +166,13 @@ Public Class SC_M13
     '''   追加処理
     ''' </summary>
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
-
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
-
+        Dim msg As New clsMessage("I0001")
+        '追加確認メッセージ
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+            Dim wMsg As New clsMessage("W0001")
             If cmbProcess.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "工程コード"))
+                '工程コード必須入力メッセージ
+                MsgBox(String.Format(wMsg.Show, COL_PROCESS_CODE), vbExclamation, COL_PROCESS_CODE)
                 cmbProcess.BackColor = Color.Red
                 Return
             Else
@@ -200,7 +180,8 @@ Public Class SC_M13
             End If
 
             If txtDefect.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "不良コード"))
+                '不良コード必須入力メッセージ
+                MsgBox(String.Format(wMsg.Show, COL_DEFECT_CODE), vbExclamation, COL_DEFECT_CODE)
                 txtDefect.BackColor = Color.Red
                 Return
             Else
@@ -208,7 +189,8 @@ Public Class SC_M13
             End If
 
             If txtDefectName.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "不良現象名"))
+                '不良現象名必須入力メッセージ
+                MsgBox(String.Format(wMsg.Show, COL_DEFECT_PHENOMENON_NAME), vbExclamation, COL_DEFECT_PHENOMENON_NAME)
                 txtDefectName.BackColor = Color.Red
                 Return
             Else
@@ -227,14 +209,15 @@ Public Class SC_M13
                                                             txtDefectName.Text,
                                                             txtRemarks.Text,
                                                             "0"))
-                    clsSQLServer.Disconnect()
-                    btnSearch_Click(sender, e)
-                    setManagementNoType()
+                    getDataToGrid(False)
+                    setProcessCodeType()
 
                 End If
 
             Catch ex As Exception
                 Throw
+            Finally
+                clsSQLServer.Disconnect()
             End Try
 
             Me.cmbProcess.Text = String.Empty
@@ -249,37 +232,46 @@ Public Class SC_M13
     ''' 更新処理
     ''' </summary>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
-            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-                For i As Integer = 0 To gridData.Rows.Count - 1
-                    If gridData.Rows(i).Cells(0).Value = True Then
-                        Dim sqlstr As String = xml.GetSQL("update", "update_001")
-                        clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                                gridData.Rows(i).Cells(1).Value,
-                                                                gridData.Rows(i).Cells(2).Value,
-                                                                gridData.Rows(i).Cells(3).Value,
-                                                                gridData.Rows(i).Cells(4).Value,
-                                                                gridData.Rows(i).Cells(5).Value))
-                    End If
-                Next
-                clsSQLServer.Disconnect()
-                btnSearch_Click(sender, e)
+        Try
+            Dim msg As New clsMessage("I0002")
+            '更新確認メッセージ
+            If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                    For i As Integer = 0 To gridData.Rows.Count - 1
+                        If gridData.Rows(i).Cells(0).Value = True Then
+                            Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                                    gridData.Rows(i).Cells(1).Value,
+                                                                    gridData.Rows(i).Cells(2).Value,
+                                                                    gridData.Rows(i).Cells(3).Value,
+                                                                    gridData.Rows(i).Cells(4).Value,
+                                                                    gridData.Rows(i).Cells(5).Value))
+                        End If
+                    Next
+                    getDataToGrid(False)
 
+                End If
             End If
-        End If
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
+
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        Dim msg As New clsMessage("I0003")
+        '削除確認メッセージ
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, CONST_MASTER_NAME) = DialogResult.OK Then
-
-            Dim msg As New clsMessage("W901")
+            Dim wMsg As New clsMessage("W9001")
             Try
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     Dim selectedCount As Boolean = False
                     'レコード存在しない場合、エラーが発生する
                     If gridData.Rows.Count = 0 Then
-                        MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                        MsgBox(wMsg.Show, vbExclamation, CONST_MASTER_NAME)
                         Return
                     End If
                     For i As Integer = 0 To gridData.Rows.Count - 1
@@ -297,18 +289,18 @@ Public Class SC_M13
                     Next
                     '選択されてないレコードがエラー発生する
                     If selectedCount = False Then
-                        MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                        MsgBox(wMsg.Show, vbExclamation, CONST_MASTER_NAME)
                         Return
                     End If
+
+                    getDataToGrid(False)
+
+                    setProcessCodeType()
                 End If
             Catch ex As Exception
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-
-                btnSearch_Click(sender, e)
-
-                setManagementNoType()
             End Try
         End If
     End Sub
@@ -317,13 +309,14 @@ Public Class SC_M13
     ''' クリア処理
     ''' </summary>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
+        Dim msg As New clsMessage("I0009")
+        'クリア確認メッセージ
+        If MsgBox(msg.Show, vbOKCancel, CONST_MASTER_NAME) = DialogResult.OK Then
             gridData.Columns.Clear()
         End If
     End Sub
 
-    Private Sub setManagementNoType()
+    Private Sub setProcessCodeType()
 
         Try
 
@@ -347,14 +340,42 @@ Public Class SC_M13
                 Me.cmbProcessCode.DisplayMember = dt.Columns.Item(0).ColumnName
                 ' データ用の列を設定
                 Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
-
-                clsSQLServer.Disconnect()
-
             End If
-
         Catch ex As Exception
             Throw
+        Finally
+            clsSQLServer.Disconnect()
         End Try
     End Sub
 
+    Private Sub getDataToGrid(flag As Boolean)
+        Try
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                Dim sqlStr As String
+                If Me.cmbProcessCode.Text.Equals(String.Empty) Then
+                    sqlStr = xml.GetSQL("select", "select_001")
+                Else
+                    sqlStr = xml.GetSQL("select", "select_003")
+                    sqlStr = String.Format(sqlStr, cmbProcessCode.Text)
+                End If
+                Dim dt As New DataTable()
+                dt = clsSQLServer.GetDataTable(sqlStr)
+                If (flag = True) Then
+                    '0件の場合、メッセージを表示する
+                    If dt.Rows.Count = 0 Then
+                        Dim msg As New clsMessage("W0008")
+                        MsgBox(msg.Show, vbExclamation, CONST_MASTER_NAME)
+                        Return
+                    End If
+                End If
+                'gridView設定
+                setGrid(dt)
+
+            End If
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
+    End Sub
 End Class
