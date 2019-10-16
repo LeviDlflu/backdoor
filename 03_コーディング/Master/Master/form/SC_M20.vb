@@ -427,17 +427,20 @@ Public Class SC_M20
 
     Private Sub InitCombox4Value()
         Try
-            Dim selectSql As String
-            selectSql = xml.GetSQL_Str("SELECT_003")
-            Dim dt As New DataTable()
-            dt = clsSQLServer.GetDataTable(selectSql)
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                Dim selectSql As String
+                selectSql = xml.GetSQL_Str("SELECT_003")
+                Dim dt As New DataTable()
+                dt = clsSQLServer.GetDataTable(selectSql)
 
-            Me.ComboBox4.ValueMember = COL_WORKING_YM
-            Me.ComboBox4.DisplayMember = COL_WORKING_YM
-            Me.ComboBox4.DataSource = dt
+                Me.ComboBox4.ValueMember = COL_WORKING_YM
+                Me.ComboBox4.DisplayMember = COL_WORKING_YM
+                Me.ComboBox4.DataSource = dt
 
-            ComboBox4.SelectedIndex = -1
-            clsSQLServer.Disconnect()
+                ComboBox4.SelectedIndex = -1
+                clsSQLServer.Disconnect()
+
+            End If
         Catch ex As Exception
             Throw
         End Try
