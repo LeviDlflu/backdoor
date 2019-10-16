@@ -4,6 +4,10 @@ Imports System.Data.SqlClient
 
 Public Class SC_M22
 
+
+    ''' <summary>
+    ''' 　画面一覧のヘッダ部初期化
+    ''' </summary>
     Dim headerName As Hashtable = New Hashtable From {
                              {"選択", "Select" & vbCrLf & "(選択)"},
                              {"管理ＮＯ種別", "Management NO type" & vbCrLf & "(管理ＮＯ種別)"},
@@ -20,8 +24,14 @@ Public Class SC_M22
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
 
+    Private Const MESSAGE_ITEM_PATH As String = "/Messages/{0}/Message[@ID='{1}']/{2}/text()"
+    Private Const MESSAGE_ITEM_MESSAGE As String = "Text"
+
     Dim xml As New CmnXML("SC-M22.xml")
 
+    ''' <summary>
+    ''' 　画面初期化
+    ''' </summary>
     Private Sub Init()
         Me.txtManagementNoType.Enabled = True
         Me.txtFixedPart.Enabled = True
@@ -43,7 +53,9 @@ Public Class SC_M22
 
     End Sub
 
-
+    ''' <summary>
+    ''' 　画面項目管理NO種別初期化
+    ''' </summary>
     Private Sub setManagementNoType()
 
         Try
@@ -161,6 +173,11 @@ Public Class SC_M22
         End If
     End Sub
 
+    ''' <summary>
+    ''' 　画面Load
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">e</param>
     Private Sub SC_M22_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
     End Sub
@@ -170,11 +187,16 @@ Public Class SC_M22
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
         Dim msg As New clsMessage("I0001")
-        If MsgBox(msg.Show, vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(msg.Show, vbYesNo + vbQuestion, "生産管理システム") = DialogResult.Yes Then
             Me.Close()
         End If
     End Sub
 
+    ''' <summary>
+    ''' 　検索ボタン押下
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">e</param>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
         Try
@@ -209,6 +231,8 @@ Public Class SC_M22
 
         Catch ex As Exception
             Throw
+        Finally
+            clsSQLServer.Disconnect()
         End Try
     End Sub
 
@@ -240,11 +264,25 @@ Public Class SC_M22
 
     End Sub
 
+    ''' <summary>
+    ''' 　クリアボタン押下
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">e</param>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
+        clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I001"), ClsLogString.RunState.Msg)
+
+        Dim msg As New clsMessage("Q0009")
+        Dim msgString = msg.GetData(String.Format(MESSAGE_ITEM_PATH,
+                                                  "Question",
+                                                  "Q0009",
+                                                  MESSAGE_ITEM_MESSAGE))
+        If MsgBox(msgString, vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
             gridData.Columns.Clear()
         End If
+
+        clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I002"), ClsLogString.RunState.Msg)
     End Sub
 
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
@@ -308,6 +346,12 @@ Public Class SC_M22
         End If
     End Sub
 
+
+    ''' <summary>
+    ''' 　更新ボタン押下
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">e</param>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
         If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
@@ -345,6 +389,12 @@ Public Class SC_M22
         End If
     End Sub
 
+
+    ''' <summary>
+    ''' 　削除ボタン押下
+    ''' </summary>
+    ''' <param name="sender">sender</param>
+    ''' <param name="e">e</param>
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
         If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then

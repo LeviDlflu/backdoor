@@ -22,11 +22,11 @@ Partial Class SC_M13
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbHinsyu = New System.Windows.Forms.ComboBox()
+        Me.cmbProcessCode = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -95,15 +95,15 @@ Partial Class SC_M13
         Me.Label12.TabIndex = 158
         Me.Label12.Text = "Search results"
         '
-        'cmbHinsyu
+        'cmbProcessCode
         '
-        Me.cmbHinsyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbHinsyu.BackColor = System.Drawing.Color.White
-        Me.cmbHinsyu.FormattingEnabled = True
-        Me.cmbHinsyu.Location = New System.Drawing.Point(7, 171)
-        Me.cmbHinsyu.Name = "cmbHinsyu"
-        Me.cmbHinsyu.Size = New System.Drawing.Size(180, 20)
-        Me.cmbHinsyu.TabIndex = 154
+        Me.cmbProcessCode.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbProcessCode.BackColor = System.Drawing.Color.White
+        Me.cmbProcessCode.FormattingEnabled = True
+        Me.cmbProcessCode.Location = New System.Drawing.Point(7, 171)
+        Me.cmbProcessCode.Name = "cmbProcessCode"
+        Me.cmbProcessCode.Size = New System.Drawing.Size(180, 20)
+        Me.cmbProcessCode.TabIndex = 154
         '
         'Label16
         '
@@ -234,25 +234,25 @@ Partial Class SC_M13
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(11, 222)
         Me.gridData.Name = "gridData"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1321, 321)
         Me.gridData.TabIndex = 151
@@ -599,7 +599,7 @@ Partial Class SC_M13
         Me.Controls.Add(Me.txtDefect)
         Me.Controls.Add(Me.Label21)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.cmbHinsyu)
+        Me.Controls.Add(Me.cmbProcessCode)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.grpHeader)
         Me.Controls.Add(Me.Label3)
@@ -631,7 +631,7 @@ Partial Class SC_M13
 
     Friend WithEvents btnSearch As Button
     Friend WithEvents Label12 As Label
-    Friend WithEvents cmbHinsyu As ComboBox
+    Friend WithEvents cmbProcessCode As ComboBox
     Friend WithEvents Label16 As Label
     Friend WithEvents grpHeader As GroupBox
     Friend WithEvents Label15 As Label

@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="server" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">WIN-CPGPKU87FDV</Value>
+      <Value Profile="(Default)">13.78.28.199</Value>
     </Setting>
     <Setting Name="db" Type="System.String" Scope="Application">
       <Value Profile="(Default)">BackDoor</Value>
     </Setting>
     <Setting Name="userid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">backdooruser</Value>
+      <Value Profile="(Default)">sqladmin</Value>
     </Setting>
     <Setting Name="password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">pass@word2</Value>
+      <Value Profile="(Default)">Adsursql@@tokyo</Value>
     </Setting>
     <Setting Name="LogPeriod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">7</Value>
@@ -30,7 +30,7 @@
       <Value Profile="(Default)">{0}\{1}_{2}_EXCEPTION.log</Value>
     </Setting>
     <Setting Name="Message" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">D:\app\NABARI\message</Value>
+      <Value Profile="(Default)">{0}\message</Value>
     </Setting>
     <Setting Name="MailSender" Type="System.String" Scope="Application">
       <Value Profile="(Default)">hidekazu.fujinami.ee@hitachi.com</Value>
@@ -55,6 +55,12 @@
     </Setting>
     <Setting Name="MailErrType4" Type="System.String" Scope="Application">
       <Value Profile="(Default)">システムエラー</Value>
+    </Setting>
+    <Setting Name="LogFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\</Value>
+    </Setting>
+    <Setting Name="LogFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LOG</Value>
     </Setting>
   </Settings>
 </SettingsFile>

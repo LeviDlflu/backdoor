@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("WIN-CPGPKU87FDV")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("13.78.28.199")>  _
         Public ReadOnly Property server() As String
             Get
                 Return CType(Me("server"),String)
@@ -74,7 +74,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("backdooruser")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("sqladmin")>  _
         Public ReadOnly Property userid() As String
             Get
                 Return CType(Me("userid"),String)
@@ -83,7 +83,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("pass@word2")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Adsursql@@tokyo")>  _
         Public ReadOnly Property password() As String
             Get
                 Return CType(Me("password"),String)
@@ -137,7 +137,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("D:\app\NABARI\message")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("{0}\message")>  _
         Public ReadOnly Property Message() As String
             Get
                 Return CType(Me("Message"),String)
@@ -213,6 +213,24 @@ Namespace My
         Public ReadOnly Property MailErrType4() As String
             Get
                 Return CType(Me("MailErrType4"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute(".\")>  _
+        Public ReadOnly Property LogFolder() As String
+            Get
+                Return CType(Me("LogFolder"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("LOG")>  _
+        Public ReadOnly Property LogFile() As String
+            Get
+                Return CType(Me("LogFile"),String)
             End Get
         End Property
     End Class
