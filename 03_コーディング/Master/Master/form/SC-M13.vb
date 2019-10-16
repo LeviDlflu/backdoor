@@ -311,6 +311,7 @@ Public Class SC_M13
         'クリア確認メッセージ
         If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
             gridData.Columns.Clear()
+            controlClear()
         End If
     End Sub
 
