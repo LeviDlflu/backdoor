@@ -22,8 +22,8 @@ Partial Class SC_M16
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.cmbGroup = New System.Windows.Forms.ComboBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.txtProgram = New System.Windows.Forms.TextBox()
@@ -46,7 +46,6 @@ Partial Class SC_M16
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.lblHLine = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.cmbMode = New System.Windows.Forms.ComboBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -59,16 +58,16 @@ Partial Class SC_M16
         Me.Label3 = New System.Windows.Forms.Label()
         Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.txtFormID = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.cmbAuthority = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Label23 = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,7 +80,6 @@ Partial Class SC_M16
         Me.cmbGroup.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbGroup.BackColor = System.Drawing.Color.White
         Me.cmbGroup.FormattingEnabled = True
-        Me.cmbGroup.Items.AddRange(New Object() {"参照", "追加", "修正", "削除"})
         Me.cmbGroup.Location = New System.Drawing.Point(729, 631)
         Me.cmbGroup.Name = "cmbGroup"
         Me.cmbGroup.Size = New System.Drawing.Size(180, 20)
@@ -104,7 +102,7 @@ Partial Class SC_M16
         Me.txtProgram.Location = New System.Drawing.Point(10, 632)
         Me.txtProgram.Margin = New System.Windows.Forms.Padding(2)
         Me.txtProgram.Name = "txtProgram"
-        Me.txtProgram.Size = New System.Drawing.Size(88, 21)
+        Me.txtProgram.Size = New System.Drawing.Size(88, 19)
         Me.txtProgram.TabIndex = 199
         Me.txtProgram.Text = "XXXXXXXXXX"
         '
@@ -165,7 +163,7 @@ Partial Class SC_M16
         Me.txtFormName.Location = New System.Drawing.Point(432, 632)
         Me.txtFormName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFormName.Name = "txtFormName"
-        Me.txtFormName.Size = New System.Drawing.Size(230, 21)
+        Me.txtFormName.Size = New System.Drawing.Size(230, 19)
         Me.txtFormName.TabIndex = 189
         Me.txtFormName.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
@@ -214,11 +212,11 @@ Partial Class SC_M16
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(92, 154)
+        Me.Label6.Location = New System.Drawing.Point(80, 154)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(71, 11)
+        Me.Label6.Size = New System.Drawing.Size(63, 11)
         Me.Label6.TabIndex = 194
-        Me.Label6.Text = "(プログラムID)"
+        Me.Label6.Text = "(グループID)"
         '
         'Label11
         '
@@ -305,26 +303,15 @@ Partial Class SC_M16
         Me.Label12.TabIndex = 185
         Me.Label12.Text = "Search results"
         '
-        'cmbMode
-        '
-        Me.cmbMode.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbMode.BackColor = System.Drawing.SystemColors.Window
-        Me.cmbMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple
-        Me.cmbMode.FormattingEnabled = True
-        Me.cmbMode.Location = New System.Drawing.Point(13, 170)
-        Me.cmbMode.Name = "cmbMode"
-        Me.cmbMode.Size = New System.Drawing.Size(148, 20)
-        Me.cmbMode.TabIndex = 182
-        '
         'Label7
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label7.Location = New System.Drawing.Point(10, 152)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(79, 13)
+        Me.Label7.Size = New System.Drawing.Size(64, 13)
         Me.Label7.TabIndex = 184
-        Me.Label7.Text = "Program ID"
+        Me.Label7.Text = "Group ID"
         '
         'grpHeader
         '
@@ -400,7 +387,7 @@ Partial Class SC_M16
         Me.TextBox1.Location = New System.Drawing.Point(1231, 31)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(120, 21)
+        Me.TextBox1.Size = New System.Drawing.Size(120, 19)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.TabStop = False
         Me.TextBox1.Text = "本番環境"
@@ -411,7 +398,7 @@ Partial Class SC_M16
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.txtLoginUser.Location = New System.Drawing.Point(1231, 10)
         Me.txtLoginUser.Name = "txtLoginUser"
-        Me.txtLoginUser.Size = New System.Drawing.Size(120, 21)
+        Me.txtLoginUser.Size = New System.Drawing.Size(120, 19)
         Me.txtLoginUser.TabIndex = 4
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
@@ -444,25 +431,25 @@ Partial Class SC_M16
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(11, 217)
         Me.gridData.Name = "gridData"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("SimSun", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1326, 356)
         Me.gridData.TabIndex = 178
@@ -483,13 +470,46 @@ Partial Class SC_M16
         Me.Panel1.Size = New System.Drawing.Size(1353, 76)
         Me.Panel1.TabIndex = 177
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button1.Location = New System.Drawing.Point(334, 9)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(102, 49)
+        Me.Button1.TabIndex = 126
+        Me.Button1.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
+        Me.Button1.UseVisualStyleBackColor = False
+        '
+        'Button2
+        '
+        Me.Button2.BackColor = System.Drawing.SystemColors.Control
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Location = New System.Drawing.Point(226, 9)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(102, 49)
+        Me.Button2.TabIndex = 125
+        Me.Button2.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
+        Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button3
+        '
+        Me.Button3.BackColor = System.Drawing.SystemColors.Control
+        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button3.Location = New System.Drawing.Point(120, 9)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(100, 49)
+        Me.Button3.TabIndex = 124
+        Me.Button3.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
+        Me.Button3.UseVisualStyleBackColor = False
+        '
         'txtFormID
         '
         Me.txtFormID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFormID.Location = New System.Drawing.Point(235, 632)
         Me.txtFormID.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFormID.Name = "txtFormID"
-        Me.txtFormID.Size = New System.Drawing.Size(88, 21)
+        Me.txtFormID.Size = New System.Drawing.Size(88, 19)
         Me.txtFormID.TabIndex = 199
         Me.txtFormID.Text = "XXXXXXX"
         '
@@ -509,7 +529,7 @@ Partial Class SC_M16
         Me.Label16.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label16.Location = New System.Drawing.Point(811, 614)
+        Me.Label16.Location = New System.Drawing.Point(796, 614)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(63, 11)
         Me.Label16.TabIndex = 193
@@ -549,48 +569,16 @@ Partial Class SC_M16
         Me.cmbAuthority.Size = New System.Drawing.Size(180, 20)
         Me.cmbAuthority.TabIndex = 201
         '
-        'Button1
+        'ComboBox1
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(334, 9)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(102, 49)
-        Me.Button1.TabIndex = 126
-        Me.Button1.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
-        'Button2
-        '
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(226, 9)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(102, 49)
-        Me.Button2.TabIndex = 125
-        Me.Button2.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
-        Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button3
-        '
-        Me.Button3.BackColor = System.Drawing.SystemColors.Control
-        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(120, 9)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(100, 49)
-        Me.Button3.TabIndex = 124
-        Me.Button3.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
-        Me.Button3.UseVisualStyleBackColor = False
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label23.Location = New System.Drawing.Point(167, 174)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(17, 11)
-        Me.Label23.TabIndex = 202
-        Me.Label23.Text = "～"
+        Me.ComboBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.ComboBox1.BackColor = System.Drawing.Color.White
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(13, 169)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(180, 20)
+        Me.ComboBox1.TabIndex = 202
         '
         'SC_M16
         '
@@ -598,7 +586,7 @@ Partial Class SC_M16
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1350, 689)
-        Me.Controls.Add(Me.Label23)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.cmbAuthority)
         Me.Controls.Add(Me.cmbGroup)
         Me.Controls.Add(Me.Label20)
@@ -620,7 +608,6 @@ Partial Class SC_M16
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.cmbMode)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.grpHeader)
         Me.Controls.Add(Me.Label21)
@@ -662,7 +649,6 @@ Partial Class SC_M16
     Friend WithEvents btnSearch As Button
     Friend WithEvents lblHLine As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents cmbMode As ComboBox
     Friend WithEvents Label7 As Label
     Friend WithEvents grpHeader As GroupBox
     Friend WithEvents Label15 As Label
@@ -684,5 +670,5 @@ Partial Class SC_M16
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button3 As Button
-    Friend WithEvents Label23 As Label
+    Friend WithEvents ComboBox1 As ComboBox
 End Class
