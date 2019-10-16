@@ -30,7 +30,7 @@
       <Value Profile="(Default)">{0}\{1}_{2}_EXCEPTION.log</Value>
     </Setting>
     <Setting Name="Message" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{0}\message</Value>
+      <Value Profile="(Default)">..\..\message</Value>
     </Setting>
     <Setting Name="MailSender" Type="System.String" Scope="Application">
       <Value Profile="(Default)">hidekazu.fujinami.ee@hitachi.com</Value>
