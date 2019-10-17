@@ -17,6 +17,7 @@
     Private Const COL_DISPLAY_DIVISION As String = "表示区分"
 
     Private Const CONST_MASTER_NAME = "B/D生産管理システム"
+    Private Const CONST_PROCESS_NAME = "工程コード_略称"
 
     Dim xml As New CmnXML("SC-M13.xml", "SC-M13")
 
@@ -356,40 +357,34 @@
     Private Sub setProcessCodeType()
 
         Try
-
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim sqlstr As String = xml.GetSQL_Str("SELECT_004")
 
-                Dim dt As New DataTable()
-
-                dt = clsSQLServer.GetDataTable(sqlstr)
-                Dim dt2 As New DataTable()
-
-                dt2 = clsSQLServer.GetDataTable(sqlstr)
-
+                '検索条件部 工程コード
+                Dim dt = clsSQLServer.GetDataTable(sqlstr)
+                '空白行追加
                 Dim drWork As DataRow = dt.NewRow
-
                 drWork(dt.Columns.Item(0).ColumnName) = "0"
                 drWork(dt.Columns.Item(1).ColumnName) = " "
-                drWork("工程コード_略称") = ""
+                drWork(CONST_PROCESS_NAME) = ""
                 dt.Rows.InsertAt(drWork, 0)
 
-                Dim drWork2 As DataRow = dt2.NewRow
+                Me.cmbProcessCode.DataSource = dt
+                Me.cmbProcessCode.DisplayMember = CONST_PROCESS_NAME
+                Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
 
+                '追加部 工程コード
+                Dim dt2 = clsSQLServer.GetDataTable(sqlstr)
+                '空白行追加
+                Dim drWork2 As DataRow = dt2.NewRow
                 drWork2(dt2.Columns.Item(0).ColumnName) = "0"
                 drWork2(dt2.Columns.Item(1).ColumnName) = " "
-                drWork2("工程コード_略称") = ""
+                drWork2(CONST_PROCESS_NAME) = ""
                 dt2.Rows.InsertAt(drWork2, 0)
 
-                Me.cmbProcessCode.DataSource = dt
                 Me.cmbProcess.DataSource = dt2
-
-                ' 表示用の列を設定
-                Me.cmbProcessCode.DisplayMember = "工程コード_略称"
-                Me.cmbProcess.DisplayMember = "工程コード_略称"
-                ' データ用の列を設定
-                Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcess.DisplayMember = CONST_PROCESS_NAME
                 Me.cmbProcess.ValueMember = dt2.Columns.Item(0).ColumnName
             End If
         Catch ex As Exception
