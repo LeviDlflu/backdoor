@@ -4,27 +4,65 @@
     <Selects>
       <SQL ID="SELECT_001">
         <Text> 
-          SELECT DISTINCT 管理ＮＯ種別 FROM 採番マスタ 
+          SELECT 
+            DISTINCT 管理ＮＯ種別 
+          FROM 
+            採番マスタ 
         </Text>
       </SQL>
       <SQL ID="SELECT_002">
         <Text>
-          SELECT 管理ＮＯ種別,固定部,番号,変動データ部,備考 FROM 採番マスタ
+          SELECT 
+            管理ＮＯ種別,
+            固定部,
+            番号,
+            変動データ部,
+            備考 
+          FROM 
+            採番マスタ
         </Text>
       </SQL>
       <SQL ID="SELECT_003">
         <Text>
-          SELECT 管理ＮＯ種別,固定部,番号,変動データ部,備考 FROM 採番マスタ WHERE 管理ＮＯ種別 = '{0}'
+          SELECT 
+            管理ＮＯ種別,
+            固定部,
+            番号,
+            変動データ部,
+            備考 
+          FROM 
+            採番マスタ 
+          WHERE 
+            管理ＮＯ種別 = '{0}'
         </Text>
       </SQL>
       <SQL ID="SELECT_004">
         <Text>
-          SELECT 管理ＮＯ種別,固定部,番号,変動データ部,備考 FROM 採番マスタ WHERE 管理ＮＯ種別 >= '{0}' ORDER BY 管理ＮＯ種別,固定部
+          SELECT 
+            管理ＮＯ種別,
+            固定部,
+            番号,
+            変動データ部,
+            備考 
+          FROM 
+            採番マスタ 
+          WHERE 
+            管理ＮＯ種別 >= '{0}' 
+          ORDER BY 
+            管理ＮＯ種別,
+            固定部
         </Text>
       </SQL>
       <SQL ID="SELECT_005">
         <Text>
-          SELECT 管理ＮＯ種別 FROM 採番マスタ WHERE 管理ＮＯ種別='{0}' AND 固定部='{1}'
+          SELECT 
+            管理ＮＯ種別 
+          FROM 
+            採番マスタ 
+          WHERE 
+            管理ＮＯ種別='{0}' 
+          AND 
+            固定部='{1}'
         </Text>
       </SQL>
     </Selects>
@@ -32,7 +70,16 @@
     <Updates>
       <SQL ID="UPDATE_001">
         <Text>
-          UPDATE 採番マスタ set 変動データ部='{3}',番号={2},備考='{4}' WHERE 管理ＮＯ種別='{0}' AND 固定部='{1}'
+          UPDATE 
+            採番マスタ 
+          SET 
+            変動データ部='{3}',
+            番号={2},
+            備考='{4}' 
+          WHERE 
+            管理ＮＯ種別='{0}' 
+          AND 
+            固定部='{1}'
         </Text>
       </SQL>
     </Updates>
@@ -40,7 +87,23 @@
     <Inserts>
       <SQL ID="INSERT_001">
         <Text>
-          INSERT INTO 採番マスタ(管理ＮＯ種別,固定部,変動データ部,番号,備考) VALUES ('{0}','{1}','{2}','{3}','{4}')
+          INSERT INTO  
+            採番マスタ
+              (
+                管理ＮＯ種別,
+                固定部,
+                変動データ部,
+                番号,
+                備考
+              ) 
+              VALUES 
+              (
+                '{0}',
+                '{1}',
+                '{2}',
+                '{3}',
+                '{4}'
+              )
         </Text>
       </SQL>
     </Inserts>
@@ -48,7 +111,12 @@
     <Deletes>
       <SQL ID="DELETE_001">
         <Text>
-          DELETE FROM 採番マスタ WHERE 管理ＮＯ種別='{0}' AND 固定部='{1}'
+          DELETE FROM 
+            採番マスタ 
+          WHERE 
+            管理ＮＯ種別='{0}' 
+          AND 
+            固定部='{1}'
         </Text>
       </SQL>
     </Deletes>

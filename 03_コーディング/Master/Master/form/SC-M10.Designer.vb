@@ -23,8 +23,8 @@ Partial Class SC_M10
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -161,7 +161,7 @@ Partial Class SC_M10
         Me.TextBox1.Location = New System.Drawing.Point(1227, 31)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(120, 19)
+        Me.TextBox1.Size = New System.Drawing.Size(120, 21)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.TabStop = False
         Me.TextBox1.Text = "本番環境"
@@ -172,7 +172,7 @@ Partial Class SC_M10
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.txtLoginUser.Location = New System.Drawing.Point(1227, 10)
         Me.txtLoginUser.Name = "txtLoginUser"
-        Me.txtLoginUser.Size = New System.Drawing.Size(120, 19)
+        Me.txtLoginUser.Size = New System.Drawing.Size(120, 21)
         Me.txtLoginUser.TabIndex = 4
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
@@ -339,7 +339,7 @@ Partial Class SC_M10
         Me.txtScode.Location = New System.Drawing.Point(15, 592)
         Me.txtScode.Margin = New System.Windows.Forms.Padding(2)
         Me.txtScode.Name = "txtScode"
-        Me.txtScode.Size = New System.Drawing.Size(156, 19)
+        Me.txtScode.Size = New System.Drawing.Size(156, 21)
         Me.txtScode.TabIndex = 184
         '
         'Label6
@@ -484,7 +484,7 @@ Partial Class SC_M10
         Me.txtSname.Location = New System.Drawing.Point(197, 592)
         Me.txtSname.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSname.Name = "txtSname"
-        Me.txtSname.Size = New System.Drawing.Size(237, 19)
+        Me.txtSname.Size = New System.Drawing.Size(237, 21)
         Me.txtSname.TabIndex = 188
         '
         'TimeSys
@@ -565,23 +565,23 @@ Partial Class SC_M10
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightSteelBlue
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.LightSteelBlue
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.Location = New System.Drawing.Point(12, 229)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
@@ -594,7 +594,7 @@ Partial Class SC_M10
         Me.cmbLabel.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbLabel.BackColor = System.Drawing.Color.White
         Me.cmbLabel.FormattingEnabled = True
-        Me.cmbLabel.Items.AddRange(New Object() {"０：手動ラベル", "１：自動ラベル"})
+        Me.cmbLabel.Items.AddRange(New Object() {" ", "０：手動ラベル", "１：自動ラベル"})
         Me.cmbLabel.Location = New System.Drawing.Point(198, 638)
         Me.cmbLabel.Name = "cmbLabel"
         Me.cmbLabel.Size = New System.Drawing.Size(236, 20)
@@ -628,7 +628,7 @@ Partial Class SC_M10
         Me.txtLabel.Location = New System.Drawing.Point(469, 640)
         Me.txtLabel.Margin = New System.Windows.Forms.Padding(2)
         Me.txtLabel.Name = "txtLabel"
-        Me.txtLabel.Size = New System.Drawing.Size(321, 19)
+        Me.txtLabel.Size = New System.Drawing.Size(321, 21)
         Me.txtLabel.TabIndex = 200
         '
         'txtSort
@@ -637,7 +637,7 @@ Partial Class SC_M10
         Me.txtSort.Location = New System.Drawing.Point(16, 639)
         Me.txtSort.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSort.Name = "txtSort"
-        Me.txtSort.Size = New System.Drawing.Size(156, 19)
+        Me.txtSort.Size = New System.Drawing.Size(156, 21)
         Me.txtSort.TabIndex = 199
         '
         'Label25

@@ -1,5 +1,4 @@
-﻿Imports PUCCommon.clsGlobal
-Public Class SC_M13
+﻿Public Class SC_M13
 
     Dim headerName As Hashtable = New Hashtable From {
                              {"選択", "Select" & vbCrLf & "(選択)"},
@@ -17,12 +16,14 @@ Public Class SC_M13
     Private Const COL_REMARKS As String = "備考"
     Private Const COL_DISPLAY_DIVISION As String = "表示区分"
 
-    Private Const CONST_MASTER_NAME = "不良現象マスタ"
+    Private Const CONST_MASTER_NAME = "B/D生産管理システム"
+    Private Const CONST_PROCESS_NAME = "工程コード_略称"
 
     Dim xml As New CmnXML("SC-M13.xml", "SC-M13")
 
+    '初期処理
     Private Sub Init()
-        controlClear()
+        controlClear(True)
         setProcessCodeType()
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
@@ -48,19 +49,41 @@ Public Class SC_M13
         TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
+
+    '画面Load
     Private Sub SC_M13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
     End Sub
 
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        Dim msg As New clsMessage("I0099")
-        If MsgBox(msg.Show, vbYesNo + vbQuestion, CONST_MASTER_NAME) = DialogResult.Yes Then
-            Me.Close()
+        Dim selectedCount As Boolean = False
+        'レコードを選択される場合、保存されていないメッセージを表示する
+        If gridData.Rows.Count > 0 Then
+            For i As Integer = 0 To gridData.Rows.Count - 1
+                '横位置
+                If gridData.Rows(i).Cells(0).Value = True Then
+                    selectedCount = True
+                End If
+            Next
+            If selectedCount = True Then
+                Dim wMsg As New clsMessage("W0099")
+                If MsgBox(wMsg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+                    Me.Close()
+                End If
+            End If
+        End If
+        'レコードを選択されない場合、画面閉じるメッセージを表示する
+        If selectedCount = False Then
+            Dim msg As New clsMessage("I0099")
+            If MsgBox(msg.Show, vbYesNo + vbQuestion, CONST_MASTER_NAME) = DialogResult.Yes Then
+                Me.Close()
+            End If
         End If
     End Sub
 
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        controlClear(False)
         getDataToGrid(True)
     End Sub
 
@@ -69,9 +92,7 @@ Public Class SC_M13
     ''' </summary>
     ''' <param name="dtData">データソース</param>
     Private Sub setGrid(ByRef dtData As DataTable)
-        If gridData.Rows.Count > 0 Then
-            gridData.Columns.Clear()
-        End If
+        gridData.Columns.Clear()
 
         '選択
         Dim addColSentaku As New DataGridViewCheckBoxColumn()
@@ -200,17 +221,35 @@ Public Class SC_M13
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                    '追加処理の重複データをチェックする
+                    Dim dt As New DataTable()
+                    Dim sqlstr As String = xml.GetSQL_Str("SELECT_002")
+                    sqlstr = String.Format(sqlstr, cmbProcess.SelectedValue, txtDefect.Text)
 
-                    Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
+                    dt = clsSQLServer.GetDataTable(sqlstr)
+
+                    If dt.Rows.Count > 0 Then
+
+                        '重複データがある場合、メッセージを表示して、追加処理を終止する
+                        msg = New clsMessage("W0009")
+
+                        MsgBox(msg.Show, vbExclamation, CONST_MASTER_NAME)
+
+                        clsSQLServer.Disconnect()
+
+                        Return
+
+                    End If
+
+                    sqlstr = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                            cmbProcess.Text.Substring(0, 2),
+                                                            cmbProcess.SelectedValue,
                                                             txtDefect.Text,
                                                             txtDefectName.Text,
                                                             txtRemarks.Text,
                                                             txtDisplaydivision.Text))
                     getDataToGrid(False)
-                    setProcessCodeType()
 
                 End If
 
@@ -218,7 +257,7 @@ Public Class SC_M13
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-                controlClear()
+                controlClear(False)
             End Try
 
         End If
@@ -252,7 +291,7 @@ Public Class SC_M13
             Throw
         Finally
             clsSQLServer.Disconnect()
-            controlClear()
+            controlClear(False)
         End Try
 
     End Sub
@@ -292,13 +331,12 @@ Public Class SC_M13
 
                     getDataToGrid(False)
 
-                    setProcessCodeType()
                 End If
             Catch ex As Exception
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-                controlClear()
+                controlClear(False)
             End Try
         End If
     End Sub
@@ -310,55 +348,49 @@ Public Class SC_M13
         Dim msg As New clsMessage("I0009")
         'クリア確認メッセージ
         If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+
             gridData.Columns.Clear()
-            controlClear()
+            controlClear(True)
         End If
     End Sub
 
     Private Sub setProcessCodeType()
 
         Try
-
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim sqlstr As String = xml.GetSQL_Str("SELECT_004")
 
-                Dim dt As New DataTable()
-
-                dt = clsSQLServer.GetDataTable(sqlstr)
-                Dim dt2 As New DataTable()
-
-                dt2 = clsSQLServer.GetDataTable(sqlstr)
-
+                '検索条件部 工程コード
+                Dim dt = clsSQLServer.GetDataTable(sqlstr)
+                '空白行追加
                 Dim drWork As DataRow = dt.NewRow
-
                 drWork(dt.Columns.Item(0).ColumnName) = "0"
                 drWork(dt.Columns.Item(1).ColumnName) = " "
-                drWork("工程コード_略称") = ""
+                drWork(CONST_PROCESS_NAME) = ""
                 dt.Rows.InsertAt(drWork, 0)
 
-                Dim drWork2 As DataRow = dt2.NewRow
+                Me.cmbProcessCode.DataSource = dt
+                Me.cmbProcessCode.DisplayMember = CONST_PROCESS_NAME
+                Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
 
+                '追加部 工程コード
+                Dim dt2 = clsSQLServer.GetDataTable(sqlstr)
+                '空白行追加
+                Dim drWork2 As DataRow = dt2.NewRow
                 drWork2(dt2.Columns.Item(0).ColumnName) = "0"
                 drWork2(dt2.Columns.Item(1).ColumnName) = " "
-                drWork2("工程コード_略称") = ""
+                drWork2(CONST_PROCESS_NAME) = ""
                 dt2.Rows.InsertAt(drWork2, 0)
 
-                Me.cmbProcessCode.DataSource = dt
                 Me.cmbProcess.DataSource = dt2
-
-                ' 表示用の列を設定
-                Me.cmbProcessCode.DisplayMember = "工程コード_略称"
-                Me.cmbProcess.DisplayMember = "工程コード_略称"
-                ' データ用の列を設定
-                Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcess.DisplayMember = CONST_PROCESS_NAME
                 Me.cmbProcess.ValueMember = dt2.Columns.Item(0).ColumnName
             End If
         Catch ex As Exception
             Throw
         Finally
             clsSQLServer.Disconnect()
-            controlClear()
         End Try
     End Sub
 
@@ -370,7 +402,8 @@ Public Class SC_M13
                     sqlStr = xml.GetSQL_Str("SELECT_001")
                 Else
                     sqlStr = xml.GetSQL_Str("SELECT_003")
-                    sqlStr = String.Format(sqlStr, (cmbProcessCode.Text).Substring(0, 2))
+                    sqlStr = String.Format(sqlStr, cmbProcessCode.SelectedValue)
+
                 End If
                 Dim dt As New DataTable()
                 dt = clsSQLServer.GetDataTable(sqlStr)
@@ -394,12 +427,23 @@ Public Class SC_M13
     End Sub
 
     '画面コントロールをクリアする
-    Private Sub controlClear()
-        Me.cmbProcessCode.Text = String.Empty
+    Private Sub controlClear(checkFlag As Boolean)
+        'クリア処理の場合、検索条件部をクリアする
+        If (checkFlag = True) Then
+            Me.cmbProcessCode.Text = String.Empty
+        End If
+
         Me.cmbProcess.Text = String.Empty
         Me.txtDefect.Text = String.Empty
         Me.txtDefectName.Text = String.Empty
         Me.txtRemarks.Text = String.Empty
-        Me.txtDisplaydivision.Text = String.Empty
+        Me.txtDisplaydivision.Text = 0
     End Sub
+
+    '追加部の工程コードCombox入力制御
+    Private Sub cmbProcess_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cmbProcess.KeyPress
+        e.Handled = True
+        Return
+    End Sub
+
 End Class

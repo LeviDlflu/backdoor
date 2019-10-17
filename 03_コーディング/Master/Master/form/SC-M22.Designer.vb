@@ -117,9 +117,10 @@ Partial Class SC_M22
         Me.txtManagementNoType.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtManagementNoType.Location = New System.Drawing.Point(14, 611)
         Me.txtManagementNoType.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtManagementNoType.MaxLength = 2
         Me.txtManagementNoType.Name = "txtManagementNoType"
         Me.txtManagementNoType.Size = New System.Drawing.Size(177, 19)
-        Me.txtManagementNoType.TabIndex = 237
+        Me.txtManagementNoType.TabIndex = 31
         Me.txtManagementNoType.Text = "XX"
         '
         'txtFixedPart
@@ -127,9 +128,10 @@ Partial Class SC_M22
         Me.txtFixedPart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFixedPart.Location = New System.Drawing.Point(254, 611)
         Me.txtFixedPart.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFixedPart.MaxLength = 8
         Me.txtFixedPart.Name = "txtFixedPart"
         Me.txtFixedPart.Size = New System.Drawing.Size(100, 19)
-        Me.txtFixedPart.TabIndex = 238
+        Me.txtFixedPart.TabIndex = 32
         Me.txtFixedPart.Text = "XXXXXXXX"
         '
         'Label23
@@ -177,7 +179,7 @@ Partial Class SC_M22
         Me.btnDelete.Location = New System.Drawing.Point(332, 9)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(102, 49)
-        Me.btnDelete.TabIndex = 128
+        Me.btnDelete.TabIndex = 4
         Me.btnDelete.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
         Me.btnDelete.UseVisualStyleBackColor = False
         '
@@ -188,7 +190,7 @@ Partial Class SC_M22
         Me.btnUpdate.Location = New System.Drawing.Point(224, 9)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(102, 49)
-        Me.btnUpdate.TabIndex = 127
+        Me.btnUpdate.TabIndex = 3
         Me.btnUpdate.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
         Me.btnUpdate.UseVisualStyleBackColor = False
         '
@@ -199,7 +201,7 @@ Partial Class SC_M22
         Me.btnClear.Location = New System.Drawing.Point(441, 9)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(102, 49)
-        Me.btnClear.TabIndex = 125
+        Me.btnClear.TabIndex = 5
         Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
         Me.btnClear.UseVisualStyleBackColor = False
         '
@@ -210,7 +212,7 @@ Partial Class SC_M22
         Me.btnInsert.Location = New System.Drawing.Point(118, 9)
         Me.btnInsert.Name = "btnInsert"
         Me.btnInsert.Size = New System.Drawing.Size(100, 49)
-        Me.btnInsert.TabIndex = 124
+        Me.btnInsert.TabIndex = 2
         Me.btnInsert.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
         Me.btnInsert.UseVisualStyleBackColor = False
         '
@@ -222,7 +224,7 @@ Partial Class SC_M22
         Me.btnEnd.Location = New System.Drawing.Point(1238, 9)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 9
+        Me.btnEnd.TabIndex = 6
         Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
         Me.btnEnd.UseVisualStyleBackColor = False
         '
@@ -233,7 +235,7 @@ Partial Class SC_M22
         Me.btnSearch.Location = New System.Drawing.Point(12, 9)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(100, 49)
-        Me.btnSearch.TabIndex = 6
+        Me.btnSearch.TabIndex = 0
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
@@ -289,7 +291,7 @@ Partial Class SC_M22
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1326, 321)
-        Me.gridData.TabIndex = 215
+        Me.gridData.TabIndex = 20
         '
         'Label19
         '
@@ -339,9 +341,10 @@ Partial Class SC_M22
         Me.txtNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtNumber.Location = New System.Drawing.Point(425, 611)
         Me.txtNumber.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNumber.MaxLength = 10
         Me.txtNumber.Name = "txtNumber"
         Me.txtNumber.Size = New System.Drawing.Size(106, 19)
-        Me.txtNumber.TabIndex = 239
+        Me.txtNumber.TabIndex = 33
         Me.txtNumber.Text = "XXXXXXXXXX"
         '
         'slblMargin
@@ -451,7 +454,7 @@ Partial Class SC_M22
         Me.cmbManagementNoType.Location = New System.Drawing.Point(175, 162)
         Me.cmbManagementNoType.Name = "cmbManagementNoType"
         Me.cmbManagementNoType.Size = New System.Drawing.Size(99, 20)
-        Me.cmbManagementNoType.TabIndex = 218
+        Me.cmbManagementNoType.TabIndex = 10
         '
         'Label16
         '
@@ -541,9 +544,10 @@ Partial Class SC_M22
         Me.txtFluctuationDataSection.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFluctuationDataSection.Location = New System.Drawing.Point(583, 611)
         Me.txtFluctuationDataSection.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFluctuationDataSection.MaxLength = 10
         Me.txtFluctuationDataSection.Name = "txtFluctuationDataSection"
         Me.txtFluctuationDataSection.Size = New System.Drawing.Size(106, 19)
-        Me.txtFluctuationDataSection.TabIndex = 240
+        Me.txtFluctuationDataSection.TabIndex = 34
         Me.txtFluctuationDataSection.Text = "XXXXXXXXXX"
         '
         'txtRemartks
@@ -551,9 +555,10 @@ Partial Class SC_M22
         Me.txtRemartks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtRemartks.Location = New System.Drawing.Point(809, 611)
         Me.txtRemartks.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtRemartks.MaxLength = 50
         Me.txtRemartks.Name = "txtRemartks"
         Me.txtRemartks.Size = New System.Drawing.Size(363, 19)
-        Me.txtRemartks.TabIndex = 241
+        Me.txtRemartks.TabIndex = 35
         Me.txtRemartks.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label10

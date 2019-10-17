@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-M10>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT 設備NO,設備略称,標準通過工程コード,ラインコード,工程コード,表示順序,
+          CASE 自動ラベルフラグ WHEN 0 THEN N'０：手動ラベル' WHEN 1 THEN N'１：自動ラベル' ELSE ' ' END AS 自動ラベルフラグ,
+          備考 FROM 設備マスタ {0} ORDER BY 設備NO
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT '00' AS 工程コード, '' AS 工程略称 UNION SELECT 工程コード,(工程コード+ ':' +工程略称) AS 工程略称 FROM 工程マスタ ORDER BY 工程コード
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT '00' AS 標準通過工程コード, '' AS 標準通過工程略称 UNION SELECT 標準通過工程コード,(標準通過工程コード+ ':' +標準通過工程略称) AS 標準通過工程略称 FROM 標準通過工程マスタ ORDER BY 標準通過工程コード
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT '00' AS コード, '' AS コード名称 UNION SELECT コード,(コード+ ':' +コード名称) AS コード名称 FROM コードマスタ WHERE コード区分='{0}' ORDER BY コード
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_005">
+        <Text>
+          SELECT 設備NO FROM 設備マスタ WHERE 設備NO='{0}'
+        </Text>
+      </SQL>
+    </Selects>
+
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          WHERE 工程コード='{0}'
+        </Text>
+      </SQL>
+    </Wheres>
+
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE 設備マスタ set 設備略称='{1}',,標準通過工程コード='{2}',,ラインコード='{3}',,工程コード='{4}',,表示順序='{5}',,自動ラベルフラグ='{6}',,備考='{7}', WHERE 設備NO='{0}'
+        </Text>
+      </SQL>
+    </Updates>
+
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO 設備マスタ(事業所コード,設備NO,設備略称,標準通過工程コード,ラインコード,工程コード,表示順序,自動ラベルフラグ,備考) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')
+        </Text>
+      </SQL>
+    </Inserts>
+
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE FROM 設備マスタ WHERE 設備NO='{0}'
+        </Text>
+      </SQL>
+    </Deletes>
+  </SC-M10>
+</Configuration>
