@@ -26,7 +26,6 @@ Public Class SC_M22
 
     Dim xml As New CmnXML("SC-M22.xml", "SC-M22")
 
-
     ''' <summary>
     ''' 　画面初期化
     ''' </summary>
@@ -43,7 +42,6 @@ Public Class SC_M22
         Me.txtRemartks.Text = String.Empty
 
         setManagementNoType()
-
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
@@ -195,7 +193,7 @@ Public Class SC_M22
     ''' 　終了ボタン押下
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        Dim msg As New clsMessage("I00099")
+        Dim msg As New clsMessage("I0099")
         If MsgBox(msg.Show, vbYesNo + vbQuestion, "生産管理システム") = DialogResult.Yes Then
             Me.Close()
         End If
