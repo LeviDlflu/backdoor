@@ -117,6 +117,7 @@ Partial Class SC_M22
         Me.txtManagementNoType.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtManagementNoType.Location = New System.Drawing.Point(14, 611)
         Me.txtManagementNoType.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtManagementNoType.MaxLength = 2
         Me.txtManagementNoType.Name = "txtManagementNoType"
         Me.txtManagementNoType.Size = New System.Drawing.Size(177, 19)
         Me.txtManagementNoType.TabIndex = 237
@@ -127,6 +128,7 @@ Partial Class SC_M22
         Me.txtFixedPart.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFixedPart.Location = New System.Drawing.Point(254, 611)
         Me.txtFixedPart.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFixedPart.MaxLength = 8
         Me.txtFixedPart.Name = "txtFixedPart"
         Me.txtFixedPart.Size = New System.Drawing.Size(100, 19)
         Me.txtFixedPart.TabIndex = 238
@@ -339,6 +341,7 @@ Partial Class SC_M22
         Me.txtNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtNumber.Location = New System.Drawing.Point(425, 611)
         Me.txtNumber.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtNumber.MaxLength = 10
         Me.txtNumber.Name = "txtNumber"
         Me.txtNumber.Size = New System.Drawing.Size(106, 19)
         Me.txtNumber.TabIndex = 239
@@ -541,6 +544,7 @@ Partial Class SC_M22
         Me.txtFluctuationDataSection.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtFluctuationDataSection.Location = New System.Drawing.Point(583, 611)
         Me.txtFluctuationDataSection.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtFluctuationDataSection.MaxLength = 10
         Me.txtFluctuationDataSection.Name = "txtFluctuationDataSection"
         Me.txtFluctuationDataSection.Size = New System.Drawing.Size(106, 19)
         Me.txtFluctuationDataSection.TabIndex = 240
@@ -551,6 +555,7 @@ Partial Class SC_M22
         Me.txtRemartks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.txtRemartks.Location = New System.Drawing.Point(809, 611)
         Me.txtRemartks.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtRemartks.MaxLength = 50
         Me.txtRemartks.Name = "txtRemartks"
         Me.txtRemartks.Size = New System.Drawing.Size(363, 19)
         Me.txtRemartks.TabIndex = 241
