@@ -41,7 +41,7 @@ Public Class SC_M22
         Me.txtFluctuationDataSection.Text = String.Empty
         Me.txtRemartks.Text = String.Empty
 
-        setManagementNoType()
+        setManagementNoType("")
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
@@ -53,7 +53,7 @@ Public Class SC_M22
     ''' <summary>
     ''' 　画面項目管理NO種別初期化
     ''' </summary>
-    Private Sub setManagementNoType()
+    Private Sub setManagementNoType(ByVal str As String)
 
         Try
 
@@ -80,6 +80,10 @@ Public Class SC_M22
 
                 clsSQLServer.Disconnect()
 
+            End If
+
+            If Not IsNothing(str) Then
+                Me.cmbManagementNoType.Text = str
             End If
 
         Catch ex As Exception
@@ -227,7 +231,7 @@ Public Class SC_M22
                 If dt.Rows.Count = 0 Then
 
                     MsgBox(String.Format(clsGlobal.MSG2("W0008")),
-                           vbCritical,
+                           vbExclamation,
                            My.Settings.systemName)
 
                     clsSQLServer.Disconnect()
@@ -298,6 +302,8 @@ Public Class SC_M22
                   My.Settings.systemName) = DialogResult.OK Then
             gridData.Columns.Clear()
 
+            Me.cmbManagementNoType.Text = String.Empty
+
             Me.txtManagementNoType.Text = String.Empty
             Me.txtFixedPart.Text = String.Empty
             Me.txtNumber.Text = String.Empty
@@ -311,7 +317,7 @@ Public Class SC_M22
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
 
         If MsgBox(String.Format(clsGlobal.MSG2("I0001")),
-                  vbOKCancel + vbExclamation,
+                  vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
             If txtManagementNoType.Text.Equals(String.Empty) Then
@@ -354,7 +360,7 @@ Public Class SC_M22
 
                         '重複データがある場合、メッセージを表示して、追加処理を終止する
                         MsgBox(String.Format(clsGlobal.MSG2("W0009")),
-                               vbCritical,
+                               vbExclamation,
                                My.Settings.systemName)
 
                         clsSQLServer.Disconnect()
@@ -374,9 +380,10 @@ Public Class SC_M22
 
                     clsSQLServer.Disconnect()
 
+                    setManagementNoType(Me.cmbManagementNoType.Text)
+
                     btnSearch_Click(sender, e)
 
-                    setManagementNoType()
 
                 End If
 
@@ -401,7 +408,7 @@ Public Class SC_M22
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
         If MsgBox(String.Format(clsGlobal.MSG2("I0002")),
-                  vbOKCancel + vbExclamation,
+                  vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
             Try
@@ -445,6 +452,7 @@ Public Class SC_M22
                     End If
 
                     clsSQLServer.Disconnect()
+
                     btnSearch_Click(sender, e)
                 End If
             Catch ex As Exception
@@ -463,13 +471,14 @@ Public Class SC_M22
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
         If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
-                  vbOKCancel + vbExclamation,
+                  vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
+                    Dim sqlstr As String
                     Dim selectedCount As Boolean = False
                     'レコード存在しない場合、エラーが発生する
                     If gridData.Rows.Count = 0 Then
@@ -484,7 +493,7 @@ Public Class SC_M22
                         '横位置
                         If gridData.Rows(i).Cells(0).Value = True Then
 
-                            Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
+                            sqlstr = xml.GetSQL_Str("DELETE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
@@ -503,11 +512,27 @@ Public Class SC_M22
                         Return
                     End If
 
+                    If Not Me.cmbManagementNoType.Text.Equals(String.Empty) Then
+                        sqlstr = xml.GetSQL_Str("SELECT_003")
+                        sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
+                        Dim dt As New DataTable()
+
+                        dt = clsSQLServer.GetDataTable(sqlstr)
+
+                        If dt.Rows.Count = 0 Then
+                            MsgBox("画面対応検索条件のデータ削除のため、全件検索実行",
+                                   vbExclamation,
+                                   My.Settings.systemName)
+                            Me.cmbManagementNoType.Text = String.Empty
+                        End If
+                    End If
+
                     clsSQLServer.Disconnect()
+
+                    setManagementNoType(Me.cmbManagementNoType.Text)
 
                     btnSearch_Click(sender, e)
 
-                    setManagementNoType()
                 End If
             Catch ex As Exception
                 Throw
