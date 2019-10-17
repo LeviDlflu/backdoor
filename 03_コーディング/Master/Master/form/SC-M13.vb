@@ -232,7 +232,7 @@
                         '重複データがある場合、メッセージを表示して、追加処理を終止する
                         msg = New clsMessage("W0009")
 
-                        MsgBox(msg.Show, vbCritical, CONST_MASTER_NAME)
+                        MsgBox(msg.Show, vbExclamation, CONST_MASTER_NAME)
 
                         clsSQLServer.Disconnect()
 
