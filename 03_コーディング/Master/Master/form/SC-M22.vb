@@ -230,6 +230,8 @@ Public Class SC_M22
 
                 If dt.Rows.Count = 0 Then
 
+                    gridData.Columns.Clear()
+
                     MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
                            My.Settings.systemName)
@@ -520,7 +522,7 @@ Public Class SC_M22
                         dt = clsSQLServer.GetDataTable(sqlstr)
 
                         If dt.Rows.Count = 0 Then
-                            MsgBox("画面対応検索条件のデータ削除のため、全件検索実行",
+                            MsgBox("検索条件のデータが削除されたのため、全件検索実行する",
                                    vbExclamation,
                                    My.Settings.systemName)
                             Me.cmbManagementNoType.Text = String.Empty
