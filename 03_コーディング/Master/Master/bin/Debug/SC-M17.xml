@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-M17>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT 氏名コード FROM 社員マスタ
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT 氏名コード,氏名,備考 FROM 社員マスタ
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT 氏名コード,氏名,備考 FROM 社員マスタ WHERE 氏名コード = '{0}'
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT 氏名コード,氏名,備考 FROM 社員マスタ WHERE 氏名コード >= '{0}' ORDER BY 氏名コード
+        </Text>
+      </SQL>
+    </Selects>
+    
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE 社員マスタ set 氏名='{1}',備考='{2}' WHERE 氏名コード='{0}'
+        </Text>
+      </SQL>
+    </Updates>
+    
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO 社員マスタ(氏名コード,氏名,備考) VALUES ('{0}','{1}','{2}')
+        </Text>
+      </SQL>
+    </Inserts>
+
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE FROM 社員マスタ WHERE 氏名コード='{0}'
+        </Text>
+      </SQL>
+    </Deletes>
+  </SC-M17>
+</Configuration>
