@@ -103,7 +103,7 @@ Partial Class SC_M13
         Me.cmbProcessCode.Location = New System.Drawing.Point(7, 171)
         Me.cmbProcessCode.Name = "cmbProcessCode"
         Me.cmbProcessCode.Size = New System.Drawing.Size(180, 20)
-        Me.cmbProcessCode.TabIndex = 154
+        Me.cmbProcessCode.TabIndex = 20
         '
         'Label16
         '
@@ -213,7 +213,7 @@ Partial Class SC_M13
         Me.btnEnd.Location = New System.Drawing.Point(1236, 9)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 9
+        Me.btnEnd.TabIndex = 11
         Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
         Me.btnEnd.UseVisualStyleBackColor = False
         '
@@ -255,7 +255,7 @@ Partial Class SC_M13
         Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1321, 321)
-        Me.gridData.TabIndex = 151
+        Me.gridData.TabIndex = 30
         '
         'Panel1
         '
@@ -280,7 +280,7 @@ Partial Class SC_M13
         Me.btnDelete.Location = New System.Drawing.Point(331, 9)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(102, 49)
-        Me.btnDelete.TabIndex = 129
+        Me.btnDelete.TabIndex = 9
         Me.btnDelete.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
         Me.btnDelete.UseVisualStyleBackColor = False
         '
@@ -291,7 +291,7 @@ Partial Class SC_M13
         Me.btnUpdate.Location = New System.Drawing.Point(223, 9)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(102, 49)
-        Me.btnUpdate.TabIndex = 128
+        Me.btnUpdate.TabIndex = 8
         Me.btnUpdate.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
         Me.btnUpdate.UseVisualStyleBackColor = False
         '
@@ -302,7 +302,7 @@ Partial Class SC_M13
         Me.btnInsert.Location = New System.Drawing.Point(117, 9)
         Me.btnInsert.Name = "btnInsert"
         Me.btnInsert.Size = New System.Drawing.Size(100, 49)
-        Me.btnInsert.TabIndex = 127
+        Me.btnInsert.TabIndex = 7
         Me.btnInsert.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
         Me.btnInsert.UseVisualStyleBackColor = False
         '
@@ -313,7 +313,7 @@ Partial Class SC_M13
         Me.btnClear.Location = New System.Drawing.Point(439, 9)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(100, 49)
-        Me.btnClear.TabIndex = 7
+        Me.btnClear.TabIndex = 10
         Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
         Me.btnClear.UseVisualStyleBackColor = False
         '
@@ -387,7 +387,7 @@ Partial Class SC_M13
         Me.txtDefectName.MaxLength = 14
         Me.txtDefectName.Name = "txtDefectName"
         Me.txtDefectName.Size = New System.Drawing.Size(152, 21)
-        Me.txtDefectName.TabIndex = 163
+        Me.txtDefectName.TabIndex = 42
         Me.txtDefectName.Text = "XXXXXXXXXXXXXX"
         '
         'Label8
@@ -490,7 +490,7 @@ Partial Class SC_M13
         Me.txtDefect.MaxLength = 2
         Me.txtDefect.Name = "txtDefect"
         Me.txtDefect.Size = New System.Drawing.Size(76, 21)
-        Me.txtDefect.TabIndex = 173
+        Me.txtDefect.TabIndex = 41
         Me.txtDefect.Text = "XX"
         '
         'Label21
@@ -517,7 +517,7 @@ Partial Class SC_M13
         Me.cmbProcess.Name = "cmbProcess"
         Me.cmbProcess.Size = New System.Drawing.Size(180, 20)
         Me.cmbProcess.Sorted = True
-        Me.cmbProcess.TabIndex = 175
+        Me.cmbProcess.TabIndex = 40
         '
         'Label6
         '
@@ -538,7 +538,7 @@ Partial Class SC_M13
         Me.txtRemarks.MaxLength = 50
         Me.txtRemarks.Name = "txtRemarks"
         Me.txtRemarks.Size = New System.Drawing.Size(383, 21)
-        Me.txtRemarks.TabIndex = 177
+        Me.txtRemarks.TabIndex = 43
         Me.txtRemarks.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label7
@@ -582,7 +582,7 @@ Partial Class SC_M13
         Me.txtDisplaydivision.MaxLength = 1
         Me.txtDisplaydivision.Name = "txtDisplaydivision"
         Me.txtDisplaydivision.Size = New System.Drawing.Size(76, 21)
-        Me.txtDisplaydivision.TabIndex = 182
+        Me.txtDisplaydivision.TabIndex = 44
         Me.txtDisplaydivision.Text = "XX"
         '
         'SC_M13
