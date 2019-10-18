@@ -99,7 +99,9 @@ Public Class SC_M20
     ''' 　終了ボタン押下
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnMenu5.Click
-        If MsgBox("画面を閉じてよろしいですか？", vbYesNo) = MsgBoxResult.Yes Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
+                  vbYesNo + vbQuestion,
+                  My.Settings.systemName) = DialogResult.Yes Then
             Me.Close()
         End If
     End Sub
@@ -134,8 +136,8 @@ Public Class SC_M20
         'If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
         '    For i As Integer = 0 To 9
         '        Dim xml As XmlNode = xmlLabels(i)
-        '        Dim lblName As String = "lblTitle" & xml.Attributes(1).Value
-        '        Dim lblName2 As String = "lblTitle" & i.ToString() & i.ToString()
+        '        Dim lblName As String = "lblName" & xml.Attributes(1).Value
+        '        Dim lblName2 As String = "lblName" & i.ToString() & i.ToString()
         '        Dim lblControl As Label = Me.Controls.Find(lblName, True).First
         '        Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
 
@@ -325,7 +327,9 @@ Public Class SC_M20
     ''' </summary>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnMenu4.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0009"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0009")),
+          vbOKCancel + vbQuestion,
+          My.Settings.systemName) = DialogResult.OK Then
             gridData.Columns.Clear()
             ComboBox4.SelectedIndex = -1
             Me.dtpWorkingYMD.Value = Now
@@ -339,7 +343,9 @@ Public Class SC_M20
     ''' 
     ''' </summary>
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnMenu1.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0001")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
             If dtpWorkingYMD.Text.Equals(String.Empty) Then
                 MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_WORKING_YMD))
                 dtpWorkingYMD.BackColor = Color.Red
@@ -407,7 +413,9 @@ Public Class SC_M20
     End Sub
 
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnMenu3.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
@@ -463,7 +471,9 @@ Public Class SC_M20
     End Sub
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnMenu2.Click
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel + vbExclamation, TABLENAME) = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0002")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
