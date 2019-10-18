@@ -16,7 +16,6 @@
     Private Const COL_REMARKS As String = "備考"
     Private Const COL_DISPLAY_DIVISION As String = "表示区分"
 
-    Private Const CONST_MASTER_NAME = "B/D生産管理システム"
     Private Const CONST_PROCESS_NAME = "工程コード_略称"
 
     Dim xml As New CmnXML("SC-M13.xml", "SC-M13")
@@ -67,7 +66,7 @@
             Next
             If selectedCount = True Then
                 Dim wMsg As New clsMessage("W0099")
-                If MsgBox(wMsg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+                If MsgBox(wMsg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
                     Me.Close()
                 End If
             End If
@@ -75,7 +74,7 @@
         'レコードを選択されない場合、画面閉じるメッセージを表示する
         If selectedCount = False Then
             Dim msg As New clsMessage("I0099")
-            If MsgBox(msg.Show, vbYesNo + vbQuestion, CONST_MASTER_NAME) = DialogResult.Yes Then
+            If MsgBox(msg.Show, vbYesNo + vbQuestion, My.Settings.systemName) = DialogResult.Yes Then
                 Me.Close()
             End If
         End If
@@ -83,7 +82,8 @@
 
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        controlClear(False)
+        'controlClear(False)
+        controlColorClear()
         getDataToGrid(True)
     End Sub
 
@@ -188,10 +188,10 @@
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
         Dim msg As New clsMessage("I0001")
         '追加確認メッセージ
-        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
             Dim wMsg As New clsMessage("W0001")
             If cmbProcess.Text.Equals(String.Empty) Then
-                '工程コード必須入力メッセージ
+                '工程コード必須チェック
                 MsgBox(String.Format(wMsg.Show, COL_PROCESS_CODE), vbExclamation, COL_PROCESS_CODE)
                 cmbProcess.BackColor = Color.Red
                 cmbProcess.Focus()
@@ -201,7 +201,7 @@
             End If
 
             If txtDefect.Text.Equals(String.Empty) Then
-                '不良コード必須入力メッセージ
+                '不良コード必須チェック
                 MsgBox(String.Format(wMsg.Show, COL_DEFECT_CODE), vbExclamation, COL_DEFECT_CODE)
                 txtDefect.BackColor = Color.Red
                 Return
@@ -210,7 +210,7 @@
             End If
 
             If txtDefectName.Text.Equals(String.Empty) Then
-                '不良現象名必須入力メッセージ
+                '不良現象名必須チェック
                 MsgBox(String.Format(wMsg.Show, COL_DEFECT_PHENOMENON_NAME), vbExclamation, COL_DEFECT_PHENOMENON_NAME)
                 txtDefectName.BackColor = Color.Red
                 Return
@@ -233,7 +233,7 @@
                         '重複データがある場合、メッセージを表示して、追加処理を終止する
                         msg = New clsMessage("W0009")
 
-                        MsgBox(msg.Show, vbExclamation, CONST_MASTER_NAME)
+                        MsgBox(msg.Show, vbExclamation, My.Settings.systemName)
 
                         clsSQLServer.Disconnect()
 
@@ -270,7 +270,7 @@
         Try
             Dim msg As New clsMessage("I0002")
             '更新確認メッセージ
-            If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+            If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     For i As Integer = 0 To gridData.Rows.Count - 1
                         If gridData.Rows(i).Cells(0).Value = True Then
@@ -292,6 +292,7 @@
         Finally
             clsSQLServer.Disconnect()
             controlClear(False)
+            controlColorClear()
         End Try
 
     End Sub
@@ -299,7 +300,7 @@
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
         Dim msg As New clsMessage("I0003")
         '削除確認メッセージ
-        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
 
             Dim wMsg As New clsMessage("W9001")
             Try
@@ -307,7 +308,7 @@
                     Dim selectedCount As Boolean = False
                     'レコード存在しない場合、エラーが発生する
                     If gridData.Rows.Count = 0 Then
-                        MsgBox(wMsg.Show, vbExclamation, CONST_MASTER_NAME)
+                        MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
                         Return
                     End If
                     For i As Integer = 0 To gridData.Rows.Count - 1
@@ -325,7 +326,7 @@
                     Next
                     '選択されてないレコードがエラー発生する
                     If selectedCount = False Then
-                        MsgBox(wMsg.Show, vbExclamation, CONST_MASTER_NAME)
+                        MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
                         Return
                     End If
 
@@ -337,6 +338,7 @@
             Finally
                 clsSQLServer.Disconnect()
                 controlClear(False)
+                controlColorClear()
             End Try
         End If
     End Sub
@@ -347,10 +349,11 @@
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
         Dim msg As New clsMessage("I0009")
         'クリア確認メッセージ
-        If MsgBox(msg.Show, vbOKCancel + vbQuestion, CONST_MASTER_NAME) = DialogResult.OK Then
+        If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
 
             gridData.Columns.Clear()
             controlClear(True)
+            controlColorClear()
         End If
     End Sub
 
@@ -375,13 +378,7 @@
                 Me.cmbProcessCode.ValueMember = dt.Columns.Item(0).ColumnName
 
                 '追加部 工程コード
-                Dim dt2 = clsSQLServer.GetDataTable(sqlstr)
-                '空白行追加
-                Dim drWork2 As DataRow = dt2.NewRow
-                drWork2(dt2.Columns.Item(0).ColumnName) = "0"
-                drWork2(dt2.Columns.Item(1).ColumnName) = " "
-                drWork2(CONST_PROCESS_NAME) = ""
-                dt2.Rows.InsertAt(drWork2, 0)
+                Dim dt2 = dt.Copy()
 
                 Me.cmbProcess.DataSource = dt2
                 Me.cmbProcess.DisplayMember = CONST_PROCESS_NAME
@@ -411,7 +408,7 @@
                     '0件の場合、メッセージを表示する
                     If dt.Rows.Count = 0 Then
                         Dim msg As New clsMessage("W0008")
-                        MsgBox(msg.Show, vbExclamation, CONST_MASTER_NAME)
+                        MsgBox(msg.Show, vbExclamation, My.Settings.systemName)
                         Return
                     End If
                 End If
@@ -438,6 +435,15 @@
         Me.txtDefectName.Text = String.Empty
         Me.txtRemarks.Text = String.Empty
         Me.txtDisplaydivision.Text = 0
+    End Sub
+
+    '画面コントロールのカラーをクリアする
+    Private Sub controlColorClear()
+        Me.cmbProcess.BackColor = Color.White
+        Me.txtDefect.BackColor = Color.White
+        Me.txtDefectName.BackColor = Color.White
+        Me.txtRemarks.BackColor = Color.White
+        Me.txtDisplaydivision.BackColor = Color.White
     End Sub
 
     '追加部の工程コードCombox入力制御
