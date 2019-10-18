@@ -307,10 +307,19 @@ Public Class SC_M22
             Me.cmbManagementNoType.Text = String.Empty
 
             Me.txtManagementNoType.Text = String.Empty
+            Me.txtManagementNoType.BackColor = Color.White
+
             Me.txtFixedPart.Text = String.Empty
+            Me.txtFixedPart.BackColor = Color.White
+
             Me.txtNumber.Text = String.Empty
+            Me.txtNumber.BackColor = Color.White
+
             Me.txtFluctuationDataSection.Text = String.Empty
+            Me.txtFluctuationDataSection.BackColor = Color.White
+
             Me.txtRemartks.Text = String.Empty
+            Me.txtRemartks.BackColor = Color.White
         End If
 
         'clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I002"), ClsLogString.RunState.Msg)
@@ -322,29 +331,29 @@ Public Class SC_M22
                   vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
-            If txtManagementNoType.Text.Equals(String.Empty) Then
+            If Me.txtManagementNoType.Text.Equals(String.Empty) Then
                 MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SNOTYPE))
                 'cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
-                txtManagementNoType.BackColor = Color.Red
+                Me.txtManagementNoType.BackColor = Color.Red
                 Return
             Else
-                txtManagementNoType.BackColor = Color.White
+                Me.txtManagementNoType.BackColor = Color.White
             End If
 
-            If txtFixedPart.Text.Equals(String.Empty) Then
+            If Me.txtFixedPart.Text.Equals(String.Empty) Then
                 MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SFIXEDPART))
-                txtFixedPart.BackColor = Color.Red
+                Me.txtFixedPart.BackColor = Color.Red
                 Return
             Else
-                txtFixedPart.BackColor = Color.White
+                Me.txtFixedPart.BackColor = Color.White
             End If
 
-            If txtNumber.Text.Equals(String.Empty) Then
+            If Me.txtNumber.Text.Equals(String.Empty) Then
                 MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SNUMBER))
-                txtNumber.BackColor = Color.Red
+                Me.txtNumber.BackColor = Color.Red
                 Return
             Else
-                txtNumber.BackColor = Color.White
+                Me.txtNumber.BackColor = Color.White
             End If
 
             Try
@@ -354,7 +363,7 @@ Public Class SC_M22
                     '追加処理の重複データをチェックする
                     Dim dt As New DataTable()
                     Dim sqlstr As String = xml.GetSQL_Str("SELECT_005")
-                    sqlstr = String.Format(sqlstr, txtManagementNoType.Text, txtFixedPart.Text)
+                    sqlstr = String.Format(sqlstr, Me.txtManagementNoType.Text, Me.txtFixedPart.Text)
 
                     dt = clsSQLServer.GetDataTable(sqlstr)
 
@@ -374,11 +383,11 @@ Public Class SC_M22
                     sqlstr = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                            txtManagementNoType.Text,
-                                                            txtFixedPart.Text,
-                                                            txtFluctuationDataSection.Text,
+                                                            Me.txtManagementNoType.Text,
+                                                            Me.txtFixedPart.Text,
+                                                            Me.txtFluctuationDataSection.Text,
                                                             Decimal.Parse(txtNumber.Text),
-                                                            txtRemartks.Text))
+                                                            Me.txtRemartks.Text))
 
                     clsSQLServer.Disconnect()
 
@@ -394,10 +403,19 @@ Public Class SC_M22
             End Try
 
             Me.txtManagementNoType.Text = String.Empty
+            Me.txtManagementNoType.BackColor = Color.White
+
             Me.txtFixedPart.Text = String.Empty
+            Me.txtFixedPart.BackColor = Color.White
+
             Me.txtNumber.Text = String.Empty
+            Me.txtNumber.BackColor = Color.White
+
             Me.txtFluctuationDataSection.Text = String.Empty
+            Me.txtFluctuationDataSection.BackColor = Color.White
+
             Me.txtRemartks.Text = String.Empty
+            Me.txtRemartks.BackColor = Color.White
         End If
     End Sub
 
