@@ -35,6 +35,12 @@ Master
  <param name="cmb">コンボボックス</param>
  <param name="itemList">リストの内容</param>
 </member>
+<member name="M:Master.cmnUtil.GetMessageStr(System.String,System.String,System.String)">
+ <summary>
+ 　画面メッセージ取得
+ </summary>
+ <param name="messageId">メッセージID</param>
+</member>
 <member name="M:Master.SC_M10.createGridData">
  <summary>
  　グリッド用のデータを作成
@@ -51,14 +57,19 @@ Master
  　・行ヘッダーに行番号書き込み
  </summary>
 </member>
+<member name="M:Master.SC_M10.btnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 検索ボタン押下
+ </summary>
+</member>
 <member name="M:Master.SC_M10.TimeSys_Tick(System.Object,System.EventArgs)">
  <summary>
  １秒毎に発生するイベント
  </summary>
 </member>
-<member name="M:Master.SC_M10.btnClear_Click(System.Object,System.EventArgs)">
+<member name="M:Master.SC_M10.SC_M10_Load(System.Object,System.EventArgs)">
  <summary>
- 　クリアボタン押下
+ 初期表示
  </summary>
 </member>
 <member name="M:Master.SC_M10.btnEnd_Click(System.Object,System.EventArgs)">
@@ -66,14 +77,34 @@ Master
  　終了ボタン押下
  </summary>
 </member>
-<member name="M:Master.SC_M10.btnExcel_Click(System.Object,System.EventArgs)">
- <summary>
- 　EXCELボタン押下
- </summary>
-</member>
 <member name="M:Master.SC_M10.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M10.btnCommit_Click(System.Object,System.EventArgs)">
+ <summary>
+ Insert(追加)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M10.Button2_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　更新ボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M10.Button1_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　削除ボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M10.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　クリアボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M10.btnExcel_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　EXCELボタン押下
  </summary>
 </member>
 <member name="M:Master.SC_M13.setGrid(System.Data.DataTable@)">
@@ -82,14 +113,24 @@ Master
  </summary>
  <param name="dtData">データソース</param>
 </member>
-<member name="M:Master.SC_M13.createGridData">
- <summary>
- 　グリッド用のデータを作成
- </summary>
-</member>
 <member name="M:Master.SC_M13.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M13.btnInsert_Click(System.Object,System.EventArgs)">
+ <summary>
+   追加処理
+ </summary>
+</member>
+<member name="M:Master.SC_M13.btnUpdate_Click(System.Object,System.EventArgs)">
+ <summary>
+ 更新処理
+ </summary>
+</member>
+<member name="M:Master.SC_M13.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ クリア処理
  </summary>
 </member>
 <member name="M:Master.SC_M14.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
@@ -195,9 +236,84 @@ Master
  　チェックボックス事件
  </summary>
 </member>
+<member name="M:Master.SC_M19.btnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 検索
+ </summary>
+</member>
+<member name="M:Master.SC_M19.gridData_RowPostPaint(System.Object,System.Windows.Forms.DataGridViewRowPostPaintEventArgs)">
+ <summary>
+ 行番号
+ </summary>
+</member>
 <member name="M:Master.SC_M19.TimeSys_Tick(System.Object,System.EventArgs)">
  <summary>
  １秒毎に発生するイベント
+ </summary>
+</member>
+<member name="M:Master.SC_M19.SetControlsLable">
+ <summary>
+ 名前設定
+ </summary>
+</member>
+<member name="M:Master.SC_M19.SC_M19_Load(System.Object,System.EventArgs)">
+ <summary>
+ 初期表示
+ </summary>
+</member>
+<member name="M:Master.SC_M19.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ クリア
+ </summary>
+</member>
+<member name="M:Master.SC_M19.btnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 終了
+ </summary>
+</member>
+<member name="M:Master.SC_M19.setGrid(System.Data.DataTable@)">
+ <summary>
+ データ一覧を設定
+ </summary>
+</member>
+<member name="M:Master.SC_M19.createGridData">
+ <summary>
+ 　グリッド用のデータを作成
+ </summary>
+</member>
+<member name="M:Master.SC_M19.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M19.btnInsert_Click(System.Object,System.EventArgs)">
+ <summary>
+ Insert(追加)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M19.btnUpdate_Click(System.Object,System.EventArgs)">
+ <summary>
+ Update(更新)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M19.btnDelete_Click(System.Object,System.EventArgs)">
+ <summary>
+ Delete(削除)事件
+ </summary>
+</member>
+<member name="F:Master.SC_M22.headerName">
+ <summary>
+ 　画面一覧のヘッダ部初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M22.Init">
+ <summary>
+ 　画面初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M22.setManagementNoType(System.String)">
+ <summary>
+ 　画面項目管理NO種別初期化
  </summary>
 </member>
 <member name="M:Master.SC_M22.setGrid(System.Data.DataTable@)">
@@ -206,15 +322,50 @@ Master
  </summary>
  <param name="dtData">データソース</param>
 </member>
+<member name="M:Master.SC_M22.SC_M22_Load(System.Object,System.EventArgs)">
+ <summary>
+ 　画面Load
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
 <member name="M:Master.SC_M22.btnEnd_Click(System.Object,System.EventArgs)">
  <summary>
  　終了ボタン押下
  </summary>
 </member>
+<member name="M:Master.SC_M22.btnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　検索ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
 <member name="M:Master.SC_M22.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
  </summary>
+</member>
+<member name="M:Master.SC_M22.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　クリアボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M22.btnUpdate_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　更新ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M22.btnDelete_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　削除ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
 </member>
 <member name="M:Master.SC_MXX.TimeSys_Tick(System.Object,System.EventArgs)">
  <summary>
@@ -234,6 +385,11 @@ Master
 <member name="M:Master.SC_M20.btnEnd_Click(System.Object,System.EventArgs)">
  <summary>
  　終了ボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M20.SetControlsLable">
+ <summary>
+ 名前設定
  </summary>
 </member>
 <member name="M:Master.SC_M20.createGridData">
@@ -256,6 +412,804 @@ Master
  <summary>
  　チェックボックス事件
  </summary>
+</member>
+<member name="M:Master.SC_M20.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="M:Master.SC_M20.btnInsert_Click(System.Object,System.EventArgs)">
+ <summary>
+ 
+ </summary>
+</member>
+<member name="M:Master.clsCSV.ConvertDataTableToCsv(System.Data.DataTable@,System.String@,System.Boolean,System.Boolean)">
+ <summary>
+ DataTableの内容をCSVファイルに保存する
+ </summary>
+ <param name="dt">CSVに変換するDataTable</param>
+ <param name="csvPath">保存先のCSVファイルのパス(ファイル名含む）</param>
+ <param name="writeHeader">ヘッダを書き込む時はtrue。</param>
+ <param name="DoubleQuotesNeed">"で囲む時はtrue。</param>
+</member>
+<member name="M:Master.clsCSV.EncloseDoubleQuotesIfNeed(System.String)">
+ <summary>
+ 必要ならば、文字列をダブルクォートで囲む
+ </summary>
+</member>
+<member name="M:Master.clsCSV.EncloseDoubleQuotes(System.String)">
+ <summary>
+ 文字列をダブルクォートで囲む
+ </summary>
+</member>
+<member name="M:Master.clsCSV.NeedEncloseDoubleQuotes(System.String)">
+ <summary>
+ 文字列をダブルクォートで囲む必要があるか調べる
+ </summary>
+</member>
+<member name="M:Master.clsCSV.FixedLengthDataFileToDataTable(System.Data.DataTable@,System.String,System.Int32[],System.Boolean)">
+ <summary>
+ 固定長ファイル読み込み
+ </summary>
+ <param name="dt">データを入れるDataTable</param>
+ <param name="fileName">ファイル名</param>
+ <param name="FieldSize">各項目のサイズ　　　例）{10, 5, 6, 20}</param>
+ <param name="hasHeader">CSVの一行目がカラム名かどうか</param>
+ <returns></returns>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsCSV.ConvertDataTableToFixedLengthDataFile(System.Data.DataTable@,System.String@,System.String,System.String,System.Boolean)">
+ <summary>
+ DataTableの内容を固定長ファイルに保存する
+ </summary>
+ <param name="dt">CSVに変換するDataTable</param>
+ <param name="filePath">保存先のCSVファイルのパス(ファイル名含む）</param>
+ <param name="writeHeader">ヘッダを書き込む時はtrue。</param>
+ <param name="DoubleQuotesNeed">"で囲む時はtrue。</param>
+</member>
+<member name="M:Master.clsInputLinkage.CheckFolder">
+ <summary>
+ フォルダチェックを行う
+ </summary>>
+ <returns>正常:true 異常:false</returns>
+ <remarks>フォルダチェックを行う</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.CheckFile(System.String,System.String)">
+ <summary>
+ ファイルチェックを行う
+ </summary>>
+ <returns>正常:true 異常:false</returns>
+ <remarks>ファイルチェックを行う</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.CheckResOut(System.String@)">
+ <summary>
+ 出力結果ファイル
+ </summary>>
+ <returns>正常:true 異常:false</returns>
+ <remarks>ヘッダ情報から結果データを判断する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.SendMailResOutputData(Master.clsMail)">
+ <summary>
+ 入力連携結果メール送信処理
+ </summary>
+ <remarks>出力結果をメール送信する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.SendMail(Master.clsMail,System.Int32)">
+ <summary>
+ 入出力連携エラーメール送信処理
+ </summary>
+ <remarks>エラーファイルをメール送信する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.inputCSVToDataSet(System.Data.DataTable@,System.String)">
+ <summary>
+ 受信ファイル読込処理
+ </summary>>
+ <returns></returns>
+ <remarks>txtファイルを読み込みDataSetに格納する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.GetSyslogCnt">
+ <summary>
+ SYSTEMログ件数取得
+ </summary>>
+ <returns></returns>
+ <remarks>システムログの件数取得</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.outputDataSetToFile(System.Data.DataTable)">
+ <summary>
+ ファイル出力処理
+ </summary>>
+ <returns></returns>
+ <remarks>DataSetのデータを固定長ファイルに出力する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.moveFile_out">
+ <summary>
+ ファイル移動
+ </summary>>
+ <returns></returns>
+ <remarks>入力ファイルをバックアップフォルダに移動する</remarks>
+</member>
+<member name="M:Master.clsInputLinkage.moveFile(System.String,System.String)">
+ <summary>
+ ファイル移動
+ </summary>>
+ <returns></returns>
+ <remarks>入力ファイルをバックアップフォルダに移動する</remarks>
+</member>
+<member name="M:Master.clsEtc.Createzip(System.String,System.String)">
+ <summary>
+ 圧縮ファイルを作成する
+ </summary>>
+ <param name="sourceFileName">データテーブル行データ(Out)</param>
+ <param name="WarPath">一時格納用ログフォルダパス</param>
+ <returns>圧縮ファイルのパス</returns>
+ <remarks>圧縮ファイルを作成する</remarks>
+</member>
+<member name="M:Master.clsEtc.DeleteDirectory(System.String)">
+ <summary>
+ フォルダを削除する（ReadOnlyでも削除）
+ </summary>
+ <param name="dir">削除するフォルダ</param>
+</member>
+<member name="M:Master.clsEtc.LenB(System.String)">
+ <summary>
+ バイト数チェック
+ </summary>>
+<param name="stTarget">バイト数取得の対象となる文字列</param>
+<returns>半角 1 バイト、全角 2 バイトでカウントされたバイト数。</returns>
+ <remarks>バイト数と位置を指定して文字列を切り抜く</remarks>
+</member>
+<member name="M:Master.clsEtc.CheckZenHan(System.String)">
+ <summary>
+ 全角半角チェック
+ </summary>>
+<param name="stTarget">全角半角チェックの対象となる文字列</param>
+<returns>全角のみ：vbWide(4) 半角のみ：vbNarrow(8) 混在：-1</returns>
+ <remarks>全角または半角が含まれているかをチェックする</remarks>
+</member>
+<member name="M:Master.clsEtc.MidB(System.String,System.Int32,System.Int32)">
+ <summary>
+ バイト数と位置を指定して文字列を切り抜く
+ </summary>>
+<param name="str">対象の文字列</param>
+ <param name="Start">開始位置</param>
+ <param name="Length">切り抜くバイト数</param>
+ <returns></returns>
+ <remarks>バイト数と位置を指定して文字列を切り抜く</remarks>
+</member>
+<member name="M:Master.clsEtc.PadRightB(System.String,System.Int32,System.String)">
+ <summary>
+ 指定桁数まで文字埋め
+ </summary>>
+<param name="str">対象の文字列</param>
+ <param name="p_Byte">指定桁数</param>
+ <returns></returns>
+ <remarks>指定桁数まで文字埋め(右空白)</remarks>
+</member>
+<member name="M:Master.clsEtc.PadLeftB(System.String,System.Int32,System.String)">
+ <summary>
+ 指定桁数まで文字埋め
+ </summary>>
+<param name="str">対象の文字列</param>
+ <param name="p_Byte">指定桁数</param>
+ <returns></returns>
+ <remarks>指定桁数まで文字埋め(左空白)</remarks>
+</member>
+<member name="M:Master.clsEtc.CheckColmStr(System.String@,System.String@,System.String@,System.Int32@,System.Int32)">
+ <summary>
+ システムログファイル
+ </summary>>
+ <param name="pFile">読み込むファイル</param>
+ <param name="pSplit">区切り文字</param>
+ <param name="pStr">比較文字列</param>
+ <param name="iNum">項目順</param>
+ <param name="pStartLine">システムログ行の開始位置</param>
+ <returns>正常:検索文字あり 異常:検索文字なし</returns>
+ <remarks>指定された項目の値に比較文字列が存在する場合、Trueを返す</remarks>
+</member>
+<member name="M:Master.clsEtc.NumRightB(System.String,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Int32,System.Boolean)">
+ <summary>
+ 指定桁で編集
+ </summary>>
+<param name="str">対象の文字列</param>
+ <param name="p_Byte">指定桁数</param>
+ <param name="p_Seido">精度</param>
+ <param name="p_sign">符号指定</param>
+ <param name="p_abs">絶対値指定</param>
+ <param name="p_syosunasi">小数切捨指定</param>
+ <returns></returns>
+ <remarks>指定桁数に数値を文字変換</remarks>
+</member>
+<member name="M:Master.clsEtc.NumRightSeisu(System.String,System.Int32,System.Int32,System.String@,System.Boolean)">
+ <summary>
+ 指定桁で編集
+ </summary>>
+<param name="str">対象の文字列</param>
+ <param name="p_Byte">指定桁数</param>
+ <param name="p_Seido">精度</param>
+ <param name="p_round">直接指定</param>
+ <returns></returns>
+ <remarks>指定桁数に数値を文字変換</remarks>
+</member>
+<member name="M:Master.clsEtc.HaccyuData(System.String,System.String,System.String)">
+ <summary>
+ 発注依頼区分・発注決定区分・情報コードから連携可否を判断する
+ </summary>>
+<param name="Kbn">発注依頼区分</param>
+ <param name="Kettei">発注決定区分</param>
+ <param name="Zyoho">情報コード</param>
+ <returns>連携可否（""：例外エラー、"0"：連携対象、"1"：連携対象外（ログ出力なし）、"2"：連携対象外（ログ出力））</returns>
+ <remarks>発注依頼区分・発注決定区分・情報コードから連携可否を判断する</remarks>
+</member>
+<member name="M:Master.clsEtc.InputAndZigyousyoCheck(System.Data.DataRow,System.Data.DataRow,Master.clsGlobal.DivisionID,System.String@,System.Boolean@,System.Boolean@,System.Int32)">
+ <summary>
+ 発注残訂正出力連携項目「資材略称」「取引先コード」を事業所発注残と対比し、相違の有無を返す
+ </summary>
+ <param name="InputDataRow">入力ファイルのDataRow</param>
+ <param name="ZigyousyoDataRow">事業所発注残のDataRow</param>
+ <param name="DivisionID">事業所判断識別子</param>
+ <param name="ErrorMessage">エラーメッセージ格納用</param>
+ <param name="MapErrFlg">エラーフラグ</param>
+ <param name="MapWarningErrFlg">ワーニングフラグ</param>
+ <returns>True:相違なし,False:相違あり</returns>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsEtc.ExitData_Sizai(System.Data.DataTable,System.Data.DataRow@,System.String,System.String,System.String,System.String,System.String)">
+ <summary>
+ データテーブルに該当データが存在するか確認する
+ </summary>>
+ <param name="Dt">データテーブル</param>
+ <param name="Dr">該当データ</param>
+ <param name="Div">事業所</param>
+ <param name="l_kojo_code">工場コード</param>
+ <param name="CodeSizai">資材コード</param>
+ <param name="CodeTori">取引先コード</param>
+ <param name="Sizai">資材略称（資材略称で検索する場合のみ設定）</param>
+ <returns></returns>
+ <remarks>データテーブルに入力ファイルの該当データが存在するか確認する</remarks>
+</member>
+<member name="M:Master.clsEtc.ExitData_Tori(System.Data.DataTable,System.Data.DataRow@,System.String,System.String)">
+ <summary>
+ データテーブルに該当データが存在するか確認する
+ </summary>>
+ <param name="Dt">データテーブル</param>
+ <param name="Dr">該当データ</param>
+ <param name="Div">事業所</param>
+ <param name="CodeTori">取引先コード</param>
+ <returns></returns>
+ <remarks>データテーブルに入力ファイルの該当データが存在するか確認する</remarks>
+</member>
+<member name="M:Master.clsEtc.ExitInData_Sizai(System.Data.DataTable,System.String)">
+ <summary>
+ 同一ファイル内検索（資材マスタ）
+ </summary>>
+ <param name="Dt">CUP連携用データテーブル</param>
+ <param name="Key">キー情報</param>
+ <returns></returns>
+ <remarks>同一ファイル内に同キーのレコードがないか検索する</remarks>
+</member>
+<member name="M:Master.clsEtc.ExitInData_Tori(System.String,System.Data.DataTable,System.String,System.String)">
+ <summary>
+ 同一ファイル内検索（取引先マスタ）
+ </summary>>
+ <param name="Dt">CUP連携用データテーブル</param>
+ <param name="Div">事業所</param>
+ <param name="CodeTori">取引先コード</param>
+ <returns></returns>
+ <remarks>同一ファイル内に同キーのレコードがないか検索する</remarks>
+</member>
+<member name="M:Master.clsEtc.CheackResult(System.String,System.Data.DataTable,System.Object)">
+ <summary>
+ 同一キーレコードの連携結果確認
+ </summary>>
+ <param name="Flg_Mst">マスタフラグ（1:資材マスタ、2：取引先マスタ、3:資材マスタ(資材略称））</param>
+ <param name="dt">連携結果用データテーブル</param>
+ <param name="row">連携データ</param>
+ <returns></returns>
+ <remarks>同一キーレコードの連携結果を確認する</remarks>
+</member>
+<member name="M:Master.clsEtc.createInput_Sizai(System.Data.DataRow@,System.Object,System.String,System.String,System.String,System.String)">
+ <summary>
+ 前日情報用データ作成（資材マスタ）
+ </summary>>
+ <param name="DR">連携データ</param>
+ <param name="row">入力ファイル情報（配列）</param>
+ <param name="ptn">更新パターン</param>
+ <param name="Div">事業所</param>
+ <param name="l_kojo_code">工場コード</param>
+ <param name="Sizai">資材略称</param>
+ <returns></returns>
+ <remarks>入力ファイルから前日情報用データをTab区切りで1行にまとめて作成する（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.createInput_Tori(System.Data.DataRow@,System.Object,System.String,System.String,System.String)">
+ <summary>
+ 前日情報用データ作成（取引先マスタ）
+ </summary>>
+ <param name="DR">連携データ</param>
+ <param name="row">入力ファイル情報（配列）</param>
+ <param name="ptn">更新パターン</param>
+ <param name="Div">事業所</param>
+ <param name="ToriCd">取引先コード</param>
+ <returns></returns>
+ <remarks>入力ファイルから前日情報用データをTab区切りで1行にまとめて作成する（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.IsDiff_Sizai(System.Object,System.Data.DataRow@,System.String,System.String)">
+ <summary>
+ 入力ファイルと前日情報の比較を行う（資材マスタ）
+ </summary>>
+ <param name="row">入力ファイル情報</param>
+ <param name="Dr">前日情報</param>
+ <returns></returns>
+ <remarks>入力ファイルと前日情報の比較を行う（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.IsDiff_Tori(System.Object,System.Data.DataRow@,System.String,System.String)">
+ <summary>
+ 入力ファイルと前日情報の比較を行う（取引先マスタ）
+ </summary>>
+ <param name="row">入力ファイル情報</param>
+ <param name="Dr">前日情報</param>
+ <returns></returns>
+ <remarks>入力ファイルと前日情報の比較を行う（取引先マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.EditBeforData(System.String,System.Data.DataTable@,System.Object,System.Data.DataTable@)">
+ <summary>
+ 前日情報データテーブルに当日データを追加・編集
+ </summary>>
+ <param name="Flg_Mst">マスタフラグ（1:資材マスタ、2：取引先マスタ、3：資材マスタ（資材略称））</param>
+ <param name="Dt">前日情報データテーブル</param>
+ <param name="row">入力情報</param>
+ <param name="result">CUP連携結果データテーブル</param>
+ <returns></returns>
+ <remarks>前日情報データテーブルに当日データを追加・編集（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.SetBeforData_Sizai(System.Data.DataRow@,System.Object)">
+ <summary>
+ 前日情報データテーブルのレコード設定（資材マスタ）
+ </summary>>
+ <param name="Dr">前日情報データテーブル</param>
+ <param name="row">入力情報</param>
+ <returns></returns>
+ <remarks>前日情報データテーブルに当日データを追加・編集（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.SetBeforData_Tori(System.Data.DataRow@,System.Object)">
+ <summary>
+ 前日情報データテーブルのレコード設定（取引先マスタ）
+ </summary>>
+ <param name="Dr">前日情報データテーブル</param>
+ <param name="row">入力情報</param>
+ <returns></returns>
+ <remarks>前日情報データテーブルに当日データを追加・編集（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.GetLastFile(System.String[],System.String)">
+ <summary>
+ フォルダ内の最新ファイルを取得する
+ </summary>
+ <param name="files">ファイル</param>
+ <param name="Kojo_kode">工場ｺｰﾄﾞ</param>
+</member>
+<member name="M:Master.clsEtc.SetBeData_Sizai(System.String[]@,System.Object)">
+ <summary>
+ 連携対象外用前日情報用データ設定（資材マスタ）
+ </summary>>
+ <param name="stArrayData">設定用配列</param>
+ <param name="row">入力ファイル情報（配列）</param>
+ <returns></returns>
+ <remarks>入力ファイル情報から前日情報用データを配列にセットする（資材マスタ）</remarks>
+</member>
+<member name="M:Master.clsEtc.GetLogType(System.String,System.Int32,System.Int32,System.Boolean@,System.Boolean@)">
+ <summary>
+ ログ種別取得
+ </summary>
+ <param name="strErrMes">メッセージ</param>
+ <param name="FlgType">処理タイプ(1：メッセージID、2：メッセージ内容)</param>
+ <param name="RtnType">戻り値タイプ(1：エラーID(3(ERR)、5(WARNING))、2：文字列(【ERR】、【WAR】))</param>
+ <param name="ERRFLG">エラーフラグ(true：エラーあり、false：エラーなし)</param>
+ <param name="WARFLG">ワーニングフラグ(true：ワーニングあり、false：ワーニングなし)</param>
+ <returns></returns>
+ <remarks>指定されたメッセージのログ種別を判断する</remarks>
+</member>
+<member name="F:Master.clsLogTrace.LogType.Trace">
+ <summary>
+ Trace
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsLogTrace.LogType.Exception">
+ <summary>
+ Exception
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsLogTrace.LogLevel.All">
+ <summary>
+ 全て出力
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsLogTrace.LogLevel.Infomation">
+ <summary>
+ インフォメーション + エラーメッセージ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsLogTrace.LogLevel.Err">
+ <summary>
+ エラーメッセージのみ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsLogTrace.GetInstance">
+ <remarks>バッチ操作ログのインスタンス取得します。</remarks>
+</member>
+<member name="M:Master.clsLogTrace.GetExInstance">
+ <remarks>Exceptionログのインスタンスを取得します。</remarks>
+</member>
+<member name="M:Master.clsLogTrace.CloseInstance">
+ <remarks>ログ出力を終了します。</remarks>
+</member>
+<member name="M:Master.clsLogTrace.TraceWrite(System.String,Master.ClsLogString.RunState,Master.clsLogTrace.LogLevel)">
+ <summary>
+ <remarks>バッチ操作ログを出力する。</remarks>
+ </summary>
+ <param name="Message"></param>
+ <param name="Level"></param>
+</member>
+<member name="M:Master.clsLogTrace.TraceWrite(Master.ClsLogString,Master.clsLogTrace.LogLevel)">
+ <remarks>バッチ操作ログを出力する。</remarks>
+</member>
+<member name="M:Master.clsLogTrace.ExceptionWrite(System.Exception)">
+ <remarks>Exceptionの内容をログに出力する。</remarks>
+</member>
+<member name="M:Master.clsLogTrace.FileDelete(System.Double)">
+ <remarks>一定保存期間を過ぎたログファイルを削除する</remarks>
+</member>
+<member name="M:Master.clsLogTrace.ZipFileDelete(System.Double)">
+ <remarks>一定保存期間を過ぎたログファイルを削除する</remarks>
+</member>
+<member name="T:Master.ClsLogString">
+ <remarks>ログ出力用の文字列操作クラス。</remarks>
+</member>
+<member name="T:Master.ClsLogString.RunState">
+ <summary>
+ 実行区分
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.Begin">
+ <summary>
+ Begin Of Job
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.End">
+ <summary>
+ End Of Job
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.Msg">
+ <summary>
+ 処理状況メッセージ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.Err">
+ <summary>
+ エラーメッセージ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.Exception">
+ <summary>
+ エラーException
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.ClsLogString.RunState.Warning">
+ <summary>
+ エラーWarning
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Master.ClsLogString.RunString">
+ <summary>
+ 実行区分文字列取得
+ </summary>
+ <value>実行区分文字列取得</value>
+ <returns>実行区分文字列取得</returns>
+ <remarks>実行区分文字列を取得します。</remarks>
+</member>
+<member name="M:Master.ClsLogString.#ctor(Master.ClsLogString.RunState,System.String)">
+ <summary>
+ インスタンス生成
+ </summary>
+ <param name="Message">メッセージ</param>
+ <remarks>インスタンスを生成します。</remarks>
+</member>
+<member name="M:Master.ClsLogString.GetLogString">
+ <remarks>カンマ区切りのログ出力文字列を生成する。</remarks>
+</member>
+<member name="M:Master.ClsLogString.GetStateName">
+ <remarks>実行区分文字列を取得します。</remarks>
+</member>
+<member name="M:Master.clsMail.Send_Mail">
+ <summary>
+ メール送信を行う
+ </summary>>
+ <returns>正常:true 異常:false</returns>
+ <remarks>メール送信を行う</remarks>
+</member>
+<member name="M:Master.clsMail.Send_To">
+ <summary>
+ メールアドレスの取得を行う
+ </summary>>
+ <returns>正常:true 異常:false</returns>
+ <remarks>メールアドレスの取得を行う</remarks>
+</member>
+<member name="M:Master.clsMessage.#ctor(System.String)">
+ <summary>
+ コンストラクタ
+ メッセージへの引数が無い場合
+ </summary>
+ <remarks>メッセージヘッダーを設定します。</remarks>
+</member>
+<member name="M:Master.clsMessage.Show">
+ <summary>
+ 表示
+ </summary>
+ <returns>メッセージのボタン操作結果</returns>
+ <remarks>メッセージを表示します。</remarks>
+</member>
+<member name="M:Master.clsMessage.GetMessage(System.String)">
+ <summary>
+ メッセージ内容の取得
+ </summary>
+ <param name="strMessageId">メッセージID</param>
+ <returns>メッセージ内容</returns>
+ <remarks>メッセージ内容を取得します。</remarks>
+</member>
+<member name="M:Master.clsMessage.GetData(System.String)">
+ <summary>
+ XMLファイルから指定されたノードの文字列を返す
+ </summary>
+ <param name="pvDataPath"></param>
+ <returns></returns>
+ <remarks>XMLファイルから指定されたノードの文字列を返す</remarks>
+</member>
+<member name="F:Master.clsSQLServer._oDB">
+ <summary>
+ データベース接続クラス
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Master.clsSQLServer.DataBase">
+ <summary>
+ データベース接続クラスインスタンス
+ </summary>
+ <value>データベース接続クラス</value>
+ <returns>データベース接続クラス</returns>
+ <remarks>データベース接続クラスインスタンスの設定を行います。</remarks>
+</member>
+<member name="F:Master.clsSQLServer.m_ConnectionString">
+ <summary>
+ デフォルトデータセットテーブル名称
+ </summary>
+ <remarks>データセットのデフォルトのテーブル名称。テーブル名称でアクセスする際に使用します。</remarks>
+</member>
+<member name="F:Master.clsSQLServer._strDBConnectString">
+ <summary>
+ DBへの接続文字列
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsSQLServer.ConnectString(System.String)">
+ <summary>
+ データベース接続文字列
+ </summary>
+ <param name="str">DBへの接続文字列</param>
+ <remarks>データベース接続文字列を設定します。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.Connect(System.String)">
+ <summary>
+ DBオープン
+ </summary>
+ <param name="myConnectString">接続文字列</param>
+ <remarks>DBをオープンします。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.Disconnect">
+ <summary>
+ DB切断
+ </summary>
+ <remarks>DBを切断します。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.BeginTransaction">
+ <summary>
+ トランザクション開始
+ </summary>
+ <remarks>トランザクションを開始します。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.Commit">
+ <summary>
+ トコミット
+ </summary>
+ <remarks>コミットを開始します。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.Rollback">
+ <summary>
+ ロールバック
+ </summary>
+ <remarks>ロールバックを開始します。</remarks>
+</member>
+<member name="M:Master.clsSQLServer.ExecuteQuery(System.String,System.String,System.String)">
+ <summary>
+ SQL発行
+ </summary>
+ <param name="pvSql">発行SQL</param>
+ <returns>影響を受けた行数を返します。</returns>
+ <remarks>戻り値はそのコマンドの影響を受ける行の数です。CREATE TABLE ステートメントおよび DROP TABLE ステートメントでは、
+ 戻り値は 0 です。その他の種類のステートメントでは、戻り値は -1 です。 </remarks>
+</member>
+<member name="M:Master.clsSQLServer.Connect2(System.String)">
+ <summary>
+ DBオープン
+ </summary>
+ <param name="myConnectString">接続文字列</param>
+ <remarks>DBをオープンします。</remarks>
+</member>
+<member name="T:Master.clsXML">
+ <summary>
+ XMLクラス
+ </summary>
+ <remarks>XML用の設定を行います。</remarks>
+</member>
+<member name="F:Master.clsXML.m_xmlDoc">
+ <summary>
+ XMLオブジェクト
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsXML.m_strMsg">
+ <summary>
+ エラーメッセージ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.clsXML.m_iErrNo">
+ <summary>
+ エラー番号
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsXML.#ctor">
+ <summary>
+ コンストラクタ
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Master.clsXML.LoadXML(System.String)">
+ <summary>
+ XMLファイルを読込む
+ </summary>
+ <param name="XmlName">XMLファイル名</param>
+ <returns>True:正常 False:異常</returns>
+ <remarks>XMLファイルを読込みます。</remarks>
+</member>
+<member name="M:Master.clsXML.SaveXML(System.String)">
+ <summary>
+ XMLファイルを保存
+ </summary>
+ <param name="XmlName">XMLファイル名</param>
+ <returns>True:正常 False:異常</returns>
+ <remarks>XMLファイルを保存します。</remarks>
+</member>
+<member name="M:Master.clsXML.GetXmlData(System.String,System.String@)">
+ <summary>
+ XMLファイルから指定されたノードの文字列を返す
+ </summary>
+ <param name="strNodePath">取得対象ノードへのXPath</param>
+ <param name="strNodeText">ノード内文字列</param>
+ <returns>True:正常 False:異常</returns>
+ <remarks>XMLファイルから指定されてノードの文字列を返します。</remarks>
+</member>
+<member name="M:Master.clsXML.GetXmlDataCmb(System.String,System.Collections.ArrayList@)">
+ <summary>
+ XMLファイルからコンボボックスのデータを取得
+ </summary>
+ <param name="strNodePath">取得対象ノードへのXPath</param>
+ <param name="arrData">コンボ文字列</param>
+ <returns>True:正常 False:異常</returns>
+ <remarks>XMLファイルからコンボボックスのデータを取得します。</remarks>
+</member>
+<member name="M:Master.clsXML.SetXmlData(System.String,System.String)">
+ <summary>
+ XMLファイルの指定されたノードに文字列を設定
+ </summary>
+ <param name="strNodePath">取得対象ノードへのXPath</param>
+ <param name="strNodeText">ノード内文字列</param>
+ <returns>True:正常 False:異常</returns>
+ <remarks>XMLファイルの指定されたノードに文字列を設定します。</remarks>
+</member>
+<member name="M:Master.clsXML.SetErrorMessage(System.Int32,System.String)">
+ <summary>
+ クラス内での最後のエラーメッセージを格納する
+ </summary>
+ <param name="iErrorNo">エラー番号</param>
+ <param name="strMsg">エラーメッセージ文字列</param>
+ <remarks>クラス内での最後のエラーメッセージを格納します。</remarks>
+</member>
+<member name="T:Master.cls_CmbBoxData">
+ <summary>
+ コンボボックスデータクラス
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.cls_CmbBoxData.DisplayMember">
+ <summary>
+ 表示メンバー
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="F:Master.cls_CmbBoxData.ValueMember">
+ <summary>
+ バリューメンバー
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="M:Master.cls_CmbBoxData.#ctor(System.String,System.Decimal)">
+ <summary>
+ コンボボックスデータ格納
+ </summary>
+ <param name="strText">文字列</param>
+ <param name="decValue">数値</param>
+ <remarks>コンボボックスのデータを格納します。</remarks>
+</member>
+<member name="P:Master.cls_CmbBoxData.Text">
+ <summary>
+ テキストデータ
+ </summary>
+ <value>テキストデータ</value>
+ <returns>テキストデータ</returns>
+ <remarks>テキストデータを格納します。</remarks>
+</member>
+<member name="P:Master.cls_CmbBoxData.Value">
+ <summary>
+ 数値データ
+ </summary>
+ <value>数値データ</value>
+ <returns>数値データ</returns>
+ <remarks>数値データを格納します。</remarks>
+</member>
+<member name="M:Master.clsGlobal.FileDelete">
+ <remarks>一定保存期間を過ぎたログファイルを削除する</remarks>
+</member>
+<member name="F:Master.clsGlobal._oDB">
+ <summary>
+ データベース接続クラス
+ </summary>
+ <remarks></remarks>
+</member>
+<member name="P:Master.clsGlobal.DataBase">
+ <summary>
+ データベース接続クラスインスタンス
+ </summary>
+ <value>データベース接続クラス</value>
+ <returns>データベース接続クラス</returns>
+ <remarks>データベース接続クラスインスタンスの設定を行います。</remarks>
+</member>
+<member name="M:Master.clsGlobal.MSG(System.String)">
+ <summary>
+ メッセージ表示
+ </summary>
+ <param name="strMessageID">メッセージID</param>
+ <returns>メッセージ</returns>
+ <remarks>メッセージ表示クラスを使用してメッセージを表示します。</remarks>
+</member>
+<member name="M:Master.clsGlobal.MSG2(System.String)">
+ <summary>
+ メッセージ表示2
+ </summary>
+ <param name="strMessageID">メッセージID</param>
+ <returns>メッセージ2</returns>
+ <remarks>メッセージ表示クラスを使用してメッセージを表示します。</remarks>
 </member>
 </members>
 </doc>

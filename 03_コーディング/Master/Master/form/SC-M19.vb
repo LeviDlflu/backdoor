@@ -25,10 +25,10 @@ Public Class SC_M19
     Private Const MSG_TIME As String = "休憩開始時間は休憩終了時間より大きくない。"
     Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
 
-    Dim xml As New CmnXML("SC-M19.xml")
+    Dim xml As New CmnXML("SC-M19.xml", "SC-M19")
 
     Dim strLanguage As String = "jpn"
-    Dim lngXml As New CmnXML("LanguageDefine.xml")
+    Dim lngXml As New CmnXML("LanguageDefine.xml", "")
     Dim mXmlDoc As New XmlDocument
 
     ''' <summary>
@@ -179,7 +179,7 @@ Public Class SC_M19
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 '工程コード
-                strSelect = xml.GetSQL("select", "select_002")
+                strSelect = xml.GetSQL_Str("SELECT_002")
                 dt = clsSQLServer.GetDataTable(strSelect)
                 Me.cmbKoutei.DataSource = dt
                 Me.cmbKoutei.ValueMember = dt.Columns.Item(0).ColumnName
@@ -193,14 +193,14 @@ Public Class SC_M19
                 Me.cmb_Koutei.DisplayMember = dt2.Columns.Item(1).ColumnName
 
                 '区分
-                strSelect = xml.GetSQL("select", "select_003")
+                strSelect = xml.GetSQL_Str("SELECT_003")
                 dt = clsSQLServer.GetDataTable(String.Format(strSelect, "45"))
                 Me.cmbKubun.DataSource = dt
                 Me.cmbKubun.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmbKubun.DisplayMember = dt.Columns.Item(1).ColumnName
 
                 'ライン区分
-                strSelect = xml.GetSQL("select", "select_003")
+                strSelect = xml.GetSQL_Str("SELECT_003")
                 dt = clsSQLServer.GetDataTable(String.Format(strSelect, "87"))
                 Me.cmbLine.DataSource = dt
                 Me.cmbLine.ValueMember = dt.Columns.Item(0).ColumnName
@@ -332,8 +332,8 @@ Public Class SC_M19
     ''' </summary>
     Private Function createGridData() As DataTable
         Dim dt As New DataTable
-        Dim strSelect As String = xml.GetSQL("select", "select_001")
-        Dim strWhere As String = xml.GetSQL("where", "where_001")
+        Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
+        Dim strWhere As String = xml.GetSQL_Str("WHERE_001")
         Dim selectSql As String
 
         If String.IsNullOrEmpty(cmb_Koutei.Text) Then
@@ -477,7 +477,7 @@ Public Class SC_M19
 
                 '重複チェック
                 Dim resultData As DataTable = New DataTable
-                Dim strSelect As String = xml.GetSQL("select", "select_004")
+                Dim strSelect As String = xml.GetSQL_Str("SELECT_004")
                 '工程コード/区分/ライン区分
                 resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
                 If resultData IsNot Nothing And resultData.Rows.Count > 0 Then
@@ -510,7 +510,7 @@ Public Class SC_M19
 
                 'データを追加
                 If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
-                    Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
+                    Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                 strKouteiCode,
@@ -548,7 +548,6 @@ Public Class SC_M19
     ''' </summary>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnMenu2.Click
 
-        Dim bolSelect As Boolean = False
         Dim gridCells As DataGridViewCellCollection
 
         Try
@@ -608,7 +607,7 @@ Public Class SC_M19
 
                         '存在チェック
                         Dim resultData As DataTable = New DataTable
-                        Dim strSelect As String = xml.GetSQL("select", "select_004")
+                        Dim strSelect As String = xml.GetSQL_Str("SELECT_004")
                         '工程コード/区分/ライン区分
                         resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
                         If resultData Is Nothing Or resultData.Rows.Count < 1 Then
@@ -640,7 +639,7 @@ Public Class SC_M19
                         'データを更新
                         If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
 
-                            Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                            Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                             strKouteiCode,
@@ -692,7 +691,7 @@ Public Class SC_M19
 
                             '存在チェック
                             Dim resultData As DataTable = New DataTable
-                            Dim strSelect As String = xml.GetSQL("select", "select_004")
+                            Dim strSelect As String = xml.GetSQL_Str("SELECT_004")
                             resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
 
                             If resultData Is Nothing Or resultData.Rows.Count < 1 Then
@@ -707,7 +706,7 @@ Public Class SC_M19
                                 gridData.Rows(i).Cells(COL_DATE_CHANGE_INDICATOR).Style.BackColor = Color.White
 
                                 '削除
-                                Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+                                Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
 
                                 clsSQLServer.ExecuteQuery(String.Format(sqlstr, strKouteiCode, strKubunCode, strLineCode))
 

@@ -1,21 +1,112 @@
 ﻿<?xml version="1.0"?>
+<Configuration>
 <SC-M13>
-	<select id="select_001">
-    SELECT 工程コード,不良コード,不良現象名,備考,表示区分 FROM 不良現象マスタ
-  </select>
-  <select id="select_002">
-    SELECT DISTINCT(工程コード) FROM 不良現象マスタ
-  </select>
-  <select id="select_003">
-    SELECT 工程コード,不良コード,不良現象名,備考,表示区分 FROM 不良現象マスタ WHERE 工程コード='{0}'
-  </select>
-	<update id="update_001">
-    UPDATE 不良現象マスタ set 不良現象名='{2}',備考='{3}',表示区分='{4}' WHERE 工程コード='{0}' AND 不良コード='{1}'
-  </update>
-	<insert id="insert_001">
-    INSERT INTO 不良現象マスタ(工程コード,不良コード,不良現象名,備考,表示区分) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}')
-  </insert>
-	<delete id="delete_001">
-    DELETE FROM 不良現象マスタ WHERE 工程コード='{0}' AND 不良コード='{1}'
-  </delete>
+  <Selects>
+    <SQL ID="SELECT_001">
+      <Text>
+        SELECT 
+          工程コード,
+          不良コード,
+          不良現象名,
+          備考,
+          表示区分 
+        FROM 
+          不良現象マスタ 
+        ORDER BY 
+          工程コード ASC, 
+          不良コード ASC
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_002">
+      <Text>
+        SELECT 
+          工程コード 
+        FROM 
+          不良現象マスタ 
+        WHERE 
+          工程コード = '{0}' 
+        AND 
+          不良コード ='{1}'
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_003">
+      <Text>
+        SELECT 
+          工程コード,
+          不良コード,
+          不良現象名,
+          備考,
+          表示区分 
+        FROM 
+          不良現象マスタ 
+        WHERE 
+          工程コード='{0}'
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_004">
+      <Text>
+        SELECT 
+          工程コード AS 工程コード,
+          工程略称 AS 工程略称,
+          (工程コード +':'+ 工程略称) AS 工程コード_略称 
+        FROM 
+          工程マスタ
+      </Text>
+    </SQL>
+  </Selects>
+
+  <Updates>
+    <SQL ID="UPDATE_001">
+      <Text>
+        UPDATE 
+          不良現象マスタ 
+        set 
+          不良現象名='{2}',
+          備考='{3}',
+          表示区分='{4}' 
+        WHERE 
+          工程コード='{0}' 
+        AND 
+          不良コード='{1}'
+      </Text>
+    </SQL>
+  </Updates>
+
+  <Inserts>
+    <SQL ID="INSERT_001">
+      <Text>
+        INSERT INTO 
+          不良現象マスタ
+          (
+            工程コード,
+            不良コード,
+            不良現象名,
+            備考,
+            表示区分
+          ) 
+        VALUES 
+          (
+            '{0}', 
+            '{1}', 
+            '{2}', 
+            '{3}', 
+            '{4}'
+            )
+      </Text>
+    </SQL>
+  </Inserts>
+
+  <Deletes>
+    <SQL ID="DELETE_001">
+      <Text>
+        DELETE FROM 
+          不良現象マスタ 
+        WHERE 
+          工程コード='{0}' 
+        AND 
+          不良コード='{1}'
+      </Text>
+    </SQL>
+  </Deletes>
 </SC-M13>
+</Configuration>

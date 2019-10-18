@@ -24,10 +24,7 @@ Public Class SC_M22
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
 
-    Private Const MESSAGE_ITEM_PATH As String = "/Messages/{0}/Message[@ID='{1}']/{2}/text()"
-    Private Const MESSAGE_ITEM_MESSAGE As String = "Text"
-
-    Dim xml As New CmnXML("SC-M22.xml")
+    Dim xml As New CmnXML("SC-M22.xml", "SC-M22")
 
     ''' <summary>
     ''' 　画面初期化
@@ -44,7 +41,7 @@ Public Class SC_M22
         Me.txtFluctuationDataSection.Text = String.Empty
         Me.txtRemartks.Text = String.Empty
 
-        setManagementNoType()
+        setManagementNoType("")
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
 
@@ -56,13 +53,13 @@ Public Class SC_M22
     ''' <summary>
     ''' 　画面項目管理NO種別初期化
     ''' </summary>
-    Private Sub setManagementNoType()
+    Private Sub setManagementNoType(ByVal str As String)
 
         Try
 
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                Dim sqlstr As String = xml.GetSQL("select", "select_001")
+                Dim sqlstr As String = xml.GetSQL_Str("SELECT_001")
 
                 Dim dt As New DataTable()
 
@@ -85,6 +82,10 @@ Public Class SC_M22
 
             End If
 
+            If Not IsNothing(str) Then
+                Me.cmbManagementNoType.Text = str
+            End If
+
         Catch ex As Exception
             Throw
         End Try
@@ -105,12 +106,22 @@ Public Class SC_M22
         addColSentaku.Name = "sentaku"
         gridData.Columns.Add(addColSentaku)
 
-        For Each col As DataColumn In dtData.Columns
+        Dim addCol As New DataGridViewTextBoxColumn()
 
-            Dim addCol As New DataGridViewTextBoxColumn()
+        For Each col As DataColumn In dtData.Columns
+            addCol = New DataGridViewTextBoxColumn()
             addCol.DataPropertyName = col.ColumnName
             addCol.HeaderText = headerName(col.ColumnName)
             addCol.Name = col.ColumnName
+
+            If col.ColumnName = COL_SNUMBER Then
+                addCol.MaxInputLength = 10
+            ElseIf col.ColumnName = COL_SSECTION Then
+                addCol.MaxInputLength = 10
+            ElseIf col.ColumnName = COL_SBIKOU Then
+                addCol.MaxInputLength = 50
+            End If
+
             gridData.Columns.Add(addCol)
         Next
 
@@ -186,8 +197,10 @@ Public Class SC_M22
     ''' 　終了ボタン押下
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        Dim msg As New clsMessage("I0001")
-        If MsgBox(msg.Show, vbYesNo + vbQuestion, "生産管理システム") = DialogResult.Yes Then
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
+                  vbYesNo + vbQuestion,
+                  My.Settings.systemName) = DialogResult.Yes Then
             Me.Close()
         End If
     End Sub
@@ -204,24 +217,36 @@ Public Class SC_M22
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim sqlstr As String
+                Dim dt As New DataTable()
 
                 If Me.cmbManagementNoType.Text.Equals(String.Empty) Then
-                    sqlstr = xml.GetSQL("select", "select_002")
+                    sqlstr = xml.GetSQL_Str("SELECT_002")
                 Else
-                    sqlstr = xml.GetSQL("select", "select_003")
+                    sqlstr = xml.GetSQL_Str("SELECT_003")
                     sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
                 End If
-
-                Dim dt As New DataTable()
 
                 dt = clsSQLServer.GetDataTable(sqlstr)
 
                 If dt.Rows.Count = 0 Then
-                    Dim msg As New clsMessage("W0008")
 
-                    MsgBox(msg.Show, vbCritical, "生産管理システム")
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           My.Settings.systemName)
+
+                    clsSQLServer.Disconnect()
+
+                    Return
 
                 End If
+
+
+                sqlstr = xml.GetSQL_Str("SELECT_004")
+                sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
+
+                dt = clsSQLServer.GetDataTable(sqlstr)
 
                 setGrid(dt)
 
@@ -258,6 +283,7 @@ Public Class SC_M22
                     gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
 
                     gridData.CurrentRow.Cells(i).ReadOnly = True
+
                 Next
             End If
         End If
@@ -271,26 +297,34 @@ Public Class SC_M22
     ''' <param name="e">e</param>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
 
-        clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I001"), ClsLogString.RunState.Msg)
+        'clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I001"), ClsLogString.RunState.Msg)
 
-        Dim msg As New clsMessage("Q0009")
-        Dim msgString = msg.GetData(String.Format(MESSAGE_ITEM_PATH,
-                                                  "Question",
-                                                  "Q0009",
-                                                  MESSAGE_ITEM_MESSAGE))
-        If MsgBox(msgString, vbOKCancel + vbQuestion, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0009")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
             gridData.Columns.Clear()
+
+            Me.cmbManagementNoType.Text = String.Empty
+
+            Me.txtManagementNoType.Text = String.Empty
+            Me.txtFixedPart.Text = String.Empty
+            Me.txtNumber.Text = String.Empty
+            Me.txtFluctuationDataSection.Text = String.Empty
+            Me.txtRemartks.Text = String.Empty
         End If
 
-        clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I002"), ClsLogString.RunState.Msg)
+        'clsLogTrace.GetInstance.TraceWrite(clsGlobal.MSG("I002"), ClsLogString.RunState.Msg)
     End Sub
 
     Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0001")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
             If txtManagementNoType.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SNOTYPE))
+                'cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
                 txtManagementNoType.BackColor = Color.Red
                 Return
             Else
@@ -298,7 +332,7 @@ Public Class SC_M22
             End If
 
             If txtFixedPart.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "固定部"))
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SFIXEDPART))
                 txtFixedPart.BackColor = Color.Red
                 Return
             Else
@@ -306,7 +340,7 @@ Public Class SC_M22
             End If
 
             If txtNumber.Text.Equals(String.Empty) Then
-                MessageBox.Show(cmnUtil.GetMessageStr("W0001", "番号"))
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_SNUMBER))
                 txtNumber.BackColor = Color.Red
                 Return
             Else
@@ -317,7 +351,27 @@ Public Class SC_M22
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                    Dim sqlstr As String = xml.GetSQL("insert", "insert_001")
+                    '追加処理の重複データをチェックする
+                    Dim dt As New DataTable()
+                    Dim sqlstr As String = xml.GetSQL_Str("SELECT_005")
+                    sqlstr = String.Format(sqlstr, txtManagementNoType.Text, txtFixedPart.Text)
+
+                    dt = clsSQLServer.GetDataTable(sqlstr)
+
+                    If dt.Rows.Count > 0 Then
+
+                        '重複データがある場合、メッセージを表示して、追加処理を終止する
+                        MsgBox(String.Format(clsGlobal.MSG2("W0009")),
+                               vbExclamation,
+                               My.Settings.systemName)
+
+                        clsSQLServer.Disconnect()
+
+                        Return
+
+                    End If
+
+                    sqlstr = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                             txtManagementNoType.Text,
@@ -328,9 +382,10 @@ Public Class SC_M22
 
                     clsSQLServer.Disconnect()
 
+                    setManagementNoType(Me.cmbManagementNoType.Text)
+
                     btnSearch_Click(sender, e)
 
-                    setManagementNoType()
 
                 End If
 
@@ -354,19 +409,29 @@ Public Class SC_M22
     ''' <param name="e">e</param>
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0002")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
 
                     For i As Integer = 0 To gridData.Rows.Count - 1
 
                         '横位置
-                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                        If gridData.Rows(i).Cells(0).Value = True Then
 
-                            Dim sqlstr As String = xml.GetSQL("update", "update_001")
+                            Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                             gridData.Rows(i).Cells(1).Value,
@@ -375,11 +440,21 @@ Public Class SC_M22
                                                             gridData.Rows(i).Cells(4).Value,
                                                             gridData.Rows(i).Cells(5).Value))
 
+                            selectedCount = True
                         End If
 
                     Next
 
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
                     clsSQLServer.Disconnect()
+
                     btnSearch_Click(sender, e)
                 End If
             Catch ex As Exception
@@ -397,33 +472,69 @@ Public Class SC_M22
     ''' <param name="e">e</param>
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
 
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel + vbExclamation, "生産管理システム") = DialogResult.OK Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
             Try
 
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
+                    Dim sqlstr As String
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
 
                     For i As Integer = 0 To gridData.Rows.Count - 1
 
                         '横位置
-                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+                        If gridData.Rows(i).Cells(0).Value = True Then
 
-                            Dim sqlstr As String = xml.GetSQL("delete", "delete_001")
+                            sqlstr = xml.GetSQL_Str("DELETE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
                                                                     gridData.Rows(i).Cells(2).Value))
+                            selectedCount = True
 
                         End If
 
                     Next
 
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    If Not Me.cmbManagementNoType.Text.Equals(String.Empty) Then
+                        sqlstr = xml.GetSQL_Str("SELECT_003")
+                        sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
+                        Dim dt As New DataTable()
+
+                        dt = clsSQLServer.GetDataTable(sqlstr)
+
+                        If dt.Rows.Count = 0 Then
+                            MsgBox("検索条件のデータが削除されたのため、全件検索実行する",
+                                   vbExclamation,
+                                   My.Settings.systemName)
+                            Me.cmbManagementNoType.Text = String.Empty
+                        End If
+                    End If
+
                     clsSQLServer.Disconnect()
+
+                    setManagementNoType(Me.cmbManagementNoType.Text)
 
                     btnSearch_Click(sender, e)
 
-                    setManagementNoType()
                 End If
             Catch ex As Exception
                 Throw
@@ -431,4 +542,13 @@ Public Class SC_M22
         End If
     End Sub
 
+    Private Sub txtNumber_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNumber.KeyPress
+
+        'キーが [0]～[9] または [BackSpace] 以外の場合イベントをキャンセル
+        If Not (("0"c <= e.KeyChar And e.KeyChar <= "9"c) Or e.KeyChar = ControlChars.Back) Then
+            'コントロールの既定の処理を省略する場合は true
+            e.Handled = True
+        End If
+
+    End Sub
 End Class

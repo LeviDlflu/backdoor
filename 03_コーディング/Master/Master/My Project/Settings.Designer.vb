@@ -233,6 +233,18 @@ Namespace My
                 Return CType(Me("LogFile"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("B/D生産管理システム")>  _
+        Public Property systemName() As String
+            Get
+                Return CType(Me("systemName"),String)
+            End Get
+            Set
+                Me("systemName") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

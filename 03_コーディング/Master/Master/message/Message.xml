@@ -259,7 +259,7 @@
       <Message ID="I0009">
         <Text>検索結果をクリアしてよろしいですか？</Text>
       </Message>
-      <Message ID="I00099">
+      <Message ID="I0099">
         <Text>画面を閉じてよろしいですか？</Text>
       </Message>
 
@@ -293,7 +293,7 @@
         <Text>更新対象データが消されました。</Text>
       </Message>
       <Message ID="W0099">
-        <Text>修正内容が更新されていません。</Text>
+        <Text>修正内容が更新されていませんため、画面を閉じてよろしいですか？</Text>
       </Message>
       <Message ID="W9001">
         <Text>レコードを選択してください。</Text>
