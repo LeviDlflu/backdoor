@@ -151,10 +151,10 @@
     <Compile Include="form\SC-MXX.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\SC_M20.Designer.vb">
-      <DependentUpon>SC_M20.vb</DependentUpon>
+    <Compile Include="form\SC-M20.Designer.vb">
+      <DependentUpon>SC-M20.vb</DependentUpon>
     </Compile>
-    <Compile Include="form\SC_M20.vb">
+    <Compile Include="form\SC-M20.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Function\clsCSV.vb" />
@@ -221,8 +221,8 @@
     <EmbeddedResource Include="form\SC-MXX.resx">
       <DependentUpon>SC-MXX.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\SC_M20.resx">
-      <DependentUpon>SC_M20.vb</DependentUpon>
+    <EmbeddedResource Include="form\SC-M20.resx">
+      <DependentUpon>SC-M20.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
