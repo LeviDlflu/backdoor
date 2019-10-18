@@ -28,7 +28,7 @@ Public Class SC_M20
     Private Const COL_CATEGORY_3 As String = "稼働区分３"
     Private Const TABLENAME As String = "顧客カレンダーマスタ"
     Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
-
+    Dim dtAutoLabel As New DataTable
     Dim xml As New CmnXML("SC-M20.xml", "SC-M20")
     Dim strLanguage As String = "chs"
     Dim lngXml As New CmnXML("LanguageDefine.xml", "")
@@ -45,6 +45,13 @@ Public Class SC_M20
     Private Sub SC_M20_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '初期設定
         'Me.Text = getTitle(GAMEN_SC_M20)
+        Dim dt As New DataTable
+        dt.Columns.Add("Code", GetType(String))
+        dt.Columns.Add("Name", GetType(String))
+        dt.Rows.Add(" ", "")
+        dt.Rows.Add("1", "1:稼働")
+        dt.Rows.Add("2", "2:非稼働")
+        dtAutoLabel = dt
         SetControlsLable()
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -197,9 +204,9 @@ Public Class SC_M20
                 addCol.DefaultCellStyle.BackColor = Color.White
                 addCol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
                 addCol.FlatStyle = FlatStyle.Flat
-                addCol.Items.Add(" ")
-                addCol.Items.Add("1:稼働")
-                addCol.Items.Add("2:非稼働")
+                addCol.DataSource = dtAutoLabel
+                addCol.ValueMember = dtAutoLabel.Columns.Item(0).ColumnName
+                addCol.DisplayMember = dtAutoLabel.Columns.Item(1).ColumnName
                 gridData.Columns.Add(addCol)
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
@@ -469,19 +476,6 @@ Public Class SC_M20
                                 clsSQLServer.Disconnect()
                                 Return
                             Else
-                                Dim CATEGORY As String
-                                Dim CATEGORY2 As String
-                                If String.IsNullOrEmpty(gridData.Rows(i).Cells(5).Value) Then
-                                    CATEGORY = String.Empty
-                                Else
-                                    CATEGORY = gridData.Rows(i).Cells(5).Value.Substring(0, 1)
-                                End If
-
-                                If String.IsNullOrEmpty(gridData.Rows(i).Cells(6).Value) Then
-                                    CATEGORY2 = String.Empty
-                                Else
-                                    CATEGORY2 = gridData.Rows(i).Cells(6).Value.Substring(0, 1)
-                                End If
                                 Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
                                 clsSQLServer.ExecuteQuery(String.Format(sqlstr,
