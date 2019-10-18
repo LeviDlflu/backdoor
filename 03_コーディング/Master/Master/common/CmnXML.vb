@@ -8,7 +8,7 @@ Public Class CmnXML
     Private Const SQL_TYPE_U As String = "Updates"
     Private Const SQL_TYPE_I As String = "Inserts"
     Private Const SQL_TYPE_D As String = "Deletes"
-    Private Const SQL_TYPE_O As String = "OrderBy"
+    Private Const SQL_TYPE_O As String = "OrderBys"
     Private Const SQL_TYPE_E As String = "Error"
     Private Const SQL_ITEM_TEXT As String = "Text"
 
