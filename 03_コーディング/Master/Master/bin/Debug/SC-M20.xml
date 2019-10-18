@@ -4,39 +4,95 @@
     <Selects>
       <SQL ID="SELECT_001">
         <Text>
-          SELECT 稼働年月,稼働日,FORMAT(稼働年月日,'yyyy/MM/dd') as 稼働年月日,直区分,
-          CASE 稼働区分 WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分,
-          CASE 稼働区分２ WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分２
-          FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月 >='{0}' ORDER BY 稼働年月日,直区分
+          SELECT 
+           稼働年月,
+           稼働日,
+           FORMAT(稼働年月日,'yyyy/MM/dd') as 稼働年月日,
+           直区分,
+           稼働区分,
+           稼働区分２ 
+          FROM 
+           Ｍ＿顧客カレンダーマスタ 
+          WHERE 
+           稼働年月 >='{0}' 
+          ORDER BY 
+           稼働年月日,
+           直区分
         </Text>
       </SQL>
       <SQL ID="SELECT_002">
         <Text>
-          SELECT 稼働年月 FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
+          SELECT 
+           稼働年月 
+          FROM 
+           Ｍ＿顧客カレンダーマスタ 
+          WHERE 
+           稼働年月='{0}' 
+          AND 
+           稼働日='{1}' 
+          AND 
+           稼働年月日='{2}' 
+          AND 
+           直区分='{3}'
         </Text>
       </SQL>
       <SQL ID="SELECT_003">
         <Text>
-          SELECT 稼働年月 FROM Ｍ＿顧客カレンダーマスタ GROUP BY 稼働年月
+          SELECT 
+           稼働年月 
+          FROM 
+           Ｍ＿顧客カレンダーマスタ 
+          GROUP BY 
+           稼働年月
         </Text>
       </SQL>
       <SQL ID="SELECT_004">
         <Text>
-          SELECT 稼働年月,稼働日,FORMAT(稼働年月日,'yyyy/MM/dd') AS 稼働年月日,直区分,
-          CASE 稼働区分 WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分,
-          CASE 稼働区分２ WHEN 2 THEN N'2:非稼働' WHEN ' ' THEN ' 'ELSE N'1:稼働' END AS 稼働区分２
-          FROM Ｍ＿顧客カレンダーマスタ  ORDER BY 稼働年月日,直区分
+          SELECT 
+           稼働年月,
+           稼働日,
+           FORMAT(稼働年月日,'yyyy/MM/dd') AS 稼働年月日,
+           直区分,
+           稼働区分,
+           稼働区分２ 
+          FROM 
+           Ｍ＿顧客カレンダーマスタ  
+          ORDER BY 
+           稼働年月日,
+           直区分
         </Text>
       </SQL>
       <SQL ID="SELECT_005">
-        <Text> SELECT 管理ＮＯ種別 FROM 採番マスタ WHERE 管理ＮＯ種別='{0}' AND 固定部='{1}' </Text>
+        <Text> 
+          SELECT 
+           管理ＮＯ種別 
+          FROM 
+           採番マスタ 
+          WHERE 
+           管理ＮＯ種別='{0}' 
+          AND 
+           固定部='{1}' 
+        </Text>
       </SQL>
     </Selects>
 
     <Updates>
       <SQL ID="UPDATE_001">
         <Text>
-          UPDATE Ｍ＿顧客カレンダーマスタ set 稼働区分='{4}',稼働区分２='{5}',更新日時 ='{6}' WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
+          UPDATE 
+           Ｍ＿顧客カレンダーマスタ 
+          set 
+           稼働区分='{4}',
+           稼働区分２='{5}',
+           更新日時 ='{6}' 
+          WHERE 
+           稼働年月='{0}' 
+          AND 
+           稼働日='{1}' 
+          AND 
+           稼働年月日='{2}' 
+          AND 
+           直区分='{3}'
         </Text>
       </SQL>
     </Updates>
@@ -44,7 +100,11 @@
     <Inserts>
       <SQL ID="INSERT_001">
         <Text>
-          INSERT INTO Ｍ＿顧客カレンダーマスタ(稼働年月,稼働日,稼働年月日,直区分,稼働区分,稼働区分２,登録日時) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')
+          INSERT INTO 
+           Ｍ＿顧客カレンダーマスタ
+           (稼働年月,稼働日,稼働年月日,直区分,稼働区分,稼働区分２,登録日時) 
+          VALUES 
+           ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')
         </Text>
       </SQL>
     </Inserts>
@@ -52,7 +112,16 @@
     <Deletes>
       <SQL ID="DELETE_001">
         <Text>
-          DELETE FROM Ｍ＿顧客カレンダーマスタ WHERE 稼働年月='{0}' AND 稼働日='{1}' AND 稼働年月日='{2}' AND 直区分='{3}'
+          DELETE FROM 
+           Ｍ＿顧客カレンダーマスタ 
+          WHERE 
+           稼働年月='{0}' 
+          AND 
+           稼働日='{1}' 
+          AND 
+           稼働年月日='{2}' 
+          AND 
+           直区分='{3}'
         </Text>
       </SQL>
     </Deletes>

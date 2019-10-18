@@ -8,6 +8,7 @@ Public Class CmnXML
     Private Const SQL_TYPE_U As String = "Updates"
     Private Const SQL_TYPE_I As String = "Inserts"
     Private Const SQL_TYPE_D As String = "Deletes"
+    Private Const SQL_TYPE_O As String = "OrderBys"
     Private Const SQL_TYPE_E As String = "Error"
     Private Const SQL_ITEM_TEXT As String = "Text"
 
@@ -87,6 +88,8 @@ Public Class CmnXML
                 SQLType = SQL_TYPE_I
             Case "D"c
                 SQLType = SQL_TYPE_D
+            Case "O"c
+                SQLType = SQL_TYPE_O
             Case Else
                 SQLType = SQL_TYPE_E
         End Select
@@ -132,5 +135,19 @@ Public Class CmnXML
         loginEnv.ReadOnly = True
 
     End Sub
+
+    ''' <summary>
+    ''' 言語を取得
+    ''' </summary>
+    ''' <param name="masterID">機能ID</param>
+    ''' <returns>設定言語</returns>>
+    Public Function GetControlsLableElement(ByVal masterID As String) As XmlNode
+        Dim sqlXml As New clsXML
+
+        sqlXml.LoadXML("LanguageDefine.xml")
+        Dim mXmlNode As XmlNode = sqlXml.m_xmlDoc.SelectSingleNode(String.Format("//Languages/Form[@formID='{0}']", masterID))
+
+        Return mXmlNode
+    End Function
 
 End Class
