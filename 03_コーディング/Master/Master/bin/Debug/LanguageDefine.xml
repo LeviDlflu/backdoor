@@ -1,61 +1,61 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<languages>
-  <form formID="SC-M19">
-    <master enu="Work table master maintenance" jpn="勤務テーブルマスタメンテ" chs="工作表"/>
-    <lable id="btnMenu0" enu="Search" jpn="検索" chs="检索"/>
-    <lable id="btnMenu1" enu="Insert" jpn="追加" chs="添加"/>
-    <lable id="btnMenu2" enu="Update" jpn="更新" chs="更新"/>
-    <lable id="btnMenu3" enu="Delete" jpn="削除" chs="删除"/>
-    <lable id="btnMenu4" enu="Clear" jpn="クリア" chs="清空"/>
-    <lable id="btnMenu5" enu="Finish" jpn="終了" chs="结束"/>
+<Languages>
+  <Form formID="SC-M19">
+    <Master enu="Work table master maintenance" jpn="勤務テーブルマスタメンテ" chs="工作表"/>
+    <Language name="btnMenu" id="0" enu="Search" jpn="検索" chs="检索"/>
+    <Language name="btnMenu" id="1" enu="Insert" jpn="追加" chs="添加"/>
+    <Language name="btnMenu" id="2" enu="Update" jpn="更新" chs="更新"/>
+    <Language name="btnMenu" id="3" enu="Delete" jpn="削除" chs="删除"/>
+    <Language name="btnMenu" id="4" enu="Clear" jpn="クリア" chs="清空"/>
+    <Language name="btnMenu" id="5" enu="Finish" jpn="終了" chs="结束"/>
 
-    <lable id="dgvHeader0" enu="Select" jpn="選択" chs="结束"/>
-    <lable id="dgvHeader1" enu="Process code" jpn="工程コード" chs="工程番号"/>
-    <lable id="dgvHeader2" enu="Division" jpn="区分" chs="区分"/>
-    <lable id="dgvHeader3" enu="Line Division" jpn="ライン区分" chs="行区分"/>
-    <lable id="dgvHeader4" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
-    <lable id="dgvHeader5" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
-    <lable id="dgvHeader6" enu="Break time" jpn="休憩時間" chs="休息时间"/>
-    <lable id="dgvHeader7" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
+    <Language name="dgvHeader" id="0" enu="Select" jpn="選択" chs="结束"/>
+    <Language name="dgvHeader" id="1" enu="Process code" jpn="工程コード" chs="工程号码"/>
+    <Language name="dgvHeader" id="2" enu="Division" jpn="区分" chs="区分"/>
+    <Language name="dgvHeader" id="3" enu="Line Division" jpn="ライン区分" chs="行区分"/>
+    <Language name="dgvHeader" id="4" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
+    <Language name="dgvHeader" id="5" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
+    <Language name="dgvHeader" id="6" enu="Break time" jpn="休憩時間" chs="休息时间"/>
+    <Language name="dgvHeader" id="7" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
 
-    <lable id="lblTitle0" enu="Search criteria" jpn="検索条件" chs="查询条件"/>
-    <lable id="lblTitle1" enu="Process code" jpn="工程コード" chs="工程番号"/>
-    <lable id="lblTitle2" enu="Search results" jpn="検索結果" chs="查询结果"/>
-    <lable id="lblTitle3" enu="Add To" jpn="追加" chs="添加"/>
-    <lable id="lblTitle4" enu="Process" jpn="工程コード" chs="工程番号"/>
-    <lable id="lblTitle5" enu="Division" jpn="区分" chs="区分"/>
-    <lable id="lblTitle6" enu="Line Division" jpn="ライン区分" chs="行区分"/>
-    <lable id="lblTitle7" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
-    <lable id="lblTitle8" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
-    <lable id="lblTitle9" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
-  </form>
+    <Language name="lblName" id="0" enu="Search criteria" jpn="検索条件" chs="查询条件"/>
+    <Language name="lblName" id="1" enu="Process code" jpn="工程コード" chs="工程号码"/>
+    <Language name="lblName" id="2" enu="Search results" jpn="検索結果" chs="查询结果"/>
+    <Language name="lblName" id="3" enu="Add To" jpn="追加" chs="添加"/>
+    <Language name="lblName" id="4" enu="Process code" jpn="工程コード" chs="工程号码"/>
+    <Language name="lblName" id="5" enu="Division" jpn="区分" chs="区分"/>
+    <Language name="lblName" id="6" enu="Line Division" jpn="ライン区分" chs="行区分"/>
+    <Language name="lblName" id="7" enu="Break start time" jpn="休憩開始時間" chs="休息开始时间"/>
+    <Language name="lblName" id="8" enu="Break end time" jpn="休憩終了時間" chs="休息结束时间"/>
+    <Language name="lblName" id="9" enu="Date change indicator" jpn="日付変更区分" chs="日期变更区分"/>
+  </Form>
 
-  <form formID="SC-M20">
-    <master enu="Customer calendar master maintenance" jpn="顧客カレンダーマスタ" chs="客户日历主维护"/>
-    <lable id="btnMenu0" enu="Search" jpn="検索" chs="检索"/>
-    <lable id="btnMenu1" enu="Insert" jpn="追加" chs="添加"/>
-    <lable id="btnMenu2" enu="Update" jpn="更新" chs="更新"/>
-    <lable id="btnMenu3" enu="Delete" jpn="削除" chs="删除"/>
-    <lable id="btnMenu4" enu="Clear" jpn="クリア" chs="清空"/>
-    <lable id="btnMenu5" enu="Finish" jpn="終了" chs="结束"/>
+  <Form formID="SC-M20">
+    <Master enu="Customer calendar master maintenance" jpn="顧客カレンダーマスタ" chs="客户日历主维护"/>
+    <Language name="btnMenu" id="0" enu="Search" jpn="検索" chs="检索"/>
+    <Language name="btnMenu" id="1" enu="Insert" jpn="追加" chs="添加"/>
+    <Language name="btnMenu" id="2" enu="Update" jpn="更新" chs="更新"/>
+    <Language name="btnMenu" id="3" enu="Delete" jpn="削除" chs="删除"/>
+    <Language name="btnMenu" id="4" enu="Clear" jpn="クリア" chs="清空"/>
+    <Language name="btnMenu" id="5" enu="Finish" jpn="終了" chs="结束"/>
 
-    <lable id="dgvHeader0" enu="Select" jpn="選択" chs="选择"/>
-    <lable id="dgvHeader1" enu="Working days_YM" jpn="稼働年月" chs="运行年月"/>
-    <lable id="dgvHeader2" enu="Working days_D" jpn="稼働日" chs="运行日"/>
-    <lable id="dgvHeader3" enu="Working days_YMD" jpn="稼働年月日" chs="运行年月日"/>
-    <lable id="dgvHeader4" enu="Direct division" jpn="直区分" chs="直区分"/>
-    <lable id="dgvHeader5" enu="Operation category" jpn="稼働区分" chs="运行区分"/>
-    <lable id="dgvHeader6" enu="Operation category2" jpn="稼働区分２" chs="运行区分２"/>
-    <lable id="dgvHeader7" enu="Operation category3" jpn="稼働区分３" chs="运行区分３"/>
+    <Language name="dgvHeader" id="0" enu="Select" jpn="選択" chs="选择"/>
+    <Language name="dgvHeader" id="1" enu="Working days_YM" jpn="稼働年月" chs="运行年月"/>
+    <Language name="dgvHeader" id="2" enu="Working days_D" jpn="稼働日" chs="运行日"/>
+    <Language name="dgvHeader" id="3" enu="Working days_YMD" jpn="稼働年月日" chs="运行年月日"/>
+    <Language name="dgvHeader" id="4" enu="Direct division" jpn="直区分" chs="直区分"/>
+    <Language name="dgvHeader" id="5" enu="Operation category" jpn="稼働区分" chs="运行区分"/>
+    <Language name="dgvHeader" id="6" enu="Operation category2" jpn="稼働区分２" chs="运行区分２"/>
+    <Language name="dgvHeader" id="7" enu="Operation category3" jpn="稼働区分３" chs="运行区分３"/>
 
-    <lable id="lblTitle0" enu="Search criteria" jpn="検索条件" chs="查询条件"/>
-    <lable id="lblTitle1" enu="Working days_YM" jpn="稼働年月" chs="运行年月"/>
-    <lable id="lblTitle2" enu="Search results" jpn="検索結果" chs="查询结果"/>
-    <lable id="lblTitle3" enu="Add To" jpn="追加" chs="添加"/>
-    <lable id="lblTitle4" enu="Working days_YMD" jpn="稼働年月日" chs="运行年月日"/>
-    <lable id="lblTitle5" enu="Direct division" jpn="直区分" chs="直区分"/>
-    <lable id="lblTitle6" enu="Operation category" jpn="稼働区分" chs="运行区分"/>
-    <lable id="lblTitle7" enu="Operation category2" jpn="稼働区分２" chs="运行区分２"/>
-    <lable id="lblTitle8" enu="Operation category3" jpn="稼働区分３" chs="运行区分３"/>
-  </form>
-</languages>
+    <Language name="lblName" id="0" enu="Search criteria" jpn="検索条件" chs="查询条件"/>
+    <Language name="lblName" id="1" enu="Working days_YM" jpn="稼働年月" chs="运行年月"/>
+    <Language name="lblName" id="2" enu="Search results" jpn="検索結果" chs="查询结果"/>
+    <Language name="lblName" id="3" enu="Add To" jpn="追加" chs="添加"/>
+    <Language name="lblName" id="4" enu="Working days_YMD" jpn="稼働年月日" chs="运行年月日"/>
+    <Language name="lblName" id="5" enu="Direct division" jpn="直区分" chs="直区分"/>
+    <Language name="lblName" id="6" enu="Operation category" jpn="稼働区分" chs="运行区分"/>
+    <Language name="lblName" id="7" enu="Operation category2" jpn="稼働区分２" chs="运行区分２"/>
+    <Language name="lblName" id="8" enu="Operation category3" jpn="稼働区分３" chs="运行区分３"/>
+  </Form>
+</Languages>
