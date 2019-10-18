@@ -133,4 +133,15 @@ Public Class CmnXML
 
     End Sub
 
+    ''' <summary>
+    ''' 言語を取得
+    ''' </summary>
+    ''' <param name="masterID">機能ID</param>
+    ''' <returns>設定言語</returns>>
+    Public Function GetControlsLableElement(ByVal masterID As String) As XmlNode
+        SQLXml.LoadXML("LanguageDefine.xml")
+        Dim mXmlNode As XmlNode = SQLXml.m_xmlDoc.SelectSingleNode(String.Format("//Languages/Form[@formID='{0}']", masterID))
+        Return mXmlNode
+    End Function
+
 End Class
