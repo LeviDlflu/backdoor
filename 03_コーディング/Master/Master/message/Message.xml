@@ -296,7 +296,10 @@
         <Text>修正内容が更新されていませんため、画面を閉じてよろしいですか？</Text>
       </Message>
       <Message ID="W9001">
-        <Text>レコードを選択してください。</Text>
+        <Text>対象レコードを選択してください。</Text>
+      </Message>
+      <Message ID="W9002">
+        <Text>{0}は最大値超えましたため、再入力してください。(0~2147483647以内で入力してください。)</Text>
       </Message>
     </Warning>
   </Messages>
