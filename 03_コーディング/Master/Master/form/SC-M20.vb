@@ -28,11 +28,11 @@ Public Class SC_M20
     Private Const COL_CATEGORY_3 As String = "稼働区分３"
     Private Const TABLENAME As String = "顧客カレンダーマスタ"
     Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
+    Private Const XML_FORMAT As String = "Language[@name='{0}']"
+
     Dim dtAutoLabel As New DataTable
     Dim xml As New CmnXML("SC-M20.xml", "SC-M20")
-    Dim strLanguage As String = "chs"
-    Dim lngXml As New CmnXML("LanguageDefine.xml", "")
-    Dim mXmlDoc As New XmlDocument
+    Dim strLanguage As String = "jpn"
 
     ''' <summary>
     ''' １秒毎に発生するイベント
@@ -108,61 +108,70 @@ Public Class SC_M20
     ''' 名前設定
     ''' </summary>
     Public Sub SetControlsLable()
-        mXmlDoc.Load("LanguageDefine.xml")
-        Dim xmlResult As XmlNode = GetElement("languages", "form")
-        'Header
-        Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("master")
+
+        Dim xmlResult As XmlNode = xml.GetControlsLableElement("SC-M20")
+
+        'Master
+        Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("Master")
         Me.Label18.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
         Me.Label15.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
 
-        Dim xmlLables As XmlNodeList = xmlResult.SelectNodes("lable")
-        For Each lblXml As XmlNode In xmlLables
-            'Button
+        'Button
+        Dim xmlButtons As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
+
+        If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
             For i As Integer = 0 To 5
-                Dim btnName As String = "btnMenu" & i.ToString()
-                If lblXml.Attributes(0).Value = btnName Then
-                    Dim btnControl As Button = Panel1.Controls.Find(btnName, True).First
-                    btnControl.Text = lblXml.Attributes.GetNamedItem("enu").Value & vbCrLf & "(" & lblXml.Attributes.GetNamedItem(strLanguage).Value & ")"
-                End If
+                Dim xml As XmlNode = xmlButtons(i)
+
+                Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
+                Dim btnControl As Button = Panel1.Controls.Find(btnName, True).First
+                btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(strLanguage).Value)
             Next
+        End If
 
-            ''Lable
-            'For i As Integer = 0 To 9
-            '    Dim lblName As String = "lblTitle" & i.ToString()
-            '    Dim lblName2 As String = "lblTitle" & i.ToString() & i.ToString()
-            '    If lblXml.Attributes(0).Value = lblName Then
-            '        Dim lblControl As Label = Me.Controls.Find(lblName, True).First
-            '        Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
-            '        lblControl.Text = lblXml.Attributes.GetNamedItem("enu").Value
-            '        lblControl2.Text = "(" & lblXml.Attributes.GetNamedItem(strLanguage).Value & ")"
-            '    End If
-            'Next
+        'Lable
+        'Dim xmlLabels As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "lblName"))
+        'If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
+        '    For i As Integer = 0 To 9
+        '        Dim xml As XmlNode = xmlLabels(i)
+        '        Dim lblName As String = "lblTitle" & xml.Attributes(1).Value
+        '        Dim lblName2 As String = "lblTitle" & i.ToString() & i.ToString()
+        '        Dim lblControl As Label = Me.Controls.Find(lblName, True).First
+        '        Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
 
-            'DataGridView
+        '        lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
+        '        lblControl2.Text = "(" & xml.Attributes.GetNamedItem(strLanguage).Value & ")"
+        '    Next
+        'End If
+
+        'DataGridView
+        Dim xmlDGVHeader As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
+        If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
+
             For i As Integer = 0 To 7
-                Dim dgvName As String = "dgvHeader" & i.ToString()
-                If lblXml.Attributes(0).Value = dgvName Then
-                    Dim headName As String = lblXml.Attributes.GetNamedItem("enu").Value
-                    Dim headName2 As String = lblXml.Attributes.GetNamedItem(strLanguage).Value
-                    Select Case i
-                        Case 0
-                            HEADER_NAME.Add(COL_SENTAKU, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 1
-                            HEADER_NAME.Add(COL_WORKING_YM, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 2
-                            HEADER_NAME.Add(COL_WORKING_D, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 3
-                            HEADER_NAME.Add(COL_WORKING_YMD, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 4
-                            HEADER_NAME.Add(COL_DIRECT, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 5
-                            HEADER_NAME.Add(COL_CATEGORY, String.Format(HEADER_FORMAT, headName, headName2))
-                        Case 6
-                            HEADER_NAME.Add(COL_CATEGORY_2, String.Format(HEADER_FORMAT, headName, headName2))
-                    End Select
-                End If
+                Dim xml As XmlNode = xmlDGVHeader(i)
+                Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
+                Dim headName2 As String = xml.Attributes.GetNamedItem(strLanguage).Value
+
+                Select Case i
+                    Case 0
+                        HEADER_NAME.Add(COL_SENTAKU, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 1
+                        HEADER_NAME.Add(COL_WORKING_YM, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 2
+                        HEADER_NAME.Add(COL_WORKING_D, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 3
+                        HEADER_NAME.Add(COL_WORKING_YMD, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 4
+                        HEADER_NAME.Add(COL_DIRECT, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 5
+                        HEADER_NAME.Add(COL_CATEGORY, String.Format(HEADER_FORMAT, headName, headName2))
+                    Case 6
+                        HEADER_NAME.Add(COL_CATEGORY_2, String.Format(HEADER_FORMAT, headName, headName2))
+                End Select
             Next
-        Next
+        End If
+
     End Sub
 
     ''' <summary>
@@ -500,18 +509,5 @@ Public Class SC_M20
             End Try
         End If
     End Sub
-    Public Function GetElement(ByVal node As String, ByVal element As String) As XmlNode
-        Dim xmlResult As XmlNode = Nothing
-        Dim mXmlNode As XmlNode = mXmlDoc.SelectSingleNode("//" + node)
-        Dim xmlNodes As XmlNodeList = mXmlNode.SelectNodes(element)
-        For Each fNode As XmlNode In xmlNodes
-            If fNode.Attributes(0).Value = "SC-M20" Then
-                xmlResult = fNode
-                Exit For
-            End If
-        Next
-
-        Return xmlResult
-    End Function
 
 End Class
