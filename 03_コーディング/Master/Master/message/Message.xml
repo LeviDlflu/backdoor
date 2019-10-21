@@ -301,6 +301,9 @@
       <Message ID="W9002">
         <Text>{0}は最大値超えましたため、再入力してください。(0~2147483647以内に入力してください。)</Text>
       </Message>
+      <Message ID="W9003">
+        <Text>数字を入力してください。</Text>
+      </Message>
     </Warning>
   </Messages>
 </Configuration>
