@@ -82,7 +82,6 @@
 
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        'controlClear(False)
         controlColorClear()
         getDataToGrid(True)
     End Sub

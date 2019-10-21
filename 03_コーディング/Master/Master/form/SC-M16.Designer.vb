@@ -58,16 +58,16 @@ Partial Class SC_M16
         Me.Label3 = New System.Windows.Forms.Label()
         Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.btnDelete = New System.Windows.Forms.Button()
+        Me.btnUpdate = New System.Windows.Forms.Button()
+        Me.btnInsert = New System.Windows.Forms.Button()
         Me.txtFormID = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.cmbAuthority = New System.Windows.Forms.ComboBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmbGroupId = New System.Windows.Forms.ComboBox()
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,7 +83,7 @@ Partial Class SC_M16
         Me.cmbGroup.Location = New System.Drawing.Point(729, 631)
         Me.cmbGroup.Name = "cmbGroup"
         Me.cmbGroup.Size = New System.Drawing.Size(180, 20)
-        Me.cmbGroup.TabIndex = 201
+        Me.cmbGroup.TabIndex = 33
         '
         'Label20
         '
@@ -103,7 +103,7 @@ Partial Class SC_M16
         Me.txtProgram.Margin = New System.Windows.Forms.Padding(2)
         Me.txtProgram.Name = "txtProgram"
         Me.txtProgram.Size = New System.Drawing.Size(88, 19)
-        Me.txtProgram.TabIndex = 199
+        Me.txtProgram.TabIndex = 30
         Me.txtProgram.Text = "XXXXXXXXXX"
         '
         'btnEnd
@@ -164,7 +164,7 @@ Partial Class SC_M16
         Me.txtFormName.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFormName.Name = "txtFormName"
         Me.txtFormName.Size = New System.Drawing.Size(230, 19)
-        Me.txtFormName.TabIndex = 189
+        Me.txtFormName.TabIndex = 32
         Me.txtFormName.Text = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         '
         'Label5
@@ -458,9 +458,9 @@ Partial Class SC_M16
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.Button2)
-        Me.Panel1.Controls.Add(Me.Button3)
+        Me.Panel1.Controls.Add(Me.btnDelete)
+        Me.Panel1.Controls.Add(Me.btnUpdate)
+        Me.Panel1.Controls.Add(Me.btnInsert)
         Me.Panel1.Controls.Add(Me.btnEnd)
         Me.Panel1.Controls.Add(Me.btnClear)
         Me.Panel1.Controls.Add(Me.btnSearch)
@@ -470,38 +470,38 @@ Partial Class SC_M16
         Me.Panel1.Size = New System.Drawing.Size(1353, 76)
         Me.Panel1.TabIndex = 177
         '
-        'Button1
+        'btnDelete
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(334, 9)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(102, 49)
-        Me.Button1.TabIndex = 126
-        Me.Button1.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnDelete.BackColor = System.Drawing.SystemColors.Control
+        Me.btnDelete.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnDelete.Location = New System.Drawing.Point(334, 9)
+        Me.btnDelete.Name = "btnDelete"
+        Me.btnDelete.Size = New System.Drawing.Size(102, 49)
+        Me.btnDelete.TabIndex = 126
+        Me.btnDelete.Text = "Delete" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(削除)"
+        Me.btnDelete.UseVisualStyleBackColor = False
         '
-        'Button2
+        'btnUpdate
         '
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(226, 9)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(102, 49)
-        Me.Button2.TabIndex = 125
-        Me.Button2.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btnUpdate.BackColor = System.Drawing.SystemColors.Control
+        Me.btnUpdate.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnUpdate.Location = New System.Drawing.Point(226, 9)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(102, 49)
+        Me.btnUpdate.TabIndex = 125
+        Me.btnUpdate.Text = "Update" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(更新)"
+        Me.btnUpdate.UseVisualStyleBackColor = False
         '
-        'Button3
+        'btnInsert
         '
-        Me.Button3.BackColor = System.Drawing.SystemColors.Control
-        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(120, 9)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(100, 49)
-        Me.Button3.TabIndex = 124
-        Me.Button3.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.btnInsert.BackColor = System.Drawing.SystemColors.Control
+        Me.btnInsert.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnInsert.Location = New System.Drawing.Point(120, 9)
+        Me.btnInsert.Name = "btnInsert"
+        Me.btnInsert.Size = New System.Drawing.Size(100, 49)
+        Me.btnInsert.TabIndex = 124
+        Me.btnInsert.Text = "Insert" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(追加)"
+        Me.btnInsert.UseVisualStyleBackColor = False
         '
         'txtFormID
         '
@@ -510,7 +510,7 @@ Partial Class SC_M16
         Me.txtFormID.Margin = New System.Windows.Forms.Padding(2)
         Me.txtFormID.Name = "txtFormID"
         Me.txtFormID.Size = New System.Drawing.Size(88, 19)
-        Me.txtFormID.TabIndex = 199
+        Me.txtFormID.TabIndex = 31
         Me.txtFormID.Text = "XXXXXXX"
         '
         'Label9
@@ -563,22 +563,21 @@ Partial Class SC_M16
         Me.cmbAuthority.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbAuthority.BackColor = System.Drawing.Color.White
         Me.cmbAuthority.FormattingEnabled = True
-        Me.cmbAuthority.Items.AddRange(New Object() {"参照", "追加", "修正", "削除"})
         Me.cmbAuthority.Location = New System.Drawing.Point(978, 631)
         Me.cmbAuthority.Name = "cmbAuthority"
         Me.cmbAuthority.Size = New System.Drawing.Size(180, 20)
-        Me.cmbAuthority.TabIndex = 201
+        Me.cmbAuthority.TabIndex = 34
         '
-        'ComboBox1
+        'cmbGroupId
         '
-        Me.ComboBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(13, 169)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(180, 20)
-        Me.ComboBox1.TabIndex = 202
+        Me.cmbGroupId.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cmbGroupId.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbGroupId.BackColor = System.Drawing.Color.White
+        Me.cmbGroupId.FormattingEnabled = True
+        Me.cmbGroupId.Location = New System.Drawing.Point(13, 169)
+        Me.cmbGroupId.Name = "cmbGroupId"
+        Me.cmbGroupId.Size = New System.Drawing.Size(180, 20)
+        Me.cmbGroupId.TabIndex = 202
         '
         'SC_M16
         '
@@ -586,7 +585,7 @@ Partial Class SC_M16
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(1350, 689)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.cmbGroupId)
         Me.Controls.Add(Me.cmbAuthority)
         Me.Controls.Add(Me.cmbGroup)
         Me.Controls.Add(Me.Label20)
@@ -667,8 +666,8 @@ Partial Class SC_M16
     Friend WithEvents Label19 As Label
     Friend WithEvents Label22 As Label
     Friend WithEvents cmbAuthority As ComboBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents btnDelete As Button
+    Friend WithEvents btnUpdate As Button
+    Friend WithEvents btnInsert As Button
+    Friend WithEvents cmbGroupId As ComboBox
 End Class

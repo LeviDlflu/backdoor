@@ -1,0 +1,123 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-M14>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+           ＩＰアドレス,
+           設備コード AS 設備,
+           稼動区分,
+           機種,
+           ＩＰアドレス管理マスタ.備考
+          FROM
+           ＩＰアドレス管理マスタ
+          join
+           設備マスタ
+          on
+           ＩＰアドレス管理マスタ.設備コード= 設備マスタ.設備NO COLLATE database_default 
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+           '' AS 設備略称,
+           '' AS 設備,
+           '' AS 設備コード
+          UNION select
+           設備NO + ':' + 設備略称 AS 設備略称 ,
+           設備NO + ':' + 設備略称 AS 設備 ,
+           設備NO AS 設備コード
+          from
+           設備マスタ
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT 
+           '' as ＩＰアドレス 
+          UNION select 
+           ＩＰアドレス 
+          from 
+           ＩＰアドレス管理マスタ
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT 
+           ＩＰアドレス  
+          FROM 
+           ＩＰアドレス管理マスタ 
+          WHERE 
+           ＩＰアドレス = '{0}'
+        </Text>
+      </SQL>
+    </Selects>
+
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE
+           ＩＰアドレス管理マスタ
+          set
+           稼動区分 ='{1}',
+           機種 ='{2}',
+           備考 = '{3}',
+           更新日 ='{4}'
+          WHERE
+           ＩＰアドレス ='{0}'
+        </Text>
+      </SQL>
+    </Updates>
+    
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO
+           ＩＰアドレス管理マスタ
+           (ＩＰアドレス,設備コード,稼動区分,機種,備考,登録日)
+          VALUES 
+           ('{0}','{1}','{2}','{3}','{4}','{5}')
+        </Text>
+      </SQL>
+    </Inserts>
+
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE FROM 
+           ＩＰアドレス管理マスタ
+          WHERE 
+           ＩＰアドレス='{0}'
+        </Text>
+      </SQL>
+    </Deletes>
+      
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          ＩＰアドレス管理マスタ.設備コード = '{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_002">
+        <Text>
+          ＩＰアドレス管理マスタ.稼動区分 = '{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_003">
+        <Text>
+          ＩＰアドレス管理マスタ.ＩＰアドレス = '{0}'
+        </Text>
+      </SQL>
+    </Wheres>
+
+    <OrderBys>
+      <SQL ID="SORT_001">
+        <Text>
+          ORDER BY ＩＰアドレス管理マスタ.ＩＰアドレス 
+        </Text>
+      </SQL>
+    </OrderBys>
+    
+  </SC-M14>
+</Configuration>
