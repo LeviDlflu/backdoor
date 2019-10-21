@@ -1,11 +1,7 @@
 ﻿
+Imports System.Xml
+
 Public Class SC_M10
-
-    Class CustomComboBox
-        Public Property Value As String
-        Public Property Name As String
-
-    End Class
 
     Dim HEADER_NAME As Hashtable = New Hashtable From {
                              {"選択", "Select" & vbCrLf & "(選択)"},
@@ -31,14 +27,20 @@ Public Class SC_M10
 
     Private Const TABLE_NAME As String = "設備マスタ"
     Private Const MSG_NUMERICAL As String = "{0}は数値で入力してください。"
+    Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
+    Private Const XML_FORMAT As String = "Language[@name='{0}']"
 
     Dim xml As New CmnXML("SC-M10.xml", "SC-M10")
-    '自動ラベルフラグ設定
-    Dim AUTO_LABEL As New List(Of CustomComboBox) From {
-            New CustomComboBox With {.Value = "-1", .Name = " "},
-            New CustomComboBox With {.Value = "0", .Name = "０：手動ラベル"},
-            New CustomComboBox With {.Value = "1", .Name = "１：自動ラベル"}}
+    Dim strLanguage As String = "jpn"
 
+    '標準通過工程コード
+    Dim dtHkoutei As New DataTable
+    'ラインコード
+    Dim dtLine As New DataTable
+    '工程コード
+    Dim dtkoutei As New DataTable
+    '自動ラベルフラグ設定
+    Dim dtAutoLabel As New DataTable
 
     ''' <summary>
     ''' 　グリッド用のデータを作成
@@ -89,24 +91,36 @@ Public Class SC_M10
 
         For Each col As DataColumn In dtData.Columns
             Select Case col.ColumnName
-                Case COL_HKOUTEI
-                Case COL_LINE
-                Case COL_KOUTEI
-                Case COL_LABEL
+                Case COL_HKOUTEI, COL_LINE, COL_KOUTEI, COL_LABEL
                     Dim addCol As New DataGridViewComboBoxColumn()
                     addCol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox
                     addCol.FlatStyle = FlatStyle.Flat
                     addCol.DataPropertyName = col.ColumnName
                     addCol.HeaderText = HEADER_NAME(col.ColumnName)
                     addCol.Name = col.ColumnName
-                    addCol.DataSource = AUTO_LABEL
-                    addCol.ValueMember = "Name"
-                    addCol.DisplayMember = "Name"
+
+                    Dim newDT As New DataTable
+                    Select Case col.ColumnName
+                        Case COL_HKOUTEI
+                            newDT = dtHkoutei
+                        Case COL_LINE
+                            newDT = dtLine
+                        Case COL_KOUTEI
+                            newDT = dtkoutei
+                        Case COL_LABEL
+                            newDT = dtAutoLabel
+                    End Select
+
+                    addCol.DataSource = newDT
+                    addCol.ValueMember = newDT.Columns.Item(0).ColumnName
+                    addCol.DisplayMember = newDT.Columns.Item(1).ColumnName
+
                     gridData.Columns.Add(addCol)
+
                 Case Else
                     Dim addCol As New DataGridViewTextBoxColumn()
                     addCol.DataPropertyName = col.ColumnName
-                    addCol.HeaderText = col.ColumnName
+                    addCol.HeaderText = HEADER_NAME(col.ColumnName)
                     addCol.Name = col.ColumnName
                     gridData.Columns.Add(addCol)
             End Select
@@ -216,24 +230,26 @@ Public Class SC_M10
     ''' </summary>
     Private Sub SC_M10_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Me.cmb_Kbn.Text = String.Empty
-        Me.txtScode.Text = String.Empty
-        Me.txtSname.Text = String.Empty
-        Me.cmbSkoutei.Text = String.Empty
-        Me.cmbLine.Text = String.Empty
-        Me.cmbCoutei.Text = String.Empty
-        Me.txtSort.Text = String.Empty
-        Me.cmbLabel.Text = String.Empty
-        Me.txtLabel.Text = String.Empty
-
         Try
             Dim strSelect As String
             Dim dt As New DataTable
 
+            dt.Columns.Add("Code", GetType(String))
+            dt.Columns.Add("Name", GetType(String))
+            dt.Rows.Add(" ", "")
+            dt.Rows.Add("0", "０：手動ラベル")
+            dt.Rows.Add("1", "１：自動ラベル")
+
             '自動ラベルフラグ
-            'Me.cmbLabel.DataSource = AUTO_LABEL
-            'Me.cmbLabel.ValueMember = "Value"
-            'Me.cmbLabel.DisplayMember = "Name"
+            Me.cmbLabel.DataSource = dt
+            Me.cmbLabel.ValueMember = dt.Columns.Item(0).ColumnName
+            Me.cmbLabel.DisplayMember = dt.Columns.Item(1).ColumnName
+
+            dtAutoLabel.Columns.Add("Code", GetType(String))
+            dtAutoLabel.Columns.Add("Name", GetType(String))
+            dtAutoLabel.Rows.Add(" ", "")
+            dtAutoLabel.Rows.Add("0", "０：手動ラベル")
+            dtAutoLabel.Rows.Add("1", "１：自動ラベル")
 
             'データベース接続
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
@@ -244,6 +260,8 @@ Public Class SC_M10
                 Me.cmb_Kbn.DataSource = dt
                 Me.cmb_Kbn.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmb_Kbn.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                dtkoutei = clsSQLServer.GetDataTable(strSelect)
 
                 '工程コード
                 Dim dt2 As New DataTable
@@ -259,12 +277,18 @@ Public Class SC_M10
                 Me.cmbSkoutei.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmbSkoutei.DisplayMember = dt.Columns.Item(1).ColumnName
 
+                dtHkoutei = clsSQLServer.GetDataTable(strSelect)
+                Dim dr As DataRow = dtHkoutei.Rows(0)
+                dtHkoutei.Rows.Remove(dr)
+
                 'ライン区分
                 strSelect = xml.GetSQL_Str("SELECT_004")
                 dt = clsSQLServer.GetDataTable(String.Format(strSelect, "87"))
                 Me.cmbLine.DataSource = dt
                 Me.cmbLine.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmbLine.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                dtLine = clsSQLServer.GetDataTable(String.Format(strSelect, "87"))
 
                 clsSQLServer.Disconnect()
 
@@ -274,14 +298,52 @@ Public Class SC_M10
             Throw
         End Try
 
+        Me.cmb_Kbn.Text = String.Empty
+
+        controlsClear()
+
+    End Sub
+
+    ''' <summary>
+    ''' 画面コントロールのカラーをクリアする
+    ''' </summary>
+    Private Sub controlsColorClear()
+
+        Me.txtScode.BackColor = Color.White
+        Me.txtSname.BackColor = Color.White
+        Me.cmbSkoutei.BackColor = Color.White
+        Me.cmbLine.BackColor = Color.White
+        Me.cmbCoutei.BackColor = Color.White
+        Me.txtSort.BackColor = Color.White
+        Me.cmbLabel.BackColor = Color.White
+        Me.txtLabel.BackColor = Color.White
+
+    End Sub
+
+
+    ''' <summary>
+    ''' 画面コントロールをクリアする
+    ''' </summary>
+    Private Sub controlsClear()
+
+        Me.txtScode.Text = String.Empty
+        Me.txtSname.Text = String.Empty
+        Me.cmbSkoutei.Text = String.Empty
+        Me.cmbLine.Text = String.Empty
+        Me.cmbCoutei.Text = String.Empty
+        Me.txtSort.Text = String.Empty
+        Me.cmbLabel.Text = String.Empty
+        Me.txtLabel.Text = String.Empty
+
     End Sub
 
     ''' <summary>
     ''' 　終了ボタン押下
     ''' </summary>
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel, "生産管理システム") Then
+        If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
+                  vbYesNo + vbQuestion,
+                  My.Settings.systemName) = DialogResult.Yes Then
             Me.Close()
         End If
 
@@ -315,90 +377,96 @@ Public Class SC_M10
     ''' </summary>
     Private Sub btnCommit_Click(sender As Object, e As EventArgs) Handles btnCommit.Click
 
-        '必須チェック
-        '設備NO
-        If txtScode.Text.Equals(String.Empty) Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SCODE))
-            txtScode.BackColor = Color.Red
-            Return
-        Else
-            txtScode.BackColor = Color.White
-        End If
+        If MsgBox(String.Format(clsGlobal.MSG2("I0001")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
-        '設備略称
-        If txtSname.Text.Equals(String.Empty) Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SNAME))
-            txtSname.BackColor = Color.Red
-            Return
-        Else
-            txtSname.BackColor = Color.White
-        End If
+            '必須チェック
+            '設備NO
+            If txtScode.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SCODE))
+                txtScode.BackColor = Color.Red
+                Return
+            Else
+                txtScode.BackColor = Color.White
+            End If
 
-        '標準通過工程コード
-        If cmbSkoutei.Text.Equals(String.Empty) Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_HKOUTEI))
-            cmbSkoutei.BackColor = Color.Red
-            Return
-        Else
-            cmbSkoutei.BackColor = Color.White
-        End If
+            '設備略称
+            If txtSname.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SNAME))
+                txtSname.BackColor = Color.Red
+                Return
+            Else
+                txtSname.BackColor = Color.White
+            End If
 
-        '桁数チェック
-        '設備NO
-        If txtScode.Text.Equals(String.Empty) = False And txtScode.Text.Length > 4 Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SCODE, 4))
-            txtScode.BackColor = Color.Red
-            Return
-        Else
-            txtScode.BackColor = Color.White
-        End If
+            '標準通過工程コード
+            If cmbSkoutei.Text.Equals(String.Empty) Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_HKOUTEI))
+                cmbSkoutei.BackColor = Color.Red
+                Return
+            Else
+                cmbSkoutei.BackColor = Color.White
+            End If
 
-        '設備略称
-        If txtSname.Text.Equals(String.Empty) = False And txtSname.Text.Length > 20 Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SNAME, 20))
-            txtSname.BackColor = Color.Red
-            Return
-        Else
-            txtSname.BackColor = Color.White
-        End If
+            '桁数チェック
+            '設備NO
+            If txtScode.Text.Equals(String.Empty) = False And txtScode.Text.Length > 4 Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SCODE, 4))
+                txtScode.BackColor = Color.Red
+                Return
+            Else
+                txtScode.BackColor = Color.White
+            End If
 
-        '備考
-        If txtLabel.Text.Equals(String.Empty) = False And txtLabel.Text.Length > 50 Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BIKOU, 50))
-            txtLabel.BackColor = Color.Red
-            Return
-        Else
-            txtLabel.BackColor = Color.White
-        End If
+            '設備略称
+            If txtSname.Text.Equals(String.Empty) = False And txtSname.Text.Length > 20 Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SNAME, 20))
+                txtSname.BackColor = Color.Red
+                Return
+            Else
+                txtSname.BackColor = Color.White
+            End If
 
-        '数値チェック
-        '表示順序
-        If txtSort.Text.Equals(String.Empty) = False And IsNumeric(txtSort.Text) = False Then
-            MessageBox.Show(String.Format(MSG_NUMERICAL, COL_ORDER))
-            txtSort.BackColor = Color.Red
-            Return
-        Else
-            txtSort.BackColor = Color.White
-        End If
+            '備考
+            If txtLabel.Text.Equals(String.Empty) = False And txtLabel.Text.Length > 50 Then
+                MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BIKOU, 50))
+                txtLabel.BackColor = Color.Red
+                Return
+            Else
+                txtLabel.BackColor = Color.White
+            End If
 
-        Try
-            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+            '数値チェック
+            '表示順序
+            If txtSort.Text.Equals(String.Empty) = False And IsNumeric(txtSort.Text) = False Then
+                MessageBox.Show(String.Format(MSG_NUMERICAL, COL_ORDER))
+                txtSort.BackColor = Color.Red
+                Return
+            Else
+                txtSort.BackColor = Color.White
+            End If
 
-                '重複チェック
-                Dim resultData As DataTable = New DataTable
-                Dim strSelect As String = xml.GetSQL_Str("SELECT_005")
-                '設備NO
-                resultData = clsSQLServer.GetDataTable(String.Format(strSelect, txtScode.Text))
-                If resultData IsNot Nothing And resultData.Rows.Count > 0 Then
-                    MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
-                    txtScode.BackColor = Color.Red
-                    Return
-                Else
-                    txtScode.BackColor = Color.White
-                End If
+            Try
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                'データを追加
-                If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
+                    '重複チェック
+                    Dim resultData As DataTable = New DataTable
+                    Dim strSelect As String = xml.GetSQL_Str("SELECT_005")
+                    '設備NO
+                    resultData = clsSQLServer.GetDataTable(String.Format(strSelect, txtScode.Text))
+                    If resultData IsNot Nothing And resultData.Rows.Count > 0 Then
+                        '重複データがある場合、メッセージを表示して、追加処理を終止する
+                        MsgBox(String.Format(clsGlobal.MSG2("W0009")),
+                               vbExclamation,
+                               My.Settings.systemName)
+
+                        clsSQLServer.Disconnect()
+
+                        Return
+                    End If
+
+                    'データを追加
                     Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr, "0",
@@ -416,24 +484,17 @@ Public Class SC_M10
                     '最新データを検索
                     btnSearch_Click(sender, e)
 
-                    Me.cmb_Kbn.Text = String.Empty
-                    Me.txtScode.Text = String.Empty
-                    Me.txtSname.Text = String.Empty
-                    Me.cmbSkoutei.Text = String.Empty
-                    Me.cmbLine.Text = String.Empty
-                    Me.cmbCoutei.Text = String.Empty
-                    Me.txtSort.Text = String.Empty
-                    Me.cmbLabel.Text = String.Empty
-                    Me.txtLabel.Text = String.Empty
+                    controlsClear()
 
                 End If
 
-            End If
+            Catch ex As Exception
+                Throw
+            Finally
+                clsSQLServer.Disconnect()
+            End Try
 
-        Catch ex As Exception
-            Throw
-        End Try
-
+        End If
     End Sub
 
     ''' <summary>
@@ -443,101 +504,98 @@ Public Class SC_M10
 
         Dim gridCells As DataGridViewCellCollection
 
-        Try
+        If MsgBox(String.Format(clsGlobal.MSG2("I0002")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
-            For i As Integer = 0 To gridData.Rows.Count - 1
-                If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+            'レコード存在しない場合、エラーが発生する
+            If gridData.Rows.Count = 0 Then
+                MsgBox(String.Format(clsGlobal.MSG2("W9001")), vbExclamation, My.Settings.systemName)
+                Return
+            End If
 
-                    If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+            Try
 
-                        gridCells = gridData.Rows(i).Cells
+                Dim selectedCount As Boolean = False
 
-                        Dim strScode As String = gridCells(COL_SCODE).Value
-                        Dim strSname As String = gridCells(COL_SNAME).Value
-                        Dim strHkoutei As String = gridCells(COL_HKOUTEI).Value
-                        Dim strLine As String = gridCells(COL_LINE).Value
-                        Dim strKoutei As String = gridCells(COL_KOUTEI).Value
-                        Dim strOrder As String = gridCells(COL_ORDER).Value
-                        Dim strLabel As String = gridCells(COL_LABEL).Value
-                        Dim strBikou As String = gridCells(COL_BIKOU).Value
+                For i As Integer = 0 To gridData.Rows.Count - 1
+                    If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
 
-                        '必須チェック
-                        '設備略称
-                        If strSname.Equals(String.Empty) Then
-                            MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SNAME))
-                            gridCells(COL_SNAME).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridCells(COL_SNAME).Style.BackColor = Color.White
-                        End If
+                        If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                        '標準通過工程コード
-                        If strHkoutei.Equals(String.Empty) Then
-                            MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_HKOUTEI))
-                            gridCells(COL_HKOUTEI).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridCells(COL_HKOUTEI).Style.BackColor = Color.White
-                        End If
+                            gridCells = gridData.Rows(i).Cells
 
-                        '桁数チェック
-                        '設備略称
-                        If strSname.Equals(String.Empty) = False And strSname.Length > 20 Then
-                            MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SNAME, 20))
-                            gridCells(COL_SNAME).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridCells(COL_SNAME).Style.BackColor = Color.White
-                        End If
+                            Dim strScode As String = gridCells(COL_SCODE).Value
+                            Dim strSname As String = gridCells(COL_SNAME).Value
+                            Dim strHkoutei As String = gridCells(COL_HKOUTEI).Value
+                            Dim strLine As String = gridCells(COL_LINE).Value
+                            Dim strKoutei As String = gridCells(COL_KOUTEI).Value
+                            Dim strOrder As String = gridCells(COL_ORDER).Value
+                            Dim strLabel As String = gridCells(COL_LABEL).Value
+                            Dim strBikou As String = gridCells(COL_BIKOU).Value
 
-                        '備考
-                        If strBikou.Equals(String.Empty) = False And strBikou.Length > 50 Then
-                            MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BIKOU, 50))
-                            gridCells(COL_BIKOU).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridCells(COL_BIKOU).Style.BackColor = Color.White
-                        End If
+                            '必須チェック
+                            '設備略称
+                            If strSname.Equals(String.Empty) Then
+                                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_SNAME))
+                                gridCells(COL_SNAME).Style.BackColor = Color.Red
+                                Exit For
+                            Else
+                                gridCells(COL_SNAME).Style.BackColor = Color.White
+                            End If
 
-                        '数値チェック
-                        '表示順序
-                        If strOrder.Equals(String.Empty) = False And IsNumeric(strOrder) = False Then
-                            MessageBox.Show(String.Format(MSG_NUMERICAL, COL_ORDER))
-                            gridCells(COL_ORDER).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridCells(COL_ORDER).Style.BackColor = Color.Red
-                        End If
+                            '標準通過工程コード
+                            If strHkoutei.Equals(String.Empty) Then
+                                MessageBox.Show(cmnUtil.GetMessageStr("W0001", COL_HKOUTEI))
+                                gridCells(COL_HKOUTEI).Style.BackColor = Color.Red
+                                Exit For
+                            Else
+                                gridCells(COL_HKOUTEI).Style.BackColor = Color.White
+                            End If
 
-                        '存在チェック
-                        Dim resultData As DataTable = New DataTable
-                        Dim strSelect As String = xml.GetSQL_Str("SELECT_005")
-                        '設備NO
-                        resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strScode))
-                        If resultData Is Nothing Or resultData.Rows.Count < 1 Then
-                            MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
-                            gridData.Rows(i).DefaultCellStyle.BackColor = Color.Red
-                            'gridCells(COL_SCODE).Style.BackColor = Color.Red
-                            Return
-                        Else
-                            gridData.Rows(i).DefaultCellStyle.BackColor = Color.White
-                            'gridCells(COL_SCODE).Style.BackColor = Color.White
-                        End If
+                            '桁数チェック
+                            '設備略称
+                            If strSname.Equals(String.Empty) = False And strSname.Length > 20 Then
+                                MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_SNAME, 20))
+                                gridCells(COL_SNAME).Style.BackColor = Color.Red
+                                Exit For
+                            Else
+                                gridCells(COL_SNAME).Style.BackColor = Color.White
+                            End If
 
-                        'データを更新
-                        If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
+                            '備考
+                            If strBikou.Equals(String.Empty) = False And strBikou.Length > 50 Then
+                                MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BIKOU, 50))
+                                gridCells(COL_BIKOU).Style.BackColor = Color.Red
+                                Exit For
+                            Else
+                                gridCells(COL_BIKOU).Style.BackColor = Color.White
+                            End If
 
+                            '数値チェック
+                            '表示順序
+                            If strOrder.Equals(String.Empty) = False And IsNumeric(strOrder) = False Then
+                                MessageBox.Show(String.Format(MSG_NUMERICAL, COL_ORDER))
+                                gridCells(COL_ORDER).Style.BackColor = Color.Red
+                                Exit For
+                            Else
+                                gridCells(COL_ORDER).Style.BackColor = Color.White
+                            End If
+
+                            'データを更新
                             Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                                    strScode,
-                                                                    strSname,
-                                                                    strHkoutei,
-                                                                    strLine,
-                                                                    strKoutei,
-                                                                    strOrder,
-                                                                    strLabel,
-                                                                    strBikou))
+                                                                        strScode,
+                                                                        strSname,
+                                                                        strHkoutei,
+                                                                        strLine,
+                                                                        strKoutei,
+                                                                        strOrder,
+                                                                        strLabel,
+                                                                        strBikou))
+
+                            selectedCount = True
 
                             clsSQLServer.Disconnect()
 
@@ -546,13 +604,22 @@ Public Class SC_M10
                         End If
 
                     End If
+                Next
 
-                    Exit For
+                '選択されてないレコードがエラー発生する
+                If selectedCount = False Then
+                    MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                    Return
                 End If
-            Next
-        Catch ex As Exception
-            Throw
-        End Try
+
+            Catch ex As Exception
+                Throw
+            Finally
+                clsSQLServer.Disconnect()
+            End Try
+        End If
     End Sub
 
     ''' <summary>
@@ -560,23 +627,80 @@ Public Class SC_M10
     ''' </summary>
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
+        Dim selectedCount As Boolean = False
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+
+            'レコード存在しない場合、エラーが発生する
+            If gridData.Rows.Count = 0 Then
+                MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                Return
+            End If
+
+            Try
+
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                    For i As Integer = 0 To gridData.Rows.Count - 1
+
+                        If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
+
+                            Dim strScode As String = gridData.Rows(i).Cells(COL_SCODE).Value
+
+                            '削除
+                            Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
+
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr, strScode))
+
+                            selectedCount = True
+
+                        End If
+
+                    Next
+
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    clsSQLServer.Disconnect()
+
+                    '再検索
+                    btnSearch_Click(sender, e)
+
+                End If
+            Catch ex As Exception
+                Throw
+            Finally
+                clsSQLServer.Disconnect()
+            End Try
+        End If
     End Sub
 
     ''' <summary>
     ''' 　クリアボタン押下
     ''' </summary>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-        gridData.Columns.Clear()
+        If MsgBox(String.Format(clsGlobal.MSG2("I0009")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
 
-        Me.cmb_Kbn.Text = String.Empty
-        Me.txtScode.Text = String.Empty
-        Me.txtSname.Text = String.Empty
-        Me.cmbSkoutei.Text = String.Empty
-        Me.cmbLine.Text = String.Empty
-        Me.cmbCoutei.Text = String.Empty
-        Me.txtSort.Text = String.Empty
-        Me.cmbLabel.Text = String.Empty
-        Me.txtLabel.Text = String.Empty
+            gridData.Columns.Clear()
+
+            Me.cmb_Kbn.Text = String.Empty
+
+            controlsClear()
+
+            controlsColorClear()
+
+        End If
 
     End Sub
 
