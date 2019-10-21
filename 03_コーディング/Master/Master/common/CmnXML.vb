@@ -8,6 +8,7 @@ Public Class CmnXML
     Private Const SQL_TYPE_U As String = "Updates"
     Private Const SQL_TYPE_I As String = "Inserts"
     Private Const SQL_TYPE_D As String = "Deletes"
+    Private Const SQL_TYPE_O As String = "OrderBys"
     Private Const SQL_TYPE_E As String = "Error"
     Private Const SQL_ITEM_TEXT As String = "Text"
 
@@ -87,6 +88,8 @@ Public Class CmnXML
                 SQLType = SQL_TYPE_I
             Case "D"c
                 SQLType = SQL_TYPE_D
+            Case "O"c
+                SQLType = SQL_TYPE_O
             Case Else
                 SQLType = SQL_TYPE_E
         End Select

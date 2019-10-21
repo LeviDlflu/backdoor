@@ -157,7 +157,7 @@ Partial Class SC_M14
         Me.TextBox1.Location = New System.Drawing.Point(1229, 31)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(120, 19)
+        Me.TextBox1.Size = New System.Drawing.Size(120, 21)
         Me.TextBox1.TabIndex = 5
         Me.TextBox1.TabStop = False
         Me.TextBox1.Text = "本番環境"
@@ -168,7 +168,7 @@ Partial Class SC_M14
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
         Me.txtLoginUser.Location = New System.Drawing.Point(1229, 10)
         Me.txtLoginUser.Name = "txtLoginUser"
-        Me.txtLoginUser.Size = New System.Drawing.Size(120, 19)
+        Me.txtLoginUser.Size = New System.Drawing.Size(120, 21)
         Me.txtLoginUser.TabIndex = 4
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
@@ -312,7 +312,7 @@ Partial Class SC_M14
         Me.cmb_Koutei.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmb_Koutei.BackColor = System.Drawing.Color.White
         Me.cmb_Koutei.FormattingEnabled = True
-        Me.cmb_Koutei.Items.AddRange(New Object() {"0:予備", "1:稼動"})
+        Me.cmb_Koutei.Items.AddRange(New Object() {"", "0:予備", "1:稼動"})
         Me.cmb_Koutei.Location = New System.Drawing.Point(228, 172)
         Me.cmb_Koutei.Name = "cmb_Koutei"
         Me.cmb_Koutei.Size = New System.Drawing.Size(185, 20)
@@ -477,7 +477,7 @@ Partial Class SC_M14
         Me.txtHinSyuCD.Margin = New System.Windows.Forms.Padding(2)
         Me.txtHinSyuCD.MaxLength = 15
         Me.txtHinSyuCD.Name = "txtHinSyuCD"
-        Me.txtHinSyuCD.Size = New System.Drawing.Size(135, 19)
+        Me.txtHinSyuCD.Size = New System.Drawing.Size(135, 21)
         Me.txtHinSyuCD.TabIndex = 144
         '
         'Label23
@@ -508,7 +508,7 @@ Partial Class SC_M14
         Me.ComboBox4.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.ComboBox4.BackColor = System.Drawing.Color.White
         Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Items.AddRange(New Object() {"0:予備", "1:稼動"})
+        Me.ComboBox4.Items.AddRange(New Object() {"", "0:予備", "1:稼動"})
         Me.ComboBox4.Location = New System.Drawing.Point(403, 635)
         Me.ComboBox4.Name = "ComboBox4"
         Me.ComboBox4.Size = New System.Drawing.Size(178, 20)
@@ -553,7 +553,7 @@ Partial Class SC_M14
         Me.TextBox2.Location = New System.Drawing.Point(616, 635)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(264, 19)
+        Me.TextBox2.Size = New System.Drawing.Size(264, 21)
         Me.TextBox2.TabIndex = 158
         '
         'Label30
@@ -584,7 +584,7 @@ Partial Class SC_M14
         Me.TextBox3.Location = New System.Drawing.Point(916, 635)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(412, 19)
+        Me.TextBox3.Size = New System.Drawing.Size(412, 21)
         Me.TextBox3.TabIndex = 161
         '
         'Label32
@@ -604,9 +604,9 @@ Partial Class SC_M14
         Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label4.Location = New System.Drawing.Point(104, 158)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(65, 11)
+        Me.Label4.Size = New System.Drawing.Size(54, 11)
         Me.Label4.TabIndex = 165
-        Me.Label4.Text = "(設備コード)"
+        Me.Label4.Text = "(設備NO)"
         '
         'ComboBox1
         '
@@ -625,9 +625,9 @@ Partial Class SC_M14
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label5.Location = New System.Drawing.Point(13, 155)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(95, 14)
+        Me.Label5.Size = New System.Drawing.Size(84, 14)
         Me.Label5.TabIndex = 164
-        Me.Label5.Text = "Facility code"
+        Me.Label5.Text = "Facility NO"
         '
         'Label10
         '
@@ -635,16 +635,15 @@ Partial Class SC_M14
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label10.Location = New System.Drawing.Point(271, 615)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(65, 11)
+        Me.Label10.Size = New System.Drawing.Size(54, 11)
         Me.Label10.TabIndex = 168
-        Me.Label10.Text = "(設備コード)"
+        Me.Label10.Text = "(設備NO)"
         '
         'ComboBox3
         '
         Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.ComboBox3.BackColor = System.Drawing.Color.White
         Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"0:予備", "1:稼動"})
         Me.ComboBox3.Location = New System.Drawing.Point(183, 634)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(185, 20)
@@ -656,9 +655,9 @@ Partial Class SC_M14
         Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label11.Location = New System.Drawing.Point(180, 612)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(95, 14)
+        Me.Label11.Size = New System.Drawing.Size(84, 14)
         Me.Label11.TabIndex = 167
-        Me.Label11.Text = "Facility code"
+        Me.Label11.Text = "Facility NO"
         '
         'SC_M14
         '

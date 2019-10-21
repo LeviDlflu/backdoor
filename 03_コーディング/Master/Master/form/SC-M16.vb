@@ -1,10 +1,29 @@
 ﻿Public Class SC_M16
-    Private Const COL_SENTAKU As String = "Select" & vbCrLf & "(選択)"
-    Private Const COL_PROGRAM_ID As String = "Program ID" & vbCrLf & "(プログラムID)"
-    Private Const COL_FORM_ID As String = "Form ID" & vbCrLf & "(画面ID)"
-    Private Const COL_FORM_NAME As String = "Form name" & vbCrLf & "(画面名称)"
-    Private Const COL_GROUP_ID As String = "Group ID" & vbCrLf & "(グループID)"
-    Private Const COL_AUTHORITY_NAME As String = "Authority name" & vbCrLf & "(権限名)"
+
+    ''' <summary>
+    ''' 　画面一覧のヘッダ部初期化
+    ''' </summary>
+    Dim headerName As Hashtable = New Hashtable From {
+                             {"選択", "Select" & vbCrLf & "(選択)"},
+                             {"プログラムID", "Program ID" & vbCrLf & "(プログラムID)"},
+                             {"画面ID", "Form ID" & vbCrLf & "(画面ID)"},
+                             {"画面名称", "Form name" & vbCrLf & "(画面名称)"},
+                             {"グループID", "Group ID" & vbCrLf & "(グループID)"},
+                             {"権限", "Authority name" & vbCrLf & "(権限名)"}
+                            }
+
+    Private Const COL_SENTAKU As String = "選択"
+    Private Const COL_PROGRAM_ID As String = "プログラムID"
+    Private Const COL_FORM_ID As String = "画面ID"
+    Private Const COL_FORM_NAME As String = "画面名称"
+    Private Const COL_GROUP_ID As String = "グループID"
+    Private Const COL_AUTHORITY_NAME As String = "権限"
+
+    Dim xml As New CmnXML("SC-M16.xml", "SC-M16")
+
+    Dim dataTable As New DataTable()
+
+    Dim dtAuthority As New DataTable()
 
     Private Sub Init()
         Me.txtFormID.Text = String.Empty
@@ -12,8 +31,74 @@
         Me.txtFormName.Text = String.Empty
         Me.cmbGroup.Text = String.Empty
         Me.cmbAuthority.Text = String.Empty
+
+        setGroupId("")
+
+        setAuthority()
+
+        xml.InitUser(Me.txtLoginUser, Me.TextBox1)
+
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
+
+    End Sub
+
+    ''' <summary>
+    ''' 　画面項目グループID初期化
+    ''' </summary>
+    Private Sub setGroupId(ByVal str As String)
+
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
+                strSelect = String.Format(strSelect, "009")
+
+                Dim dt As New DataTable()
+                'コード
+                dataTable = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbGroupId.DataSource = dataTable
+                Me.cmbGroupId.ValueMember = dataTable.Columns.Item(0).ColumnName
+                Me.cmbGroupId.DisplayMember = dataTable.Columns.Item(1).ColumnName
+
+                '検索条件　コード
+                dt = dataTable.Copy
+                Me.cmbGroup.DataSource = dt
+                Me.cmbGroup.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbGroup.DisplayMember = dt.Columns.Item(1).ColumnName
+
+            End If
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+            controlClear()
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 　画面項目権限名初期化
+    ''' </summary>
+    Private Sub setAuthority()
+
+
+        dtAuthority.Columns.Add("権限", Type.GetType("System.String"))
+        dtAuthority.Columns.Add("権限名", Type.GetType("System.String"))
+
+        dtAuthority.Rows.Add("9", "")
+        dtAuthority.Rows.Add("0", "0:権限なし")
+        dtAuthority.Rows.Add("1", "1:参照のみ")
+        dtAuthority.Rows.Add("2", "2:すべて")
+
+
+        'CustomDropDownComboBoxの設定
+        Me.cmbAuthority.DataSource = dtAuthority
+
+        ' 表示用の列を設定
+        Me.cmbAuthority.DisplayMember = dtAuthority.Columns.Item(1).ColumnName
+        ' データ用の列を設定
+        Me.cmbAuthority.ValueMember = dtAuthority.Columns.Item(0).ColumnName
 
     End Sub
 
@@ -39,11 +124,56 @@
     End Sub
 
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        Me.Close()
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
+                  vbYesNo + vbQuestion,
+                  My.Settings.systemName) = DialogResult.Yes Then
+            Me.Close()
+        End If
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        setGrid(createGridData())
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                Dim sqlstr As String
+                Dim dt As New DataTable()
+
+                If Me.cmbGroupId.Text.Equals(String.Empty) Then
+                    sqlstr = xml.GetSQL_Str("SELECT_002")
+                Else
+                    sqlstr = xml.GetSQL_Str("SELECT_003")
+                    sqlstr = String.Format(sqlstr, cmbGroupId.SelectedValue)
+                End If
+
+                dt = clsSQLServer.GetDataTable(sqlstr)
+
+                If dt.Rows.Count = 0 Then
+
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           My.Settings.systemName)
+
+                    clsSQLServer.Disconnect()
+
+                    Return
+
+                End If
+
+                setGrid(dt)
+
+                clsSQLServer.Disconnect()
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
     End Sub
 
     ''' <summary>
@@ -51,27 +181,53 @@
     ''' </summary>
     ''' <param name="dtData">データソース</param>
     Private Sub setGrid(ByRef dtData As DataTable)
-        If gridData.Rows.Count > 0 Then
-            gridData.Columns.Clear()
-        End If
+
+        gridData.Columns.Clear()
+
+        Dim dt As New DataTable()
+
+        '選択
+        Dim addColSentaku As New DataGridViewCheckBoxColumn()
+        addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
+        addColSentaku.HeaderText = headerName(COL_SENTAKU)
+        addColSentaku.Name = "sentaku"
+        gridData.Columns.Add(addColSentaku)
+
         For Each col As DataColumn In dtData.Columns
-            If col.ColumnName = COL_SENTAKU Then
-                Dim addCol As New DataGridViewCheckBoxColumn()
-                addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
-                addCol.Name = "sentaku"
-                gridData.Columns.Add(addCol)
-            ElseIf col.ColumnName = COL_GROUP_ID Or col.ColumnName = COL_AUTHORITY_NAME Then
+
+            If col.ColumnName = COL_GROUP_ID Then
                 Dim addCol As New DataGridViewComboBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
+                addCol.HeaderText = headerName(col.ColumnName)
                 addCol.Name = col.ColumnName
+
+                '検索条件　コード
+                dt = dataTable.Copy
+
+                addCol.DataSource = dt
+                addCol.DisplayMember = dt.Columns.Item(1).ColumnName
+                addCol.ValueMember = dt.Columns.Item(0).ColumnName
+                gridData.Columns.Add(addCol)
+
+            ElseIf col.ColumnName = COL_AUTHORITY_NAME Then
+                Dim addCol As New DataGridViewComboBoxColumn()
+                addCol.DataPropertyName = col.ColumnName
+                addCol.HeaderText = headerName(col.ColumnName)
+                addCol.Name = col.ColumnName
+
+                '検索条件　コード
+                dt = dtAuthority.Copy
+
+                addCol.DataSource = dt
+                addCol.DisplayMember = dt.Columns.Item(1).ColumnName
+                addCol.ValueMember = dt.Columns.Item(0).ColumnName
+
                 gridData.Columns.Add(addCol)
 
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
                 addCol.DataPropertyName = col.ColumnName
-                addCol.HeaderText = col.ColumnName
+                addCol.HeaderText = headerName(col.ColumnName)
                 addCol.Name = col.ColumnName
                 gridData.Columns.Add(addCol)
             End If
@@ -83,7 +239,7 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_FORM_NAME
+                Case COL_FORM_NAME, COL_GROUP_ID, COL_AUTHORITY_NAME
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -119,58 +275,6 @@
     End Sub
 
     ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-        dt.Columns.Add(New DataColumn(COL_SENTAKU, GetType(System.Boolean)))
-        dt.Columns.Add(New DataColumn(COL_PROGRAM_ID, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_FORM_ID, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_FORM_NAME, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_GROUP_ID, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_AUTHORITY_NAME, GetType(System.String)))
-
-        For i As Integer = 0 To 6
-            Dim addRow As DataRow = dt.NewRow
-            Select Case i
-                Case 0
-                    addRow(COL_PROGRAM_ID) = "P10001"
-                    addRow(COL_FORM_ID) = "M1001"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 1
-                    addRow(COL_PROGRAM_ID) = "P10002"
-                    addRow(COL_FORM_ID) = "M1002"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 2
-                    addRow(COL_PROGRAM_ID) = "P10003"
-                    addRow(COL_FORM_ID) = "M1003"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 3
-                    addRow(COL_PROGRAM_ID) = "P10004"
-                    addRow(COL_FORM_ID) = "M1004"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 4
-                    addRow(COL_PROGRAM_ID) = "P10005"
-                    addRow(COL_FORM_ID) = "M1005"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 5
-                    addRow(COL_PROGRAM_ID) = "P10006"
-                    addRow(COL_FORM_ID) = "M1006"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-                Case 6
-                    addRow(COL_PROGRAM_ID) = "P10007"
-                    addRow(COL_FORM_ID) = "M1007"
-                    addRow(COL_FORM_NAME) = "権限マスタ001"
-
-            End Select
-            dt.Rows.Add(addRow)
-        Next
-
-        Return dt
-
-    End Function
-
-    ''' <summary>
     ''' 　チェックボックス事件
     ''' </summary>
     Private Sub gridData_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles gridData.CurrentCellDirtyStateChanged
@@ -191,4 +295,243 @@
 
     End Sub
 
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0009")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+            gridData.Columns.Clear()
+
+            controlClear()
+        End If
+    End Sub
+
+    Private Sub btnInsert_Click(sender As Object, e As EventArgs) Handles btnInsert.Click
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0001")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+
+            If Me.txtFormID.Text.Equals(String.Empty) Then
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_FORM_ID))
+                Me.txtFormID.BackColor = Color.Red
+                Return
+            Else
+                Me.txtFormID.BackColor = Color.White
+            End If
+
+            If Me.cmbGroup.Text.Equals(String.Empty) Then
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_GROUP_ID))
+                Me.cmbGroup.BackColor = Color.Red
+                Return
+            Else
+                Me.cmbGroup.BackColor = Color.White
+            End If
+
+            If Me.cmbAuthority.Text.Equals(String.Empty) Then
+                MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_AUTHORITY_NAME))
+                Me.cmbAuthority.BackColor = Color.Red
+                Return
+            Else
+                Me.cmbAuthority.BackColor = Color.White
+            End If
+
+            Try
+
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                    '追加処理の重複データをチェックする
+                    Dim dt As New DataTable()
+                    Dim sqlstr As String = xml.GetSQL_Str("SELECT_004")
+                    sqlstr = String.Format(sqlstr, Me.cmbGroup.SelectedValue, Me.txtFormID.Text)
+
+                    dt = clsSQLServer.GetDataTable(sqlstr)
+
+                    If dt.Rows.Count > 0 Then
+
+                        '重複データがある場合、メッセージを表示して、追加処理を終止する
+                        MsgBox(String.Format(clsGlobal.MSG2("W0009")),
+                               vbExclamation,
+                               My.Settings.systemName)
+
+                        clsSQLServer.Disconnect()
+
+                        Return
+
+                    End If
+
+                    sqlstr = xml.GetSQL_Str("INSERT_001")
+
+                    clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                            Me.cmbGroup.SelectedValue,
+                                                            Me.txtFormID.Text,
+                                                            Me.txtProgram.Text,
+                                                            Me.txtFormName.Text,
+                                                            Me.cmbAuthority.SelectedValue))
+
+                    clsSQLServer.Disconnect()
+
+                    setGroupId(Me.cmbGroup.Text)
+
+                    btnSearch_Click(sender, e)
+
+                End If
+
+            Catch ex As Exception
+                Throw
+            End Try
+
+            Me.cmbGroup.Text = String.Empty
+            Me.cmbGroup.BackColor = Color.White
+
+            Me.txtFormID.Text = String.Empty
+            Me.txtFormID.BackColor = Color.White
+
+            Me.txtProgram.Text = String.Empty
+            Me.txtProgram.BackColor = Color.White
+
+            Me.txtFormName.Text = String.Empty
+            Me.txtFormName.BackColor = Color.White
+
+            Me.cmbAuthority.Text = String.Empty
+            Me.cmbAuthority.BackColor = Color.White
+        End If
+    End Sub
+
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0002")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+
+            Try
+
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    For i As Integer = 0 To gridData.Rows.Count - 1
+
+                        '横位置
+                        If gridData.Rows(i).Cells(0).Value = True Then
+
+                            Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
+
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                            gridData.Rows(i).Cells(1).Value,
+                                                            gridData.Rows(i).Cells(2).Value,
+                                                            gridData.Rows(i).Cells(3).Value,
+                                                            gridData.Rows(i).Cells(4).Value,
+                                                            gridData.Rows(i).Cells(5).Value))
+
+                            selectedCount = True
+                        End If
+
+                    Next
+
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    clsSQLServer.Disconnect()
+
+                    btnSearch_Click(sender, e)
+                End If
+            Catch ex As Exception
+                Throw
+            End Try
+
+        End If
+
+        'clsCSV.ConvertDataTableToCsv(dt， "aa.txt", True, True)
+    End Sub
+
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+
+            Try
+
+                If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                    Dim sqlstr As String
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    For i As Integer = 0 To gridData.Rows.Count - 1
+
+                        '横位置
+                        If gridData.Rows(i).Cells(0).Value = True Then
+
+                            sqlstr = xml.GetSQL_Str("DELETE_001")
+
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                                    gridData.Rows(i).Cells(4).Value,
+                                                                    gridData.Rows(i).Cells(2).Value))
+                            selectedCount = True
+
+                        End If
+
+                    Next
+
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
+
+                    clsSQLServer.Disconnect()
+
+                    setGroupId(Me.cmbGroupId.SelectedValue)
+
+                    btnSearch_Click(sender, e)
+
+                End If
+            Catch ex As Exception
+                Throw
+            End Try
+        End If
+    End Sub
+
+    '画面コントロールをクリアする
+    Private Sub controlClear()
+
+        Me.cmbGroupId.Text = String.Empty
+
+        Me.txtFormID.Text = String.Empty
+        Me.txtFormID.BackColor = Color.White
+
+        Me.txtProgram.Text = String.Empty
+        Me.txtProgram.BackColor = Color.White
+
+        Me.txtFormName.Text = String.Empty
+        Me.txtFormName.BackColor = Color.White
+
+        Me.cmbGroup.Text = String.Empty
+        Me.cmbGroup.BackColor = Color.White
+
+        Me.cmbAuthority.Text = String.Empty
+        Me.cmbAuthority.BackColor = Color.White
+    End Sub
 End Class
