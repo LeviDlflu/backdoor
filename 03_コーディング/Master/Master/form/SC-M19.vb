@@ -167,8 +167,6 @@ Public Class SC_M19
         'SetControlsLable()
         'language.LoadLanguage(strLanguage, "SC-M19", FIELDS, Me.Controls)
 
-        controlsClear()
-
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
@@ -213,6 +211,10 @@ Public Class SC_M19
         Catch ex As Exception
             Throw
         End Try
+
+        Me.cmb_Koutei.Text = String.Empty
+        controlsClear()
+
     End Sub
 
     ''' <summary>
@@ -226,6 +228,7 @@ Public Class SC_M19
 
             gridData.Columns.Clear()
 
+            Me.cmb_Koutei.Text = String.Empty
             controlsClear()
 
             controlsColorClear()
@@ -238,7 +241,6 @@ Public Class SC_M19
     ''' </summary>
     Private Sub controlsColorClear()
 
-        Me.cmbKoutei.BackColor = Color.White
         Me.cmbKubun.BackColor = Color.White
         Me.cmbLine.BackColor = Color.White
         Me.cmb_Koutei.BackColor = Color.White
@@ -257,7 +259,6 @@ Public Class SC_M19
         Me.cmbKoutei.Text = String.Empty
         Me.cmbKubun.Text = String.Empty
         Me.cmbLine.Text = String.Empty
-        Me.cmb_Koutei.Text = String.Empty
         Me.txtStart.Text = String.Empty
         Me.txtEnd.Text = String.Empty
         Me.cmbHenkou.Text = String.Empty
