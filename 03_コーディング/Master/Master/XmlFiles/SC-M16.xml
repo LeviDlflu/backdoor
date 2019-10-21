@@ -1,0 +1,117 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-M16>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+            '0000000000000000000' AS コード,
+            '' AS コード_名称
+          UNION
+          SELECT
+            コード AS コード,
+            (コード +':'+ コード名称) AS コード_名称
+          FROM
+            コードマスタ
+          WHERE
+            コード区分 = '{0}'
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            プログラムID,
+            画面ID,
+            画面名称,
+            グループID,
+            権限
+          FROM
+            権限マスタ
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+            プログラムID,
+            画面ID,
+            画面名称,
+            グループID,
+            権限
+          FROM
+            権限マスタ
+          WHERE
+            グループID = '{0}'
+          ORDER BY
+            グループID,
+            画面ID
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+            グループID
+          FROM
+            権限マスタ
+          WHERE
+            グループID='{0}'
+          AND
+            画面ID='{1}'
+        </Text>
+      </SQL>
+    </Selects>
+    
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE
+            権限マスタ
+          SET
+            プログラムID='{3}',
+            画面名称={2},
+            権限='{4}'
+          WHERE
+            グループID='{0}'
+          AND
+            画面ID='{1}'
+        </Text>
+      </SQL>
+    </Updates>
+    
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO
+            権限マスタ
+            (
+              グループID,
+              画面ID,
+              プログラムＩＤ,
+              画面名称,
+              権限
+            )
+          VALUES
+            (
+              '{0}',
+              '{1}',
+              '{2}',
+              '{3}',
+              '{4}'
+            )
+        </Text>
+      </SQL>
+    </Inserts>
+    
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE FROM
+            権限マスタ
+          WHERE
+            グループID='{0}'
+          AND
+            画面ID='{1}'
+        </Text>
+      </SQL>
+    </Deletes>
+  </SC-M16>
+</Configuration>
