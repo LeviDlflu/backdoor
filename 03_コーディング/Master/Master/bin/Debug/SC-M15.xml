@@ -1,0 +1,155 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+<SC-M15>
+  <Selects>
+    <SQL ID="SELECT_001">
+      <Text>
+        SELECT
+          コード区分,
+          コード,
+          コード名称,
+          [コード名称（英語）],
+          表示順序,
+          項目１,
+          項目２,
+          項目３,
+          項目４,
+          項目５,
+          備考
+        FROM
+          コードマスタ
+        ORDER BY
+          表示順序 ASC,
+          コード区分 ASC,
+          コード ASC
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_002">
+      <Text>
+        SELECT
+          コード区分
+        FROM
+          コードマスタ
+        WHERE
+          コード区分 = '{0}'
+        AND
+          コード ='{1}'
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_003">
+      <Text>
+        SELECT
+          コード区分,
+          コード,
+          コード名称,
+          [コード名称（英語）],
+          表示順序,
+          項目１,
+          項目２,
+          項目３,
+          項目４,
+          項目５,
+          備考
+        FROM
+          コードマスタ
+        WHERE
+          コード区分='{0}'
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_004">
+      <Text>
+        SELECT
+        '' AS コード区分,
+        '' AS コード_名称
+        UNION SELECT
+        コード区分,
+        (コード + ':' + コード名称) AS コード_名称
+        FROM
+        コードマスタ
+        WHERE
+        コード区分 = 'CTL'
+      </Text>
+    </SQL>
+    <SQL ID="SELECT_005">
+      <Text>
+        SELECT
+          DISTINCT(コード区分)
+        FROM
+        コードマスタ
+      </Text>
+    </SQL>
+  </Selects>
+
+  <Updates>
+    <SQL ID="UPDATE_001">
+      <Text>
+        UPDATE
+          コードマスタ
+        set
+          コード名称='{2}',
+          [コード名称（英語）]='{3}',
+          表示順序='{4}',
+          項目１='{5}',
+          項目２='{6}',
+          項目３='{7}',
+          項目４='{8}',
+          項目５='{9}',
+          備考='{10}'
+        WHERE
+          コード区分='{0}'
+        AND
+          コード='{1}'
+      </Text>
+    </SQL>
+  </Updates>
+
+  <Inserts>
+    <SQL ID="INSERT_001">
+      <Text>
+        INSERT INTO
+          コードマスタ
+        (
+          コード区分,
+          コード,
+          コード名称,
+          [コード名称（英語）],
+          表示順序,
+          項目１,
+          項目２,
+          項目３,
+          項目４,
+          項目５,
+          備考
+        )
+        VALUES
+        (
+          '{0}',
+          '{1}',
+          '{2}',
+          '{3}',
+          '{4}',
+          '{5}',
+          '{6}',
+          '{7}',
+          '{8}',
+          '{9}',
+          '{10}'
+        )
+      </Text>
+    </SQL>
+  </Inserts>
+
+  <Deletes>
+    <SQL ID="DELETE_001">
+      <Text>
+        DELETE FROM
+          コードマスタ
+        WHERE
+          コード区分='{0}'
+        AND
+          コード='{1}'
+      </Text>
+    </SQL>
+  </Deletes>
+</SC-M15>
+</Configuration>
