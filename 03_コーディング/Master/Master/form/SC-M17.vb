@@ -24,11 +24,11 @@ Public Class SC_M17
 
     Private Sub Init()
 
-        Me.txtName.Enabled = True
+        Me.txtNames.Enabled = True
         Me.txtFullNM.Enabled = True
         Me.txtRemarks.Enabled = True
 
-        Me.txtName.Text = String.Empty
+        Me.txtNames.Text = String.Empty
         Me.txtFullNM.Text = String.Empty
         Me.txtRemarks.Text = String.Empty
 
@@ -175,7 +175,7 @@ Public Class SC_M17
     ''' </summary>
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
-    Private Sub SC_M17_Load(sender As Object, e As EventArgs) Handles MyBase.Load, MyBase.Activated
+    Private Sub SC_M17_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Init()
 
@@ -294,7 +294,7 @@ Public Class SC_M17
 
             NameCode.Text = String.Empty
 
-            Me.txtName.Text = String.Empty
+            Me.txtNames.Text = String.Empty
             Me.txtFullNM.Text = String.Empty
             Me.txtRemarks.Text = String.Empty
 
@@ -308,13 +308,13 @@ Public Class SC_M17
                   vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
-            If txtName.Text.Equals(String.Empty) Then
+            If txtNames.Text.Equals(String.Empty) Then
                 MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), COL_NAME_CODE))
                 'cmnUtil.GetMessageStr("W0001", "管理ＮＯ種別"))
-                txtName.BackColor = Color.Red
+                txtNames.BackColor = Color.Red
                 Return
             Else
-                txtName.BackColor = Color.White
+                txtNames.BackColor = Color.White
             End If
 
             If txtFullNM.Text.Equals(String.Empty) Then
@@ -352,7 +352,7 @@ Public Class SC_M17
                     sqlstr = xml.GetSQL_Str("INSERT_001")
 
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                                txtName.Text,
+                                                                txtNames.Text,
                                                                 txtFullNM.Text,
                                                                 txtRemarks.Text))
 
@@ -368,7 +368,7 @@ Public Class SC_M17
                 Throw
             End Try
 
-            Me.txtName.Text = String.Empty
+            Me.txtNames.Text = String.Empty
             Me.txtFullNM.Text = String.Empty
             Me.txtRemarks.Text = String.Empty
         End If
@@ -497,5 +497,9 @@ Public Class SC_M17
                 Throw
             End Try
         End If
+    End Sub
+
+    Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
+
     End Sub
 End Class
