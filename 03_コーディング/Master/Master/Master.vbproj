@@ -77,7 +77,6 @@
   <ItemGroup>
     <Compile Include="common\cmnUtil.vb" />
     <Compile Include="common\CmnXML.vb" />
-    <Compile Include="common\Conn.vb" />
     <Compile Include="common\UserControl1.Designer.vb" />
     <Compile Include="form\SC-M10.Designer.vb">
       <DependentUpon>SC-M10.vb</DependentUpon>
@@ -160,6 +159,7 @@
     <Compile Include="Function\clsCSV.vb" />
     <Compile Include="Function\clsDataLinkage.vb" />
     <Compile Include="Function\clsEtc.vb" />
+    <Compile Include="Function\clsExcel.vb" />
     <Compile Include="Function\clsLogTrace.vb" />
     <Compile Include="Function\clsMail.vb" />
     <Compile Include="Function\clsMessage.vb" />
@@ -247,6 +247,26 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CustomControl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
