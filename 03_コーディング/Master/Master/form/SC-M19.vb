@@ -45,15 +45,47 @@ Public Class SC_M19
     ''' 検索
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnMenu0.Click
-        Dim dtResult As DataTable = createGridData()
 
-        'データ確認
-        If dtResult Is Nothing Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0008"))
-            Return
+        Dim dt As New DataTable
+        Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
+        Dim strWhere As String = xml.GetSQL_Str("WHERE_001")
+        Dim selectSql As String
+
+        If String.IsNullOrEmpty(cmb_Koutei.Text) Then
+            selectSql = String.Format(strSelect, "")
+        Else
+            selectSql = String.Format(strSelect, String.Format(strWhere, cmb_Koutei.SelectedValue))
         End If
 
-        setGrid(dtResult)
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                dt = clsSQLServer.GetDataTable(selectSql)
+
+                If dt.Rows.Count = 0 Then
+
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           My.Settings.systemName)
+
+                    clsSQLServer.Disconnect()
+
+                    Return
+
+                End If
+
+                setGrid(dt)
+
+                clsSQLServer.Disconnect()
+            End If
+
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
 
     End Sub
 
@@ -358,37 +390,6 @@ Public Class SC_M19
         gridData.AllowUserToAddRows = False
         gridData.AllowUserToResizeRows = False
     End Sub
-
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-        Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
-        Dim strWhere As String = xml.GetSQL_Str("WHERE_001")
-        Dim selectSql As String
-
-        If String.IsNullOrEmpty(cmb_Koutei.Text) Then
-            selectSql = String.Format(strSelect, "")
-        Else
-            selectSql = String.Format(strSelect, String.Format(strWhere, cmb_Koutei.SelectedValue))
-        End If
-
-        Try
-
-            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-                dt = clsSQLServer.GetDataTable(selectSql)
-
-                clsSQLServer.Disconnect()
-            End If
-
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Return dt
-
-    End Function
 
     ''' <summary>
     ''' 　チェックボックス事件
