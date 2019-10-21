@@ -56,7 +56,7 @@
 
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
         Dim selectedCount As Boolean = False
-        'レコードを選択される場合、保存されていないメッセージを表示する
+        'レコードが選択される場合、保存されていないメッセージを表示する
         If gridData.Rows.Count > 0 Then
             For i As Integer = 0 To gridData.Rows.Count - 1
                 '横位置
@@ -71,7 +71,7 @@
                 End If
             End If
         End If
-        'レコードを選択されない場合、画面閉じるメッセージを表示する
+        'レコードが選択されない場合、画面閉じるメッセージを表示する
         If selectedCount = False Then
             Dim msg As New clsMessage("I0099")
             If MsgBox(msg.Show, vbYesNo + vbQuestion, My.Settings.systemName) = DialogResult.Yes Then
@@ -269,9 +269,16 @@
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         Try
             Dim msg As New clsMessage("I0002")
+            Dim wMsg As New clsMessage("W9001")
             '更新確認メッセージ
             If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                    Dim selectedCount As Boolean = False
+                    'レコード存在しない場合、エラーが発生する
+                    If gridData.Rows.Count = 0 Then
+                        MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
+                        Return
+                    End If
                     For i As Integer = 0 To gridData.Rows.Count - 1
                         If gridData.Rows(i).Cells(0).Value = True Then
                             Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
@@ -281,8 +288,14 @@
                                                                     gridData.Rows(i).Cells(3).Value,
                                                                     gridData.Rows(i).Cells(4).Value,
                                                                     gridData.Rows(i).Cells(5).Value))
+                            selectedCount = True
                         End If
                     Next
+                    'レコードが選択されてないとエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
+                        Return
+                    End If
                     getDataToGrid(False)
 
                 End If
@@ -324,7 +337,7 @@
                         End If
 
                     Next
-                    '選択されてないレコードがエラー発生する
+                    'レコードが選択されてないとエラー発生する
                     If selectedCount = False Then
                         MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
                         Return
@@ -442,8 +455,6 @@
         Me.cmbProcess.BackColor = Color.White
         Me.txtDefect.BackColor = Color.White
         Me.txtDefectName.BackColor = Color.White
-        Me.txtRemarks.BackColor = Color.White
-        Me.txtDisplaydivision.BackColor = Color.White
     End Sub
 
     '追加部の工程コードCombox入力制御
