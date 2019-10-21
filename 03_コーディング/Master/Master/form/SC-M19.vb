@@ -4,6 +4,7 @@ Imports System.Data.SqlClient
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Xml
+Imports PUCCommon
 
 Public Class SC_M19
 
@@ -19,6 +20,15 @@ Public Class SC_M19
     Private Const COL_BREAK_TIME As String = "休憩時間"
     Private Const COL_DATE_CHANGE_INDICATOR As String = "日付変更区分"
 
+    'Dim FIELDS As String() = {COL_SENTAKU,
+    '                            COL_PROCESS_CODE,
+    '                            COL_DIVISION,
+    '                            COL_LINE_DIVISION,
+    '                            COL_BREAK_START_TIME,
+    '                            COL_BREAK_END_TIME,
+    '                            COL_BREAK_TIME,
+    '                            COL_DATE_CHANGE_INDICATOR}
+
     Private Const TABLE_NAME As String = "勤務テーブルマスタ"
 
     Private Const MSG_FORMAT As String = "{0}の書式は「00:00」で入力してください。"
@@ -27,6 +37,7 @@ Public Class SC_M19
     Private Const XML_FORMAT As String = "Language[@name='{0}']"
 
     Dim xml As New CmnXML("SC-M19.xml", "SC-M19")
+    'Dim language As clsLanguage = New clsLanguage
 
     Dim strLanguage As String = "jpn"
 
@@ -81,72 +92,70 @@ Public Class SC_M19
     ''' </summary>
     Public Sub SetControlsLable()
 
-        Dim xmlResult As XmlNode = xml.GetControlsLableElement("SC-M19")
+        '    Dim xmlResult As XmlNode = xml.GetControlsLableElement("SC-M19")
 
-        'Master
-        Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("Master")
-        Me.Label18.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
-        Me.Label15.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
+        '    'Master
+        '    Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("Master")
+        '    If xmlMaster IsNot Nothing Then
+        '        Dim mstControl As Label = Me.Controls.Find("lblMaster0", True).First
+        '        Dim mstControl1 As Label = Me.Controls.Find("lblMaster1", True).First
 
-        'Button
-        Dim xmlButtons As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
+        '        mstControl.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
+        '        mstControl1.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
+        '    End If
 
-        If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
-            For i As Integer = 0 To 5
-                Dim xml As XmlNode = xmlButtons(i)
+        '    'Button
+        '    Dim xmlButtons As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
 
-                Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
-                Dim btnControl As Button = Panel1.Controls.Find(btnName, True).First
-                btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(strLanguage).Value)
-            Next
-        End If
+        '    If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
+        '        For Each xml As XmlNode In xmlButtons
 
-        'Lable
-        Dim xmlLabels As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "lblName"))
-        If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
-            For i As Integer = 0 To 9
-                Dim xml As XmlNode = xmlLabels(i)
-                Dim lblName As String = "lblTitle" & xml.Attributes(1).Value
-                Dim lblName2 As String = "lblTitle" & i.ToString() & i.ToString()
-                Dim lblControl As Label = Me.Controls.Find(lblName, True).First
-                Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
+        '            Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
+        '            Dim btnControl As Button = Me.Controls.Find(btnName, True).First
 
-                lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
-                lblControl2.Text = "(" & xml.Attributes.GetNamedItem(strLanguage).Value & ")"
-            Next
-        End If
+        '            If btnControl IsNot Nothing Then
+        '                btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(strLanguage).Value)
+        '            End If
 
-        'DataGridView
-        Dim xmlDGVHeader As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
-        If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
+        '        Next
+        '    End If
 
-            For i As Integer = 0 To 7
+        '    'Lable
+        '    Dim xmlLabels As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "lblName"))
+        '    If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
+        '        For Each xml As XmlNode In xmlLabels
 
-                Dim xml As XmlNode = xmlDGVHeader(i)
-                Dim dgvName As String = "dgvHeader" & xml.Attributes(1).Value
-                Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
-                Dim headName2 As String = xml.Attributes.GetNamedItem(strLanguage).Value
+        '            Dim lblName As String = "lblName" & xml.Attributes(1).Value
+        '            Dim lblName2 As String = "lblName" & xml.Attributes(1).Value & xml.Attributes(1).Value
+        '            Dim lblControl As Label = Me.Controls.Find(lblName, True).First
+        '            Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
 
-                Select Case i
-                    Case 0
-                        HEADER_NAME.Add(COL_SENTAKU, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 1
-                        HEADER_NAME.Add(COL_PROCESS_CODE, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 2
-                        HEADER_NAME.Add(COL_DIVISION, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 3
-                        HEADER_NAME.Add(COL_LINE_DIVISION, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 4
-                        HEADER_NAME.Add(COL_BREAK_START_TIME, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 5
-                        HEADER_NAME.Add(COL_BREAK_END_TIME, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 6
-                        HEADER_NAME.Add(COL_BREAK_TIME, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 7
-                        HEADER_NAME.Add(COL_DATE_CHANGE_INDICATOR, String.Format(HEADER_FORMAT, headName, headName2))
-                End Select
-            Next
-        End If
+        '            If lblControl IsNot Nothing Then
+        '                lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
+        '            End If
+
+        '            If lblControl2 IsNot Nothing Then
+        '                lblControl2.Text = "(" & xml.Attributes.GetNamedItem(strLanguage).Value & ")"
+        '            End If
+
+        '        Next
+
+        '    End If
+
+        '    'DataGridView
+        '    Dim xmlDGVHeader As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
+        '    If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
+
+        '        For Each xml As XmlNode In xmlDGVHeader
+
+        '            Dim dgvName As String = "dgvHeader" & xml.Attributes(1).Value
+        '            Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
+        '            Dim headName2 As String = xml.Attributes.GetNamedItem(strLanguage).Value
+
+        '            HEADER_NAME.Add(FIELDS(xml.Attributes(1).Value), String.Format(HEADER_FORMAT, headName, headName2))
+
+        '        Next
+        '    End If
 
     End Sub
 
@@ -155,14 +164,9 @@ Public Class SC_M19
     ''' </summary>
     Private Sub SC_M19_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        SetControlsLable()
+        'SetControlsLable()
+        'language.LoadLanguage(strLanguage, "SC-M19", FIELDS, Me.Controls)
 
-        Me.cmbKoutei.Text = String.Empty
-        Me.cmbKubun.Text = String.Empty
-        Me.cmbLine.Text = String.Empty
-        Me.txtStart.Text = String.Empty
-        Me.txtEnd.Text = String.Empty
-        Me.cmbHenkou.Text = String.Empty
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
@@ -207,6 +211,10 @@ Public Class SC_M19
         Catch ex As Exception
             Throw
         End Try
+
+        Me.cmb_Koutei.Text = String.Empty
+        controlsClear()
+
     End Sub
 
     ''' <summary>
@@ -217,15 +225,43 @@ Public Class SC_M19
         If MsgBox(String.Format(clsGlobal.MSG2("I0009")),
                   vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
+
             gridData.Columns.Clear()
 
-            Me.cmbKoutei.Text = String.Empty
-            Me.cmbKubun.Text = String.Empty
-            Me.cmbLine.Text = String.Empty
             Me.cmb_Koutei.Text = String.Empty
-            Me.txtStart.Text = String.Empty
-            Me.txtEnd.Text = String.Empty
+            controlsClear()
+
+            controlsColorClear()
         End If
+
+    End Sub
+
+    ''' <summary>
+    ''' 画面コントロールのカラーをクリアする
+    ''' </summary>
+    Private Sub controlsColorClear()
+
+        Me.cmbKubun.BackColor = Color.White
+        Me.cmbLine.BackColor = Color.White
+        Me.cmb_Koutei.BackColor = Color.White
+        Me.txtStart.BackColor = Color.White
+        Me.txtEnd.BackColor = Color.White
+        Me.cmbHenkou.BackColor = Color.White
+
+    End Sub
+
+
+    ''' <summary>
+    ''' 画面コントロールをクリアする
+    ''' </summary>
+    Private Sub controlsClear()
+
+        Me.cmbKoutei.Text = String.Empty
+        Me.cmbKubun.Text = String.Empty
+        Me.cmbLine.Text = String.Empty
+        Me.txtStart.Text = String.Empty
+        Me.txtEnd.Text = String.Empty
+        Me.cmbHenkou.Text = String.Empty
 
     End Sub
 
@@ -481,15 +517,14 @@ Public Class SC_M19
                     '工程コード/区分/ライン区分
                     resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
                     If resultData IsNot Nothing And resultData.Rows.Count > 0 Then
-                        MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
-                        cmbKoutei.BackColor = Color.Red
-                        cmbKubun.BackColor = Color.Red
-                        cmbLine.BackColor = Color.Red
+                        '重複データがある場合、メッセージを表示して、追加処理を終止する
+                        MsgBox(String.Format(clsGlobal.MSG2("W0009")),
+                               vbExclamation,
+                               My.Settings.systemName)
+
+                        clsSQLServer.Disconnect()
+
                         Return
-                    Else
-                        cmbKoutei.BackColor = Color.White
-                        cmbKubun.BackColor = Color.White
-                        cmbLine.BackColor = Color.White
                     End If
 
                     '休憩時間
@@ -509,10 +544,9 @@ Public Class SC_M19
                     End If
 
                     'データを追加
-                    If MsgBox(cmnUtil.GetMessageStr("Q0001"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
-                        Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
+                    Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
 
-                        clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                    clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                 strKouteiCode,
                                                                 strKubunCode,
                                                                 strLineCode,
@@ -521,24 +555,19 @@ Public Class SC_M19
                                                                 cmbHenkou.Text,
                                                                 numBreakTime))
 
-                        clsSQLServer.Disconnect()
+                    clsSQLServer.Disconnect()
 
-                        '最新データを検索
-                        btnSearch_Click(sender, e)
+                    '最新データを検索
+                    btnSearch_Click(sender, e)
 
-                        Me.cmbKoutei.Text = String.Empty
-                        Me.cmbKubun.Text = String.Empty
-                        Me.cmbLine.Text = String.Empty
-                        Me.cmb_Koutei.Text = String.Empty
-                        Me.txtStart.Text = String.Empty
-                        Me.txtEnd.Text = String.Empty
-
-                    End If
+                    controlsClear()
 
                 End If
 
             Catch ex As Exception
                 Throw
+            Finally
+                clsSQLServer.Disconnect()
             End Try
 
         End If
@@ -554,8 +583,15 @@ Public Class SC_M19
                   vbOKCancel + vbQuestion,
                   My.Settings.systemName) = DialogResult.OK Then
 
+            'レコード存在しない場合、エラーが発生する
+            If gridData.Rows.Count = 0 Then
+                MsgBox(String.Format(clsGlobal.MSG2("W9001")), vbExclamation, My.Settings.systemName)
+                Return
+            End If
+
             Try
 
+                Dim selectedCount As Boolean = False
                 For i As Integer = 0 To gridData.Rows.Count - 1
                     If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
 
@@ -576,7 +612,7 @@ Public Class SC_M19
                             If strStartDT.Equals(String.Empty) = False And strStartDT.Length <> 5 Then
                                 MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BREAK_START_TIME, 5))
                                 gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.Red
-                                Return
+                                Exit For
                             Else
                                 gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.White
                             End If
@@ -585,7 +621,7 @@ Public Class SC_M19
                             If strEndDT.Equals(String.Empty) = False And strEndDT.Length <> 5 Then
                                 MessageBox.Show(cmnUtil.GetMessageStr("W0030", COL_BREAK_END_TIME, 5))
                                 gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.Red
-                                Return
+                                Exit For
                             Else
                                 gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.White
                             End If
@@ -595,7 +631,7 @@ Public Class SC_M19
                             If strStartDT.Equals(String.Empty) = False And REG_FORMAT.IsMatch(strStartDT) = False Then
                                 MessageBox.Show(String.Format(MSG_FORMAT, COL_BREAK_START_TIME))
                                 gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.Red
-                                Return
+                                Exit For
                             Else
                                 gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.White
                             End If
@@ -604,23 +640,8 @@ Public Class SC_M19
                             If strEndDT.Equals(String.Empty) = False And REG_FORMAT.IsMatch(strEndDT) = False Then
                                 MessageBox.Show(String.Format(MSG_FORMAT, COL_BREAK_END_TIME))
                                 gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.Red
-                                Return
+                                Exit For
                             Else
-                                gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.White
-                            End If
-
-                            '存在チェック
-                            Dim resultData As DataTable = New DataTable
-                            Dim strSelect As String = xml.GetSQL_Str("SELECT_004")
-                            '工程コード/区分/ライン区分
-                            resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
-                            If resultData Is Nothing Or resultData.Rows.Count < 1 Then
-                                MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
-                                gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.Red
-                                gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.Red
-                                Return
-                            Else
-                                gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.White
                                 gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.White
                             End If
 
@@ -631,7 +652,7 @@ Public Class SC_M19
                                     MessageBox.Show(MSG_TIME)
                                     gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.Red
                                     gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.Red
-                                    Return
+                                    Exit For
                                 Else
                                     gridCells(COL_BREAK_START_TIME).Style.BackColor = Color.White
                                     gridCells(COL_BREAK_END_TIME).Style.BackColor = Color.White
@@ -641,32 +662,40 @@ Public Class SC_M19
                             End If
 
                             'データを更新
-                            If MsgBox(cmnUtil.GetMessageStr("Q0002"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
+                            Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
 
-                                Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr,
+                                                                    strKouteiCode,
+                                                                    strKubunCode,
+                                                                    strLineCode,
+                                                                    strStartDT,
+                                                                    strEndDT,
+                                                                    strDataChangeIndicator,
+                                                                    numBreakTime))
 
-                                clsSQLServer.ExecuteQuery(String.Format(sqlstr,
-                                                strKouteiCode,
-                                                strKubunCode,
-                                                strLineCode,
-                                                strStartDT,
-                                                strEndDT,
-                                                strDataChangeIndicator,
-                                                numBreakTime))
+                            selectedCount = True
 
-                                clsSQLServer.Disconnect()
+                            clsSQLServer.Disconnect()
 
-                                btnSearch_Click(sender, e)
-
-                            End If
+                            btnSearch_Click(sender, e)
 
                         End If
 
-                        Exit For
                     End If
                 Next
+
+                '選択されてないレコードがエラー発生する
+                If selectedCount = False Then
+                    MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                    Return
+                End If
+
             Catch ex As Exception
                 Throw
+            Finally
+                clsSQLServer.Disconnect()
             End Try
 
         End If
@@ -678,10 +707,19 @@ Public Class SC_M19
     ''' </summary>
     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnMenu3.Click
 
-        Dim strKouteiCode As String
-        Dim strKubunCode As String
-        Dim strLineCode As String
-        If MsgBox(cmnUtil.GetMessageStr("Q0003"), vbOKCancel, TABLE_NAME) = DialogResult.OK Then
+        Dim selectedCount As Boolean = False
+
+        If MsgBox(String.Format(clsGlobal.MSG2("I0003")),
+                  vbOKCancel + vbQuestion,
+                  My.Settings.systemName) = DialogResult.OK Then
+
+            'レコード存在しない場合、エラーが発生する
+            If gridData.Rows.Count = 0 Then
+                MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                Return
+            End If
 
             Try
 
@@ -691,37 +729,28 @@ Public Class SC_M19
 
                         If Not IsNothing(gridData.Rows(i).Cells(0).Value) Then
 
-                            strKouteiCode = gridData.Rows(i).Cells(COL_PROCESS_CODE).Value
-                            strKubunCode = gridData.Rows(i).Cells(COL_DIVISION).Value
-                            strLineCode = gridData.Rows(i).Cells(COL_LINE_DIVISION).Value
+                            Dim strKouteiCode As String = gridData.Rows(i).Cells(COL_PROCESS_CODE).Value
+                            Dim strKubunCode As String = gridData.Rows(i).Cells(COL_DIVISION).Value
+                            Dim strLineCode As String = gridData.Rows(i).Cells(COL_LINE_DIVISION).Value
 
-                            '存在チェック
-                            Dim resultData As DataTable = New DataTable
-                            Dim strSelect As String = xml.GetSQL_Str("SELECT_004")
-                            resultData = clsSQLServer.GetDataTable(String.Format(strSelect, strKouteiCode, strKubunCode, strLineCode))
+                            '削除
+                            Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
 
-                            If resultData Is Nothing Or resultData.Rows.Count < 1 Then
-                                MessageBox.Show(cmnUtil.GetMessageStr("W0009"))
-                                gridData.Rows(i).Cells(COL_BREAK_START_TIME).Style.BackColor = Color.Red
-                                gridData.Rows(i).Cells(COL_BREAK_END_TIME).Style.BackColor = Color.Red
-                                gridData.Rows(i).Cells(COL_DATE_CHANGE_INDICATOR).Style.BackColor = Color.Red
-                                Return
-                            Else
-                                gridData.Rows(i).Cells(COL_BREAK_START_TIME).Style.BackColor = Color.White
-                                gridData.Rows(i).Cells(COL_BREAK_END_TIME).Style.BackColor = Color.White
-                                gridData.Rows(i).Cells(COL_DATE_CHANGE_INDICATOR).Style.BackColor = Color.White
+                            clsSQLServer.ExecuteQuery(String.Format(sqlstr, strKouteiCode, strKubunCode, strLineCode))
 
-                                '削除
-                                Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
+                            selectedCount = True
 
-                                clsSQLServer.ExecuteQuery(String.Format(sqlstr, strKouteiCode, strKubunCode, strLineCode))
-
-                            End If
-
-                            Exit For
                         End If
 
                     Next
+
+                    '選択されてないレコードがエラー発生する
+                    If selectedCount = False Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W9001")),
+                               vbExclamation,
+                               My.Settings.systemName)
+                        Return
+                    End If
 
                     clsSQLServer.Disconnect()
 
@@ -731,6 +760,8 @@ Public Class SC_M19
                 End If
             Catch ex As Exception
                 Throw
+            Finally
+                clsSQLServer.Disconnect()
             End Try
         End If
     End Sub
