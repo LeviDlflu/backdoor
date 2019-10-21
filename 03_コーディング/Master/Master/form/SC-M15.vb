@@ -29,8 +29,8 @@
 
     Dim xml As New CmnXML("SC-M15.xml", "SC-M15")
     Private Sub Init()
-        controlClear(True)
-        setCodeDivisionType()
+        controlClear()
+        setCodeDivisionType("")
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -90,10 +90,6 @@
             ElseIf col.ColumnName = COL_ITEM1 Or col.ColumnName = COL_ITEM2 Or
                 col.ColumnName = COL_ITEM4 Or col.ColumnName = COL_ITEM5 Then
                 addCol.MaxInputLength = 20
-            ElseIf col.ColumnName = COL_DISPLAY_ORDER Then
-                'addCol.DataGridView.CausesValidation = False
-
-
             End If
             gridData.Columns.Add(addCol)
         Next
@@ -278,6 +274,7 @@
                                                             txtItem4.Text,
                                                             txtItem5.Text,
                                                             txtRemarks.Text))
+                    setCodeDivisionType(Me.cmbDivision.Text)
                     getDataToGrid(False)
 
                 End If
@@ -286,7 +283,7 @@
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-                controlClear(False)
+                controlClear()
             End Try
 
         End If
@@ -336,7 +333,7 @@
             Throw
         Finally
             clsSQLServer.Disconnect()
-            controlClear(False)
+            controlClear()
             controlColorClear()
         End Try
     End Sub
@@ -350,6 +347,7 @@
             Try
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     Dim selectedCount As Boolean = False
+                    Dim sqlstr As String
                     'レコード存在しない場合、エラーが発生する
                     If gridData.Rows.Count = 0 Then
                         MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
@@ -359,7 +357,7 @@
                         '横位置
                         If gridData.Rows(i).Cells(0).Value = True Then
 
-                            Dim sqlstr As String = xml.GetSQL_Str("DELETE_001")
+                            sqlstr = xml.GetSQL_Str("DELETE_001")
 
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                     gridData.Rows(i).Cells(1).Value,
@@ -373,7 +371,21 @@
                         MsgBox(wMsg.Show, vbExclamation, My.Settings.systemName)
                         Return
                     End If
+                    If Not Me.cmbDivision.Text.Equals(String.Empty) Then
+                        sqlstr = xml.GetSQL_Str("SELECT_003")
+                        sqlstr = String.Format(sqlstr, (cmbDivision.Text.ToString().Split(":"))(0))
+                        Dim dt As New DataTable()
 
+                        dt = clsSQLServer.GetDataTable(sqlstr)
+
+                        If dt.Rows.Count = 0 Then
+                            MsgBox("検索条件のデータが削除されたため、全件検索実行する",
+                                   vbExclamation,
+                                   My.Settings.systemName)
+                            Me.cmbDivision.Text = String.Empty
+                        End If
+                    End If
+                    setCodeDivisionType(Me.cmbDivision.Text)
                     getDataToGrid(False)
 
                 End If
@@ -381,7 +393,7 @@
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-                controlClear(False)
+                'controlClear()
                 controlColorClear()
             End Try
         End If
@@ -397,7 +409,7 @@
         If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
 
             gridData.Columns.Clear()
-            controlClear(True)
+            controlClear()
             controlColorClear()
         End If
     End Sub
@@ -428,7 +440,7 @@
         End If
     End Sub
 
-    Private Sub setCodeDivisionType()
+    Private Sub setCodeDivisionType(ByVal str As String)
 
         Try
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
@@ -442,6 +454,9 @@
                 Me.cmbDivision.DisplayMember = CONST_DIVISION_CODE_NAME
                 Me.cmbDivision.ValueMember = dt.Columns.Item(0).ColumnName
             End If
+            If Not IsNothing(str) Then
+                Me.cmbDivision.Text = str
+            End If
         Catch ex As Exception
             Throw
         Finally
@@ -450,7 +465,7 @@
     End Sub
 
     '画面コントロールをクリアする
-    Private Sub controlClear(checkFlag As Boolean)
+    Private Sub controlClear()
         'クリア処理の場合、検索条件部をクリアする
         Me.txtCode.Text = String.Empty
         Me.txtCodeName.Text = String.Empty
