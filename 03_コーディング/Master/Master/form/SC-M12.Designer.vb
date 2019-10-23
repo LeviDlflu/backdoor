@@ -22,7 +22,8 @@ Partial Class SC_M12
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -62,6 +63,7 @@ Partial Class SC_M12
         Me.txtRemartks = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,7 +201,7 @@ Partial Class SC_M12
         '
         Me.slblMargin.BackColor = System.Drawing.SystemColors.Control
         Me.slblMargin.Name = "slblMargin"
-        Me.slblMargin.Size = New System.Drawing.Size(1215, 19)
+        Me.slblMargin.Size = New System.Drawing.Size(1184, 19)
         Me.slblMargin.Spring = True
         '
         'slblDay
@@ -379,14 +381,14 @@ Partial Class SC_M12
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(11, 222)
         Me.gridData.Name = "gridData"
@@ -507,6 +509,11 @@ Partial Class SC_M12
         Me.Label7.TabIndex = 248
         Me.Label7.Text = "Remarks"
         '
+        'TimeSys
+        '
+        Me.TimeSys.Enabled = True
+        Me.TimeSys.Interval = 1000
+        '
         'SC_M12
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -588,4 +595,5 @@ Partial Class SC_M12
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Public WithEvents gridData As DataGridView
+    Friend WithEvents TimeSys As Timer
 End Class

@@ -29,7 +29,7 @@
 
     Dim xml As New CmnXML("SC-M15.xml", "SC-M15")
     Private Sub Init()
-        controlClear()
+        controlClear(True)
         setCodeDivisionType("")
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
         slblDay.Text = Format(Now, "yyyy/MM/dd")
@@ -232,8 +232,8 @@
             End If
 
             '表示順序最大値チェック
-            If Not txtDisplayorder.SelectedText.Equals(String.Empty) Then
-                If Convert.ToInt64(txtDisplayorder.SelectedText) > 2147483647 Or Convert.ToInt64(txtDisplayorder.SelectedText) < 0 Then
+            If Not txtDisplayorder.Text.Equals(String.Empty) Then
+                If Convert.ToInt64(txtDisplayorder.Text) > 2147483647 Or Convert.ToInt64(txtDisplayorder.Text) < 0 Then
                     Dim maxLengthMsg As New clsMessage("W9002")
                     MsgBox(String.Format(maxLengthMsg.Show, COL_DISPLAY_ORDER), vbExclamation, My.Settings.systemName)
                     Return
@@ -267,7 +267,7 @@
                                                             txtCode.Text,
                                                             txtCodeName.Text,
                                                             txtCodeNameEng.Text,
-                                                            txtDisplayorder.SelectedText,
+                                                            IIf(txtDisplayorder.Text.Equals(String.Empty), txtDisplayorder.Text, Convert.ToInt64(txtDisplayorder.Text)),
                                                             txtItem1.Text,
                                                             txtItem2.Text,
                                                             txtItem3.Text,
@@ -283,7 +283,7 @@
                 Throw
             Finally
                 clsSQLServer.Disconnect()
-                controlClear()
+                controlClear(False)
             End Try
 
         End If
@@ -333,7 +333,7 @@
             Throw
         Finally
             clsSQLServer.Disconnect()
-            controlClear()
+            controlClear(False)
             controlColorClear()
         End Try
     End Sub
@@ -409,7 +409,7 @@
         If MsgBox(msg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
 
             gridData.Columns.Clear()
-            controlClear()
+            controlClear(True)
             controlColorClear()
         End If
     End Sub
@@ -465,8 +465,11 @@
     End Sub
 
     '画面コントロールをクリアする
-    Private Sub controlClear()
+    Private Sub controlClear(flag As Boolean)
         'クリア処理の場合、検索条件部をクリアする
+        If flag = True Then
+            Me.cmbDivision.Text = String.Empty
+        End If
         Me.txtCode.Text = String.Empty
         Me.txtCodeName.Text = String.Empty
         Me.txtCodeNameEng.Text = String.Empty
