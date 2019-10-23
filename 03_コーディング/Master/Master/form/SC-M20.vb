@@ -6,17 +6,16 @@ Imports System.Text.RegularExpressions
 Imports System.Xml
 Public Class SC_M20
 
-    Dim HEADER_NAME As Hashtable = New Hashtable
-    'From {
-    '                         {"選択", "Select" & vbCrLf & "(選択)"},
-    '                         {"稼働年月", "Working days_YM" & vbCrLf & "(稼働年月)"},
-    '                         {"稼働日", "Working days_D" & vbCrLf & "(稼働日)"},
-    '                         {"稼働年月日", "Working days_YMD" & vbCrLf & "(稼働年月日)"},
-    '                         {"直区分", "Direct division" & vbCrLf & "(直区分)"},
-    '                         {"稼働区分", "Operation category" & vbCrLf & "(稼働区分)"},
-    '                         {"稼働区分２", "Operation category2" & vbCrLf & "(稼働区分２)"},
-    '                         {"稼働区分３", "Operation category3" & vbCrLf & "(稼働区分３)"}
-    '                        }
+    Dim HEADER_NAME As Hashtable = New Hashtable From {
+                             {"選択", "Select" & vbCrLf & "(選択)"},
+                             {"稼働年月", "Working days_YM" & vbCrLf & "(稼働年月)"},
+                             {"稼働日", "Working days_D" & vbCrLf & "(稼働日)"},
+                             {"稼働年月日", "Working days_YMD" & vbCrLf & "(稼働年月日)"},
+                             {"直区分", "Direct division" & vbCrLf & "(直区分)"},
+                             {"稼働区分", "Operation category" & vbCrLf & "(稼働区分)"},
+                             {"稼働区分２", "Operation category2" & vbCrLf & "(稼働区分２)"},
+                             {"稼働区分３", "Operation category3" & vbCrLf & "(稼働区分３)"}
+                            }
 
     Private Const COL_SENTAKU As String = "選択"
     Private Const COL_WORKING_YM As String = "稼働年月"
@@ -27,12 +26,9 @@ Public Class SC_M20
     Private Const COL_CATEGORY_2 As String = "稼働区分２"
     Private Const COL_CATEGORY_3 As String = "稼働区分３"
     Private Const TABLENAME As String = "顧客カレンダーマスタ"
-    Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
-    Private Const XML_FORMAT As String = "Language[@name='{0}']"
 
     Dim dtAutoLabel As New DataTable
     Dim xml As New CmnXML("SC-M20.xml", "SC-M20")
-    Dim strLanguage As String = "jpn"
 
     ''' <summary>
     ''' １秒毎に発生するイベント
@@ -52,7 +48,6 @@ Public Class SC_M20
         dt.Rows.Add("1", "1:稼働")
         dt.Rows.Add("2", "2:非稼働")
         dtAutoLabel = dt
-        SetControlsLable()
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
         InitCombox4Value()
@@ -104,76 +99,6 @@ Public Class SC_M20
                   My.Settings.systemName) = DialogResult.Yes Then
             Me.Close()
         End If
-    End Sub
-
-    ''' <summary>
-    ''' 名前設定
-    ''' </summary>
-    Public Sub SetControlsLable()
-
-        Dim xmlResult As XmlNode = xml.GetControlsLableElement("SC-M20")
-
-        'Master
-        Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("Master")
-        Me.Label18.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
-        Me.Label15.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
-
-        'Button
-        Dim xmlButtons As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
-
-        If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
-            For i As Integer = 0 To 5
-                Dim xml As XmlNode = xmlButtons(i)
-
-                Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
-                Dim btnControl As Button = Panel1.Controls.Find(btnName, True).First
-                btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(strLanguage).Value)
-            Next
-        End If
-
-        'Lable
-        'Dim xmlLabels As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "lblName"))
-        'If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
-        '    For i As Integer = 0 To 9
-        '        Dim xml As XmlNode = xmlLabels(i)
-        '        Dim lblName As String = "lblName" & xml.Attributes(1).Value
-        '        Dim lblName2 As String = "lblName" & i.ToString() & i.ToString()
-        '        Dim lblControl As Label = Me.Controls.Find(lblName, True).First
-        '        Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
-
-        '        lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
-        '        lblControl2.Text = "(" & xml.Attributes.GetNamedItem(strLanguage).Value & ")"
-        '    Next
-        'End If
-
-        'DataGridView
-        Dim xmlDGVHeader As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
-        If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
-
-            For i As Integer = 0 To 7
-                Dim xml As XmlNode = xmlDGVHeader(i)
-                Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
-                Dim headName2 As String = xml.Attributes.GetNamedItem(strLanguage).Value
-
-                Select Case i
-                    Case 0
-                        HEADER_NAME.Add(COL_SENTAKU, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 1
-                        HEADER_NAME.Add(COL_WORKING_YM, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 2
-                        HEADER_NAME.Add(COL_WORKING_D, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 3
-                        HEADER_NAME.Add(COL_WORKING_YMD, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 4
-                        HEADER_NAME.Add(COL_DIRECT, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 5
-                        HEADER_NAME.Add(COL_CATEGORY, String.Format(HEADER_FORMAT, headName, headName2))
-                    Case 6
-                        HEADER_NAME.Add(COL_CATEGORY_2, String.Format(HEADER_FORMAT, headName, headName2))
-                End Select
-            Next
-        End If
-
     End Sub
 
     ''' <summary>
