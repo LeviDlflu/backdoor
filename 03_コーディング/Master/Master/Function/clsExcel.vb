@@ -3,6 +3,11 @@ Imports System.Runtime.InteropServices
 Imports System.Data
 
 Public Class clsExcel
+    ''' <summary>
+    ''' DataTableの内容をEXCELファイルに保存する
+    ''' </summary>
+    ''' <param name="dt">CSVに変換するDataTable</param>
+    ''' <param name="fileName">保存先のEXCELファイル名</param>
     Public Shared Sub ExportExcel(ByVal dt As DataTable, ByVal fileName As String)
 
         Dim xlApp As Object = Nothing

@@ -452,4 +452,11 @@
         End If
     End Sub
 
+    ''' <summary>
+    ''' １秒毎に発生するイベント
+    ''' </summary>
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
+    End Sub
 End Class
