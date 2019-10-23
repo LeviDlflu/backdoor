@@ -145,7 +145,7 @@ Public Class SC_M11
         gridData.Columns(0).Width = 90
         gridData.Columns(1).Width = 180
         gridData.Columns(2).Width = 180
-        gridData.Columns(3).Width = 180
+        gridData.Columns(3).Width = 620
 
         '複数選択不可
         gridData.MultiSelect = False
