@@ -1,0 +1,67 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-M12>
+    <Selects>
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+            車種コード,
+            車種名,
+            備考 
+          FROM 
+            車種マスタ
+          {0} 
+          ORDER BY
+            車種コード
+        </Text>
+      </SQL>
+    </Selects>
+
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          WHERE 車種コード='{0}'
+        </Text>
+      </SQL>
+    </Wheres>
+
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE
+            車種マスタ
+          SET
+            車種名='{1}',
+            備考='{2}' 
+          WHERE
+            車種コード='{0}'
+        </Text>
+      </SQL>
+    </Updates>
+
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO
+            車種マスタ
+            (車種コード,車種名,備考,表示順序,表示フラグ) 
+          VALUES
+            ('{0}','{1}','{2}','{3}','{4}')
+        </Text>
+      </SQL>
+    </Inserts>
+
+    <Deletes>
+      <SQL ID="DELETE_001">
+        <Text>
+          DELETE 
+          FROM 
+            車種マスタ
+          WHERE 
+            車種コード='{0}'
+        </Text>
+      </SQL>
+    </Deletes>
+  </SC-M12>
+</Configuration>
+

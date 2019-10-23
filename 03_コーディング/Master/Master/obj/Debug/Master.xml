@@ -41,10 +41,12 @@ Master
  </summary>
  <param name="messageId">メッセージID</param>
 </member>
-<member name="M:Master.SC_M10.createGridData">
+<member name="M:Master.CmnXML.GetControlsLableElement(System.String)">
  <summary>
- 　グリッド用のデータを作成
+ 言語を取得
  </summary>
+ <param name="masterID">機能ID</param>
+ <returns>設定言語</returns>>
 </member>
 <member name="M:Master.SC_M10.setGrid(System.Data.DataTable@)">
  <summary>
@@ -70,6 +72,16 @@ Master
 <member name="M:Master.SC_M10.SC_M10_Load(System.Object,System.EventArgs)">
  <summary>
  初期表示
+ </summary>
+</member>
+<member name="M:Master.SC_M10.controlsColorClear">
+ <summary>
+ 画面コントロールのカラーをクリアする
+ </summary>
+</member>
+<member name="M:Master.SC_M10.controlsClear">
+ <summary>
+ 画面コントロールをクリアする
  </summary>
 </member>
 <member name="M:Master.SC_M10.btnEnd_Click(System.Object,System.EventArgs)">
@@ -107,6 +119,105 @@ Master
  　EXCELボタン押下
  </summary>
 </member>
+<member name="M:Master.SC_M11.SetVarietyType(System.String)">
+ <summary>
+ 　画面項目管理NO種別初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M11.setGrid(System.Data.DataTable@)">
+ <summary>
+ 　グリッドを設定する
+ </summary>
+ <param name="dtData">データソース</param>
+</member>
+<member name="M:Master.SC_M11.SC_M11_Load(System.Object,System.EventArgs)">
+ <summary>
+ 　画面Load
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M11.BtnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　終了ボタン押下
+ </summary>
+</member>
+<member name="M:Master.SC_M11.BtnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　検索ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M11.GridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M11.BtnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　クリアボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M11.BtnDelete_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　削除ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M12.SC_M12_Load(System.Object,System.EventArgs)">
+ <summary>
+ 初期表示
+ </summary>
+</member>
+<member name="M:Master.SC_M12.setGrid(System.Data.DataTable@)">
+ <summary>
+ データ一覧を設定
+ </summary>
+</member>
+<member name="M:Master.SC_M12.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
+ <summary>
+ 　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 検索
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnInsert_Click(System.Object,System.EventArgs)">
+ <summary>
+ Insert(追加)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnUpdate_Click(System.Object,System.EventArgs)">
+ <summary>
+ Update(更新)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnDelete_Click(System.Object,System.EventArgs)">
+ <summary>
+ Delete(削除)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ クリア事件
+ </summary>
+</member>
+<member name="M:Master.SC_M12.btnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 終了
+ </summary>
+</member>
+<member name="M:Master.SC_M12.TimeSys_Tick(System.Object,System.EventArgs)">
+ <summary>
+ １秒毎に発生するイベント
+ </summary>
+</member>
 <member name="M:Master.SC_M13.setGrid(System.Data.DataTable@)">
  <summary>
  　グリッドを設定する
@@ -133,6 +244,17 @@ Master
  クリア処理
  </summary>
 </member>
+<member name="M:Master.SC_M14.btnSearch_Click(System.Object,System.EventArgs)">
+ <summary>
+ 検索
+ </summary>
+</member>
+<member name="M:Master.SC_M14.setGrid(System.Data.DataTable@)">
+ <summary>
+ 　グリッドを設定する
+ </summary>
+ <param name="dtData">データソース</param>
+</member>
 <member name="M:Master.SC_M14.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
  <summary>
  　・行ヘッダーに行番号書き込み
@@ -158,20 +280,50 @@ Master
  　チェックボックス事件
  </summary>
 </member>
+<member name="M:Master.SC_M14.btnIns_Click(System.Object,System.EventArgs)">
+ <summary>
+ Insert(追加)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M14.btnDel_Click(System.Object,System.EventArgs)">
+ <summary>
+ Delete(削除)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M14.btnUpd_Click(System.Object,System.EventArgs)">
+ <summary>
+ Update(更新)事件
+ </summary>
+</member>
 <member name="M:Master.SC_M15.setGrid(System.Data.DataTable@)">
  <summary>
  　グリッドを設定する
  </summary>
  <param name="dtData">データソース</param>
 </member>
-<member name="M:Master.SC_M15.createGridData">
- <summary>
- 　グリッド用のデータを作成
- </summary>
-</member>
 <member name="M:Master.SC_M15.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
+ </summary>
+</member>
+<member name="M:Master.SC_M15.btnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ クリア処理
+ </summary>
+</member>
+<member name="F:Master.SC_M16.headerName">
+ <summary>
+ 　画面一覧のヘッダ部初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M16.setGroupId(System.String)">
+ <summary>
+ 　画面項目グループID初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M16.setAuthority">
+ <summary>
+ 　画面項目権限名初期化
  </summary>
 </member>
 <member name="M:Master.SC_M16.setGrid(System.Data.DataTable@)">
@@ -180,36 +332,64 @@ Master
  </summary>
  <param name="dtData">データソース</param>
 </member>
-<member name="M:Master.SC_M16.createGridData">
- <summary>
- 　グリッド用のデータを作成
- </summary>
-</member>
 <member name="M:Master.SC_M16.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
  </summary>
 </member>
-<member name="M:Master.SC_M17.setGrid(System.Data.DataTable@)">
+<member name="F:Master.SC_M17.headerName">
+ <summary>
+ 　画面一覧のヘッダ部初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M17.SetNameCode(System.String)">
+ <summary>
+ 　画面氏名コード初期化
+ </summary>
+</member>
+<member name="M:Master.SC_M17.SetGrid(System.Data.DataTable@)">
  <summary>
  　グリッドを設定する
  </summary>
  <param name="dtData">データソース</param>
 </member>
-<member name="M:Master.SC_M17.createGridData">
+<member name="M:Master.SC_M17.SC_M17_Load(System.Object,System.EventArgs)">
  <summary>
- 　グリッド用のデータを作成
+ 　画面Load
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M17.BtnEnd_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　終了ボタン押下
  </summary>
 </member>
-<member name="M:Master.SC_M17.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
+<member name="M:Master.SC_M17.BtnSearch_Click(System.Object,System.EventArgs)">
  <summary>
- 　・行ヘッダーに行番号書き込み
+ 　検索ボタン押下
  </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
 </member>
 <member name="M:Master.SC_M17.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
  <summary>
  　チェックボックス事件
  </summary>
+</member>
+<member name="M:Master.SC_M17.BtnClear_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　クリアボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
+</member>
+<member name="M:Master.SC_M17.BtnDelete_Click(System.Object,System.EventArgs)">
+ <summary>
+ 　削除ボタン押下
+ </summary>
+ <param name="sender">sender</param>
+ <param name="e">e</param>
 </member>
 <member name="M:Master.SC_M18.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
  <summary>
@@ -266,6 +446,16 @@ Master
  クリア
  </summary>
 </member>
+<member name="M:Master.SC_M19.controlsColorClear">
+ <summary>
+ 画面コントロールのカラーをクリアする
+ </summary>
+</member>
+<member name="M:Master.SC_M19.controlsClear">
+ <summary>
+ 画面コントロールをクリアする
+ </summary>
+</member>
 <member name="M:Master.SC_M19.btnEnd_Click(System.Object,System.EventArgs)">
  <summary>
  終了
@@ -274,11 +464,6 @@ Master
 <member name="M:Master.SC_M19.setGrid(System.Data.DataTable@)">
  <summary>
  データ一覧を設定
- </summary>
-</member>
-<member name="M:Master.SC_M19.createGridData">
- <summary>
- 　グリッド用のデータを作成
  </summary>
 </member>
 <member name="M:Master.SC_M19.gridData_CurrentCellDirtyStateChanged(System.Object,System.EventArgs)">
@@ -806,6 +991,13 @@ Master
  <param name="WARFLG">ワーニングフラグ(true：ワーニングあり、false：ワーニングなし)</param>
  <returns></returns>
  <remarks>指定されたメッセージのログ種別を判断する</remarks>
+</member>
+<member name="M:Master.clsExcel.ExportExcel(System.Data.DataTable,System.String)">
+ <summary>
+ DataTableの内容をEXCELファイルに保存する
+ </summary>
+ <param name="dt">CSVに変換するDataTable</param>
+ <param name="fileName">保存先のEXCELファイル名</param>
 </member>
 <member name="F:Master.clsLogTrace.LogType.Trace">
  <summary>

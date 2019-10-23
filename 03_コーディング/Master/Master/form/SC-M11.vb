@@ -142,10 +142,10 @@ Public Class SC_M11
             End Select
         Next
 
-        gridData.Columns(0).Width = 90
+        gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 180
-        gridData.Columns(2).Width = 180
-        gridData.Columns(3).Width = 180
+        gridData.Columns(2).Width = 300
+        gridData.Columns(3).Width = 620
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -262,13 +262,13 @@ Public Class SC_M11
             Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
             If Checked Then
 
-                For i As Integer = 1 To 3
+                For i As Integer = 2 To 3
                     gridData.CurrentRow.Cells(i).Style.BackColor = Color.Yellow
 
                     gridData.CurrentRow.Cells(i).ReadOnly = False
                 Next
             Else
-                For i As Integer = 1 To 3
+                For i As Integer = 2 To 3
 
                     gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
 
