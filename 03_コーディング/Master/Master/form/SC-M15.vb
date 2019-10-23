@@ -426,7 +426,7 @@
             Next
             If selectedCount = True Then
                 Dim wMsg As New clsMessage("W0099")
-                If MsgBox(wMsg.Show, vbOKCancel + vbQuestion, My.Settings.systemName) = DialogResult.OK Then
+                If MsgBox(wMsg.Show, vbYesNoCancel + vbQuestion, My.Settings.systemName) = DialogResult.Yes Then
                     Me.Close()
                 End If
             End If
