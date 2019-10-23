@@ -142,7 +142,7 @@ Public Class SC_M17
 
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 120
-        gridData.Columns(2).Width = 300
+        gridData.Columns(2).Width = 400
         gridData.Columns(3).Width = 620
 
         '複数選択不可
