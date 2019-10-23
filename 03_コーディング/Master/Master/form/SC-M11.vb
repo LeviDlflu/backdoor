@@ -2,6 +2,7 @@
 Imports System.Data
 Imports System.Data.SqlClient
 Imports PUCCommon.clsGlobal
+Imports System.ComponentModel
 
 Public Class SC_M11
 
@@ -216,24 +217,27 @@ Public Class SC_M11
 
                     gridData.Columns.Clear()
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                    sqlstr = xml.GetSQL_Str("SELECT_004")
+                    sqlstr = String.Format(sqlstr, cmbHinsyu.Text)
+
+                    dt = clsSQLServer.GetDataTable(sqlstr)
+
+                    setGrid(dt)
+
+
+                    If dt.Rows.Count = 0 Then
+
+                        MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
                            My.Settings.systemName)
 
-                    clsSQLServer.Disconnect()
+                        clsSQLServer.Disconnect()
+
+                    End If
 
                     Return
 
                 End If
-
-                If Me.cmbHinsyu.Text.Equals(String.Empty) Then
-                    sqlstr = xml.GetSQL_Str("SELECT_002")
-                Else
-                    sqlstr = xml.GetSQL_Str("SELECT_003")
-                    sqlstr = String.Format(sqlstr, cmbHinsyu.Text)
-                End If
-
-                dt = clsSQLServer.GetDataTable(sqlstr)
 
                 setGrid(dt)
 
@@ -492,6 +496,33 @@ Public Class SC_M11
             Catch ex As Exception
                 Throw
             End Try
+        End If
+    End Sub
+
+    Private Sub txtHinSyuCD_TextChanged(sender As Object, e As EventArgs) Handles txtHinSyuCD.TextChanged
+        Dim lstr As String
+        lstr = Me.txtHinSyuCD.Text
+        If Len(lstr) > 2 Then
+            MsgBox("品種コードの最大桁数は2")
+            txtHinSyuCD.Text = lstr.Substring(0, 2)
+        End If
+    End Sub
+
+    Private Sub txtHinSyuMei_TextChanged(sender As Object, e As EventArgs) Handles txtHinSyuMei.TextChanged
+        Dim lstr As String
+        lstr = Me.txtHinSyuMei.Text
+        If Len(lstr) > 20 Then
+            MsgBox("品種名の最大桁数は20")
+            txtHinSyuMei.Text = lstr.Substring(0, 20)
+        End If
+    End Sub
+
+    Private Sub txtRemartks_TextChanged(sender As Object, e As EventArgs) Handles txtRemartks.TextChanged
+        Dim lstr As String
+        lstr = Me.txtRemartks.Text
+        If Len(lstr) > 50 Then
+            MsgBox("備考の最大桁数は50")
+            txtRemartks.Text = lstr.Substring(0, 50)
         End If
     End Sub
 End Class

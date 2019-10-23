@@ -221,20 +221,24 @@ Public Class SC_M17
 
                     gridData.Columns.Clear()
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                    sqlstr = xml.GetSQL_Str("SELECT_004")
+                    sqlstr = String.Format(sqlstr, NameCode.Text)
+
+                    dt = clsSQLServer.GetDataTable(sqlstr)
+
+                    SetGrid(dt)
+
+                    If dt.Rows.Count = 0 Then
+                        MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
                            My.Settings.systemName)
 
-                    clsSQLServer.Disconnect()
+                        clsSQLServer.Disconnect()
+                    End If
 
                     Return
 
                 End If
-
-                sqlstr = xml.GetSQL_Str("SELECT_004")
-                sqlstr = String.Format(sqlstr, NameCode.Text)
-
-                dt = clsSQLServer.GetDataTable(sqlstr)
 
                 SetGrid(dt)
 
@@ -501,5 +505,38 @@ Public Class SC_M17
 
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
 
+        Dim dt As DataTable
+        dt = gridData.DataSource
+
+        If dt.Rows.Count <> 0 Then
+            clsExcel.ExportExcel(dt, "SC-M17")
+        End If
+    End Sub
+
+    Private Sub txtNames_TextChanged(sender As Object, e As EventArgs) Handles txtNames.TextChanged
+        Dim lstr As String
+        lstr = Me.txtNames.Text
+        If Len(lstr) > 4 Then
+            MsgBox("氏名コードの最大桁数は4")
+            txtNames.Text = lstr.Substring(0, 4)
+        End If
+    End Sub
+
+    Private Sub txtFullNM_TextChanged(sender As Object, e As EventArgs) Handles txtFullNM.TextChanged
+        Dim lstr As String
+        lstr = Me.txtFullNM.Text
+        If Len(lstr) > 30 Then
+            MsgBox("氏名コードの最大桁数は30")
+            txtFullNM.Text = lstr.Substring(0, 30)
+        End If
+    End Sub
+
+    Private Sub txtRemarks_TextChanged(sender As Object, e As EventArgs) Handles txtRemarks.TextChanged
+        Dim lstr As String
+        lstr = Me.txtRemarks.Text
+        If Len(lstr) > 50 Then
+            MsgBox("氏名コードの最大桁数は50")
+            txtRemarks.Text = lstr.Substring(0, 50)
+        End If
     End Sub
 End Class

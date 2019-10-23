@@ -4,17 +4,43 @@
     <Selects>
       <SQL ID="SELECT_001">
         <Text>
-          SELECT 品種コード FROM 品種マスタ
+          SELECT 
+            品種コード 
+          FROM 品種マスタ
         </Text>
       </SQL>
       <SQL ID="SELECT_002">
         <Text>
-          SELECT 品種コード ,品種名,備考 FROM 品種マスタ
+          SELECT 
+            品種コード,
+            品種名,
+            備考 
+          FROM 品種マスタ
         </Text>
       </SQL>
       <SQL ID="SELECT_003">
         <Text>
-          SELECT 品種コード ,品種名,備考 FROM 品種マスタ WHERE 品種コード='{0}'
+          SELECT 
+            品種コード ,
+            品種名,
+            備考 
+          FROM 
+            品種マスタ 
+          WHERE 
+            品種コード = '{0}'
+        </Text>
+      </SQL>
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+            品種コード ,
+            品種名,
+            備考
+          FROM
+            品種マスタ
+          WHERE
+            品種コード >= '{0}'
+          ORDER BY 品種コード
         </Text>
       </SQL>
     </Selects>
@@ -22,7 +48,12 @@
     <Updates>
       <SQL ID="UPDATE_001">
         <Text>
-          UPDATE 品種マスタ set 品種名='{1}',備考='{2}' WHERE 品種コード='{0}'
+          UPDATE 
+            品種マスタ 
+          set 
+            品種名='{1}',
+            備考='{2}' 
+          WHERE 品種コード='{0}'
         </Text>
       </SQL>
     </Updates>
@@ -30,7 +61,9 @@
     <Inserts>
       <SQL ID="INSERT_001">
         <Text>
-          INSERT INTO 品種マスタ(品種コード,品種名,備考) VALUES ('{0}','{1}','{2}')
+          INSERT INTO 
+            品種マスタ(品種コード,品種名,備考) 
+          VALUES ('{0}','{1}','{2}')
         </Text>
       </SQL>
     </Inserts>
@@ -38,7 +71,9 @@
     <Deletes>
       <SQL ID="DELETE_001">
         <Text>
-          DELETE FROM 品種マスタ WHERE 品種コード='{0}'
+          DELETE FROM 
+            品種マスタ 
+          WHERE 品種コード='{0}'
         </Text>
       </SQL>
     </Deletes>

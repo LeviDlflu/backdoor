@@ -22,7 +22,7 @@ Partial Class SC_M11
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.cmbHinsyu = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -114,7 +114,7 @@ Partial Class SC_M11
         '
         Me.slblMargin.BackColor = System.Drawing.SystemColors.Control
         Me.slblMargin.Name = "slblMargin"
-        Me.slblMargin.Size = New System.Drawing.Size(1316, 19)
+        Me.slblMargin.Size = New System.Drawing.Size(1208, 19)
         Me.slblMargin.Spring = True
         '
         'Label3
@@ -143,7 +143,7 @@ Partial Class SC_M11
         Me.grpHeader.Margin = New System.Windows.Forms.Padding(4)
         Me.grpHeader.Name = "grpHeader"
         Me.grpHeader.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpHeader.Size = New System.Drawing.Size(1450, 66)
+        Me.grpHeader.Size = New System.Drawing.Size(1342, 66)
         Me.grpHeader.TabIndex = 81
         Me.grpHeader.TabStop = False
         '
@@ -165,7 +165,7 @@ Partial Class SC_M11
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(994, 39)
+        Me.Label2.Location = New System.Drawing.Point(886, 39)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(292, 24)
@@ -178,7 +178,7 @@ Partial Class SC_M11
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(997, 12)
+        Me.Label1.Location = New System.Drawing.Point(889, 12)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(288, 24)
@@ -203,7 +203,7 @@ Partial Class SC_M11
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(1285, 39)
+        Me.TextBox1.Location = New System.Drawing.Point(1177, 39)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
@@ -216,7 +216,7 @@ Partial Class SC_M11
         '
         Me.txtLoginUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.txtLoginUser.Location = New System.Drawing.Point(1285, 12)
+        Me.txtLoginUser.Location = New System.Drawing.Point(1177, 12)
         Me.txtLoginUser.Margin = New System.Windows.Forms.Padding(4)
         Me.txtLoginUser.Name = "txtLoginUser"
         Me.txtLoginUser.Size = New System.Drawing.Size(159, 22)
@@ -228,22 +228,23 @@ Partial Class SC_M11
         '
         Me.gridData.AllowUserToAddRows = False
         Me.gridData.AllowUserToDeleteRows = False
-        Me.gridData.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridData.Location = New System.Drawing.Point(3, 278)
+        Me.gridData.Location = New System.Drawing.Point(14, 288)
         Me.gridData.Margin = New System.Windows.Forms.Padding(4)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1447, 460)
+        Me.gridData.Size = New System.Drawing.Size(1321, 189)
         Me.gridData.TabIndex = 80
         '
         'Panel1
@@ -260,7 +261,7 @@ Partial Class SC_M11
         Me.Panel1.Location = New System.Drawing.Point(0, 60)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1450, 95)
+        Me.Panel1.Size = New System.Drawing.Size(1342, 95)
         Me.Panel1.TabIndex = 79
         '
         'btnDelete
@@ -304,7 +305,7 @@ Partial Class SC_M11
         Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
         Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnEnd.Location = New System.Drawing.Point(1301, 11)
+        Me.btnEnd.Location = New System.Drawing.Point(1193, 11)
         Me.btnEnd.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEnd.Name = "btnEnd"
         Me.btnEnd.Size = New System.Drawing.Size(133, 61)
@@ -344,7 +345,7 @@ Partial Class SC_M11
         Me.lblHLine.Location = New System.Drawing.Point(1, 90)
         Me.lblHLine.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblHLine.Name = "lblHLine"
-        Me.lblHLine.Size = New System.Drawing.Size(1445, 2)
+        Me.lblHLine.Size = New System.Drawing.Size(1337, 2)
         Me.lblHLine.TabIndex = 5
         '
         'slblTime
@@ -361,10 +362,10 @@ Partial Class SC_M11
         Me.stsFooter.BackColor = System.Drawing.SystemColors.Control
         Me.stsFooter.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.stsFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.slblMargin, Me.slblDay, Me.slblTime})
-        Me.stsFooter.Location = New System.Drawing.Point(0, 837)
+        Me.stsFooter.Location = New System.Drawing.Point(0, 657)
         Me.stsFooter.Name = "stsFooter"
         Me.stsFooter.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.stsFooter.Size = New System.Drawing.Size(1456, 24)
+        Me.stsFooter.Size = New System.Drawing.Size(1348, 24)
         Me.stsFooter.SizingGrip = False
         Me.stsFooter.TabIndex = 78
         Me.stsFooter.Text = "StatusStrip1"
@@ -374,7 +375,7 @@ Partial Class SC_M11
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(9, 752)
+        Me.Label5.Location = New System.Drawing.Point(9, 572)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(88, 24)
@@ -386,7 +387,7 @@ Partial Class SC_M11
         Me.Label8.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(13, 783)
+        Me.Label8.Location = New System.Drawing.Point(13, 603)
         Me.Label8.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(67, 17)
@@ -396,7 +397,7 @@ Partial Class SC_M11
         'txtHinSyuCD
         '
         Me.txtHinSyuCD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtHinSyuCD.Location = New System.Drawing.Point(191, 780)
+        Me.txtHinSyuCD.Location = New System.Drawing.Point(191, 600)
         Me.txtHinSyuCD.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtHinSyuCD.Name = "txtHinSyuCD"
         Me.txtHinSyuCD.Size = New System.Drawing.Size(100, 22)
@@ -406,7 +407,7 @@ Partial Class SC_M11
         'txtHinSyuMei
         '
         Me.txtHinSyuMei.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtHinSyuMei.Location = New System.Drawing.Point(541, 782)
+        Me.txtHinSyuMei.Location = New System.Drawing.Point(541, 602)
         Me.txtHinSyuMei.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtHinSyuMei.Name = "txtHinSyuMei"
         Me.txtHinSyuMei.Size = New System.Drawing.Size(201, 22)
@@ -418,7 +419,7 @@ Partial Class SC_M11
         Me.Label10.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label10.Location = New System.Drawing.Point(337, 784)
+        Me.Label10.Location = New System.Drawing.Point(337, 604)
         Me.Label10.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(115, 17)
@@ -463,7 +464,7 @@ Partial Class SC_M11
         Me.Label13.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label13.Location = New System.Drawing.Point(120, 759)
+        Me.Label13.Location = New System.Drawing.Point(120, 579)
         Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(51, 15)
@@ -475,7 +476,7 @@ Partial Class SC_M11
         Me.Label14.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(97, 785)
+        Me.Label14.Location = New System.Drawing.Point(97, 605)
         Me.Label14.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(81, 14)
@@ -487,7 +488,7 @@ Partial Class SC_M11
         Me.Label17.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label17.Location = New System.Drawing.Point(469, 786)
+        Me.Label17.Location = New System.Drawing.Point(469, 606)
         Me.Label17.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(62, 14)
@@ -508,7 +509,7 @@ Partial Class SC_M11
         'txtRemartks
         '
         Me.txtRemartks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtRemartks.Location = New System.Drawing.Point(948, 782)
+        Me.txtRemartks.Location = New System.Drawing.Point(948, 602)
         Me.txtRemartks.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.txtRemartks.Name = "txtRemartks"
         Me.txtRemartks.Size = New System.Drawing.Size(483, 22)
@@ -520,7 +521,7 @@ Partial Class SC_M11
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(892, 786)
+        Me.Label6.Location = New System.Drawing.Point(892, 606)
         Me.Label6.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(47, 14)
@@ -532,7 +533,7 @@ Partial Class SC_M11
         Me.Label7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(799, 783)
+        Me.Label7.Location = New System.Drawing.Point(799, 603)
         Me.Label7.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(77, 17)
@@ -544,7 +545,7 @@ Partial Class SC_M11
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(1456, 861)
+        Me.ClientSize = New System.Drawing.Size(1348, 681)
         Me.Controls.Add(Me.txtRemartks)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label7)
