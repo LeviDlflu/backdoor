@@ -70,6 +70,14 @@
         コード区分 = 'CTL'
       </Text>
     </SQL>
+    <SQL ID="SELECT_005">
+      <Text>
+        SELECT
+          DISTINCT(コード区分)
+        FROM
+        コードマスタ
+      </Text>
+    </SQL>
   </Selects>
 
   <Updates>

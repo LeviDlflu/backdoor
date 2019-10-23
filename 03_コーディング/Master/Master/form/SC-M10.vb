@@ -43,38 +43,6 @@ Public Class SC_M10
     Dim dtAutoLabel As New DataTable
 
     ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-
-        Dim dt As New DataTable
-        Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
-        Dim strWhere As String = xml.GetSQL_Str("WHERE_001")
-        Dim selectSql As String
-
-        If String.IsNullOrEmpty(cmb_Kbn.Text) Then
-            selectSql = String.Format(strSelect, "")
-        Else
-            selectSql = String.Format(strSelect, String.Format(strWhere, cmb_Kbn.SelectedValue))
-        End If
-
-        Try
-
-            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-                dt = clsSQLServer.GetDataTable(selectSql)
-
-                clsSQLServer.Disconnect()
-            End If
-
-        Catch ex As Exception
-            Throw
-        End Try
-
-        Return dt
-
-    End Function
-
-    ''' <summary>
     ''' 　グリッドを設定する
     ''' </summary>
     ''' <param name="dtData">データソース</param>
@@ -205,15 +173,47 @@ Public Class SC_M10
     ''' 検索ボタン押下
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Dim dtResult As DataTable = createGridData()
 
-        'データ確認
-        If dtResult Is Nothing Then
-            MessageBox.Show(cmnUtil.GetMessageStr("W0008"))
-            Return
+        Dim dt As New DataTable
+        Dim strSelect As String = xml.GetSQL_Str("SELECT_001")
+        Dim strWhere As String = xml.GetSQL_Str("WHERE_001")
+        Dim selectSql As String
+
+        If String.IsNullOrEmpty(cmb_Kbn.Text) Then
+            selectSql = String.Format(strSelect, "")
+        Else
+            selectSql = String.Format(strSelect, String.Format(strWhere, cmb_Kbn.SelectedValue))
         End If
 
-        setGrid(dtResult)
+        Try
+
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                dt = clsSQLServer.GetDataTable(selectSql)
+
+                If dt.Rows.Count = 0 Then
+
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           My.Settings.systemName)
+
+                    clsSQLServer.Disconnect()
+
+                    Return
+
+                End If
+
+                setGrid(dt)
+
+                clsSQLServer.Disconnect()
+            End If
+
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
 
     End Sub
 
