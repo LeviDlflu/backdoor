@@ -425,7 +425,6 @@ Partial Class SC_M18
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gridData.EnableHeadersVisualStyles = False
         Me.gridData.Location = New System.Drawing.Point(10, 274)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
