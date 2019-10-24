@@ -20,26 +20,62 @@ Public Class SC_M19
     Private Const COL_BREAK_TIME As String = "休憩時間"
     Private Const COL_DATE_CHANGE_INDICATOR As String = "日付変更区分"
 
-    'Dim FIELDS As String() = {COL_SENTAKU,
-    '                            COL_PROCESS_CODE,
-    '                            COL_DIVISION,
-    '                            COL_LINE_DIVISION,
-    '                            COL_BREAK_START_TIME,
-    '                            COL_BREAK_END_TIME,
-    '                            COL_BREAK_TIME,
-    '                            COL_DATE_CHANGE_INDICATOR}
+    Dim FIELDS As String() = {COL_SENTAKU,
+                                COL_PROCESS_CODE,
+                                COL_DIVISION,
+                                COL_LINE_DIVISION,
+                                COL_BREAK_START_TIME,
+                                COL_BREAK_END_TIME,
+                                COL_BREAK_TIME,
+                                COL_DATE_CHANGE_INDICATOR}
 
     Private Const TABLE_NAME As String = "勤務テーブルマスタ"
 
     Private Const MSG_FORMAT As String = "{0}の書式は「00:00」で入力してください。"
     Private Const MSG_TIME As String = "休憩開始時間は休憩終了時間より大きくない。"
     Private Const HEADER_FORMAT As String = "{0}" + vbCrLf + "({1})"
-    Private Const XML_FORMAT As String = "Language[@name='{0}']"
 
     Dim xml As New CmnXML("SC-M19.xml", "SC-M19")
-    'Dim language As clsLanguage = New clsLanguage
 
-    Dim strLanguage As String = "jpn"
+    Dim strLanguage As String = My.Settings.Language
+
+#Region "プロパティ"
+    ''' <summary>
+    ''' XMLオブジェクト
+    ''' </summary>
+    Public m_xmlDoc As XmlNode
+    ''' <summary>
+    ''' マスタID
+    ''' </summary>
+    Private m_ID As String
+    ''' <summary>
+    ''' マスタ言語
+    ''' </summary>
+    Private m_Language As String
+    ''' <summary>
+    ''' マスタコントロール
+    ''' </summary>
+    Private m_Controls As ControlCollection
+    ''' <summary>
+    ''' マスタ項目
+    ''' </summary>
+    Private m_Fields As String()
+    ''' <summary>
+    ''' XML名前
+    ''' </summary>
+    Private Const XML_LANGUAGE As String = "LanguageDefine.xml"
+    ''' <summary>
+    ''' マスタパス
+    ''' </summary>
+    Private Const FORM_DOC_ROOT As String = "//Languages/Form[@formID='{0}']"
+
+    Private Const XML_FORMAT As String = "Language[@name='{0}']"
+    Private Const DEFAULT_DOC_ROOT As String = "//Languages/Default"
+
+    Dim headerName As Hashtable = New Hashtable
+    Dim defaultLang As String
+    Dim status As String
+#End Region
 
     ''' <summary>
     ''' 検索
@@ -120,84 +156,13 @@ Public Class SC_M19
     End Sub
 
     ''' <summary>
-    ''' 名前設定
-    ''' </summary>
-    Public Sub SetControlsLable()
-
-        '    Dim xmlResult As XmlNode = xml.GetControlsLableElement("SC-M19")
-
-        '    'Master
-        '    Dim xmlMaster As XmlNode = xmlResult.SelectSingleNode("Master")
-        '    If xmlMaster IsNot Nothing Then
-        '        Dim mstControl As Label = Me.Controls.Find("lblMaster0", True).First
-        '        Dim mstControl1 As Label = Me.Controls.Find("lblMaster1", True).First
-
-        '        mstControl.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
-        '        mstControl1.Text = xmlMaster.Attributes.GetNamedItem(strLanguage).Value
-        '    End If
-
-        '    'Button
-        '    Dim xmlButtons As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
-
-        '    If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
-        '        For Each xml As XmlNode In xmlButtons
-
-        '            Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
-        '            Dim btnControl As Button = Me.Controls.Find(btnName, True).First
-
-        '            If btnControl IsNot Nothing Then
-        '                btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(strLanguage).Value)
-        '            End If
-
-        '        Next
-        '    End If
-
-        '    'Lable
-        '    Dim xmlLabels As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "lblName"))
-        '    If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
-        '        For Each xml As XmlNode In xmlLabels
-
-        '            Dim lblName As String = "lblName" & xml.Attributes(1).Value
-        '            Dim lblName2 As String = "lblName" & xml.Attributes(1).Value & xml.Attributes(1).Value
-        '            Dim lblControl As Label = Me.Controls.Find(lblName, True).First
-        '            Dim lblControl2 As Label = Me.Controls.Find(lblName2, True).First
-
-        '            If lblControl IsNot Nothing Then
-        '                lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
-        '            End If
-
-        '            If lblControl2 IsNot Nothing Then
-        '                lblControl2.Text = "(" & xml.Attributes.GetNamedItem(strLanguage).Value & ")"
-        '            End If
-
-        '        Next
-
-        '    End If
-
-        '    'DataGridView
-        '    Dim xmlDGVHeader As XmlNodeList = xmlResult.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
-        '    If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
-
-        '        For Each xml As XmlNode In xmlDGVHeader
-
-        '            Dim dgvName As String = "dgvHeader" & xml.Attributes(1).Value
-        '            Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
-        '            Dim headName2 As String = xml.Attributes.GetNamedItem(strLanguage).Value
-
-        '            HEADER_NAME.Add(FIELDS(xml.Attributes(1).Value), String.Format(HEADER_FORMAT, headName, headName2))
-
-        '        Next
-        '    End If
-
-    End Sub
-
-    ''' <summary>
     ''' 初期表示
     ''' </summary>
     Private Sub SC_M19_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'SetControlsLable()
+        'Dim language As clsLanguage = New clsLanguage
         'language.LoadLanguage(strLanguage, "SC-M19", FIELDS, Me.Controls)
+        LoadLanguage(strLanguage, "SC-M19", FIELDS, Me.Controls)
 
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
@@ -766,4 +731,142 @@ Public Class SC_M19
             End Try
         End If
     End Sub
+
+    ''' <summary>
+    ''' マスタの言語を取得
+    ''' </summary>
+    ''' <param name="language">設定言語</param>
+    ''' <param name="masterID">機能ID</param>
+    ''' <param name="fields">機能項目</param>
+    ''' <param name="controls">機能コントロール</param>
+    Public Function LoadLanguage(ByVal language As String, ByVal masterID As String, ByVal fields As String()， ByVal controls As ControlCollection) As Hashtable
+        m_ID = masterID
+        m_Fields = fields
+        m_Controls = controls
+
+        'マスタの言語オブジェクトを取得
+        m_xmlDoc = GetControlsLabelElement()
+
+        If String.IsNullOrEmpty(language) = True Then
+            m_Language = defaultLang
+        Else
+            m_Language = language
+        End If
+
+        If (m_xmlDoc IsNot Nothing) Then
+
+            Try
+
+                'マスタコントロールの名前を設定
+                SetControlsLable()
+
+            Catch ex As Exception
+                MsgBox(status & "の設定を失敗しました。")
+            End Try
+
+        End If
+
+        Return headerName
+
+    End Function
+
+#Region "マスタの言語オブジェクトを取得"
+    ''' <summary>
+    ''' マスタの言語オブジェクトを取得
+    ''' </summary>
+    ''' <returns>設定言語オブジェクト</returns>>
+    Public Function GetControlsLabelElement() As XmlNode
+        Dim sqlXml As New clsXML
+
+        sqlXml.LoadXML(XML_LANGUAGE)
+        Dim mXmlNode As XmlNode = sqlXml.m_xmlDoc.SelectSingleNode(String.Format(FORM_DOC_ROOT, m_ID))
+
+        'Default
+        Dim xmlDefault As XmlNode = sqlXml.m_xmlDoc.SelectSingleNode(DEFAULT_DOC_ROOT)
+        If xmlDefault IsNot Nothing Then
+            defaultLang = xmlDefault.Attributes.GetNamedItem("lang").Value
+        End If
+
+        Return mXmlNode
+    End Function
+#End Region
+
+#Region "マスタコントロールの名前を設定"
+    ''' <summary>
+    ''' 名前設定
+    ''' </summary>
+    Public Sub SetControlsLable()
+
+        'Master
+        status = "マスタラベル"
+        Dim xmlMaster As XmlNode
+        xmlMaster = m_xmlDoc.SelectSingleNode("Master")
+        If xmlMaster IsNot Nothing Then
+            Dim mstControl As Label = m_Controls.Find("lblMaster0", True).First
+            Dim mstControl1 As Label = m_Controls.Find("lblMaster1", True).First
+
+            mstControl.Text = xmlMaster.Attributes.GetNamedItem("enu").Value
+            mstControl1.Text = xmlMaster.Attributes.GetNamedItem(m_Language).Value
+        End If
+
+        'Button
+        status = "マスタボタン"
+        Dim xmlButtons As XmlNodeList = m_xmlDoc.SelectNodes(String.Format(XML_FORMAT, "btnMenu"))
+
+        If xmlButtons IsNot Nothing And xmlButtons.Count > 0 Then
+            For Each xml As XmlNode In xmlButtons
+
+                Dim btnName As String = "btnMenu" & xml.Attributes(1).Value
+                Dim btnControl As Button = m_Controls.Find(btnName, True).First
+
+                If btnControl IsNot Nothing Then
+                    btnControl.Text = String.Format(HEADER_FORMAT, xml.Attributes.GetNamedItem("enu").Value, xml.Attributes.GetNamedItem(m_Language).Value)
+                End If
+
+            Next
+        End If
+
+        'Lable
+        status = "画面ラベル"
+        Dim xmlLabels As XmlNodeList = m_xmlDoc.SelectNodes(String.Format(XML_FORMAT, "lblName"))
+        If xmlLabels IsNot Nothing And xmlLabels.Count > 0 Then
+            For Each xml As XmlNode In xmlLabels
+
+                Dim lblName As String = "lblName" & xml.Attributes(1).Value
+                Dim lblName2 As String = "lblName" & xml.Attributes(1).Value & xml.Attributes(1).Value
+                Dim lblControl As Label = m_Controls.Find(lblName, True).First
+                Dim lblControl2 As Label = m_Controls.Find(lblName2, True).First
+
+                If lblControl IsNot Nothing Then
+                    lblControl.Text = xml.Attributes.GetNamedItem("enu").Value
+                End If
+
+                If lblControl2 IsNot Nothing Then
+                    lblControl2.Text = "(" & xml.Attributes.GetNamedItem(m_Language).Value & ")"
+                End If
+
+            Next
+
+        End If
+
+        'DataGridView
+        status = "明細一覧ヘーダ"
+        Dim xmlDGVHeader As XmlNodeList = m_xmlDoc.SelectNodes(String.Format(XML_FORMAT, "dgvHeader"))
+        If xmlDGVHeader IsNot Nothing And xmlDGVHeader.Count > 0 Then
+
+            For Each xml As XmlNode In xmlDGVHeader
+
+                Dim dgvName As String = "dgvHeader" & xml.Attributes(1).Value
+                Dim headName As String = xml.Attributes.GetNamedItem("enu").Value
+                Dim headName2 As String = xml.Attributes.GetNamedItem(m_Language).Value
+
+                headerName.Add(m_Fields(xml.Attributes(1).Value), String.Format(HEADER_FORMAT, headName, headName2))
+
+            Next
+
+        End If
+
+    End Sub
+#End Region
+
 End Class
