@@ -77,24 +77,6 @@ Public Class SC_M18
             cmb_Koutei.BackColor = Color.White
         End If
 
-        ''車種
-        'If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
-        '    MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_SYASYU))
-        '    cmb_Syasyu.BackColor = Color.Red
-        '    Return False
-        'Else
-        '    cmb_Syasyu.BackColor = Color.White
-        'End If
-
-        ''品名
-        'If String.IsNullOrEmpty(cmb_HinCd.Text) Then
-        '    MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_HINMEI))
-        '    cmb_HinCd.BackColor = Color.Red
-        '    Return False
-        'Else
-        '    cmb_HinCd.BackColor = Color.White
-        'End If
-
         Return True
     End Function
 
@@ -214,13 +196,6 @@ Public Class SC_M18
                     col.ReadOnly = True
             End Select
         Next
-
-        'gridData.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 55
@@ -528,6 +503,10 @@ Public Class SC_M18
     End Sub
 
     Private Sub btnAsc_Click(sender As Object, e As EventArgs) Handles btnAsc.Click
+        If list.Count = 0 Then
+            MessageBox.Show(cmnUtil.GetMessageStr("W0001", "複写品名"))
+            Return
+        End If
         Dim dtable As DataTable = gridData.DataSource
         Dim sortsql As New StringBuilder
         For Each a As String In list
@@ -545,6 +524,10 @@ Public Class SC_M18
     End Sub
 
     Private Sub btnDesc_Click(sender As Object, e As EventArgs) Handles btnDesc.Click
+        If list.Count = 0 Then
+            MessageBox.Show(cmnUtil.GetMessageStr("W0001", "複写品名"))
+            Return
+        End If
         Dim dtable As DataTable = gridData.DataSource
         Dim sortsql As New StringBuilder
         For Each a As String In list
