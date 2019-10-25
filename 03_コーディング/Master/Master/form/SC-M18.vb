@@ -328,6 +328,7 @@ Public Class SC_M18
             cmb_Syasyu.SelectedIndex = -1
             cmb_HinCd.SelectedIndex = -1
             cmb_Copy_HinCd.SelectedIndex = -1
+            'gridData.RowHeadersDefaultCellStyle.BackColor = Color.LightGray
             gridData.Columns.Clear()
         End If
 
@@ -546,7 +547,7 @@ Public Class SC_M18
 
     Private Sub gridData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellClick
         If e.ColumnIndex > 0 Then
-            If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.Blue Then
+            If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
                 list.Remove(gridData.Columns.Item(e.ColumnIndex).Name)
                 gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
                 i -= 1
@@ -556,7 +557,7 @@ Public Class SC_M18
                     Return
                 End If
                 list.Add(gridData.Columns.Item(e.ColumnIndex).Name)
-                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.Blue
+                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
                 i += 1
             End If
         End If
