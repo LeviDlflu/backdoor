@@ -3,6 +3,7 @@
                              {"詳細", "Details" & vbCrLf & "(詳細)"},
                              {"品名", "Product name" & vbCrLf & "(品名)"},
                              {"客先部品番号", "Customer part number" & vbCrLf & "(客先部品番号)"},
+                             {"金型", "Mold" & vbCrLf & "(金型)"},
                              {"着手", "Start" & vbCrLf & "(着手)"},
                              {"完成", "Completion" & vbCrLf & "(完成)"},
                              {"不良", "Defect" & vbCrLf & "(不良)"},
@@ -41,7 +42,7 @@
     ''' 列ヘッダーの行の高さ
     ''' </summary>
     ''' <remarks></remarks>
-    Private columnHeaderrRowHeight As Integer = 17
+    Private columnHeaderrRowHeight As Integer = 30
 
     ''' <summary>
     ''' 列ヘッダーセル定義構造体
@@ -83,9 +84,16 @@
 
     '初期処理
     Private Sub Init()
+        Dim myType As Type = GetType(DataGridView)
+        Dim myPropInfo As System.Reflection.PropertyInfo = myType.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
+        myPropInfo.SetValue(Me.gridData, True, Nothing)
 
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
+        '列ヘッダーの高さの調整モード
+        Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+
+        '列ヘッダーの高さを行数に合わせる
+        Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
+
         srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
     End Sub
@@ -109,140 +117,12 @@
         End If
     End Sub
 
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-        dt.Columns.Add(New DataColumn(COL_DETAILS, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_PRODUCT_NAME, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_CUSTOMER_PART_NO, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_START, GetType(System.String)))
-        '完成
-        dt.Columns.Add(New DataColumn(COL_COMPLETION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_DEFECT, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SP_PRO_TRANSFER, GetType(System.String)))
-
-        'gridData.DataSource = dt
-        'gridData.Columns(COL_COMPLETION).HeaderText = COL_CORRECTION
-        'dt.Columns.Add(New DataColumn(COL_CORRECTION, GetType(System.String)))
-        'dt.Columns.Add(New DataColumn(COL_PASS, GetType(System.String)))
-
-        For i As Integer = 0 To 3
-            Dim addRow As DataRow = dt.NewRow
-            Select Case i
-                Case 0
-                    addRow(COL_DETAILS) = "FAS"
-                    addRow(COL_PRODUCT_NAME) = "11"
-                    addRow(COL_CUSTOMER_PART_NO) = "落下"
-                    addRow(COL_START) = "製造工場"
-                    addRow(COL_COMPLETION) = "製造工場"
-                    addRow(COL_DEFECT) = "製造工場"
-                    addRow(COL_SP_PRO_TRANSFER) = "製造工場"
-                Case 1
-                    addRow(COL_DETAILS) = "FAS"
-                    addRow(COL_PRODUCT_NAME) = "11"
-                    addRow(COL_CUSTOMER_PART_NO) = "落下"
-                    addRow(COL_START) = "製造工場"
-                    addRow(COL_COMPLETION) = "製造工場"
-                    addRow(COL_DEFECT) = "製造工場"
-                    addRow(COL_SP_PRO_TRANSFER) = "製造工場"
-                Case 2
-                    addRow(COL_DETAILS) = "FAS"
-                    addRow(COL_PRODUCT_NAME) = "11"
-                    addRow(COL_CUSTOMER_PART_NO) = "落下"
-                    addRow(COL_START) = "製造工場"
-                    addRow(COL_COMPLETION) = "製造工場"
-                    addRow(COL_DEFECT) = "製造工場"
-                    addRow(COL_SP_PRO_TRANSFER) = "製造工場"
-                Case 3
-                    addRow(COL_DETAILS) = "FAS"
-                    addRow(COL_PRODUCT_NAME) = "11"
-                    addRow(COL_CUSTOMER_PART_NO) = "落下"
-                    addRow(COL_START) = "製造工場"
-                    addRow(COL_COMPLETION) = "製造工場"
-                    addRow(COL_DEFECT) = "製造工場"
-                    addRow(COL_SP_PRO_TRANSFER) = "製造工場"
-                Case 4
-                    addRow(COL_DETAILS) = "FAS"
-                    addRow(COL_PRODUCT_NAME) = "11"
-                    addRow(COL_CUSTOMER_PART_NO) = "落下"
-                    addRow(COL_START) = "製造工場"
-                    addRow(COL_COMPLETION) = "製造工場"
-                    addRow(COL_DEFECT) = "製造工場"
-                    addRow(COL_SP_PRO_TRANSFER) = "製造工場"
-
-            End Select
-            dt.Rows.Add(addRow)
-        Next
-
-        Return dt
-
-    End Function
-
-    ''' <summary>
-    ''' 　グリッドを設定する
-    ''' </summary>
-    ''' <param name="dtData">データソース</param>
-    Private Sub setGrid(ByRef dtData As DataTable)
-        gridData.Columns.Clear()
-
-        ''選択
-        'Dim addColSentaku As New DataGridViewCheckBoxColumn()
-        'addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
-        'addColSentaku.HeaderText = headerName(COL_SENTAKU)
-        'addColSentaku.Name = "sentaku"
-        'gridData.Columns.Add(addColSentaku)
-
-        For Each col As DataColumn In dtData.Columns
-
-            Dim addCol As New DataGridViewTextBoxColumn()
-            addCol.DataPropertyName = col.ColumnName
-            addCol.HeaderText = headerName(col.ColumnName)
-            addCol.Name = col.ColumnName
-            gridData.Columns.Add(addCol)
-        Next
-        gridData.DataSource = dtData.Copy
-        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        For i As Integer = 0 To gridData.Columns.Count - 1
-            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
-
-            '横位置
-            Select Case gridData.Columns(i).Name
-                Case COL_DETAILS
-                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                Case Else
-                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            End Select
-
-        Next
-        gridData.AutoResizeColumns()
-
-        For Each col As DataGridViewColumn In gridData.Columns
-            Select Case col.Name
-                Case Else
-                    col.ReadOnly = True
-            End Select
-        Next
-
-        gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 150
-        gridData.Columns(2).Width = 150
-        gridData.Columns(3).Width = 400
-        gridData.Columns(4).Width = 400
-        gridData.Columns(5).Width = 100
-
-
-        '複数選択不可
-        gridData.MultiSelect = False
-        '編集不可
-        gridData.AllowUserToDeleteRows = False
-        gridData.AllowUserToAddRows = False
-        gridData.AllowUserToResizeRows = False
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        'setGrid(createGridData())
         gridData.Columns.Clear()
         srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
@@ -282,7 +162,7 @@
     ''' <remarks></remarks>
     Private Function GetTextFormatFlags(ByVal alignment As DataGridViewContentAlignment) As TextFormatFlags
         Try
-            ''文字の描画
+            '文字の描画
             Dim formatFlg As TextFormatFlags = TextFormatFlags.Right Or TextFormatFlags.VerticalCenter Or TextFormatFlags.EndEllipsis
 
             '表示位置
@@ -504,17 +384,17 @@
     Private Sub Patten1()
 
         HeaderCells = {
-            New HeaderCell(0, 0, 2, 1, COL_DETAILS),
-            New HeaderCell(0, 1, 2, 1, COL_PRODUCT_NAME),
-            New HeaderCell(0, 2, 2, 1, COL_CUSTOMER_PART_NO),
-            New HeaderCell(0, 3, 2, 1, COL_MOLD),
-            New HeaderCell(0, 4, 1, 2, COL_COMPLETION),
-            New HeaderCell(0, 6, 1, 2, COL_DEFECT),
-            New HeaderCell(0, 8, 1, 2, COL_SP_PRO_TRANSFER)}
+            New HeaderCell(0, 0, 2, 1, headerName(COL_DETAILS)),
+            New HeaderCell(0, 1, 2, 1, headerName(COL_PRODUCT_NAME)),
+            New HeaderCell(0, 2, 2, 1, headerName(COL_CUSTOMER_PART_NO)),
+            New HeaderCell(0, 3, 2, 1, headerName(COL_MOLD)),
+            New HeaderCell(0, 4, 1, 2, headerName(COL_COMPLETION)),
+            New HeaderCell(0, 6, 1, 2, headerName(COL_DEFECT)),
+            New HeaderCell(0, 8, 1, 2, headerName(COL_SP_PRO_TRANSFER))}
 
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = COL_DETAILS
-        btn.HeaderText = COL_DETAILS
+        btn.HeaderText = headerName(COL_DETAILS)
         btn.DefaultCellStyle.NullValue = COL_DETAILS
         gridData.Columns.Add(btn)
 
@@ -531,7 +411,7 @@
 
         Dim dr As DataRow
 
-        For index = 1 To 10
+        For index = 1 To 20
             dr = dt.NewRow()
             dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
             dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
@@ -547,19 +427,20 @@
 
         '子タイトル設定する
         gridData.DataSource = dt
-        gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = COL_TODAY
-        gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = COL_CORRECTION
-        gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = COL_TODAY
-        gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = COL_CORRECTION
-        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = COL_PASS
-        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = COL_DEFECT
+        gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = headerName(COL_TODAY)
+
+        gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = headerName(COL_CORRECTION)
+        gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = headerName(COL_TODAY)
+        gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = headerName(COL_CORRECTION)
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = headerName(COL_PASS)
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = headerName(COL_DEFECT)
         gridData.AutoResizeColumns()
 
         'Grid幅設定する
         gridData.Columns(COL_DETAILS).Width = 60
         gridData.Columns(COL_PRODUCT_NAME).Width = 100
-        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 100
-        gridData.Columns(COL_MOLD).Width = 50
+        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 150
+        gridData.Columns(COL_MOLD).Width = 60
         gridData.Columns(COL_COMPLETION_THE_DAY).Width = 100
         gridData.Columns(COL_COMPLETION_CORRECTION).Width = 150
         gridData.Columns(COL_DEFECT_THE_DAY).Width = 100
@@ -675,12 +556,6 @@
     End Sub
 
     Private Sub SC_K13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        '列ヘッダーの高さの調整モード
-        'Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-
-
-        ''列ヘッダーの高さを行数に合わせる
-        'Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
         Init()
 
     End Sub
