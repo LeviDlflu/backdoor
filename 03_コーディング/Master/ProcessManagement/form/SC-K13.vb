@@ -94,8 +94,6 @@
         '列ヘッダーの高さを行数に合わせる
         Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
 
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
         srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
     End Sub
@@ -117,6 +115,11 @@
                                   e.InheritedRowStyle.ForeColor,
                                   TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
+    End Sub
+
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -159,7 +162,7 @@
     ''' <remarks></remarks>
     Private Function GetTextFormatFlags(ByVal alignment As DataGridViewContentAlignment) As TextFormatFlags
         Try
-            ''文字の描画
+            '文字の描画
             Dim formatFlg As TextFormatFlags = TextFormatFlags.Right Or TextFormatFlags.VerticalCenter Or TextFormatFlags.EndEllipsis
 
             '表示位置

@@ -22,6 +22,7 @@ Partial Class SC_M15
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnClear = New System.Windows.Forms.Button()
@@ -86,6 +87,7 @@ Partial Class SC_M15
         Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label34 = New System.Windows.Forms.Label()
+        Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.stsFooter.SuspendLayout()
         Me.grpHeader.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -794,6 +796,11 @@ Partial Class SC_M15
         Me.Label34.TabIndex = 219
         Me.Label34.Text = "Remarks"
         '
+        'TimeSys
+        '
+        Me.TimeSys.Enabled = True
+        Me.TimeSys.Interval = 1000
+        '
         'SC_M15
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -920,4 +927,5 @@ Partial Class SC_M15
     Friend WithEvents txtRemarks As TextBox
     Friend WithEvents Label19 As Label
     Friend WithEvents Label34 As Label
+    Friend WithEvents TimeSys As Timer
 End Class
