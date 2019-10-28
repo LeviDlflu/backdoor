@@ -11,8 +11,7 @@ Public Class SC_K21A
     Private Sub init()
         Me.Target_date.Enabled = True
         Me.Withdrawal_category.Enabled = True
-        Me.Print.Enabled = True
-        Me.Back.Enabled = True
+        Me.Finish.Enabled = True
 
         Me.Target_date.Value = Date.Today()
         Me.Withdrawal_category.Text = String.Empty
@@ -52,9 +51,13 @@ Public Class SC_K21A
 
         GridCtrl.DataSource = dt.Copy
 
-        GridCtrl.Columns(0).Width = 60
-        GridCtrl.Columns(1).Width = 100
+        GridCtrl.Columns(0).Width = 150
+        GridCtrl.Columns(1).Width = 300
         GridCtrl.Columns(2).Width = 200
+
+        GridCtrl.Columns(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
+        GridCtrl.Columns(1).HeaderText = "Process abbreviation" & vbCrLf & "(工程略称)"
+        GridCtrl.Columns(2).HeaderText = "Withdrawal count" & vbCrLf & "(払出数量合計)"
 
     End Sub
 
@@ -63,12 +66,16 @@ Public Class SC_K21A
     End Sub
 
     Private Sub GridCtrl_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles GridCtrl.CellPainting
-        If e.ColumnIndex < 0 And e.RowIndex >= 0 Then
+        If e.ColumnIndex < 0 And e.RowIndex >= 0 And e.RowIndex < GridCtrl.Rows.Count - 1 Then
             e.Paint(e.ClipBounds, DataGridViewPaintParts.All)
             Dim indexrect As Drawing.Rectangle = e.CellBounds
             indexrect.Inflate(-2, -2)
             TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexrect, e.CellStyle.ForeColor, TextFormatFlags.Right)
-            e.Handled = true
+            e.Handled = True
         End If
+    End Sub
+
+    Private Sub Finish_Click(sender As Object, e As EventArgs) Handles Finish.Click
+
     End Sub
 End Class
