@@ -84,6 +84,24 @@
     <Compile Include="form\SC-K13A.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-K21A.Designer.vb">
+      <DependentUpon>SC-K21A.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K21A.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K21B.Designer.vb">
+      <DependentUpon>SC-K21B.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K21B.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K21C.Designer.vb">
+      <DependentUpon>SC-K21C.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K21C.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -106,6 +124,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K13A.resx">
       <DependentUpon>SC-K13A.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K21A.resx">
+      <DependentUpon>SC-K21A.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K21B.resx">
+      <DependentUpon>SC-K21B.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K21C.resx">
+      <DependentUpon>SC-K21C.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

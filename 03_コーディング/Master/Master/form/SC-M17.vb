@@ -526,7 +526,7 @@ Public Class SC_M17
         Dim lstr As String
         lstr = Me.txtFullNM.Text
         If Len(lstr) > 30 Then
-            MsgBox("氏名コードの最大桁数は30")
+            MsgBox("氏名の最大桁数は30")
             txtFullNM.Text = lstr.Substring(0, 30)
         End If
     End Sub
@@ -535,7 +535,7 @@ Public Class SC_M17
         Dim lstr As String
         lstr = Me.txtRemarks.Text
         If Len(lstr) > 50 Then
-            MsgBox("氏名コードの最大桁数は50")
+            MsgBox("備考の最大桁数は50")
             txtRemarks.Text = lstr.Substring(0, 50)
         End If
     End Sub
