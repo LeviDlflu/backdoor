@@ -51,15 +51,12 @@ Partial Class SC_K13
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
-        Me.Label41 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.cmbVariety = New System.Windows.Forms.ComboBox()
-        Me.Label36 = New System.Windows.Forms.Label()
-        Me.cmbSalesVarieties = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -136,7 +133,7 @@ Partial Class SC_K13
         '
         Me.Label51.AutoSize = True
         Me.Label51.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label51.Location = New System.Drawing.Point(866, 200)
+        Me.Label51.Location = New System.Drawing.Point(731, 200)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(37, 11)
         Me.Label51.TabIndex = 293
@@ -147,16 +144,16 @@ Partial Class SC_K13
         Me.cmbFacility.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbFacility.BackColor = System.Drawing.Color.White
         Me.cmbFacility.FormattingEnabled = True
-        Me.cmbFacility.Location = New System.Drawing.Point(868, 216)
+        Me.cmbFacility.Location = New System.Drawing.Point(733, 216)
         Me.cmbFacility.Name = "cmbFacility"
-        Me.cmbFacility.Size = New System.Drawing.Size(136, 20)
+        Me.cmbFacility.Size = New System.Drawing.Size(145, 20)
         Me.cmbFacility.TabIndex = 15
         '
         'Label39
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label39.Location = New System.Drawing.Point(344, 184)
+        Me.Label39.Location = New System.Drawing.Point(365, 184)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(58, 14)
         Me.Label39.TabIndex = 289
@@ -167,16 +164,16 @@ Partial Class SC_K13
         Me.cmbSection.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbSection.BackColor = System.Drawing.Color.White
         Me.cmbSection.FormattingEnabled = True
-        Me.cmbSection.Location = New System.Drawing.Point(346, 216)
+        Me.cmbSection.Location = New System.Drawing.Point(367, 216)
         Me.cmbSection.Name = "cmbSection"
-        Me.cmbSection.Size = New System.Drawing.Size(136, 20)
+        Me.cmbSection.Size = New System.Drawing.Size(145, 20)
         Me.cmbSection.TabIndex = 12
         '
         'Label35
         '
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label35.Location = New System.Drawing.Point(346, 201)
+        Me.Label35.Location = New System.Drawing.Point(367, 201)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(37, 11)
         Me.Label35.TabIndex = 290
@@ -299,14 +296,14 @@ Partial Class SC_K13
         Me.cmbProcess.FormattingEnabled = True
         Me.cmbProcess.Location = New System.Drawing.Point(12, 216)
         Me.cmbProcess.Name = "cmbProcess"
-        Me.cmbProcess.Size = New System.Drawing.Size(136, 20)
+        Me.cmbProcess.Size = New System.Drawing.Size(145, 20)
         Me.cmbProcess.TabIndex = 10
         '
         'Label52
         '
         Me.Label52.AutoSize = True
         Me.Label52.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label52.Location = New System.Drawing.Point(518, 184)
+        Me.Label52.Location = New System.Drawing.Point(546, 184)
         Me.Label52.Name = "Label52"
         Me.Label52.Size = New System.Drawing.Size(92, 14)
         Me.Label52.TabIndex = 273
@@ -375,9 +372,9 @@ Partial Class SC_K13
         Me.cmbVehicleType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbVehicleType.BackColor = System.Drawing.Color.White
         Me.cmbVehicleType.FormattingEnabled = True
-        Me.cmbVehicleType.Location = New System.Drawing.Point(520, 216)
+        Me.cmbVehicleType.Location = New System.Drawing.Point(548, 216)
         Me.cmbVehicleType.Name = "cmbVehicleType"
-        Me.cmbVehicleType.Size = New System.Drawing.Size(136, 20)
+        Me.cmbVehicleType.Size = New System.Drawing.Size(145, 20)
         Me.cmbVehicleType.TabIndex = 13
         '
         'Label45
@@ -404,7 +401,7 @@ Partial Class SC_K13
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label43.Location = New System.Drawing.Point(175, 201)
+        Me.Label43.Location = New System.Drawing.Point(186, 201)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(37, 11)
         Me.Label43.TabIndex = 284
@@ -414,21 +411,11 @@ Partial Class SC_K13
         '
         Me.Label42.AutoSize = True
         Me.Label42.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label42.Location = New System.Drawing.Point(518, 201)
+        Me.Label42.Location = New System.Drawing.Point(546, 201)
         Me.Label42.Name = "Label42"
         Me.Label42.Size = New System.Drawing.Size(37, 11)
         Me.Label42.TabIndex = 285
         Me.Label42.Text = "(車種)"
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label41.Location = New System.Drawing.Point(692, 200)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(61, 11)
-        Me.Label41.TabIndex = 286
-        Me.Label41.Text = "(売上品種)"
         '
         'Label40
         '
@@ -447,13 +434,12 @@ Partial Class SC_K13
         '
         'gridData
         '
-        Me.gridData.AllowDrop = True
         Me.gridData.AllowUserToAddRows = False
+        Me.gridData.AllowUserToDeleteRows = False
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
@@ -490,7 +476,7 @@ Partial Class SC_K13
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label37.Location = New System.Drawing.Point(175, 184)
+        Me.Label37.Location = New System.Drawing.Point(186, 184)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(57, 14)
         Me.Label37.TabIndex = 275
@@ -501,30 +487,10 @@ Partial Class SC_K13
         Me.cmbVariety.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbVariety.BackColor = System.Drawing.Color.Yellow
         Me.cmbVariety.FormattingEnabled = True
-        Me.cmbVariety.Location = New System.Drawing.Point(177, 216)
+        Me.cmbVariety.Location = New System.Drawing.Point(188, 216)
         Me.cmbVariety.Name = "cmbVariety"
-        Me.cmbVariety.Size = New System.Drawing.Size(136, 20)
+        Me.cmbVariety.Size = New System.Drawing.Size(145, 20)
         Me.cmbVariety.TabIndex = 11
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label36.Location = New System.Drawing.Point(691, 182)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(107, 14)
-        Me.Label36.TabIndex = 277
-        Me.Label36.Text = "Sales varieties"
-        '
-        'cmbSalesVarieties
-        '
-        Me.cmbSalesVarieties.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbSalesVarieties.BackColor = System.Drawing.Color.White
-        Me.cmbSalesVarieties.FormattingEnabled = True
-        Me.cmbSalesVarieties.Location = New System.Drawing.Point(694, 216)
-        Me.cmbSalesVarieties.Name = "cmbSalesVarieties"
-        Me.cmbSalesVarieties.Size = New System.Drawing.Size(136, 20)
-        Me.cmbSalesVarieties.TabIndex = 14
         '
         'Label9
         '
@@ -1176,7 +1142,7 @@ Partial Class SC_K13
         '
         Me.Label50.AutoSize = True
         Me.Label50.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label50.Location = New System.Drawing.Point(865, 182)
+        Me.Label50.Location = New System.Drawing.Point(730, 182)
         Me.Label50.Name = "Label50"
         Me.Label50.Size = New System.Drawing.Size(58, 14)
         Me.Label50.TabIndex = 292
@@ -1236,14 +1202,11 @@ Partial Class SC_K13
         Me.Controls.Add(Me.Label35)
         Me.Controls.Add(Me.cmbSection)
         Me.Controls.Add(Me.Label39)
-        Me.Controls.Add(Me.cmbSalesVarieties)
-        Me.Controls.Add(Me.Label36)
         Me.Controls.Add(Me.cmbVariety)
         Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.gridData)
         Me.Controls.Add(Me.Label40)
-        Me.Controls.Add(Me.Label41)
         Me.Controls.Add(Me.Label42)
         Me.Controls.Add(Me.Label43)
         Me.Controls.Add(Me.Label44)
@@ -1343,15 +1306,12 @@ Partial Class SC_K13
     Friend WithEvents Label44 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label42 As Label
-    Friend WithEvents Label41 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents TimeSys As Timer
     Public WithEvents gridData As DataGridView
     Friend WithEvents Label38 As Label
     Friend WithEvents Label37 As Label
     Friend WithEvents cmbVariety As ComboBox
-    Friend WithEvents Label36 As Label
-    Friend WithEvents cmbSalesVarieties As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label21 As Label
