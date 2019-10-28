@@ -84,6 +84,18 @@
     <Compile Include="form\SC-K13A.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-K14.Designer.vb">
+      <DependentUpon>SC-K14.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K14.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K14A.Designer.vb">
+      <DependentUpon>SC-K14A.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K14A.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="form\SC-K20.Designer.vb">
       <DependentUpon>SC-K20.vb</DependentUpon>
     </Compile>
@@ -142,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K13A.resx">
       <DependentUpon>SC-K13A.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K14.resx">
+      <DependentUpon>SC-K14.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K14A.resx">
+      <DependentUpon>SC-K14A.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K20.resx">
       <DependentUpon>SC-K20.vb</DependentUpon>
