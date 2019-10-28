@@ -102,6 +102,18 @@
     <Compile Include="form\SC-K21C.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-Z01.Designer.vb">
+      <DependentUpon>SC-Z01.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-Z01.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-Z01A.Designer.vb">
+      <DependentUpon>SC-Z01A.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-Z01A.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -133,6 +145,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K21C.resx">
       <DependentUpon>SC-K21C.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-Z01.resx">
+      <DependentUpon>SC-Z01.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-Z01A.resx">
+      <DependentUpon>SC-Z01A.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
