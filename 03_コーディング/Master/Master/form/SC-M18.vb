@@ -40,7 +40,8 @@ Public Class SC_M18
     Private Const ITEM_KOUTEI As String = "工程"
     Private Const ITEM_SYASYU As String = "車種"
     Private Const ITEM_HINMEI As String = "品名"
-
+    Dim i As Integer = 0
+    Private list As New List(Of String)
     Dim xml As New CmnXML("SC-M18.xml", "SC-M18")
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -75,24 +76,6 @@ Public Class SC_M18
         Else
             cmb_Koutei.BackColor = Color.White
         End If
-
-        ''車種
-        'If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
-        '    MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_SYASYU))
-        '    cmb_Syasyu.BackColor = Color.Red
-        '    Return False
-        'Else
-        '    cmb_Syasyu.BackColor = Color.White
-        'End If
-
-        ''品名
-        'If String.IsNullOrEmpty(cmb_HinCd.Text) Then
-        '    MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_HINMEI))
-        '    cmb_HinCd.BackColor = Color.Red
-        '    Return False
-        'Else
-        '    cmb_HinCd.BackColor = Color.White
-        'End If
 
         Return True
     End Function
@@ -134,8 +117,10 @@ Public Class SC_M18
             selectSql.Append(String.Format(whereCond, cmb_HinCd.SelectedValue))
         End If
 
+
         '区分（昇順）
         sortCond = xml.GetSQL_Str("SORT_001")
+
         selectSql.Append(sortCond)
 
         Try
@@ -166,6 +151,7 @@ Public Class SC_M18
         addColSentaku.DataPropertyName = HEADER_NAME(COL_SELECT)
         addColSentaku.HeaderText = HEADER_NAME(COL_SELECT)
         addColSentaku.Name = "sentaku"
+        addColSentaku.HeaderCell.Style.BackColor = Color.LightGray
         gridData.Columns.Add(addColSentaku)
 
         For Each col As DataColumn In dtData.Columns
@@ -176,6 +162,7 @@ Public Class SC_M18
                 addCol.HeaderText = HEADER_NAME(col.ColumnName)
                 addCol.Name = col.ColumnName
                 addCol.DefaultCellStyle.BackColor = Color.LightGray
+                addCol.HeaderCell.Style.BackColor = Color.LightGray
                 gridData.Columns.Add(addCol)
             Else
                 Dim addCol As New DataGridViewTextBoxColumn()
@@ -183,6 +170,7 @@ Public Class SC_M18
                 addCol.HeaderText = HEADER_NAME(col.ColumnName)
                 addCol.Name = col.ColumnName
                 addCol.DefaultCellStyle.BackColor = Color.White
+                addCol.HeaderCell.Style.BackColor = Color.LightGray
                 gridData.Columns.Add(addCol)
             End If
 
@@ -208,13 +196,6 @@ Public Class SC_M18
                     col.ReadOnly = True
             End Select
         Next
-
-        'gridData.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(9).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns(11).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 55
@@ -347,6 +328,7 @@ Public Class SC_M18
             cmb_Syasyu.SelectedIndex = -1
             cmb_HinCd.SelectedIndex = -1
             cmb_Copy_HinCd.SelectedIndex = -1
+            'gridData.RowHeadersDefaultCellStyle.BackColor = Color.LightGray
             gridData.Columns.Clear()
         End If
 
@@ -522,15 +504,62 @@ Public Class SC_M18
     End Sub
 
     Private Sub btnAsc_Click(sender As Object, e As EventArgs) Handles btnAsc.Click
+        If list.Count = 0 Then
+            MessageBox.Show(cmnUtil.GetMessageStr("W0001", "複写品名"))
+            Return
+        End If
+        Dim dtable As DataTable = gridData.DataSource
+        Dim sortsql As New StringBuilder
+        For Each a As String In list
+            sortsql.Append(a)
+            sortsql.Append(" ASC,")
+        Next
+        sortsql.Remove(sortsql.Length - 1, 1)
+        Dim dv As DataView = dtable.DefaultView
+        dv.Sort = sortsql.ToString
+        Dim dt As New DataTable
+        dt = dv.ToTable
+        gridData.DataSource = dt
+        gridData.Refresh()
 
     End Sub
 
     Private Sub btnDesc_Click(sender As Object, e As EventArgs) Handles btnDesc.Click
-
+        If list.Count = 0 Then
+            MessageBox.Show(cmnUtil.GetMessageStr("W0001", "複写品名"))
+            Return
+        End If
+        Dim dtable As DataTable = gridData.DataSource
+        Dim sortsql As New StringBuilder
+        For Each a As String In list
+            sortsql.Append(a)
+            sortsql.Append(" DESC,")
+        Next
+        sortsql.Remove(sortsql.Length - 1, 1)
+        Dim dv As DataView = dtable.DefaultView
+        dv.Sort = sortsql.ToString
+        Dim dt As New DataTable
+        dt = dv.ToTable
+        gridData.DataSource = dt
+        gridData.Refresh()
     End Sub
 
+
     Private Sub gridData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellClick
-        Dim s = gridData.Columns.Item(e.ColumnIndex).Name
-        gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.Blue
+        If e.ColumnIndex > 0 Then
+            If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
+                list.Remove(gridData.Columns.Item(e.ColumnIndex).Name)
+                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
+                i -= 1
+            Else
+                If i > 2 Then
+                    MessageBox.Show(cmnUtil.GetMessageStr("W0001", "複写品名"))
+                    Return
+                End If
+                list.Add(gridData.Columns.Item(e.ColumnIndex).Name)
+                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
+                i += 1
+            End If
+        End If
     End Sub
 End Class
