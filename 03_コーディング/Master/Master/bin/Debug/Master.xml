@@ -391,6 +391,23 @@ Master
  <param name="sender">sender</param>
  <param name="e">e</param>
 </member>
+<member name="M:Master.SC_M18.isNecessary">
+ <summary>
+ 必須チェック
+ </summary>
+ <returns></returns>
+</member>
+<member name="M:Master.SC_M18.createGridData">
+ <summary>
+ 　グリッド用のデータを作成
+ </summary>
+</member>
+<member name="M:Master.SC_M18.setGrid(System.Data.DataTable@)">
+ <summary>
+ グリッドを設定する
+ </summary>
+ <param name="dtData"></param>
+</member>
 <member name="M:Master.SC_M18.gridData_CellPainting(System.Object,System.Windows.Forms.DataGridViewCellPaintingEventArgs)">
  <summary>
  　・行ヘッダーに行番号書き込み
@@ -416,6 +433,41 @@ Master
  　チェックボックス事件
  </summary>
 </member>
+<member name="F:Master.SC_M19.m_xmlDoc">
+ <summary>
+ XMLオブジェクト
+ </summary>
+</member>
+<member name="F:Master.SC_M19.m_ID">
+ <summary>
+ マスタID
+ </summary>
+</member>
+<member name="F:Master.SC_M19.m_Language">
+ <summary>
+ マスタ言語
+ </summary>
+</member>
+<member name="F:Master.SC_M19.m_Controls">
+ <summary>
+ マスタコントロール
+ </summary>
+</member>
+<member name="F:Master.SC_M19.m_Fields">
+ <summary>
+ マスタ項目
+ </summary>
+</member>
+<member name="F:Master.SC_M19.XML_LANGUAGE">
+ <summary>
+ XML名前
+ </summary>
+</member>
+<member name="F:Master.SC_M19.FORM_DOC_ROOT">
+ <summary>
+ マスタパス
+ </summary>
+</member>
 <member name="M:Master.SC_M19.btnSearch_Click(System.Object,System.EventArgs)">
  <summary>
  検索
@@ -429,11 +481,6 @@ Master
 <member name="M:Master.SC_M19.TimeSys_Tick(System.Object,System.EventArgs)">
  <summary>
  １秒毎に発生するイベント
- </summary>
-</member>
-<member name="M:Master.SC_M19.SetControlsLable">
- <summary>
- 名前設定
  </summary>
 </member>
 <member name="M:Master.SC_M19.SC_M19_Load(System.Object,System.EventArgs)">
@@ -484,6 +531,26 @@ Master
 <member name="M:Master.SC_M19.btnDelete_Click(System.Object,System.EventArgs)">
  <summary>
  Delete(削除)事件
+ </summary>
+</member>
+<member name="M:Master.SC_M19.LoadLanguage(System.String,System.String,System.String[],System.Windows.Forms.Form.ControlCollection)">
+ <summary>
+ マスタの言語を取得
+ </summary>
+ <param name="language">設定言語</param>
+ <param name="masterID">機能ID</param>
+ <param name="fields">機能項目</param>
+ <param name="controls">機能コントロール</param>
+</member>
+<member name="M:Master.SC_M19.GetControlsLabelElement">
+ <summary>
+ マスタの言語オブジェクトを取得
+ </summary>
+ <returns>設定言語オブジェクト</returns>>
+</member>
+<member name="M:Master.SC_M19.SetControlsLable">
+ <summary>
+ 名前設定
  </summary>
 </member>
 <member name="F:Master.SC_M22.headerName">
@@ -570,11 +637,6 @@ Master
 <member name="M:Master.SC_M20.btnEnd_Click(System.Object,System.EventArgs)">
  <summary>
  　終了ボタン押下
- </summary>
-</member>
-<member name="M:Master.SC_M20.SetControlsLable">
- <summary>
- 名前設定
  </summary>
 </member>
 <member name="M:Master.SC_M20.createGridData">
