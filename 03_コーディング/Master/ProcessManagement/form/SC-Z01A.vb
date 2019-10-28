@@ -25,7 +25,7 @@
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
 
-    'Dim xml As New CmnXML("SC-M22.xml", "SC-M22")
+    'Dim xml As New CmnXML("SC-Z01A.xml", "SC-Z01A")
 
 
     ''' <summary>
@@ -225,24 +225,32 @@
 
         Dim dr As DataRow
 
+        Dim num As Integer = 1
+
         For index = 1 To 1
             dr = dt.NewRow()
-            dr.Item("前月残量") = index + 10
-            dr.Item("入庫量") = index + 100
-            dr.Item("売上量") = index + 1000
-            dr.Item("その他出庫量") = index + 20
-            dr.Item("在庫量") = index + 200
-            dr.Item("引当可能残量") = index + 2000
+            dr.Item("前月残量") = (num + 1 + index).ToString("#.00")
+            dr.Item("入庫量") = (num + 2 + index).ToString("#.00")
+            dr.Item("売上量") = (num + 3 + index).ToString("#.00")
+            dr.Item("その他出庫量") = (num + 4 + index).ToString("#.00")
+            dr.Item("在庫量") = (num + 5 + index).ToString("#.00")
+            dr.Item("引当可能残量") = (num + 6 + index).ToString("#.00")
             dt.Rows.Add(dr)
         Next
 
         gridDataList.DataSource = dt
         gridDataList.Columns("前月残量").HeaderText = "Last month remaining" & vbCrLf & "(前月残量)"
+        gridDataList.Columns("前月残量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.Columns("入庫量").HeaderText = "Amount received" & vbCrLf & "(入庫量)"
+        gridDataList.Columns("入庫量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.Columns("売上量").HeaderText = "Sales volume" & vbCrLf & "(売上量)"
+        gridDataList.Columns("売上量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.Columns("その他出庫量").HeaderText = "Other issues" & vbCrLf & "(その他出庫量)"
+        gridDataList.Columns("その他出庫量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.Columns("在庫量").HeaderText = "Stock quantity" & vbCrLf & "(在庫量)"
+        gridDataList.Columns("在庫量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.Columns("引当可能残量").HeaderText = "Allowable balance" & vbCrLf & "(引当可能残量)"
+        gridDataList.Columns("引当可能残量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.AutoResizeColumns()
 
         gridDataList.Columns(0).Width = 150
@@ -265,25 +273,32 @@
         dt.Columns.Add("その他払出")
 
         Dim dr As DataRow
+        Dim num As Integer = 1
 
         For index = 1 To 8
             dr = dt.NewRow()
-            dr.Item("入出庫日") = "入出庫日" & index
-            dr.Item("処理日") = "処理日" & index
-            dr.Item("作番") = "作番" & index
-            dr.Item("入庫量") = "入庫量" & index
-            dr.Item("出庫量") = "出庫量" & index
-            dr.Item("その他払出") = "その他払出" & index
+            dr.Item("入出庫日") = Now.AddDays(index).ToString("yyyy/MM/dd")
+            dr.Item("処理日") = Now.AddDays(index)
+            dr.Item("作番") = "E0D610" & index
+            dr.Item("入庫量") = num.ToString("#.00")
+            dr.Item("出庫量") = num.ToString("#.00")
+            dr.Item("その他払出") = num.ToString("#.00")
             dt.Rows.Add(dr)
         Next
 
         gridData.DataSource = dt
         gridData.Columns("入出庫日").HeaderText = "Entry / exit date" & vbCrLf & "(入出庫日)"
+        gridData.Columns("入出庫日").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         gridData.Columns("処理日").HeaderText = "Processing date" & vbCrLf & "(処理日)"
+        gridData.Columns("処理日").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         gridData.Columns("作番").HeaderText = "Production number" & vbCrLf & "(作番)"
+        gridData.Columns("作番").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         gridData.Columns("入庫量").HeaderText = "Amount received" & vbCrLf & "(入庫量)"
+        gridData.Columns("入庫量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("出庫量").HeaderText = "Issued quantity" & vbCrLf & "(出庫量)"
+        gridData.Columns("出庫量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("その他払出").HeaderText = "Other payout" & vbCrLf & "(その他払出)"
+        gridData.Columns("その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.AutoResizeColumns()
 
         gridData.Columns(0).Width = 150

@@ -74,7 +74,7 @@ Public Class SC_Z01
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
 
-    'Dim xml As New CmnXML("SC-M22.xml", "SC-M22")
+    'Dim xml As New CmnXML("SC-Z01.xml", "SC-Z01")
 
 
     ''' <summary>
@@ -85,6 +85,12 @@ Public Class SC_Z01
         setManagementNoType("")
 
         'xml.InitUser(Me.txtLoginUser, Me.TextBox1)
+
+
+        'ちらつき防止
+        Dim myType As Type = GetType(DataGridView)
+        Dim myPropInfo As System.Reflection.PropertyInfo = myType.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
+        myPropInfo.SetValue(Me.gridData, True, Nothing)
 
         '列ヘッダーの高さの調整モード
         Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
@@ -656,8 +662,8 @@ Public Class SC_Z01
 
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = "詳細"
-        btn.HeaderText = "詳細"
-        btn.DefaultCellStyle.NullValue = "詳細"
+        btn.HeaderText = "来歴"
+        btn.DefaultCellStyle.NullValue = "来歴"
         gridData.Columns.Add(btn)
 
         Dim dt As New DataTable
@@ -676,31 +682,51 @@ Public Class SC_Z01
         dt.Columns.Add("在庫残")
 
         Dim dr As DataRow
+        Dim num As Integer = 1
 
         For index = 1 To 8
             dr = dt.NewRow()
             'dr.Item("詳細") = "詳細" & index
             dr.Item("工程") = "工程" & index
             dr.Item("品名略称") = "品名略称" & index
-            dr.Item("部品番号") = "部品番号" & index
-            dr.Item("前月末残") = "前月末残" & index
-            dr.Item("当月累計_受入") = "当月累計_受入" & index
-            dr.Item("当月累計_払出") = "当月累計_払出" & index
-            dr.Item("当月累計_その他払出") = "当月累計_その他払出" & index
-            dr.Item("当日_受入") = "当日_受入" & index
-            dr.Item("当日_払出") = "当日_払出" & index
-            dr.Item("当日_その他払出") = "当日_その他払出" & index
-            dr.Item("在庫残") = "在庫残" & index
+            dr.Item("部品番号") = "ABC610" & index
+
+            dr.Item("前月末残") = (num + 3 + index).ToString("#.00")
+
+            dr.Item("当月累計_受入") = (num + 3 + index).ToString("#.00")
+            dr.Item("当月累計_払出") = (num + 3 + index).ToString("#.00")
+            dr.Item("当月累計_その他払出") = (num + 3 + index).ToString("#.00")
+
+            dr.Item("当日_受入") = (num + 3 + index).ToString("#.00")
+            dr.Item("当日_払出") = (num + 3 + index).ToString("#.00")
+            dr.Item("当日_その他払出") = (num + 3 + index).ToString("#.00")
+
+            dr.Item("在庫残") = (num + 3 + index).ToString("#.00")
             dt.Rows.Add(dr)
         Next
 
         gridData.DataSource = dt
+        gridData.Columns("工程").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns("品名略称").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns("部品番号").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        gridData.Columns("前月末残").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
         gridData.Columns("当月累計_受入").HeaderText = "Acceptance" & vbCrLf & "(受入)"
+        gridData.Columns("当月累計_受入").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("当月累計_払出").HeaderText = "Withdrawal" & vbCrLf & "(払出)"
+        gridData.Columns("当月累計_払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("当月累計_その他払出").HeaderText = "Other payout" & vbCrLf & "(その他払出)"
+        gridData.Columns("当月累計_その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
         gridData.Columns("当日_受入").HeaderText = "Acceptance" & vbCrLf & "(受入)"
+        gridData.Columns("当日_受入").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("当日_払出").HeaderText = "Withdrawal" & vbCrLf & "(払出)"
+        gridData.Columns("当日_払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.Columns("当日_その他払出").HeaderText = "Other payout" & vbCrLf & "(その他払出)"
+        gridData.Columns("当日_その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
+        gridData.Columns("在庫残").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.AutoResizeColumns()
 
         gridData.Columns(0).Width = 50
