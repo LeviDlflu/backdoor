@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Languages>
+  <Default lang="jpn"/>
   <Form formID="SC-M19">
     <Master enu="Work table master maintenance" jpn="勤務テーブルマスタメンテ" chs="工作表"/>
     <Language name="btnMenu" id="0" enu="Search" jpn="検索" chs="检索"/>
