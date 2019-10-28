@@ -78,6 +78,12 @@
     <Compile Include="form\SC-K13.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-K13A.Designer.vb">
+      <DependentUpon>SC-K13A.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K13A.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,6 +103,9 @@
   <ItemGroup>
     <EmbeddedResource Include="form\SC-K13.resx">
       <DependentUpon>SC-K13.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K13A.resx">
+      <DependentUpon>SC-K13A.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

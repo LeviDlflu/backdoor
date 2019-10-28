@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SC_K13
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,15 +20,15 @@ Partial Class SC_K13
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Label51 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.cmbFacility = New System.Windows.Forms.ComboBox()
         Me.Label39 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmbSection = New System.Windows.Forms.ComboBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label47 = New System.Windows.Forms.Label()
@@ -39,14 +39,14 @@ Partial Class SC_K13
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Label53 = New System.Windows.Forms.Label()
-        Me.cmb_Kbn = New System.Windows.Forms.ComboBox()
+        Me.cmbProcess = New System.Windows.Forms.ComboBox()
         Me.Label52 = New System.Windows.Forms.Label()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.btnDesc = New System.Windows.Forms.Button()
+        Me.btnEnd = New System.Windows.Forms.Button()
+        Me.btnBeforeDay = New System.Windows.Forms.Button()
+        Me.btnExcel = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.cmb_Syasyu = New System.Windows.Forms.ComboBox()
+        Me.cmbVehicleType = New System.Windows.Forms.ComboBox()
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
@@ -57,15 +57,14 @@ Partial Class SC_K13
         Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
-        Me.cmb_Koutei = New System.Windows.Forms.ComboBox()
+        Me.cmbVariety = New System.Windows.Forms.ComboBox()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.cmb_HinCd = New System.Windows.Forms.ComboBox()
+        Me.cmbSalesVarieties = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.lblHLine = New System.Windows.Forms.Label()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.btnEnd = New System.Windows.Forms.Button()
         Me.btnInsert = New System.Windows.Forms.Button()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnDelete = New System.Windows.Forms.Button()
@@ -121,6 +120,10 @@ Partial Class SC_K13
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.Label50 = New System.Windows.Forms.Label()
+        Me.Label55 = New System.Windows.Forms.Label()
+        Me.Label56 = New System.Windows.Forms.Label()
+        Me.Label57 = New System.Windows.Forms.Label()
+        Me.srDate = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,15 +142,15 @@ Partial Class SC_K13
         Me.Label51.TabIndex = 293
         Me.Label51.Text = "(設備)"
         '
-        'ComboBox2
+        'cmbFacility
         '
-        Me.ComboBox2.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox2.BackColor = System.Drawing.Color.White
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(866, 213)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(136, 20)
-        Me.ComboBox2.TabIndex = 291
+        Me.cmbFacility.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbFacility.BackColor = System.Drawing.Color.White
+        Me.cmbFacility.FormattingEnabled = True
+        Me.cmbFacility.Location = New System.Drawing.Point(868, 216)
+        Me.cmbFacility.Name = "cmbFacility"
+        Me.cmbFacility.Size = New System.Drawing.Size(136, 20)
+        Me.cmbFacility.TabIndex = 15
         '
         'Label39
         '
@@ -159,15 +162,15 @@ Partial Class SC_K13
         Me.Label39.TabIndex = 289
         Me.Label39.Text = "Section"
         '
-        'ComboBox1
+        'cmbSection
         '
-        Me.ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(346, 216)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(136, 20)
-        Me.ComboBox1.TabIndex = 288
+        Me.cmbSection.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbSection.BackColor = System.Drawing.Color.White
+        Me.cmbSection.FormattingEnabled = True
+        Me.cmbSection.Location = New System.Drawing.Point(346, 216)
+        Me.cmbSection.Name = "cmbSection"
+        Me.cmbSection.Size = New System.Drawing.Size(136, 20)
+        Me.cmbSection.TabIndex = 12
         '
         'Label35
         '
@@ -289,15 +292,15 @@ Partial Class SC_K13
         Me.Label53.TabIndex = 269
         Me.Label53.Text = "Search criteria"
         '
-        'cmb_Kbn
+        'cmbProcess
         '
-        Me.cmb_Kbn.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_Kbn.BackColor = System.Drawing.Color.Yellow
-        Me.cmb_Kbn.FormattingEnabled = True
-        Me.cmb_Kbn.Location = New System.Drawing.Point(12, 216)
-        Me.cmb_Kbn.Name = "cmb_Kbn"
-        Me.cmb_Kbn.Size = New System.Drawing.Size(136, 20)
-        Me.cmb_Kbn.TabIndex = 270
+        Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbProcess.BackColor = System.Drawing.Color.Yellow
+        Me.cmbProcess.FormattingEnabled = True
+        Me.cmbProcess.Location = New System.Drawing.Point(12, 216)
+        Me.cmbProcess.Name = "cmbProcess"
+        Me.cmbProcess.Size = New System.Drawing.Size(136, 20)
+        Me.cmbProcess.TabIndex = 10
         '
         'Label52
         '
@@ -320,62 +323,62 @@ Partial Class SC_K13
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
-        'Button2
+        'btnEnd
         '
-        Me.Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button2.BackColor = System.Drawing.SystemColors.Control
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(1236, 9)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(100, 49)
-        Me.Button2.TabIndex = 9
-        Me.Button2.Text = "Close" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
+        Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnEnd.Location = New System.Drawing.Point(1236, 9)
+        Me.btnEnd.Name = "btnEnd"
+        Me.btnEnd.Size = New System.Drawing.Size(100, 49)
+        Me.btnEnd.TabIndex = 9
+        Me.btnEnd.Text = "Close" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
+        Me.btnEnd.UseVisualStyleBackColor = False
         '
-        'Button1
+        'btnBeforeDay
         '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(264, 9)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(242, 49)
-        Me.Button1.TabIndex = 10
-        Me.Button1.Text = "Before the previous day (前日以前)"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.btnBeforeDay.BackColor = System.Drawing.SystemColors.Control
+        Me.btnBeforeDay.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnBeforeDay.Location = New System.Drawing.Point(264, 9)
+        Me.btnBeforeDay.Name = "btnBeforeDay"
+        Me.btnBeforeDay.Size = New System.Drawing.Size(242, 49)
+        Me.btnBeforeDay.TabIndex = 8
+        Me.btnBeforeDay.Text = "Before the previous day (前日以前)"
+        Me.btnBeforeDay.UseVisualStyleBackColor = False
         '
-        'btnDesc
+        'btnExcel
         '
-        Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnDesc.Location = New System.Drawing.Point(139, 9)
-        Me.btnDesc.Name = "btnDesc"
-        Me.btnDesc.Size = New System.Drawing.Size(100, 49)
-        Me.btnDesc.TabIndex = 11
-        Me.btnDesc.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
-        Me.btnDesc.UseVisualStyleBackColor = False
+        Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
+        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnExcel.Location = New System.Drawing.Point(139, 9)
+        Me.btnExcel.Name = "btnExcel"
+        Me.btnExcel.Size = New System.Drawing.Size(100, 49)
+        Me.btnExcel.TabIndex = 7
+        Me.btnExcel.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
+        Me.btnExcel.UseVisualStyleBackColor = False
         '
         'Panel2
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel2.Controls.Add(Me.btnDesc)
-        Me.Panel2.Controls.Add(Me.Button1)
-        Me.Panel2.Controls.Add(Me.Button2)
+        Me.Panel2.Controls.Add(Me.btnExcel)
+        Me.Panel2.Controls.Add(Me.btnBeforeDay)
+        Me.Panel2.Controls.Add(Me.btnEnd)
         Me.Panel2.Controls.Add(Me.btnSearch)
         Me.Panel2.Location = New System.Drawing.Point(-3, 65)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1351, 67)
         Me.Panel2.TabIndex = 268
         '
-        'cmb_Syasyu
+        'cmbVehicleType
         '
-        Me.cmb_Syasyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_Syasyu.BackColor = System.Drawing.Color.White
-        Me.cmb_Syasyu.FormattingEnabled = True
-        Me.cmb_Syasyu.Location = New System.Drawing.Point(520, 214)
-        Me.cmb_Syasyu.Name = "cmb_Syasyu"
-        Me.cmb_Syasyu.Size = New System.Drawing.Size(136, 20)
-        Me.cmb_Syasyu.TabIndex = 272
+        Me.cmbVehicleType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbVehicleType.BackColor = System.Drawing.Color.White
+        Me.cmbVehicleType.FormattingEnabled = True
+        Me.cmbVehicleType.Location = New System.Drawing.Point(520, 216)
+        Me.cmbVehicleType.Name = "cmbVehicleType"
+        Me.cmbVehicleType.Size = New System.Drawing.Size(136, 20)
+        Me.cmbVehicleType.TabIndex = 13
         '
         'Label45
         '
@@ -401,7 +404,7 @@ Partial Class SC_K13
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label43.Location = New System.Drawing.Point(172, 201)
+        Me.Label43.Location = New System.Drawing.Point(175, 201)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(37, 11)
         Me.Label43.TabIndex = 284
@@ -421,7 +424,7 @@ Partial Class SC_K13
         '
         Me.Label41.AutoSize = True
         Me.Label41.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label41.Location = New System.Drawing.Point(691, 200)
+        Me.Label41.Location = New System.Drawing.Point(692, 200)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(61, 11)
         Me.Label41.TabIndex = 286
@@ -431,7 +434,7 @@ Partial Class SC_K13
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label40.Location = New System.Drawing.Point(148, 258)
+        Me.Label40.Location = New System.Drawing.Point(10, 277)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(67, 12)
         Me.Label40.TabIndex = 287
@@ -445,10 +448,11 @@ Partial Class SC_K13
         'gridData
         '
         Me.gridData.AllowDrop = True
+        Me.gridData.AllowUserToAddRows = False
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.gridData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -466,17 +470,17 @@ Partial Class SC_K13
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gridData.Location = New System.Drawing.Point(7, 274)
+        Me.gridData.Location = New System.Drawing.Point(7, 299)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1521, 388)
-        Me.gridData.TabIndex = 278
+        Me.gridData.Size = New System.Drawing.Size(1341, 321)
+        Me.gridData.TabIndex = 30
         '
         'Label38
         '
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label38.Location = New System.Drawing.Point(5, 252)
+        Me.Label38.Location = New System.Drawing.Point(5, 253)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(142, 19)
         Me.Label38.TabIndex = 279
@@ -486,41 +490,41 @@ Partial Class SC_K13
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label37.Location = New System.Drawing.Point(172, 184)
+        Me.Label37.Location = New System.Drawing.Point(175, 184)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(57, 14)
         Me.Label37.TabIndex = 275
         Me.Label37.Text = "Variety"
         '
-        'cmb_Koutei
+        'cmbVariety
         '
-        Me.cmb_Koutei.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_Koutei.BackColor = System.Drawing.Color.Yellow
-        Me.cmb_Koutei.FormattingEnabled = True
-        Me.cmb_Koutei.Location = New System.Drawing.Point(174, 216)
-        Me.cmb_Koutei.Name = "cmb_Koutei"
-        Me.cmb_Koutei.Size = New System.Drawing.Size(136, 20)
-        Me.cmb_Koutei.TabIndex = 274
+        Me.cmbVariety.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbVariety.BackColor = System.Drawing.Color.Yellow
+        Me.cmbVariety.FormattingEnabled = True
+        Me.cmbVariety.Location = New System.Drawing.Point(177, 216)
+        Me.cmbVariety.Name = "cmbVariety"
+        Me.cmbVariety.Size = New System.Drawing.Size(136, 20)
+        Me.cmbVariety.TabIndex = 11
         '
         'Label36
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label36.Location = New System.Drawing.Point(690, 182)
+        Me.Label36.Location = New System.Drawing.Point(691, 182)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(107, 14)
         Me.Label36.TabIndex = 277
         Me.Label36.Text = "Sales varieties"
         '
-        'cmb_HinCd
+        'cmbSalesVarieties
         '
-        Me.cmb_HinCd.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_HinCd.BackColor = System.Drawing.Color.White
-        Me.cmb_HinCd.FormattingEnabled = True
-        Me.cmb_HinCd.Location = New System.Drawing.Point(692, 213)
-        Me.cmb_HinCd.Name = "cmb_HinCd"
-        Me.cmb_HinCd.Size = New System.Drawing.Size(136, 20)
-        Me.cmb_HinCd.TabIndex = 276
+        Me.cmbSalesVarieties.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbSalesVarieties.BackColor = System.Drawing.Color.White
+        Me.cmbSalesVarieties.FormattingEnabled = True
+        Me.cmbSalesVarieties.Location = New System.Drawing.Point(694, 216)
+        Me.cmbSalesVarieties.Name = "cmbSalesVarieties"
+        Me.cmbSalesVarieties.Size = New System.Drawing.Size(136, 20)
+        Me.cmbSalesVarieties.TabIndex = 14
         '
         'Label9
         '
@@ -574,18 +578,6 @@ Partial Class SC_K13
         Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
         Me.btnClear.UseVisualStyleBackColor = False
         '
-        'btnEnd
-        '
-        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
-        Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnEnd.Location = New System.Drawing.Point(2165, 9)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 11
-        Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.btnEnd.UseVisualStyleBackColor = False
-        '
         'btnInsert
         '
         Me.btnInsert.BackColor = System.Drawing.SystemColors.Control
@@ -626,7 +618,6 @@ Partial Class SC_K13
         Me.Panel1.Controls.Add(Me.btnDelete)
         Me.Panel1.Controls.Add(Me.btnUpdate)
         Me.Panel1.Controls.Add(Me.btnInsert)
-        Me.Panel1.Controls.Add(Me.btnEnd)
         Me.Panel1.Controls.Add(Me.btnClear)
         Me.Panel1.Controls.Add(Me.lblHLine)
         Me.Panel1.Location = New System.Drawing.Point(-375, -100)
@@ -1191,20 +1182,63 @@ Partial Class SC_K13
         Me.Label50.TabIndex = 292
         Me.Label50.Text = "Facility"
         '
+        'Label55
+        '
+        Me.Label55.AutoSize = True
+        Me.Label55.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label55.Location = New System.Drawing.Point(991, 253)
+        Me.Label55.Name = "Label55"
+        Me.Label55.Size = New System.Drawing.Size(107, 19)
+        Me.Label55.TabIndex = 294
+        Me.Label55.Text = "Search time"
+        '
+        'Label56
+        '
+        Me.Label56.AutoSize = True
+        Me.Label56.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label56.Location = New System.Drawing.Point(996, 277)
+        Me.Label56.Name = "Label56"
+        Me.Label56.Size = New System.Drawing.Size(61, 12)
+        Me.Label56.TabIndex = 295
+        Me.Label56.Text = "(検索時間)"
+        '
+        'Label57
+        '
+        Me.Label57.AutoSize = True
+        Me.Label57.Location = New System.Drawing.Point(1117, 259)
+        Me.Label57.Name = "Label57"
+        Me.Label57.Size = New System.Drawing.Size(11, 12)
+        Me.Label57.TabIndex = 296
+        Me.Label57.Text = ":"
+        '
+        'srDate
+        '
+        Me.srDate.AutoSize = True
+        Me.srDate.Location = New System.Drawing.Point(1147, 259)
+        Me.srDate.Name = "srDate"
+        Me.srDate.Size = New System.Drawing.Size(65, 12)
+        Me.srDate.TabIndex = 297
+        Me.srDate.Text = "yyyy/MM/dd"
+        '
         'SC_K13
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1350, 689)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.srDate)
+        Me.Controls.Add(Me.Label57)
+        Me.Controls.Add(Me.Label55)
+        Me.Controls.Add(Me.Label56)
+        Me.Controls.Add(Me.cmbFacility)
         Me.Controls.Add(Me.Label50)
         Me.Controls.Add(Me.Label51)
         Me.Controls.Add(Me.Label35)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.cmbSection)
         Me.Controls.Add(Me.Label39)
-        Me.Controls.Add(Me.cmb_HinCd)
+        Me.Controls.Add(Me.cmbSalesVarieties)
         Me.Controls.Add(Me.Label36)
-        Me.Controls.Add(Me.cmb_Koutei)
+        Me.Controls.Add(Me.cmbVariety)
         Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.gridData)
@@ -1214,11 +1248,11 @@ Partial Class SC_K13
         Me.Controls.Add(Me.Label43)
         Me.Controls.Add(Me.Label44)
         Me.Controls.Add(Me.Label45)
-        Me.Controls.Add(Me.cmb_Syasyu)
+        Me.Controls.Add(Me.cmbVehicleType)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label52)
-        Me.Controls.Add(Me.cmb_Kbn)
+        Me.Controls.Add(Me.cmbProcess)
         Me.Controls.Add(Me.Label53)
         Me.Controls.Add(Me.Label54)
         Me.Controls.Add(Me.txtRemarks)
@@ -1284,9 +1318,9 @@ Partial Class SC_K13
     End Sub
 
     Friend WithEvents Label51 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents cmbFacility As ComboBox
     Friend WithEvents Label39 As Label
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents cmbSection As ComboBox
     Friend WithEvents Label35 As Label
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label47 As Label
@@ -1297,14 +1331,14 @@ Partial Class SC_K13
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents Label54 As Label
     Friend WithEvents Label53 As Label
-    Friend WithEvents cmb_Kbn As ComboBox
+    Friend WithEvents cmbProcess As ComboBox
     Friend WithEvents Label52 As Label
     Friend WithEvents btnSearch As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
-    Friend WithEvents btnDesc As Button
+    Friend WithEvents btnEnd As Button
+    Friend WithEvents btnBeforeDay As Button
+    Friend WithEvents btnExcel As Button
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents cmb_Syasyu As ComboBox
+    Friend WithEvents cmbVehicleType As ComboBox
     Friend WithEvents Label45 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label43 As Label
@@ -1315,15 +1349,14 @@ Partial Class SC_K13
     Public WithEvents gridData As DataGridView
     Friend WithEvents Label38 As Label
     Friend WithEvents Label37 As Label
-    Friend WithEvents cmb_Koutei As ComboBox
+    Friend WithEvents cmbVariety As ComboBox
     Friend WithEvents Label36 As Label
-    Friend WithEvents cmb_HinCd As ComboBox
+    Friend WithEvents cmbSalesVarieties As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label21 As Label
     Friend WithEvents lblHLine As Label
     Friend WithEvents btnClear As Button
-    Friend WithEvents btnEnd As Button
     Friend WithEvents btnInsert As Button
     Friend WithEvents btnUpdate As Button
     Friend WithEvents btnDelete As Button
@@ -1379,4 +1412,8 @@ Partial Class SC_K13
     Friend WithEvents Label19 As Label
     Friend WithEvents txtRemarks As TextBox
     Friend WithEvents Label50 As Label
+    Friend WithEvents Label55 As Label
+    Friend WithEvents Label56 As Label
+    Friend WithEvents Label57 As Label
+    Friend WithEvents srDate As Label
 End Class
