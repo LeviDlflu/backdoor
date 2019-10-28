@@ -14,6 +14,7 @@
     Private Const COL_DETAILS As String = "詳細"
     Private Const COL_PRODUCT_NAME As String = "品名"
     Private Const COL_CUSTOMER_PART_NO As String = "客先部品番号"
+    Private Const COL_MOLD As String = "金型"
     Private Const COL_START As String = "着手"
     Private Const COL_COMPLETION As String = "完成"
     Private Const COL_DEFECT As String = "不良"
@@ -21,8 +22,73 @@
     Private Const COL_TODAY As String = "当日"
     Private Const COL_CORRECTION As String = "訂正"
     Private Const COL_PASS As String = "合格"
+    Private Const COL_COMPLETION_THE_DAY As String = "完成＿当日"
+    Private Const COL_COMPLETION_CORRECTION As String = "完成＿訂正"
+    Private Const COL_DEFECT_THE_DAY As String = "不良＿当日"
+    Private Const COL_DEFECT_CORRECTION As String = "不良＿訂正"
+    Private Const COL_SP_PROP_TRANSFER_PASS As String = "SP･試作･他工程振替＿合格"
+    Private Const COL_SP_PROP_TRANSFER_DEFECT As String = "SP･試作･他工程振替＿不良"
 
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
+
+    ''' <summary>
+    ''' 列ヘッダーの行数
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private ColumnHeaderRowCount As Integer = 2
+
+    ''' <summary>
+    ''' 列ヘッダーの行の高さ
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private columnHeaderrRowHeight As Integer = 17
+
+    ''' <summary>
+    ''' 列ヘッダーセル定義構造体
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Structure HeaderCell
+        Public Row As Integer
+        Public Column As Integer
+        Public RowSpan As Integer
+        Public ColumnSpan As Integer
+        Public Text As String
+
+        ''' <summary>
+        ''' 列ヘッダーセル定義
+        ''' </summary>
+        ''' <param name="paramRow">行</param>
+        ''' <param name="paramColumn">列</param>
+        ''' <param name="paramRowSpan">結合する行数</param>
+        ''' <param name="paramColumnSpan">結合する列数</param>
+        ''' <param name="paramText">セルに関連付けられたテキスト</param>
+        ''' <remarks></remarks>
+        Sub New(ByVal paramRow As Integer, ByVal paramColumn As Integer, ByVal paramRowSpan As Integer, ByVal paramColumnSpan As Integer, ByVal paramText As String)
+            ' TODO: Complete member initialization 
+            Row = paramRow
+            Column = paramColumn
+            RowSpan = paramRowSpan
+            ColumnSpan = paramColumnSpan
+            Text = paramText
+        End Sub
+
+    End Structure
+
+    ''' <summary>
+    ''' 列ヘッダーセル定義
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public HeaderCells As HeaderCell()
+
+
+    '初期処理
+    Private Sub Init()
+
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
+        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
+
+    End Sub
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
@@ -57,8 +123,10 @@
         dt.Columns.Add(New DataColumn(COL_DEFECT, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_SP_PRO_TRANSFER, GetType(System.String)))
 
-        dt.Columns.Add(New DataColumn(COL_CORRECTION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_PASS, GetType(System.String)))
+        'gridData.DataSource = dt
+        'gridData.Columns(COL_COMPLETION).HeaderText = COL_CORRECTION
+        'dt.Columns.Add(New DataColumn(COL_CORRECTION, GetType(System.String)))
+        'dt.Columns.Add(New DataColumn(COL_PASS, GetType(System.String)))
 
         For i As Integer = 0 To 3
             Dim addRow As DataRow = dt.NewRow
@@ -174,16 +242,12 @@
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        setGrid(createGridData())
+        'setGrid(createGridData())
+        gridData.Columns.Clear()
+        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
+
+        Patten1()
     End Sub
-
-
-
-
-
-
-
-
 
     Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
         'Dim selectedCount As Boolean = False
@@ -203,6 +267,421 @@
     End Sub
 
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
+        If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex >= 0 Then
+            Dim frm As New SC_K13A()
+            frm.ShowDialog()
+            Me.Show()
+        End If
+
+    End Sub
+
+    ''' <summary>
+    ''' 結合元のセルの文字位置から結合後の文字位置を取得する
+    ''' </summary>
+    ''' <param name="alignment">テキストの配置</param>
+    ''' <remarks></remarks>
+    Private Function GetTextFormatFlags(ByVal alignment As DataGridViewContentAlignment) As TextFormatFlags
+        Try
+            ''文字の描画
+            Dim formatFlg As TextFormatFlags = TextFormatFlags.Right Or TextFormatFlags.VerticalCenter Or TextFormatFlags.EndEllipsis
+
+            '表示位置
+            Select Case alignment
+                Case DataGridViewContentAlignment.BottomCenter
+                    formatFlg = TextFormatFlags.Bottom Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.BottomLeft
+                    formatFlg = TextFormatFlags.Bottom Or TextFormatFlags.Left Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.BottomRight
+                    formatFlg = TextFormatFlags.Bottom Or TextFormatFlags.Right Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.MiddleCenter
+                    formatFlg = TextFormatFlags.VerticalCenter Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.MiddleLeft
+                    formatFlg = TextFormatFlags.VerticalCenter Or TextFormatFlags.Left Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.MiddleRight
+                    formatFlg = TextFormatFlags.VerticalCenter Or TextFormatFlags.Right Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.TopCenter
+                    formatFlg = TextFormatFlags.Top Or TextFormatFlags.HorizontalCenter Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.TopLeft
+                    formatFlg = TextFormatFlags.Top Or TextFormatFlags.Left Or TextFormatFlags.EndEllipsis
+                Case DataGridViewContentAlignment.TopRight
+                    formatFlg = TextFormatFlags.Top Or TextFormatFlags.Right Or TextFormatFlags.EndEllipsis
+            End Select
+
+            Return formatFlg
+
+        Catch ex As Exception
+            Throw
+        End Try
+    End Function
+
+
+    Private Sub gridData_Paint(sender As Object, e As PaintEventArgs) Handles gridData.Paint
+        '列が無い場合
+        If Me.gridData.ColumnCount = 0 Then
+            Exit Sub
+        End If
+
+        '行が無い場合
+        If Me.gridData.RowCount = 0 Then
+            Exit Sub
+        End If
+
+        '列ヘッダーの行の高さの取得
+        Dim rowHeight As Integer = Me.gridData.ColumnHeadersHeight / ColumnHeaderRowCount
+
+        Dim lineWidth As Integer = 1
+
+        '列ヘッダーを指定された行数にセル表示する
+        For columuns = 0 To Me.gridData.ColumnCount - 1
+
+            For rows = 0 To ColumnHeaderRowCount - 1
+
+                '列ヘッダーの表示領域の取得
+                Dim rect As Rectangle = Me.gridData.GetCellDisplayRectangle(columuns, -1, True)
+
+                '列ヘッダーの描画領域の底部の座標を保存
+                Dim btm As Integer = rect.Bottom
+
+                'セルの描画領域のY座標
+                Select Case Me.gridData.BorderStyle
+                    Case Windows.Forms.BorderStyle.None
+                        rect.Y = rowHeight * rows
+                    Case Windows.Forms.BorderStyle.FixedSingle
+                        rect.Y = rowHeight * rows + lineWidth
+                    Case Windows.Forms.BorderStyle.Fixed3D
+                        rect.Y = rowHeight * rows + (lineWidth * 2)
+                End Select
+
+                'セルの描画領域のX座標
+                rect.X -= lineWidth
+
+                'セルの描画領域の高さ
+                rect.Height = rowHeight
+
+                '最下行の場合高さを調整
+                If rows = Me.ColumnHeaderRowCount - 1 Then
+                    rect.Height = btm - rect.Y - lineWidth
+                End If
+
+                Dim gridPen As New Pen(Me.gridData.GridColor)
+                e.Graphics.DrawRectangle(gridPen, rect)
+
+                'セルの背景色の領域
+                rect.Y += lineWidth
+                rect.X += lineWidth
+                rect.Height -= lineWidth
+                rect.Width -= lineWidth
+
+                '背景色
+                Dim backBrash As New SolidBrush(Me.gridData.BackColor)
+
+                e.Graphics.FillRectangle(backBrash, rect)
+
+                '見出しを最下列に表示
+                If rows = Me.ColumnHeaderRowCount - 1 Then
+
+                    Dim text As String = Me.gridData.Columns(columuns).HeaderText
+                    Dim formatFlg As TextFormatFlags = GetTextFormatFlags(Me.gridData.ColumnHeadersDefaultCellStyle.Alignment)
+
+                    TextRenderer.DrawText(e.Graphics, text, Me.gridData.ColumnHeadersDefaultCellStyle.Font,
+                                          rect, Me.gridData.ColumnHeadersDefaultCellStyle.ForeColor,
+                                          formatFlg)
+                End If
+
+                'リソースの解放
+                gridPen.Dispose()
+                backBrash.Dispose()
+            Next
+        Next
+
+        '列ヘッダーセル定義の処理
+        For i = 0 To Me.HeaderCells.Count - 1
+
+            'セルの結合の開始行がヘッダーの行数より大きい場合は除外
+            If HeaderCells(i).Row > Me.ColumnHeaderRowCount - 1 Then
+                Continue For
+            End If
+
+            'セルの結合の開始列の列インデックスが列数より大きい場合は除外
+            If HeaderCells(i).Column > Me.gridData.ColumnCount - 1 Then
+                Continue For
+            End If
+
+            '描画領域の設定
+            Dim rect As Rectangle = Nothing
+
+            '結合する列中のソート状態
+            Dim sortText As String = String.Empty
+
+            '結合するセルの幅の取得
+            For j = Me.HeaderCells(i).Column To Me.HeaderCells(i).Column + Me.HeaderCells(i).ColumnSpan - 1
+
+                If Me.gridData.Columns(j).Displayed = False Then
+                    Continue For
+                End If
+
+                If rect = Nothing Then
+                    rect = Me.gridData.GetCellDisplayRectangle(j, -1, True)
+                Else
+                    rect.Width += Me.gridData.GetCellDisplayRectangle(j, -1, True).Width
+                End If
+            Next
+
+            '結合するセルが画面中に無い場合
+            If rect = Nothing Then
+                Continue For
+            End If
+
+            '結合する行がヘッダー行数より大きい場合
+            Dim rowSapn As Integer = Me.HeaderCells(i).RowSpan
+            If rowSapn > ColumnHeaderRowCount Then
+                rowSapn = ColumnHeaderRowCount
+            End If
+
+            '列ヘッダーの描画領域の底部の座標を保存
+            Dim btm As Integer = rect.Bottom
+
+            '結合するセルの描画領域のY座標
+            Select Case Me.gridData.BorderStyle
+                Case Windows.Forms.BorderStyle.None
+                    rect.Y = rowHeight * (Me.HeaderCells(i).Row)
+                Case Windows.Forms.BorderStyle.FixedSingle
+                    rect.Y = rowHeight * (Me.HeaderCells(i).Row) + lineWidth
+                Case Windows.Forms.BorderStyle.Fixed3D
+                    rect.Y = rowHeight * (Me.HeaderCells(i).Row) + (lineWidth * 2)
+            End Select
+
+            '結合するセルの描画領域のX座標
+            rect.X -= lineWidth
+
+            '結合するセルの描画領域の高さ
+            rect.Height = rowHeight * rowSapn
+
+            '最下行の場合は描画領域の高さを調整する
+            If Me.HeaderCells(i).Row + rowSapn = Me.ColumnHeaderRowCount Then
+                rect.Height = btm - rect.Y - lineWidth
+            End If
+
+            'グッリドの線
+            Dim gridPen As New Pen(Me.gridData.GridColor)
+
+            '背景色の取得
+            Dim backgroundColor As System.Drawing.Color = Me.gridData.ColumnHeadersDefaultCellStyle.BackColor
+
+            '背景色
+            Dim backBrash As New SolidBrush(backgroundColor)
+
+            'くぼみ線
+            Dim whiteBrash As New SolidBrush(Color.White)
+
+            '枠線の描画
+            e.Graphics.DrawRectangle(gridPen, rect)
+
+            '結合セルの背景色の描画領域の設定
+            rect.Y += lineWidth
+            rect.X += lineWidth
+            rect.Height -= lineWidth
+            rect.Width -= lineWidth
+
+            '背景色の描画
+            e.Graphics.FillRectangle(backBrash, rect)
+
+            'テキストの描画
+            Dim foreColor As System.Drawing.Color = Me.gridData.ColumnHeadersDefaultCellStyle.ForeColor
+            Dim formatFlg As TextFormatFlags = GetTextFormatFlags(Me.gridData.ColumnHeadersDefaultCellStyle.Alignment)
+
+            TextRenderer.DrawText(e.Graphics, Me.HeaderCells(i).Text & sortText,
+                                  Me.gridData.ColumnHeadersDefaultCellStyle.Font,
+                                  rect, foreColor, formatFlg)
+            'リソースの解放
+            gridPen.Dispose()
+            backBrash.Dispose()
+            whiteBrash.Dispose()
+        Next
+    End Sub
+
+
+    Private Sub Patten1()
+
+        HeaderCells = {
+            New HeaderCell(0, 0, 2, 1, COL_DETAILS),
+            New HeaderCell(0, 1, 2, 1, COL_PRODUCT_NAME),
+            New HeaderCell(0, 2, 2, 1, COL_CUSTOMER_PART_NO),
+            New HeaderCell(0, 3, 2, 1, COL_MOLD),
+            New HeaderCell(0, 4, 1, 2, COL_COMPLETION),
+            New HeaderCell(0, 6, 1, 2, COL_DEFECT),
+            New HeaderCell(0, 8, 1, 2, COL_SP_PRO_TRANSFER)}
+
+        Dim btn As New DataGridViewButtonColumn()
+        btn.Name = COL_DETAILS
+        btn.HeaderText = COL_DETAILS
+        btn.DefaultCellStyle.NullValue = COL_DETAILS
+        gridData.Columns.Add(btn)
+
+        Dim dt As New DataTable
+        dt.Columns.Add(COL_PRODUCT_NAME)
+        dt.Columns.Add(COL_CUSTOMER_PART_NO)
+        dt.Columns.Add(COL_MOLD)
+        dt.Columns.Add(COL_COMPLETION_THE_DAY)
+        dt.Columns.Add(COL_COMPLETION_CORRECTION)
+        dt.Columns.Add(COL_DEFECT_THE_DAY)
+        dt.Columns.Add(COL_DEFECT_CORRECTION)
+        dt.Columns.Add(COL_SP_PROP_TRANSFER_PASS)
+        dt.Columns.Add(COL_SP_PROP_TRANSFER_DEFECT)
+
+        Dim dr As DataRow
+
+        For index = 1 To 10
+            dr = dt.NewRow()
+            dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
+            dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
+            dr.Item(COL_MOLD) = COL_MOLD & index
+            dr.Item(COL_COMPLETION_THE_DAY) = COL_COMPLETION_THE_DAY & index
+            dr.Item(COL_COMPLETION_CORRECTION) = COL_COMPLETION_CORRECTION & index
+            dr.Item(COL_DEFECT_THE_DAY) = COL_DEFECT_THE_DAY & index
+            dr.Item(COL_DEFECT_CORRECTION) = COL_DEFECT_CORRECTION & index
+            dr.Item(COL_SP_PROP_TRANSFER_PASS) = COL_SP_PROP_TRANSFER_PASS & index
+            dr.Item(COL_SP_PROP_TRANSFER_DEFECT) = COL_SP_PROP_TRANSFER_DEFECT & index
+            dt.Rows.Add(dr)
+        Next
+
+        '子タイトル設定する
+        gridData.DataSource = dt
+        gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = COL_TODAY
+        gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = COL_CORRECTION
+        gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = COL_TODAY
+        gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = COL_CORRECTION
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = COL_PASS
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = COL_DEFECT
+        gridData.AutoResizeColumns()
+
+        'Grid幅設定する
+        gridData.Columns(COL_DETAILS).Width = 60
+        gridData.Columns(COL_PRODUCT_NAME).Width = 100
+        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 100
+        gridData.Columns(COL_MOLD).Width = 50
+        gridData.Columns(COL_COMPLETION_THE_DAY).Width = 100
+        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 150
+        gridData.Columns(COL_DEFECT_THE_DAY).Width = 100
+        gridData.Columns(COL_DEFECT_CORRECTION).Width = 150
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 200
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 200
+    End Sub
+
+    Private Sub Patten2()
+
+        HeaderCells = {New HeaderCell(0, 0, 2, 1, "品名"),
+        New HeaderCell(0, 1, 1, 2, "着手"),
+        New HeaderCell(0, 3, 1, 4, "完成"),
+        New HeaderCell(0, 7, 1, 2, "不良"),
+        New HeaderCell(0, 9, 2, 1, "生地不良（成形）"),
+        New HeaderCell(0, 10, 2, 1, "生地不良（仕上）"),
+        New HeaderCell(0, 11, 2, 1, "再塗装判定"),
+        New HeaderCell(0, 12, 2, 1, "スポット判定")}
+
+        Dim dt As New DataTable
+
+        dt.Columns.Add("品名")
+        dt.Columns.Add("着手_生地")
+        dt.Columns.Add("着手_再塗装")
+        dt.Columns.Add("完成_直行")
+        dt.Columns.Add("完成_再塗装")
+        dt.Columns.Add("完成_スポット")
+        dt.Columns.Add("完成_訂正")
+        dt.Columns.Add("不良_当日")
+        dt.Columns.Add("不良_訂正")
+        dt.Columns.Add("生地不良（成形）")
+        dt.Columns.Add("生地不良（仕上）")
+        dt.Columns.Add("再塗装判定")
+        dt.Columns.Add("スポット判定")
+
+        Dim dr As DataRow
+
+        For index = 1 To 9
+            dr = dt.NewRow()
+            dr.Item("品名") = "品名" & index
+            dr.Item("着手_生地") = "着手_生地" & index
+            dr.Item("着手_再塗装") = "着手_再塗装" & index
+            dr.Item("完成_直行") = "完成_直行" & index
+            dr.Item("完成_再塗装") = "完成_再塗装" & index
+            dr.Item("完成_スポット") = "完成_スポット" & index
+            dr.Item("完成_訂正") = "完成_訂正" & index
+            dr.Item("不良_当日") = "不良_当日" & index
+            dr.Item("不良_訂正") = "不良_訂正" & index
+            dr.Item("生地不良（成形）") = "生地不良（成形）" & index
+            dr.Item("生地不良（仕上）") = "生地不良（仕上）" & index
+            dr.Item("再塗装判定") = "再塗装判定" & index
+            dr.Item("スポット判定") = "スポット判定" & index
+            dt.Rows.Add(dr)
+        Next
+        gridData.DataSource = dt
+        gridData.Columns("着手_生地").HeaderText = "生地"
+        gridData.Columns("着手_再塗装").HeaderText = "再塗装"
+        gridData.Columns("完成_直行").HeaderText = "直行"
+        gridData.Columns("完成_再塗装").HeaderText = "再塗装"
+        gridData.Columns("完成_スポット").HeaderText = "スポット"
+        gridData.Columns("完成_訂正").HeaderText = "訂正"
+        gridData.Columns("不良_当日").HeaderText = "当日"
+        gridData.Columns("不良_訂正").HeaderText = "訂正"
+        gridData.AutoResizeColumns()
+
+    End Sub
+
+    Private Sub Patten3()
+
+        HeaderCells = {New HeaderCell(0, 0, 2, 1, "品名"),
+        New HeaderCell(0, 1, 2, 1, "客先部品番号"),
+        New HeaderCell(0, 2, 2, 1, "着手"),
+        New HeaderCell(0, 3, 1, 2, "完成"),
+        New HeaderCell(0, 5, 1, 2, "不良"),
+        New HeaderCell(0, 7, 1, 2, "SP・試作・他工程振替")}
+
+        Dim dt As New DataTable
+
+        dt.Columns.Add("品名")
+        dt.Columns.Add("客先部品番号")
+        dt.Columns.Add("着手")
+        dt.Columns.Add("完成_当日")
+        dt.Columns.Add("完成_訂正")
+        dt.Columns.Add("不良_当日")
+        dt.Columns.Add("不良_訂正")
+        dt.Columns.Add("SP・試作・他工程振替_合格")
+        dt.Columns.Add("SP・試作・他工程振替_不良")
+
+        Dim dr As DataRow
+
+        For index = 1 To 6
+            dr = dt.NewRow()
+            dr.Item("品名") = "品名" & index
+            dr.Item("客先部品番号") = "客先部品番号" & index
+            dr.Item("着手") = "着手" & index
+            dr.Item("完成_当日") = "完成_当日" & index
+            dr.Item("完成_訂正") = "完成_訂正" & index
+            dr.Item("不良_当日") = "不良_当日" & index
+            dr.Item("不良_訂正") = "不良_訂正" & index
+            dr.Item("SP・試作・他工程振替_合格") = "SP・試作・他工程振替_合格" & index
+            dr.Item("SP・試作・他工程振替_不良") = "SP・試作・他工程振替_不良" & index
+            dt.Rows.Add(dr)
+        Next
+
+        gridData.DataSource = dt
+        gridData.Columns("完成_当日").HeaderText = "当日"
+        gridData.Columns("完成_訂正").HeaderText = "訂正"
+        gridData.Columns("不良_当日").HeaderText = "当日"
+        gridData.Columns("不良_訂正").HeaderText = "訂正"
+        gridData.Columns("SP・試作・他工程振替_合格").HeaderText = "合格"
+        gridData.Columns("SP・試作・他工程振替_不良").HeaderText = "不良"
+        gridData.AutoResizeColumns()
+    End Sub
+
+    Private Sub SC_K13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '列ヘッダーの高さの調整モード
+        'Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+
+
+        ''列ヘッダーの高さを行数に合わせる
+        'Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
+        Init()
 
     End Sub
 End Class
