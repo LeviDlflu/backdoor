@@ -52,8 +52,8 @@ Public Class SC_K21A
         GridCtrl.DataSource = dt.Copy
 
         GridCtrl.Columns(0).Width = 150
-        GridCtrl.Columns(1).Width = 300
-        GridCtrl.Columns(2).Width = 200
+        GridCtrl.Columns(1).Width = 260
+        GridCtrl.Columns(2).Width = 300
 
         GridCtrl.Columns(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
         GridCtrl.Columns(1).HeaderText = "Process abbreviation" & vbCrLf & "(工程略称)"
@@ -75,7 +75,7 @@ Public Class SC_K21A
         End If
     End Sub
 
-    Private Sub Finish_Click(sender As Object, e As EventArgs) Handles Finish.Click
+    Private Sub Finish_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class
