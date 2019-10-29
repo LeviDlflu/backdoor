@@ -408,7 +408,7 @@ Partial Class SC_K12
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.gridData.ColumnHeadersHeight = 30
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -420,7 +420,7 @@ Partial Class SC_K12
         Me.gridData.Location = New System.Drawing.Point(7, 345)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1521, 317)
+        Me.gridData.Size = New System.Drawing.Size(1341, 317)
         Me.gridData.TabIndex = 278
         '
         'Label38
