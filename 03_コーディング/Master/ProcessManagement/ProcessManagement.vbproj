@@ -114,6 +114,12 @@
     <Compile Include="form\SC-K20.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-K21.Designer.vb">
+      <DependentUpon>SC-K21.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K21.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="form\SC-K21A.Designer.vb">
       <DependentUpon>SC-K21A.vb</DependentUpon>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K20.resx">
       <DependentUpon>SC-K20.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K21.resx">
+      <DependentUpon>SC-K21.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K21A.resx">
       <DependentUpon>SC-K21A.vb</DependentUpon>
