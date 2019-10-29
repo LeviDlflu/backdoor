@@ -65,7 +65,6 @@
         ''' <param name="paramText">セルに関連付けられたテキスト</param>
         ''' <remarks></remarks>
         Sub New(ByVal paramRow As Integer, ByVal paramColumn As Integer, ByVal paramRowSpan As Integer, ByVal paramColumnSpan As Integer, ByVal paramText As String)
-            ' TODO: Complete member initialization 
             Row = paramRow
             Column = paramColumn
             RowSpan = paramRowSpan
@@ -416,9 +415,9 @@
             dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
             dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
             dr.Item(COL_MOLD) = COL_MOLD & index
-            dr.Item(COL_COMPLETION_THE_DAY) = COL_COMPLETION_THE_DAY & index
+            dr.Item(COL_COMPLETION_THE_DAY) = Format(Now, "yyyy/MM/dd")
             dr.Item(COL_COMPLETION_CORRECTION) = COL_COMPLETION_CORRECTION & index
-            dr.Item(COL_DEFECT_THE_DAY) = COL_DEFECT_THE_DAY & index
+            dr.Item(COL_DEFECT_THE_DAY) = Format(Now, "yyyy/MM/dd")
             dr.Item(COL_DEFECT_CORRECTION) = COL_DEFECT_CORRECTION & index
             dr.Item(COL_SP_PROP_TRANSFER_PASS) = COL_SP_PROP_TRANSFER_PASS & index
             dr.Item(COL_SP_PROP_TRANSFER_DEFECT) = COL_SP_PROP_TRANSFER_DEFECT & index
