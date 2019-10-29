@@ -415,10 +415,10 @@
             dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
             dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
             dr.Item(COL_MOLD) = COL_MOLD & index
-            dr.Item(COL_COMPLETION_THE_DAY) = Format(Now, "yyyy/MM/dd")
-            dr.Item(COL_COMPLETION_CORRECTION) = COL_COMPLETION_CORRECTION & index
-            dr.Item(COL_DEFECT_THE_DAY) = Format(Now, "yyyy/MM/dd")
-            dr.Item(COL_DEFECT_CORRECTION) = COL_DEFECT_CORRECTION & index
+            dr.Item(COL_COMPLETION_THE_DAY) = index
+            dr.Item(COL_COMPLETION_CORRECTION) = index & index
+            dr.Item(COL_DEFECT_THE_DAY) = index
+            dr.Item(COL_DEFECT_CORRECTION) = index & index
             dr.Item(COL_SP_PROP_TRANSFER_PASS) = COL_SP_PROP_TRANSFER_PASS & index
             dr.Item(COL_SP_PROP_TRANSFER_DEFECT) = COL_SP_PROP_TRANSFER_DEFECT & index
             dt.Rows.Add(dr)
@@ -426,6 +426,12 @@
 
         '子タイトル設定する
         gridData.DataSource = dt
+        gridData.Columns(COL_COMPLETION_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        'gridData.Columns(COL_COMPLETION_THE_DAY)
+
         gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = headerName(COL_TODAY)
 
         gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = headerName(COL_CORRECTION)
@@ -439,11 +445,11 @@
         gridData.Columns(COL_DETAILS).Width = 60
         gridData.Columns(COL_PRODUCT_NAME).Width = 100
         gridData.Columns(COL_CUSTOMER_PART_NO).Width = 150
-        gridData.Columns(COL_MOLD).Width = 60
+        gridData.Columns(COL_MOLD).Width = 100
         gridData.Columns(COL_COMPLETION_THE_DAY).Width = 100
-        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 150
+        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 100
         gridData.Columns(COL_DEFECT_THE_DAY).Width = 100
-        gridData.Columns(COL_DEFECT_CORRECTION).Width = 150
+        gridData.Columns(COL_DEFECT_CORRECTION).Width = 100
         gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 200
         gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 200
     End Sub
