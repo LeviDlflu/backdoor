@@ -2,7 +2,7 @@
 Partial Class SC_K20
     Inherits System.Windows.Forms.Form
 
-    'Form 重写 Dispose，以清理组件列表。
+    'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,12 +14,12 @@ Partial Class SC_K20
         End Try
     End Sub
 
-    'Windows 窗体设计器所必需的
+    'Windows フォーム デザイナーで必要です。
     Private components As System.ComponentModel.IContainer
 
-    '注意: 以下过程是 Windows 窗体设计器所必需的
-    '可以使用 Windows 窗体设计器修改它。  
-    '不要使用代码编辑器修改它。
+    'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
+    'Windows フォーム デザイナーを使用して変更できます。  
+    'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -543,7 +543,7 @@ Partial Class SC_K20
         Me.Controls.Add(Me.btnRegistration)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "SC_K20"
-        Me.Text = "[SC_K20]その他払出入力(製品・中間品)"
+        Me.Text = "[SC_K20]Other withdrawal input(Product・Middle product)(その他払出入力(製品・中間品))Ver.1.0.0"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.gbSection.ResumeLayout(False)
