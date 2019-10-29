@@ -271,6 +271,7 @@ Partial Class SC_K14
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BackColor = System.Drawing.SystemColors.Window
         Me.Panel2.Controls.Add(Me.btnDesc)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.btnSearch)
@@ -995,6 +996,7 @@ Partial Class SC_K14
         '
         'Panel4
         '
+        Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.Label64)
         Me.Panel4.Controls.Add(Me.Label63)
@@ -1489,6 +1491,7 @@ Partial Class SC_K14
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1350, 779)
         Me.Controls.Add(Me.Label68)
         Me.Controls.Add(Me.Label67)
@@ -1547,6 +1550,7 @@ Partial Class SC_K14
         Me.Controls.Add(Me.Label9)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "SC_K14"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "[SC_K14]The results before the previous days(前日以前実績参照)V1.0.0"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
