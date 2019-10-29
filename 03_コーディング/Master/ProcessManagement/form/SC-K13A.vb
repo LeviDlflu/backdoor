@@ -95,7 +95,7 @@
             End Select
         Next
 
-        gridData.Columns(0).Width = 50
+        gridData.Columns(0).Width = 100
         gridData.Columns(1).Width = 150
         gridData.Columns(2).Width = 150
         gridData.Columns(3).Width = 400

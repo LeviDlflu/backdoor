@@ -2,7 +2,7 @@
 Partial Class SC_K13
     Inherits System.Windows.Forms.Form
 
-    'Form 重写 Dispose，以清理组件列表。
+    'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,12 +14,12 @@ Partial Class SC_K13
         End Try
     End Sub
 
-    'Windows 窗体设计器所必需的
+    'Windows フォーム デザイナーで必要です。
     Private components As System.ComponentModel.IContainer
 
-    '注意: 以下过程是 Windows 窗体设计器所必需的
-    '可以使用 Windows 窗体设计器修改它。  
-    '不要使用代码编辑器修改它。
+    'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
+    'Windows フォーム デザイナーを使用して変更できます。  
+    'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -458,6 +458,7 @@ Partial Class SC_K13
         Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
         Me.gridData.Location = New System.Drawing.Point(7, 299)
         Me.gridData.Name = "gridData"
+        Me.gridData.ReadOnly = True
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1341, 321)
         Me.gridData.TabIndex = 30
@@ -1265,7 +1266,7 @@ Partial Class SC_K13
         Me.Controls.Add(Me.Label9)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "SC_K13"
-        Me.Text = "[SC_K13]The results on today(当日実績参照)V1.0.0"
+        Me.Text = "[SC_K13]The results on today(当日実績参照)Ver.1.0.0"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
