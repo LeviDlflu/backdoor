@@ -32,9 +32,6 @@
         controlClear(True)
         setCodeDivisionType("")
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
-
     End Sub
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
@@ -54,6 +51,11 @@
         TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
 
+    End Sub
+
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     Private Sub SC_M15_Load(sender As Object, e As EventArgs) Handles MyBase.Load

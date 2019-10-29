@@ -26,10 +26,6 @@
         setProcessCodeType()
 
         xml.InitUser(Me.txtLoginUser, Me.TextBox1)
-
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
-
     End Sub
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
@@ -47,6 +43,11 @@
         e.InheritedRowStyle.ForeColor,
         TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
+    End Sub
+
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     '画面Load
