@@ -2,13 +2,17 @@
     Dim headerName As Hashtable = New Hashtable From {
                              {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
                              {"区分", "Section" & vbCrLf & "(区分)"},
+                             {"分類", "Classification" & vbCrLf & "(分類)"},
                              {"合計", "Total" & vbCrLf & "(合計)"}
                             }
     Private Const COL_PRODUCT_NAME_ABBREVIATION As String = "品名略称"
     Private Const COL_SECTION As String = "区分"
+    Private Const COL_CLASSIFICATION As String = "分類"
     Private Const COL_TOTAL As String = "合計"
 
     Private Const CONST_SYSTEM_NAME As String = "前日以前実績参照"
+    Public judgmentCategory As String = String.Empty
+    Public judgmentClassification As String = String.Empty
 
     ''' <summary>
     ''' 初期表示
@@ -66,8 +70,18 @@
     ''' </summary>
     Private Function createGridData() As DataTable
         Dim dt As New DataTable
+        Dim PARAM_CODE As String = Me.cmbProcess.Text
+
+        Dim code1 As String = "成形"
+        Dim code2 As String = "塗装"
+        Dim code3 As String = "組立"
+
         dt.Columns.Add(New DataColumn(COL_PRODUCT_NAME_ABBREVIATION, GetType(System.String)))
         dt.Columns.Add(New DataColumn(COL_SECTION, GetType(System.String)))
+        If cmbProcess.Text = code2 Then
+            '分類
+            dt.Columns.Add(New DataColumn(COL_CLASSIFICATION, GetType(System.String)))
+        End If
         dt.Columns.Add(New DataColumn(COL_TOTAL, GetType(System.String)))
         For j As Integer = 1 To 31
             Dim headName As String = Now.Month & "/" & j
@@ -75,19 +89,13 @@
             dt.Columns.Add(New DataColumn(headName, GetType(System.String)))
         Next
 
-        Dim PARAM_CODE As String = Me.cmbProcess.Text
-
-        Dim code1 As String = "成形"
-        Dim code2 As String = "塗装"
-        Dim code3 As String = "組立"
-
         For item As Integer = 0 To 2
             Select Case PARAM_CODE
                 Case code1
 
                     For i As Integer = 0 To 3
                         Dim addRow As DataRow = dt.NewRow
-                        addRow(COL_PRODUCT_NAME_ABBREVIATION) = "PNA" & item
+                        addRow(COL_PRODUCT_NAME_ABBREVIATION) = "SMD" & item
                         addRow(COL_TOTAL) = "1000"
 
                         Select Case i
@@ -111,8 +119,72 @@
 
                 Case code2
 
+                    For i As Integer = 0 To 9
+                        Dim addRow As DataRow = dt.NewRow
+                        addRow(COL_PRODUCT_NAME_ABBREVIATION) = "TPH" & item
+                        addRow(COL_TOTAL) = "1000"
+
+                        Select Case i
+                            Case 0
+                                addRow(COL_SECTION) = "塗装投入"
+                                addRow(COL_CLASSIFICATION) = "生地"
+                            Case 1
+                                addRow(COL_SECTION) = "塗装投入"
+                                addRow(COL_CLASSIFICATION) = "再塗装"
+                            Case 2
+                                addRow(COL_SECTION) = "合格"
+                                addRow(COL_CLASSIFICATION) = "生地品"
+                            Case 3
+                                addRow(COL_SECTION) = "合格"
+                                addRow(COL_CLASSIFICATION) = "再塗装品"
+                            Case 4
+                                addRow(COL_SECTION) = "合格"
+                                addRow(COL_CLASSIFICATION) = "合格計"
+                            Case 5
+                                addRow(COL_SECTION) = "リペア判定"
+                            Case 6
+                                addRow(COL_SECTION) = "再塗装判定"
+                            Case 7
+                                addRow(COL_SECTION) = "不良"
+                            Case 8
+                                addRow(COL_SECTION) = "生地不良"
+                                addRow(COL_CLASSIFICATION) = "成形"
+                            Case 9
+                                addRow(COL_SECTION) = "生地不良"
+                                addRow(COL_CLASSIFICATION) = "仕上"
+
+                        End Select
+                        For j As Integer = 1 To 31
+                            Dim headName As String = Now.Month & "/" & j
+                            addRow(headName) = j
+                        Next
+
+                        dt.Rows.Add(addRow)
+                    Next
+
                 Case code3
 
+                    For i As Integer = 0 To 2
+                        Dim addRow As DataRow = dt.NewRow
+                        addRow(COL_PRODUCT_NAME_ABBREVIATION) = "TAS" & item
+                        addRow(COL_TOTAL) = "1000"
+
+                        Select Case i
+                            Case 0
+                                addRow(COL_SECTION) = "着手"
+                            Case 1
+                                addRow(COL_SECTION) = "合格"
+                            Case 2
+                                addRow(COL_SECTION) = "不良"
+
+                        End Select
+                        For j As Integer = 1 To 31
+                            Dim headName As String = Now.Month & "/" & j
+                            addRow(headName) = j
+                        Next
+
+                        dt.Rows.Add(addRow)
+                    Next
             End Select
         Next
 
@@ -188,9 +260,21 @@
         setGrid(createGridData())
 
         Dim cmbGridView As New CmbDataGridGiew(Me.gridData)
-        cmbGridView.Add(0, 0, 3, 0)
-        cmbGridView.Add(4, 0, 7, 0)
-        cmbGridView.Add(8, 0, 11, 0)
+        Select Case cmbProcess.Text
+            Case "成形"
+                cmbGridView.Add(0, 0, 3, 0)
+                cmbGridView.Add(4, 0, 7, 0)
+                cmbGridView.Add(8, 0, 11, 0)
+            Case "塗装"
+                cmbGridView.Add(0, 0, 9, 0)
+                cmbGridView.Add(0, 1, 1, 1)
+                cmbGridView.Add(2, 1, 4, 1)
+                cmbGridView.Add(8, 1, 9, 1)
+            Case "組立"
+                cmbGridView.Add(0, 0, 2, 0)
+                cmbGridView.Add(3, 0, 5, 0)
+                cmbGridView.Add(6, 0, 8, 0)
+        End Select
     End Sub
 
     ''' <summary>
@@ -210,6 +294,12 @@
 
     Private Sub gridData_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentDoubleClick
         If e.ColumnIndex > -1 Then
+            Dim gridCells As DataGridViewCellCollection = gridData.Rows(e.RowIndex).Cells
+            judgmentCategory = gridCells(COL_SECTION).Value
+            If Me.cmbProcess.Text = "塗装" Then
+                judgmentClassification = gridCells(COL_CLASSIFICATION).Value
+            End If
+
             Dim frm As New SC_K14A()
             frm.ShowDialog()
             Me.Show()
