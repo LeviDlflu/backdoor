@@ -120,6 +120,12 @@
     <Compile Include="form\SC-K16A.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\SC-K17.Designer.vb">
+      <DependentUpon>SC-K17.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K17.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="form\SC-K20.Designer.vb">
       <DependentUpon>SC-K20.vb</DependentUpon>
     </Compile>
@@ -203,6 +209,9 @@
     <EmbeddedResource Include="form\SC-K16A.resx">
       <DependentUpon>SC-K16A.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K17.resx">
+      <DependentUpon>SC-K17.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K20.resx">
       <DependentUpon>SC-K20.vb</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +244,7 @@
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
