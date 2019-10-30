@@ -35,6 +35,7 @@ Partial Class SC_K14A
         Me.Button2 = New System.Windows.Forms.Button()
         Me.btnDesc = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.gridData = New System.Windows.Forms.DataGridView()
@@ -100,6 +101,8 @@ Partial Class SC_K14A
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.txtJudgmentClassification = New System.Windows.Forms.TextBox()
+        Me.txtJudgmentCategory = New System.Windows.Forms.TextBox()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -110,9 +113,6 @@ Partial Class SC_K14A
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label67 = New System.Windows.Forms.Label()
         Me.Label68 = New System.Windows.Forms.Label()
-        Me.txtJudgmentCategory = New System.Windows.Forms.TextBox()
-        Me.txtJudgmentClassification = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,6 +239,7 @@ Partial Class SC_K14A
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BackColor = System.Drawing.SystemColors.Window
         Me.Panel2.Controls.Add(Me.Button1)
         Me.Panel2.Controls.Add(Me.btnDesc)
         Me.Panel2.Controls.Add(Me.Button2)
@@ -247,6 +248,17 @@ Partial Class SC_K14A
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1357, 67)
         Me.Panel2.TabIndex = 268
+        '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Control
+        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Button1.Location = New System.Drawing.Point(367, 9)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(138, 49)
+        Me.Button1.TabIndex = 12
+        Me.Button1.Text = "Desc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(降順)"
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Label40
         '
@@ -954,6 +966,7 @@ Partial Class SC_K14A
         'txtRemarks
         '
         Me.txtRemarks.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtRemarks.BackColor = System.Drawing.SystemColors.Window
         Me.txtRemarks.Location = New System.Drawing.Point(-356, 835)
         Me.txtRemarks.Margin = New System.Windows.Forms.Padding(2)
         Me.txtRemarks.MaxLength = 50
@@ -964,6 +977,7 @@ Partial Class SC_K14A
         '
         'Panel4
         '
+        Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.txtJudgmentClassification)
         Me.Panel4.Controls.Add(Me.txtJudgmentCategory)
@@ -977,6 +991,26 @@ Partial Class SC_K14A
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1357, 135)
         Me.Panel4.TabIndex = 295
+        '
+        'txtJudgmentClassification
+        '
+        Me.txtJudgmentClassification.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txtJudgmentClassification.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.txtJudgmentClassification.Location = New System.Drawing.Point(298, 92)
+        Me.txtJudgmentClassification.Name = "txtJudgmentClassification"
+        Me.txtJudgmentClassification.ReadOnly = True
+        Me.txtJudgmentClassification.Size = New System.Drawing.Size(180, 21)
+        Me.txtJudgmentClassification.TabIndex = 308
+        '
+        'txtJudgmentCategory
+        '
+        Me.txtJudgmentCategory.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.txtJudgmentCategory.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.txtJudgmentCategory.Location = New System.Drawing.Point(39, 92)
+        Me.txtJudgmentCategory.Name = "txtJudgmentCategory"
+        Me.txtJudgmentCategory.ReadOnly = True
+        Me.txtJudgmentCategory.Size = New System.Drawing.Size(180, 21)
+        Me.txtJudgmentCategory.TabIndex = 307
         '
         'Label37
         '
@@ -1078,41 +1112,11 @@ Partial Class SC_K14A
         Me.Label68.TabIndex = 299
         Me.Label68.Text = "："
         '
-        'txtJudgmentCategory
-        '
-        Me.txtJudgmentCategory.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txtJudgmentCategory.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtJudgmentCategory.Location = New System.Drawing.Point(39, 92)
-        Me.txtJudgmentCategory.Name = "txtJudgmentCategory"
-        Me.txtJudgmentCategory.ReadOnly = True
-        Me.txtJudgmentCategory.Size = New System.Drawing.Size(180, 21)
-        Me.txtJudgmentCategory.TabIndex = 307
-        '
-        'txtJudgmentClassification
-        '
-        Me.txtJudgmentClassification.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.txtJudgmentClassification.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtJudgmentClassification.Location = New System.Drawing.Point(298, 92)
-        Me.txtJudgmentClassification.Name = "txtJudgmentClassification"
-        Me.txtJudgmentClassification.ReadOnly = True
-        Me.txtJudgmentClassification.Size = New System.Drawing.Size(180, 21)
-        Me.txtJudgmentClassification.TabIndex = 308
-        '
-        'Button1
-        '
-        Me.Button1.BackColor = System.Drawing.SystemColors.Control
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(367, 9)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(138, 49)
-        Me.Button1.TabIndex = 12
-        Me.Button1.Text = "Desc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(降順)"
-        Me.Button1.UseVisualStyleBackColor = False
-        '
         'SC_K14A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1350, 689)
         Me.Controls.Add(Me.Label68)
         Me.Controls.Add(Me.Label67)
@@ -1171,6 +1175,7 @@ Partial Class SC_K14A
         Me.Controls.Add(Me.Label9)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "SC_K14A"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "[SC_K14A]The Detail of results before the previous days(前日以前実績参照)V1.0.0"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

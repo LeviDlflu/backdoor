@@ -46,11 +46,11 @@ Partial Class SC_K21
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.grpHeader = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtLoginUser = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
@@ -330,6 +330,17 @@ Partial Class SC_K21
         Me.grpHeader.TabIndex = 83
         Me.grpHeader.TabStop = False
         '
+        'Label3
+        '
+        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Label3.Location = New System.Drawing.Point(4, 16)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(761, 43)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "Ohter issues refer・Cancel（その他出庫参照・取消）"
+        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -381,17 +392,6 @@ Partial Class SC_K21
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
         '
-        'Label3
-        '
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 18.0!, System.Drawing.FontStyle.Bold)
-        Me.Label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label3.Location = New System.Drawing.Point(4, 16)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(761, 43)
-        Me.Label3.TabIndex = 7
-        Me.Label3.Text = "Ohter issues refer・Cancel（その他出庫参照・取消）"
-        Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -425,7 +425,7 @@ Partial Class SC_K21
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
         Me.Name = "SC_K21"
-        Me.Text = "その他払出入力伝票参照・取消"
+        Me.Text = "Ohter issues refer・Cancel（その他出庫参照・取消）"
         Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()

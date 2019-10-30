@@ -28,19 +28,26 @@ Partial Class SC_K21A
         Me.BottomDate = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.grpHeader = New System.Windows.Forms.GroupBox()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.txtLoginUser = New System.Windows.Forms.TextBox()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Finish = New System.Windows.Forms.Button()
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Withdrawal_category = New System.Windows.Forms.ComboBox()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Target_date = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.SearchTImeLabel = New System.Windows.Forms.Label()
+        Me.SearchDateTime = New System.Windows.Forms.Label()
         CType(Me.GridCtrl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.grpHeader.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'GridCtrl
@@ -49,10 +56,10 @@ Partial Class SC_K21A
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridCtrl.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.GridCtrl.Location = New System.Drawing.Point(3, 184)
+        Me.GridCtrl.Location = New System.Drawing.Point(0, 241)
         Me.GridCtrl.Name = "GridCtrl"
         Me.GridCtrl.RowTemplate.Height = 24
-        Me.GridCtrl.Size = New System.Drawing.Size(926, 372)
+        Me.GridCtrl.Size = New System.Drawing.Size(1000, 408)
         Me.GridCtrl.TabIndex = 7
         Me.GridCtrl.VirtualMode = True
         '
@@ -62,7 +69,7 @@ Partial Class SC_K21A
         Me.StatusStrip1.Dock = System.Windows.Forms.DockStyle.None
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BottomDate})
-        Me.StatusStrip1.Location = New System.Drawing.Point(762, 559)
+        Me.StatusStrip1.Location = New System.Drawing.Point(1178, 654)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(169, 25)
         Me.StatusStrip1.TabIndex = 8
@@ -91,16 +98,27 @@ Partial Class SC_K21A
         Me.grpHeader.Margin = New System.Windows.Forms.Padding(4)
         Me.grpHeader.Name = "grpHeader"
         Me.grpHeader.Padding = New System.Windows.Forms.Padding(4)
-        Me.grpHeader.Size = New System.Drawing.Size(935, 72)
+        Me.grpHeader.Size = New System.Drawing.Size(1351, 72)
         Me.grpHeader.TabIndex = 82
         Me.grpHeader.TabStop = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 20.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Label6.Location = New System.Drawing.Point(5, 22)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(465, 34)
+        Me.Label6.TabIndex = 7
+        Me.Label6.Text = "Total by process(工程別集計)"
         '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(479, 39)
+        Me.Label4.Location = New System.Drawing.Point(895, 39)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(292, 24)
@@ -113,7 +131,7 @@ Partial Class SC_K21A
         Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(482, 12)
+        Me.Label5.Location = New System.Drawing.Point(898, 12)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 2, 4, 2)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(288, 24)
@@ -125,7 +143,7 @@ Partial Class SC_K21A
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.TextBox1.Location = New System.Drawing.Point(770, 39)
+        Me.TextBox1.Location = New System.Drawing.Point(1186, 39)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.ReadOnly = True
@@ -138,7 +156,7 @@ Partial Class SC_K21A
         '
         Me.txtLoginUser.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtLoginUser.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.txtLoginUser.Location = New System.Drawing.Point(770, 12)
+        Me.txtLoginUser.Location = New System.Drawing.Point(1186, 12)
         Me.txtLoginUser.Margin = New System.Windows.Forms.Padding(4)
         Me.txtLoginUser.Name = "txtLoginUser"
         Me.txtLoginUser.Size = New System.Drawing.Size(159, 22)
@@ -146,88 +164,142 @@ Partial Class SC_K21A
         Me.txtLoginUser.TabStop = False
         Me.txtLoginUser.Text = "ログインユーザ"
         '
-        'Label6
+        'Panel1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 20.0!, System.Drawing.FontStyle.Bold)
-        Me.Label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.Label6.Location = New System.Drawing.Point(5, 22)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(190, 34)
-        Me.Label6.TabIndex = 7
-        Me.Label6.Text = "工程別集計"
+        Me.Panel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Finish)
+        Me.Panel1.Location = New System.Drawing.Point(-2, 63)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1351, 77)
+        Me.Panel1.TabIndex = 93
         '
         'Finish
         '
         Me.Finish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Finish.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Finish.Location = New System.Drawing.Point(789, 77)
+        Me.Finish.Font = New System.Drawing.Font("MS UI Gothic", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Finish.Location = New System.Drawing.Point(1205, 11)
         Me.Finish.Name = "Finish"
         Me.Finish.Size = New System.Drawing.Size(105, 57)
-        Me.Finish.TabIndex = 83
-        Me.Finish.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(完 了)"
+        Me.Finish.TabIndex = 84
+        Me.Finish.Text = "Back" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(戻 る)"
         Me.Finish.UseVisualStyleBackColor = True
+        '
+        'Panel2
+        '
+        Me.Panel2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.Withdrawal_category)
+        Me.Panel2.Controls.Add(Me.Label1)
+        Me.Panel2.Controls.Add(Me.Label7)
+        Me.Panel2.Controls.Add(Me.Target_date)
+        Me.Panel2.Location = New System.Drawing.Point(-2, 140)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(1351, 40)
+        Me.Panel2.TabIndex = 94
         '
         'Withdrawal_category
         '
         Me.Withdrawal_category.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Withdrawal_category.FormattingEnabled = True
-        Me.Withdrawal_category.Location = New System.Drawing.Point(760, 147)
+        Me.Withdrawal_category.Location = New System.Drawing.Point(773, 5)
         Me.Withdrawal_category.Name = "Withdrawal_category"
         Me.Withdrawal_category.Size = New System.Drawing.Size(148, 28)
-        Me.Withdrawal_category.TabIndex = 92
+        Me.Withdrawal_category.TabIndex = 96
         '
-        'Label3
+        'Label1
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label3.Location = New System.Drawing.Point(437, 153)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(295, 20)
-        Me.Label3.TabIndex = 91
-        Me.Label3.Text = "Withdrawal category(払出区分)"
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label1.Location = New System.Drawing.Point(452, 11)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(271, 20)
+        Me.Label1.TabIndex = 95
+        Me.Label1.Text = "Payment division (受払区分)"
         '
-        'Label2
+        'Label7
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(10, 153)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(216, 20)
-        Me.Label2.TabIndex = 90
-        Me.Label2.Text = "Target date(対象年月)"
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(16, 11)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(223, 20)
+        Me.Label7.TabIndex = 94
+        Me.Label7.Text = "Target date (対象年月)"
         '
         'Target_date
         '
         Me.Target_date.CustomFormat = "yyyy/MM"
         Me.Target_date.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Target_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.Target_date.Location = New System.Drawing.Point(251, 147)
+        Me.Target_date.Location = New System.Drawing.Point(271, 5)
         Me.Target_date.Name = "Target_date"
         Me.Target_date.Size = New System.Drawing.Size(155, 27)
-        Me.Target_date.TabIndex = 89
+        Me.Target_date.TabIndex = 93
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label2.Location = New System.Drawing.Point(15, 184)
+        Me.Label2.MinimumSize = New System.Drawing.Size(1366, 728)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(1366, 728)
+        Me.Label2.TabIndex = 95
+        Me.Label2.Text = "Search results" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索結果)"
+        '
+        'SearchTImeLabel
+        '
+        Me.SearchTImeLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SearchTImeLabel.AutoSize = True
+        Me.SearchTImeLabel.Font = New System.Drawing.Font("MS UI Gothic", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.SearchTImeLabel.Location = New System.Drawing.Point(683, 185)
+        Me.SearchTImeLabel.MinimumSize = New System.Drawing.Size(1366, 728)
+        Me.SearchTImeLabel.Name = "SearchTImeLabel"
+        Me.SearchTImeLabel.Size = New System.Drawing.Size(1366, 728)
+        Me.SearchTImeLabel.TabIndex = 96
+        Me.SearchTImeLabel.Text = "Search time:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索時間)"
+        '
+        'SearchDateTime
+        '
+        Me.SearchDateTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SearchDateTime.AutoSize = True
+        Me.SearchDateTime.Font = New System.Drawing.Font("MS UI Gothic", 11.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.SearchDateTime.Location = New System.Drawing.Point(813, 186)
+        Me.SearchDateTime.MinimumSize = New System.Drawing.Size(1366, 728)
+        Me.SearchDateTime.Name = "SearchDateTime"
+        Me.SearchDateTime.Size = New System.Drawing.Size(1366, 728)
+        Me.SearchDateTime.TabIndex = 97
+        Me.SearchDateTime.Text = "yyyy/MM/dd hh:mm"
         '
         'SC_K21A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(932, 586)
-        Me.Controls.Add(Me.Withdrawal_category)
-        Me.Controls.Add(Me.Label3)
+        Me.ClientSize = New System.Drawing.Size(1348, 681)
+        Me.Controls.Add(Me.GridCtrl)
+        Me.Controls.Add(Me.SearchTImeLabel)
+        Me.Controls.Add(Me.SearchDateTime)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Target_date)
-        Me.Controls.Add(Me.Finish)
+        Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.grpHeader)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.GridCtrl)
         Me.Name = "SC_K21A"
         Me.ShowInTaskbar = False
-        Me.Text = "工程別集計"
+        Me.Text = "[K-21A]Total by process(工程別集計) Ver.1.0.0"
         CType(Me.GridCtrl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         Me.grpHeader.ResumeLayout(False)
         Me.grpHeader.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -242,9 +314,14 @@ Partial Class SC_K21A
     Friend WithEvents Label5 As Label
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents txtLoginUser As TextBox
+    Friend WithEvents Panel1 As Panel
     Friend WithEvents Finish As Button
+    Friend WithEvents Panel2 As Panel
     Friend WithEvents Withdrawal_category As ComboBox
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label7 As Label
     Friend WithEvents Target_date As DateTimePicker
+    Friend WithEvents Label2 As Label
+    Friend WithEvents SearchTImeLabel As Label
+    Friend WithEvents SearchDateTime As Label
 End Class

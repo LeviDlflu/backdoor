@@ -104,7 +104,7 @@ Public Class SC_K21B
 
 
         GridCtrl.Columns(0).Width = 100
-        GridCtrl.Columns(1).Width = 150
+        GridCtrl.Columns(1).Width = 200
         GridCtrl.Columns(2).Width = 250
         GridCtrl.Columns(3).Width = 150
 
@@ -129,7 +129,15 @@ Public Class SC_K21B
         End If
     End Sub
 
-    Private Sub Finish_Click(sender As Object, e As EventArgs) Handles Finish.Click
+    Private Sub Finish_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub DESC_Click(sender As Object, e As EventArgs) Handles DESC.Click
+
+    End Sub
+
+    Private Sub ACS_Click(sender As Object, e As EventArgs) Handles ACS.Click
 
     End Sub
 End Class

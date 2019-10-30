@@ -54,7 +54,7 @@ Public Class SC_K21C
         GridCtrl.DataSource = dt.Copy
 
         GridCtrl.Columns(0).Width = 100
-        GridCtrl.Columns(1).Width = 150
+        GridCtrl.Columns(1).Width = 200
         GridCtrl.Columns(2).Width = 200
         GridCtrl.Columns(3).Width = 200
 
@@ -79,7 +79,11 @@ Public Class SC_K21C
         End If
     End Sub
 
-    Private Sub Finish_Click(sender As Object, e As EventArgs) Handles Finish.Click
+    Private Sub Finish_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Finish_Click_1(sender As Object, e As EventArgs) Handles Finish.Click
 
     End Sub
 End Class

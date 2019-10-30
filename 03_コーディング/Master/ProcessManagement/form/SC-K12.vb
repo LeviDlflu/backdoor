@@ -43,6 +43,28 @@
     Private Const COL_VARIET_NAME As String = "品種名"
     Private Const COL_CAR_TYPE_CODE As String = "車種コード"
     Private Const COL_PACKING_SPECIFICATION As String = "梱包仕様"
+    Private Const COL_CUSTOMER_PART_NUMBER As String = "客先部品番号"
+    Private Const COL_MATERIAL_DIVISION As String = "生地区分"
+    Private Const COL_DELIVERY_DATE_DELIVERY_TIME As String = "納入日・納入時間"
+    Private Const COL_DAILY_LINE As String = "日産ライン"
+    Private Const COL_TRUCK_NO As String = "台車ＮＯ"
+    Private Const COL_INSTRUCTION As String = "指示"
+    Private Const COL_SHOT As String = "ショット"
+    Private Const COL_ADJUSTMENT As String = "調整"
+    Private Const COL_START As String = "着手"
+    Private Const COL_COMPLETION As String = "完成"
+    Private Const COL_FAILURE As String = "不良"
+    Private Const COL_OTHER_TRANSFER As String = "他振替"
+    Private Const COL_HOLD As String = "保留"
+    Private Const COL_PACKING_WAIT As String = "梱包待ち"
+    Private Const COL_MATERIAL_FAILURE_M As String = "生地不良(成)"
+    Private Const COL_MATERIAL_FAILURE_F As String = "生地不良(仕)"
+    Private Const COL_REPAIR As String = "リペア"
+    Private Const COL_REPAINT As String = "再塗装"
+    Private Const COL_REPAINT_INVESTMENT As String = "再塗装投入"
+    Private Const COL_REMAINING_INSTRUCTION As String = "指示残"
+    Private Const COL_LATEST_INPUT_ACTUAL_TIME As String = "最新入力実績時間"
+    Private Const COL_FORCED_EXCLUSION As String = "強制除外"
     ''' <summary>
     ''' 列ヘッダーの行数
     ''' </summary>
@@ -517,14 +539,28 @@
     End Function
 
     Private Sub Patten1()
+        gridData.Columns.Clear()
         HeaderCells = {
             New HeaderCell(0, 0, 6, 1, headerName（COL_DETAILS)),
             New HeaderCell(0, 1, 6, 1, headerName（COL_WORK_NUMBER)),
             New HeaderCell(0, 2, 6, 1, headerName(COL_WORK_INSTRUCTION_DATE)),
             New HeaderCell(0, 3, 6, 1, headerName(COL_DIRECT)),
             New HeaderCell(0, 4, 6, 1, headerName(COL_GOODS_NAME)),
-            New HeaderCell(0, 5, 6, 1, headerName(COL_MONEY_TYPE)),
-            New HeaderCell(0, 6, 6, 1, headerName(COL_GOODS_ABBREVIATION))}
+            New HeaderCell(0, 5, 6, 1, headerName(COL_GOODS_ABBREVIATION)),
+            New HeaderCell(0, 6, 6, 1, headerName(COL_MATERIAL_DIVISION)),
+            New HeaderCell(0, 7, 6, 1, headerName(COL_INSTRUCTION)),
+            New HeaderCell(0, 8, 6, 1, headerName(COL_START)),
+            New HeaderCell(0, 9, 6, 1, headerName(COL_COMPLETION)),
+            New HeaderCell(0, 10, 6, 1, headerName(COL_FAILURE)),
+            New HeaderCell(0, 11, 6, 1, headerName(COL_MATERIAL_FAILURE_M)),
+            New HeaderCell(0, 12, 6, 1, headerName(COL_MATERIAL_FAILURE_F)),
+            New HeaderCell(0, 13, 6, 1, headerName(COL_REPAIR)),
+            New HeaderCell(0, 14, 6, 1, headerName(COL_REPAINT)),
+            New HeaderCell(0, 15, 6, 1, headerName(COL_REPAINT_INVESTMENT)),
+            New HeaderCell(0, 16, 6, 1, headerName(COL_REMAINING_INSTRUCTION)),
+            New HeaderCell(0, 17, 6, 1, headerName(COL_LATEST_INPUT_ACTUAL_TIME)),
+            New HeaderCell(0, 18, 6, 1, headerName(COL_FORCED_EXCLUSION))
+        }
 
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = COL_DETAILS
@@ -537,8 +573,20 @@
         dt.Columns.Add(COL_WORK_INSTRUCTION_DATE)
         dt.Columns.Add(COL_DIRECT)
         dt.Columns.Add(COL_GOODS_NAME)
-        dt.Columns.Add(COL_MONEY_TYPE)
         dt.Columns.Add(COL_GOODS_ABBREVIATION)
+        dt.Columns.Add(COL_MATERIAL_DIVISION)
+        dt.Columns.Add(COL_INSTRUCTION)
+        dt.Columns.Add(COL_START)
+        dt.Columns.Add(COL_COMPLETION)
+        dt.Columns.Add(COL_FAILURE)
+        dt.Columns.Add(COL_MATERIAL_FAILURE_M)
+        dt.Columns.Add(COL_MATERIAL_FAILURE_F)
+        dt.Columns.Add(COL_REPAIR)
+        dt.Columns.Add(COL_REPAINT)
+        dt.Columns.Add(COL_REPAINT_INVESTMENT)
+        dt.Columns.Add(COL_REMAINING_INSTRUCTION)
+        dt.Columns.Add(COL_LATEST_INPUT_ACTUAL_TIME)
+        dt.Columns.Add(COL_FORCED_EXCLUSION)
 
         Dim dr As DataRow
 
@@ -548,40 +596,72 @@
             dr.Item(COL_WORK_INSTRUCTION_DATE) = COL_WORK_INSTRUCTION_DATE & index
             dr.Item(COL_DIRECT) = COL_DIRECT & index
             dr.Item(COL_GOODS_NAME) = COL_GOODS_NAME & index
-            dr.Item(COL_MONEY_TYPE) = COL_MONEY_TYPE & index
             dr.Item(COL_GOODS_ABBREVIATION) = COL_GOODS_ABBREVIATION & index
+            dr.Item(COL_MATERIAL_DIVISION) = COL_MATERIAL_DIVISION & index
+            dr.Item(COL_INSTRUCTION) = COL_INSTRUCTION & index
+            dr.Item(COL_START) = COL_START & index
+            dr.Item(COL_COMPLETION) = COL_COMPLETION & index
+            dr.Item(COL_FAILURE) = COL_FAILURE & index
+            dr.Item(COL_MATERIAL_FAILURE_M) = COL_MATERIAL_FAILURE_M & index
+            dr.Item(COL_MATERIAL_FAILURE_F) = COL_MATERIAL_FAILURE_F & index
+            dr.Item(COL_REPAIR) = COL_REPAIR & index
+            dr.Item(COL_REPAINT) = COL_REPAINT & index
+            dr.Item(COL_REPAINT_INVESTMENT) = COL_REPAINT_INVESTMENT & index
+            dr.Item(COL_REMAINING_INSTRUCTION) = COL_REMAINING_INSTRUCTION & index
+            dr.Item(COL_LATEST_INPUT_ACTUAL_TIME) = COL_LATEST_INPUT_ACTUAL_TIME & index
+            dr.Item(COL_FORCED_EXCLUSION) = COL_FORCED_EXCLUSION & index
             dt.Rows.Add(dr)
         Next
 
-        '子タイトル設定する
         gridData.DataSource = dt
-        'gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = COL_TODAY
-        'gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = COL_CORRECTION
-        'gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = COL_TODAY
-        'gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = COL_CORRECTION
-        'gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = COL_PASS
-        'gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = COL_DEFECT
-        'gridData.AutoResizeColumns()
         gridData.AutoResizeColumns()
+
         'Grid幅設定する
         gridData.Columns(COL_DETAILS).Width = 60
         gridData.Columns(COL_WORK_NUMBER).Width = 100
         gridData.Columns(COL_WORK_INSTRUCTION_DATE).Width = 100
         gridData.Columns(COL_DIRECT).Width = 50
         gridData.Columns(COL_GOODS_NAME).Width = 100
-        gridData.Columns(COL_MONEY_TYPE).Width = 150
-        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 100
+        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 150
+        gridData.Columns(COL_MATERIAL_DIVISION).Width = 100
+        gridData.Columns(COL_INSTRUCTION).Width = 100
+        gridData.Columns(COL_START).Width = 100
+        gridData.Columns(COL_COMPLETION).Width = 100
+        gridData.Columns(COL_FAILURE).Width = 100
+        gridData.Columns(COL_MATERIAL_FAILURE_M).Width = 100
+        gridData.Columns(COL_MATERIAL_FAILURE_F).Width = 100
+        gridData.Columns(COL_REPAIR).Width = 100
+        gridData.Columns(COL_REPAINT).Width = 100
+        gridData.Columns(COL_REPAINT_INVESTMENT).Width = 120
+        gridData.Columns(COL_REMAINING_INSTRUCTION).Width = 120
+        gridData.Columns(COL_LATEST_INPUT_ACTUAL_TIME).Width = 130
+        gridData.Columns(COL_FORCED_EXCLUSION).Width = 100
     End Sub
 
     Private Sub Patten2()
+        gridData.Columns.Clear()
         HeaderCells = {
             New HeaderCell(0, 0, 6, 1, headerName（COL_DETAILS)),
             New HeaderCell(0, 1, 6, 1, headerName（COL_WORK_NUMBER)),
             New HeaderCell(0, 2, 6, 1, headerName(COL_WORK_INSTRUCTION_DATE)),
             New HeaderCell(0, 3, 6, 1, headerName(COL_DIRECT)),
-            New HeaderCell(0, 4, 6, 1, headerName(COL_GOODS_NAME)),
-            New HeaderCell(0, 5, 6, 1, headerName(COL_MONEY_TYPE)),
-            New HeaderCell(0, 6, 6, 1, headerName(COL_GOODS_ABBREVIATION))}
+            New HeaderCell(0, 4, 6, 1, headerName（COL_VARIET_NAME)),
+            New HeaderCell(0, 5, 6, 1, headerName(COL_CAR_TYPE_CODE)),
+            New HeaderCell(0, 6, 6, 1, headerName(COL_DELIVERY_DATE_DELIVERY_TIME)),
+            New HeaderCell(0, 7, 6, 1, headerName(COL_DAILY_LINE)),
+            New HeaderCell(0, 8, 6, 1, headerName(COL_TRUCK_NO)),
+            New HeaderCell(0, 9, 6, 1, headerName(COL_INSTRUCTION)),
+            New HeaderCell(0, 10, 6, 1, headerName(COL_START)),
+            New HeaderCell(0, 11, 6, 1, headerName(COL_COMPLETION)),
+            New HeaderCell(0, 12, 6, 1, headerName(COL_FAILURE)),
+            New HeaderCell(0, 13, 6, 1, headerName(COL_HOLD)),
+            New HeaderCell(0, 14, 6, 1, headerName(COL_PACKING_WAIT)),
+            New HeaderCell(0, 15, 6, 1, headerName(COL_REMAINING_INSTRUCTION)),
+            New HeaderCell(0, 16, 6, 1, headerName(COL_PACKING_SPECIFICATION)),
+            New HeaderCell(0, 17, 6, 1, headerName(COL_CUSTOMER_PART_NUMBER)),
+            New HeaderCell(0, 18, 6, 1, headerName(COL_LATEST_INPUT_ACTUAL_TIME)),
+            New HeaderCell(0, 19, 6, 1, headerName(COL_FORCED_EXCLUSION))
+        }
 
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = COL_DETAILS
@@ -593,9 +673,22 @@
         dt.Columns.Add(COL_WORK_NUMBER)
         dt.Columns.Add(COL_WORK_INSTRUCTION_DATE)
         dt.Columns.Add(COL_DIRECT)
-        dt.Columns.Add(COL_GOODS_NAME)
-        dt.Columns.Add(COL_MONEY_TYPE)
-        dt.Columns.Add(COL_GOODS_ABBREVIATION)
+        dt.Columns.Add(COL_VARIET_NAME)
+        dt.Columns.Add(COL_CAR_TYPE_CODE)
+        dt.Columns.Add(COL_DELIVERY_DATE_DELIVERY_TIME)
+        dt.Columns.Add(COL_DAILY_LINE)
+        dt.Columns.Add(COL_TRUCK_NO)
+        dt.Columns.Add(COL_INSTRUCTION)
+        dt.Columns.Add(COL_START)
+        dt.Columns.Add(COL_COMPLETION)
+        dt.Columns.Add(COL_FAILURE)
+        dt.Columns.Add(COL_HOLD)
+        dt.Columns.Add(COL_PACKING_WAIT)
+        dt.Columns.Add(COL_REMAINING_INSTRUCTION)
+        dt.Columns.Add(COL_PACKING_SPECIFICATION)
+        dt.Columns.Add(COL_CUSTOMER_PART_NUMBER)
+        dt.Columns.Add(COL_LATEST_INPUT_ACTUAL_TIME)
+        dt.Columns.Add(COL_FORCED_EXCLUSION)
 
         Dim dr As DataRow
 
@@ -604,33 +697,53 @@
             dr.Item(COL_WORK_NUMBER) = COL_WORK_NUMBER & index
             dr.Item(COL_WORK_INSTRUCTION_DATE) = COL_WORK_INSTRUCTION_DATE & index
             dr.Item(COL_DIRECT) = COL_DIRECT & index
-            dr.Item(COL_GOODS_NAME) = COL_GOODS_NAME & index
-            dr.Item(COL_MONEY_TYPE) = COL_MONEY_TYPE & index
-            dr.Item(COL_GOODS_ABBREVIATION) = COL_GOODS_ABBREVIATION & index
+            dr.Item(COL_VARIET_NAME) = COL_VARIET_NAME & index
+            dr.Item(COL_CAR_TYPE_CODE) = COL_CAR_TYPE_CODE & index
+            dr.Item(COL_DELIVERY_DATE_DELIVERY_TIME) = COL_DELIVERY_DATE_DELIVERY_TIME & index
+            dr.Item(COL_DAILY_LINE) = COL_DAILY_LINE & index
+            dr.Item(COL_TRUCK_NO) = COL_TRUCK_NO & index
+            dr.Item(COL_INSTRUCTION) = COL_INSTRUCTION & index
+            dr.Item(COL_START) = COL_START & index
+            dr.Item(COL_COMPLETION) = COL_COMPLETION & index
+            dr.Item(COL_FAILURE) = COL_FAILURE & index
+            dr.Item(COL_HOLD) = COL_HOLD & index
+            dr.Item(COL_PACKING_WAIT) = COL_PACKING_WAIT & index
+            dr.Item(COL_REMAINING_INSTRUCTION) = COL_REMAINING_INSTRUCTION & index
+            dr.Item(COL_PACKING_SPECIFICATION) = COL_PACKING_SPECIFICATION & index
+            dr.Item(COL_CUSTOMER_PART_NUMBER) = COL_CUSTOMER_PART_NUMBER & index
+            dr.Item(COL_LATEST_INPUT_ACTUAL_TIME) = COL_LATEST_INPUT_ACTUAL_TIME & index
+            dr.Item(COL_FORCED_EXCLUSION) = COL_FORCED_EXCLUSION & index
             dt.Rows.Add(dr)
         Next
 
         '子タイトル設定する
         gridData.DataSource = dt
-        'gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = COL_TODAY
-        'gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = COL_CORRECTION
-        'gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = COL_TODAY
-        'gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = COL_CORRECTION
-        'gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = COL_PASS
-        'gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = COL_DEFECT
-        'gridData.AutoResizeColumns()
         gridData.AutoResizeColumns()
         'Grid幅設定する
         gridData.Columns(COL_DETAILS).Width = 60
         gridData.Columns(COL_WORK_NUMBER).Width = 100
         gridData.Columns(COL_WORK_INSTRUCTION_DATE).Width = 100
         gridData.Columns(COL_DIRECT).Width = 50
-        gridData.Columns(COL_GOODS_NAME).Width = 100
-        gridData.Columns(COL_MONEY_TYPE).Width = 150
-        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 100
+        gridData.Columns(COL_VARIET_NAME).Width = 100
+        gridData.Columns(COL_CAR_TYPE_CODE).Width = 150
+        gridData.Columns(COL_DELIVERY_DATE_DELIVERY_TIME).Width = 100
+        gridData.Columns(COL_DAILY_LINE).Width = 100
+        gridData.Columns(COL_TRUCK_NO).Width = 100
+        gridData.Columns(COL_INSTRUCTION).Width = 100
+        gridData.Columns(COL_START).Width = 100
+        gridData.Columns(COL_COMPLETION).Width = 100
+        gridData.Columns(COL_FAILURE).Width = 100
+        gridData.Columns(COL_HOLD).Width = 100
+        gridData.Columns(COL_PACKING_WAIT).Width = 100
+        gridData.Columns(COL_REMAINING_INSTRUCTION).Width = 100
+        gridData.Columns(COL_PACKING_SPECIFICATION).Width = 100
+        gridData.Columns(COL_CUSTOMER_PART_NUMBER).Width = 100
+        gridData.Columns(COL_LATEST_INPUT_ACTUAL_TIME).Width = 100
+        gridData.Columns(COL_FORCED_EXCLUSION).Width = 100
     End Sub
 
     Private Sub Patten3()
+        gridData.Columns.Clear()
         HeaderCells = {
             New HeaderCell(0, 0, 6, 1, headerName（COL_DETAILS)),
             New HeaderCell(0, 1, 6, 1, headerName（COL_WORK_NUMBER)),
@@ -656,7 +769,7 @@
 
         Dim dr As DataRow
 
-        For index = 1 To 5
+        For index = 1 To 10
             dr = dt.NewRow()
             dr.Item(COL_WORK_NUMBER) = COL_WORK_NUMBER & index
             dr.Item(COL_WORK_INSTRUCTION_DATE) = COL_WORK_INSTRUCTION_DATE & index

@@ -3,16 +3,57 @@
                              {"個体No", "Individual No" & vbCrLf & "(個体No)"},
                              {"ラベル発行No", "Label issue No" & vbCrLf & "(ラベル発行No)"},
                              {"設備名称", "Facility name" & vbCrLf & "(設備名称)"},
+                             {"金型", "Mold" & vbCrLf & "(金型)"},
+                             {"キャビ", "Caviar" & vbCrLf & "(金型)"},
                              {"客先部品番号", "Customer part number" & vbCrLf & "(客先部品番号)"},
                              {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
                              {"判定日付・時間", "Judgment date / Time" & vbCrLf & "(判定日付・時間)"},
                              {"数量", "Quantity" & vbCrLf & "(数量)"},
                              {"不良原因", "Cause of failure" & vbCrLf & "(不良原因)"},
+                             {"倉庫(払出元)", "Warehouse (withdrawal source)" & vbCrLf & "(倉庫(払出元))"},
+                             {"品名", "Product name" & vbCrLf & "(品名)"},
+                             {"払出日", "Withdrawal Date" & vbCrLf & "(払出日)"},
+                             {"払出理由", "Reason For withdrawal" & vbCrLf & "(払出理由)"},
+                             {"備考", "Remarks" & vbCrLf & "(備考)"},
+                             {"リペア理由", "Reason For repair" & vbCrLf & "(リペア理由)"},
+                             {"再塗装理由", "Reason For repainting" & vbCrLf & "(再塗装理由)"},
+                             {"生地不良原因", "Cause Of fabric failure" & vbCrLf & "(生地不良原因)"},
+                             {"再投入", "Re-injection" & vbCrLf & "(再投入)"},
                              {"氏名", "Full name" & vbCrLf & "(氏名)"}
                             }
+    Private Const COL_INDIVIDUAL_NO As String = "個体No"
+    Private Const COL_LABEL_ISSUE_NO As String = "ラベル発行No"
+    Private Const COL_FACILITY_NAME As String = "設備名称"
+    Private Const COL_MOLD As String = "金型"
+    Private Const COL_CAVIAR As String = "キャビ"
+    Private Const COL_CUSTOMER_PART_NUMBER As String = "客先部品番号"
     Private Const COL_PRODUCT_NAME_ABBREVIATION As String = "品名略称"
-    Private Const COL_SECTION As String = "区分"
-    Private Const COL_CLASSIFICATION As String = "分類"
+    Private Const COL_JUDGMENT_DATE_TIME As String = "判定日付・時間"
+    Private Const COL_QUANTITY As String = "数量"
+    Private Const COL_CAUSE_OF_FAILURE As String = "不良原因"
+    Private Const COL_WAREHOUSE As String = "倉庫(払出元)"
+    Private Const COL_PRODUCT_NAME As String = "品名"
+    Private Const COL_WITHDRAWAL_DATE As String = "払出日"
+    Private Const COL_REASON_FOR_WITHDRAWAL As String = "払出理由"
+    Private Const COL_REMARKS As String = "備考"
+    Private Const COL_REASON_FOR_REPAIR As String = "リペア理由"
+    Private Const COL_REASON_FOR_REPAINTING As String = "再塗装理由"
+    Private Const COL_CAUSE_OF_FABRIC_FAILURE As String = "生地不良原因"
+    Private Const COL_RE_INJECTION As String = "再投入"
+    Private Const COL_FULL_NAME As String = "氏名"
+
+    'ショット
+    Dim SMD_SHOT As String() = {COL_FACILITY_NAME, COL_MOLD, COL_JUDGMENT_DATE_TIME, COL_QUANTITY}
+    '合格
+    Dim SMD_PASSING As String() = {COL_INDIVIDUAL_NO, COL_LABEL_ISSUE_NO, COL_FACILITY_NAME, COL_MOLD, COL_CAVIAR, COL_CUSTOMER_PART_NUMBER,
+                                    COL_PRODUCT_NAME_ABBREVIATION, COL_JUDGMENT_DATE_TIME, COL_QUANTITY, COL_FULL_NAME}
+    '不良
+    Dim SMD_BAD As String() = {COL_INDIVIDUAL_NO, COL_LABEL_ISSUE_NO, COL_FACILITY_NAME, COL_MOLD, COL_CAVIAR, COL_CUSTOMER_PART_NUMBER,
+                                COL_PRODUCT_NAME_ABBREVIATION, COL_JUDGMENT_DATE_TIME, COL_QUANTITY, COL_CAUSE_OF_FAILURE, COL_FULL_NAME}
+    '調整
+    Dim SMD_ADJUSTMENT As String() = {COL_INDIVIDUAL_NO, COL_FACILITY_NAME, COL_MOLD, COL_PRODUCT_NAME_ABBREVIATION, COL_JUDGMENT_DATE_TIME, COL_QUANTITY}
+    'その他払出
+    Dim SMD_OTHERT As String() = {COL_INDIVIDUAL_NO, COL_WAREHOUSE, COL_PRODUCT_NAME, COL_WITHDRAWAL_DATE, COL_REASON_FOR_WITHDRAWAL, COL_REMARKS}
 
     Private Const CONST_SYSTEM_NAME As String = "前日以前詳細実績参照"
 
@@ -44,37 +85,96 @@
     ''' </summary>
     Private Function createGridData() As DataTable
         Dim dt As New DataTable
-        dt.Columns.Add(New DataColumn(COL_PRODUCT_NAME_ABBREVIATION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SECTION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_CLASSIFICATION, GetType(System.String)))
+        Select Case SC_K14.cmbProcess.Text
+            Case "成形"
+                Select Case Me.txtJudgmentCategory.Text
+                    Case "ショット"
+                        For i As Integer = 0 To SMD_SHOT.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_SHOT(i), GetType(System.String)))
+                        Next
+                        For j As Integer = 0 To 3
+                            Dim addRow As DataRow = dt.NewRow
+                            For index As Integer = 0 To SMD_SHOT.Length - 1
+                                Select Case index
+                                    Case 0
+                                        addRow(SMD_SHOT(index)) = "Shot" & index
+                                    Case Else
+                                        addRow(SMD_SHOT(index)) = index
+                                End Select
+                            Next
 
-        For i As Integer = 0 To 3
-            Dim addRow As DataRow = dt.NewRow
-            Select Case i
-                Case 0
-                    addRow(COL_PRODUCT_NAME_ABBREVIATION) = "FAS"
-                    addRow(COL_SECTION) = "11"
-                    addRow(COL_CLASSIFICATION) = "落下"
-                Case 1
-                    addRow(COL_PRODUCT_NAME_ABBREVIATION) = "FAS"
-                    addRow(COL_SECTION) = "11"
-                    addRow(COL_CLASSIFICATION) = "落下"
-                Case 2
-                    addRow(COL_PRODUCT_NAME_ABBREVIATION) = "FAS"
-                    addRow(COL_SECTION) = "11"
-                    addRow(COL_CLASSIFICATION) = "落下"
-                Case 3
-                    addRow(COL_PRODUCT_NAME_ABBREVIATION) = "FAS"
-                    addRow(COL_SECTION) = "11"
-                    addRow(COL_CLASSIFICATION) = "落下"
-                Case 4
-                    addRow(COL_PRODUCT_NAME_ABBREVIATION) = "FAS"
-                    addRow(COL_SECTION) = "11"
-                    addRow(COL_CLASSIFICATION) = "落下"
+                            dt.Rows.Add(addRow)
+                        Next
+                    Case "合格"
+                        For i As Integer = 0 To SMD_PASSING.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_PASSING(i), GetType(System.String)))
+                        Next
+                        For j As Integer = 0 To 3
+                            Dim addRow As DataRow = dt.NewRow
+                            For index As Integer = 0 To SMD_PASSING.Length - 1
+                                Select Case index
+                                    Case 0
+                                        addRow(SMD_PASSING(index)) = "Passing" & index
+                                    Case Else
+                                        addRow(SMD_PASSING(index)) = index
+                                End Select
+                            Next
 
-            End Select
-            dt.Rows.Add(addRow)
-        Next
+                            dt.Rows.Add(addRow)
+                        Next
+                    Case "不良"
+                        For i As Integer = 0 To SMD_BAD.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_BAD(i), GetType(System.String)))
+                        Next
+                        For j As Integer = 0 To 3
+                            Dim addRow As DataRow = dt.NewRow
+                            For index As Integer = 0 To SMD_BAD.Length - 1
+                                Select Case index
+                                    Case 0
+                                        addRow(SMD_BAD(index)) = "Bad" & index
+                                    Case Else
+                                        addRow(SMD_BAD(index)) = index
+                                End Select
+                            Next
+
+                            dt.Rows.Add(addRow)
+                        Next
+                    Case "調整"
+                        For i As Integer = 0 To SMD_ADJUSTMENT.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_ADJUSTMENT(i), GetType(System.String)))
+                        Next
+                        For j As Integer = 0 To 3
+                            Dim addRow As DataRow = dt.NewRow
+                            For index As Integer = 0 To SMD_ADJUSTMENT.Length - 1
+                                Select Case index
+                                    Case 0
+                                        addRow(SMD_ADJUSTMENT(index)) = "Adjustment" & index
+                                    Case Else
+                                        addRow(SMD_ADJUSTMENT(index)) = index
+                                End Select
+                            Next
+
+                            dt.Rows.Add(addRow)
+                        Next
+                    Case "その他払出"
+                        For i As Integer = 0 To SMD_OTHERT.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_OTHERT(i), GetType(System.String)))
+                        Next
+                        For j As Integer = 0 To 3
+                            Dim addRow As DataRow = dt.NewRow
+                            For index As Integer = 0 To SMD_OTHERT.Length - 1
+                                Select Case index
+                                    Case 0
+                                        addRow(SMD_OTHERT(index)) = "Other" & index
+                                    Case Else
+                                        addRow(SMD_OTHERT(index)) = index
+                                End Select
+                            Next
+
+                            dt.Rows.Add(addRow)
+                        Next
+                End Select
+        End Select
 
         Return dt
 
@@ -118,12 +218,12 @@
             End Select
         Next
 
-        gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 150
-        gridData.Columns(2).Width = 150
-        gridData.Columns(3).Width = 400
-        gridData.Columns(4).Width = 400
-        gridData.Columns(5).Width = 100
+        'gridData.Columns(0).Width = 50
+        'gridData.Columns(1).Width = 150
+        'gridData.Columns(2).Width = 150
+        'gridData.Columns(3).Width = 400
+        'gridData.Columns(4).Width = 400
+        'gridData.Columns(5).Width = 100
 
 
         '複数選択不可
@@ -132,13 +232,6 @@
         gridData.AllowUserToDeleteRows = False
         gridData.AllowUserToAddRows = False
         gridData.AllowUserToResizeRows = False
-    End Sub
-
-    ''' <summary>
-    ''' 検索ボタン押下
-    ''' </summary>
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        setGrid(createGridData())
     End Sub
 
     ''' <summary>
@@ -164,8 +257,10 @@
     ''' 初期表示
     ''' </summary>
     Private Sub SC_K14A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtJudgmentClassification.Text = "判定区分"
-        Me.txtJudgmentCategory.Text = "判定分類"
+        Me.txtJudgmentCategory.Text = SC_K14.judgmentCategory
+        Me.txtJudgmentClassification.Text = SC_K14.judgmentClassification
+
+        setGrid(createGridData())
 
     End Sub
 

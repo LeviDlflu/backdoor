@@ -1,6 +1,7 @@
 ﻿Imports System.Text
 Imports System.Data
 Imports System.Data.SqlClient
+'Imports PUCCommon
 
 Public Class SC_Z01
 
@@ -74,6 +75,8 @@ Public Class SC_Z01
     Private Const COL_SSECTION As String = "変動データ部"
     Private Const COL_SBIKOU As String = "備考"
 
+    Dim dt As New DataTable
+
     'Dim xml As New CmnXML("SC-Z01.xml", "SC-Z01")
 
 
@@ -98,6 +101,7 @@ Public Class SC_Z01
         '列ヘッダーの高さを行数に合わせる
         Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
 
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
@@ -636,6 +640,7 @@ Public Class SC_Z01
             MessageBox.Show(ex.ToString)
         End Try
     End Sub
+
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
         If gridData.Columns(e.ColumnIndex).Name = "詳細" And e.RowIndex >= 0 Then
             Dim frm As New SC_Z01A()
@@ -666,7 +671,7 @@ Public Class SC_Z01
         btn.DefaultCellStyle.NullValue = "来歴"
         gridData.Columns.Add(btn)
 
-        Dim dt As New DataTable
+        dt = New DataTable
 
         'dt.Columns.Add("詳細")
         dt.Columns.Add("工程")
@@ -798,5 +803,24 @@ Public Class SC_Z01
     ''' <param name="e">e</param>
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
 
+        'Dim headers As clsExcel.HeaderCell()
+
+
+        'headers = {
+        '    New clsExcel.HeaderCell(1, 1, 2, 1, "工程"),
+        '    New clsExcel.HeaderCell(1, 2, 2, 2, "品名略称"),
+        '    New clsExcel.HeaderCell(1, 3, 2, 3, "部品番号"),
+        '    New clsExcel.HeaderCell(1, 4, 2, 4, "前月末残"),
+        '    New clsExcel.HeaderCell(1, 5, 1, 7, "当月累計"),
+        '    New clsExcel.HeaderCell(2, 5, 2, 5, "受入"),
+        '    New clsExcel.HeaderCell(2, 6, 2, 6, "払出"),
+        '    New clsExcel.HeaderCell(2, 7, 2, 7, "その他払出"),
+        '    New clsExcel.HeaderCell(1, 8, 1, 10, "当日"),
+        '    New clsExcel.HeaderCell(2, 8, 2, 8, "受入"),
+        '    New clsExcel.HeaderCell(2, 9, 2, 9, "払出"),
+        '    New clsExcel.HeaderCell(2, 10, 2, 10, "その他払出"),
+        '    New clsExcel.HeaderCell(1, 11, 2, 11, "在庫残")}
+
+        'clsExcel.ExportExcel2(dt, headers, ColumnHeaderRowCount, "SC-Z01")
     End Sub
 End Class
