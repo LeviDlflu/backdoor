@@ -42,13 +42,11 @@ Partial Class SC_K17
         Me.btnExcel = New System.Windows.Forms.Button()
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
-        Me.Label43 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.gridData = New System.Windows.Forms.DataGridView()
         Me.Label38 = New System.Windows.Forms.Label()
-        Me.Label37 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -121,6 +119,7 @@ Partial Class SC_K17
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -235,9 +234,9 @@ Partial Class SC_K17
         Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label54.Location = New System.Drawing.Point(10, 173)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(137, 14)
+        Me.Label54.Size = New System.Drawing.Size(93, 14)
         Me.Label54.TabIndex = 271
-        Me.Label54.Text = "Actual dates(From)"
+        Me.Label54.Text = "Actual dates"
         '
         'Label53
         '
@@ -321,19 +320,9 @@ Partial Class SC_K17
         Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label44.Location = New System.Drawing.Point(13, 191)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(85, 11)
+        Me.Label44.Size = New System.Drawing.Size(49, 11)
         Me.Label44.TabIndex = 283
-        Me.Label44.Text = "(実績日(From))"
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.Label43.Location = New System.Drawing.Point(202, 191)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(71, 11)
-        Me.Label43.TabIndex = 284
-        Me.Label43.Text = "(実績日(To))"
+        Me.Label44.Text = "(実績日)"
         '
         'Label42
         '
@@ -349,7 +338,7 @@ Partial Class SC_K17
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label40.Location = New System.Drawing.Point(157, 249)
+        Me.Label40.Location = New System.Drawing.Point(13, 268)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(67, 12)
         Me.Label40.TabIndex = 287
@@ -384,10 +373,10 @@ Partial Class SC_K17
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gridData.Location = New System.Drawing.Point(7, 264)
+        Me.gridData.Location = New System.Drawing.Point(7, 283)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1521, 398)
+        Me.gridData.Size = New System.Drawing.Size(1343, 379)
         Me.gridData.TabIndex = 278
         '
         'Label38
@@ -399,16 +388,6 @@ Partial Class SC_K17
         Me.Label38.Size = New System.Drawing.Size(142, 19)
         Me.Label38.TabIndex = 279
         Me.Label38.Text = "Search results"
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label37.Location = New System.Drawing.Point(201, 173)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(120, 14)
-        Me.Label37.TabIndex = 275
-        Me.Label37.Text = "Actual dates(To)"
         '
         'Label9
         '
@@ -1053,18 +1032,18 @@ Partial Class SC_K17
         'Label55
         '
         Me.Label55.AutoSize = True
-        Me.Label55.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label55.Location = New System.Drawing.Point(201, 152)
+        Me.Label55.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label55.Location = New System.Drawing.Point(700, 242)
         Me.Label55.Name = "Label55"
-        Me.Label55.Size = New System.Drawing.Size(76, 14)
+        Me.Label55.Size = New System.Drawing.Size(144, 19)
         Me.Label55.TabIndex = 272
-        Me.Label55.Text = "検索時間 :"
+        Me.Label55.Text = "Search time   :"
         '
         'Label56
         '
         Me.Label56.AutoSize = True
         Me.Label56.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label56.Location = New System.Drawing.Point(283, 152)
+        Me.Label56.Location = New System.Drawing.Point(850, 247)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(140, 14)
         Me.Label56.TabIndex = 303
@@ -1172,11 +1151,22 @@ Partial Class SC_K17
         Me.Label39.TabIndex = 316
         Me.Label39.Text = "(集計単位)"
         '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label37.Location = New System.Drawing.Point(702, 268)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(67, 12)
+        Me.Label37.TabIndex = 317
+        Me.Label37.Text = "(検索時間)"
+        '
         'SC_K17
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1350, 689)
+        Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.Label39)
         Me.Controls.Add(Me.Label36)
         Me.Controls.Add(Me.RadioButton2)
@@ -1191,12 +1181,10 @@ Partial Class SC_K17
         Me.Controls.Add(Me.Label55)
         Me.Controls.Add(Me.Label50)
         Me.Controls.Add(Me.Label51)
-        Me.Controls.Add(Me.Label37)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.gridData)
         Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.Label42)
-        Me.Controls.Add(Me.Label43)
         Me.Controls.Add(Me.Label44)
         Me.Controls.Add(Me.Label45)
         Me.Controls.Add(Me.GroupBox1)
@@ -1282,13 +1270,11 @@ Partial Class SC_K17
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label45 As Label
     Friend WithEvents Label44 As Label
-    Friend WithEvents Label43 As Label
     Friend WithEvents Label42 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents TimeSys As Timer
     Public WithEvents gridData As DataGridView
     Friend WithEvents Label38 As Label
-    Friend WithEvents Label37 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label21 As Label
@@ -1362,4 +1348,5 @@ Partial Class SC_K17
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents Label36 As Label
     Friend WithEvents Label39 As Label
+    Friend WithEvents Label37 As Label
 End Class
