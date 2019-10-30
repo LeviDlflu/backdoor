@@ -18,6 +18,8 @@ Public Class SC_K21B
         Timer1.Interval = 10
         Timer1.Start()
 
+        Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+
         setGrid()
     End Sub
 
@@ -102,6 +104,7 @@ Public Class SC_K21B
 
         GridCtrl.DataSource = dt.Copy
 
+        GridCtrl.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
         GridCtrl.Columns(0).Width = 100
         GridCtrl.Columns(1).Width = 200
@@ -118,16 +121,24 @@ Public Class SC_K21B
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
     End Sub
-
-    Private Sub GridCtrl_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles GridCtrl.CellPainting
-        If e.ColumnIndex < 0 And e.RowIndex >= 0 And e.RowIndex < GridCtrl.Rows.Count - 1 Then
-            e.Paint(e.ClipBounds, DataGridViewPaintParts.All)
-            Dim indexrect As Drawing.Rectangle = e.CellBounds
-            indexrect.Inflate(-2, -2)
-            TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexrect, e.CellStyle.ForeColor, TextFormatFlags.Right)
-            e.Handled = True
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
+        Dim dgv As DataGridView = CType(sender, DataGridView)
+        If dgv.RowHeadersVisible Then
+            '行番号を描画する範囲を決定する
+            Dim rect As New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
+        dgv.RowHeadersWidth, e.RowBounds.Height)
+            rect.Inflate(-2, -2)
+            '行番号を描画する
+            TextRenderer.DrawText(e.Graphics,
+        (e.RowIndex + 1).ToString(),
+        e.InheritedRowStyle.Font,
+        rect,
+        e.InheritedRowStyle.ForeColor,
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
+
+
 
     Private Sub Finish_Click(sender As Object, e As EventArgs)
 
