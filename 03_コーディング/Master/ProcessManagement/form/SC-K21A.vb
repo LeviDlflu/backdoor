@@ -19,6 +19,8 @@ Public Class SC_K21A
         Timer1.Interval = 10
         Timer1.Start()
 
+        Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+
         setGrid()
     End Sub
 
@@ -51,6 +53,8 @@ Public Class SC_K21A
 
         GridCtrl.DataSource = dt.Copy
 
+        GridCtrl.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
         GridCtrl.Columns(0).Width = 150
         GridCtrl.Columns(1).Width = 260
         GridCtrl.Columns(2).Width = 300
@@ -65,17 +69,32 @@ Public Class SC_K21A
         BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
     End Sub
 
-    Private Sub GridCtrl_CellPainting(ByVal sender As Object, ByVal e As DataGridViewCellPaintingEventArgs) Handles GridCtrl.CellPainting
-        If e.ColumnIndex < 0 And e.RowIndex >= 0 And e.RowIndex < GridCtrl.Rows.Count - 1 Then
-            e.Paint(e.ClipBounds, DataGridViewPaintParts.All)
-            Dim indexrect As Drawing.Rectangle = e.CellBounds
-            indexrect.Inflate(-2, -2)
-            TextRenderer.DrawText(e.Graphics, (e.RowIndex + 1).ToString(), e.CellStyle.Font, indexrect, e.CellStyle.ForeColor, TextFormatFlags.Right)
-            e.Handled = True
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
+        Dim dgv As DataGridView = CType(sender, DataGridView)
+        If dgv.RowHeadersVisible Then
+            '行番号を描画する範囲を決定する
+            Dim rect As New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
+        dgv.RowHeadersWidth, e.RowBounds.Height)
+            rect.Inflate(-2, -2)
+            '行番号を描画する
+            TextRenderer.DrawText(e.Graphics,
+        (e.RowIndex + 1).ToString(),
+        e.InheritedRowStyle.Font,
+        rect,
+        e.InheritedRowStyle.ForeColor,
+        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
 
     Private Sub Finish_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BottomDate_Click(sender As Object, e As EventArgs) Handles BottomDate.Click
+
+    End Sub
+
+    Private Sub Finish_Click_1(sender As Object, e As EventArgs) Handles Finish.Click
 
     End Sub
 End Class
