@@ -52,6 +52,7 @@
 
         Patten3()
 
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
         slblDay.Text = Format(Now, "yyyy/MM/dd")
         slblTime.Text = Format(Now, "HH:mm")
 
