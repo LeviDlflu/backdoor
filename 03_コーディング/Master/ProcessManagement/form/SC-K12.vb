@@ -254,7 +254,7 @@
         End If
     End Sub
 
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
+    Private Sub btnEnd_Click(sender As Object, e As EventArgs)
         If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
             Me.Close()
         End If
@@ -800,4 +800,9 @@
         gridData.Columns(COL_GOODS_ABBREVIATION).Width = 100
     End Sub
 
+    Private Sub btnEnd_Click_1(sender As Object, e As EventArgs) Handles btnEnd.Click
+        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
+            Me.Close()
+        End If
+    End Sub
 End Class
