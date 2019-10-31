@@ -736,7 +736,7 @@ Public Class SC_Z01
 
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 50
-        gridData.Columns(2).Width = 180
+        gridData.Columns(2).Width = 160
         gridData.Columns(3).Width = 100
         gridData.Columns(4).Width = 100
         gridData.Columns(5).Width = 100
@@ -745,7 +745,7 @@ Public Class SC_Z01
         gridData.Columns(8).Width = 100
         gridData.Columns(9).Width = 100
         gridData.Columns(10).Width = 100
-        gridData.Columns(11).Width = 200
+        gridData.Columns(11).Width = 124
     End Sub
 
     ''' <summary>
