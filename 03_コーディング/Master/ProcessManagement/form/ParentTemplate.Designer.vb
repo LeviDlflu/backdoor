@@ -34,9 +34,12 @@ Partial Class ParentTemplate
         Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stsFooter = New System.Windows.Forms.StatusStrip()
-        Me.btnMenu8 = New System.Windows.Forms.Button()
+        Me.btnFinish = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.lblHLine = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.stsFooter.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -49,36 +52,38 @@ Partial Class ParentTemplate
         Me.GroupBox1.Controls.Add(Me.lblMaster)
         Me.GroupBox1.Controls.Add(Me.txbEnvironment)
         Me.GroupBox1.Controls.Add(Me.txbLogin)
-        Me.GroupBox1.Location = New System.Drawing.Point(-2, 0)
+        Me.GroupBox1.Location = New System.Drawing.Point(-2, -10)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1359, 59)
+        Me.GroupBox1.Size = New System.Drawing.Size(1359, 53)
         Me.GroupBox1.TabIndex = 267
         Me.GroupBox1.TabStop = False
         '
         'lblEnvironment
         '
         Me.lblEnvironment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblEnvironment.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.lblEnvironment.AutoSize = True
+        Me.lblEnvironment.Font = New System.Drawing.Font("MS UI Gothic", 9.75!)
         Me.lblEnvironment.ForeColor = System.Drawing.Color.White
-        Me.lblEnvironment.Location = New System.Drawing.Point(1133, 31)
+        Me.lblEnvironment.Location = New System.Drawing.Point(1022, 32)
         Me.lblEnvironment.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lblEnvironment.Name = "lblEnvironment"
-        Me.lblEnvironment.Size = New System.Drawing.Size(103, 19)
+        Me.lblEnvironment.Size = New System.Drawing.Size(208, 13)
         Me.lblEnvironment.TabIndex = 6
-        Me.lblEnvironment.Text = "Environment"
+        Me.lblEnvironment.Text = "Connection environment(接続環境)"
         Me.lblEnvironment.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'lblLogin
         '
         Me.lblLogin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblLogin.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.lblLogin.AutoSize = True
+        Me.lblLogin.Font = New System.Drawing.Font("MS UI Gothic", 9.75!)
         Me.lblLogin.ForeColor = System.Drawing.Color.White
-        Me.lblLogin.Location = New System.Drawing.Point(1136, 10)
+        Me.lblLogin.Location = New System.Drawing.Point(1105, 12)
         Me.lblLogin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lblLogin.Name = "lblLogin"
-        Me.lblLogin.Size = New System.Drawing.Size(99, 19)
+        Me.lblLogin.Size = New System.Drawing.Size(125, 13)
         Me.lblLogin.TabIndex = 4
-        Me.lblLogin.Text = "Login name"
+        Me.lblLogin.Text = "Login user(ログイン者)"
         Me.lblLogin.TextAlign = System.Drawing.ContentAlignment.BottomRight
         '
         'lblMaster
@@ -86,7 +91,7 @@ Partial Class ParentTemplate
         Me.lblMaster.AutoSize = True
         Me.lblMaster.Font = New System.Drawing.Font("MS UI Gothic", 24.0!, System.Drawing.FontStyle.Bold)
         Me.lblMaster.ForeColor = System.Drawing.Color.White
-        Me.lblMaster.Location = New System.Drawing.Point(84, 15)
+        Me.lblMaster.Location = New System.Drawing.Point(6, 15)
         Me.lblMaster.Name = "lblMaster"
         Me.lblMaster.Size = New System.Drawing.Size(253, 33)
         Me.lblMaster.TabIndex = 1
@@ -96,12 +101,12 @@ Partial Class ParentTemplate
         'txbEnvironment
         '
         Me.txbEnvironment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txbEnvironment.BackColor = System.Drawing.Color.White
-        Me.txbEnvironment.Font = New System.Drawing.Font("SimSun", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.txbEnvironment.Location = New System.Drawing.Point(1235, 31)
+        Me.txbEnvironment.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.txbEnvironment.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txbEnvironment.Location = New System.Drawing.Point(1236, 30)
         Me.txbEnvironment.Name = "txbEnvironment"
         Me.txbEnvironment.ReadOnly = True
-        Me.txbEnvironment.Size = New System.Drawing.Size(120, 23)
+        Me.txbEnvironment.Size = New System.Drawing.Size(120, 19)
         Me.txbEnvironment.TabIndex = 5
         Me.txbEnvironment.TabStop = False
         Me.txbEnvironment.Text = "本番環境"
@@ -109,11 +114,11 @@ Partial Class ParentTemplate
         'txbLogin
         '
         Me.txbLogin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txbLogin.BackColor = System.Drawing.Color.White
-        Me.txbLogin.Font = New System.Drawing.Font("SimSun", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        Me.txbLogin.Location = New System.Drawing.Point(1235, 10)
+        Me.txbLogin.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
+        Me.txbLogin.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        Me.txbLogin.Location = New System.Drawing.Point(1236, 10)
         Me.txbLogin.Name = "txbLogin"
-        Me.txbLogin.Size = New System.Drawing.Size(120, 23)
+        Me.txbLogin.Size = New System.Drawing.Size(120, 19)
         Me.txbLogin.TabIndex = 4
         Me.txbLogin.TabStop = False
         Me.txbLogin.Text = "ログインユーザ"
@@ -160,17 +165,38 @@ Partial Class ParentTemplate
         Me.stsFooter.TabIndex = 234
         Me.stsFooter.Text = "StatusStrip1"
         '
-        'btnMenu8
+        'btnFinish
         '
-        Me.btnMenu8.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnMenu8.BackColor = System.Drawing.SystemColors.Control
-        Me.btnMenu8.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnMenu8.Location = New System.Drawing.Point(1233, 78)
-        Me.btnMenu8.Name = "btnMenu8"
-        Me.btnMenu8.Size = New System.Drawing.Size(100, 49)
-        Me.btnMenu8.TabIndex = 269
-        Me.btnMenu8.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.btnMenu8.UseVisualStyleBackColor = False
+        Me.btnFinish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnFinish.BackColor = System.Drawing.SystemColors.Control
+        Me.btnFinish.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.btnFinish.Location = New System.Drawing.Point(1242, 9)
+        Me.btnFinish.Name = "btnFinish"
+        Me.btnFinish.Size = New System.Drawing.Size(100, 49)
+        Me.btnFinish.TabIndex = 269
+        Me.btnFinish.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
+        Me.btnFinish.UseVisualStyleBackColor = False
+        '
+        'Panel1
+        '
+        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.Controls.Add(Me.lblHLine)
+        Me.Panel1.Controls.Add(Me.btnFinish)
+        Me.Panel1.Location = New System.Drawing.Point(0, 43)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1354, 76)
+        Me.Panel1.TabIndex = 270
+        '
+        'lblHLine
+        '
+        Me.lblHLine.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblHLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblHLine.Location = New System.Drawing.Point(1, 72)
+        Me.lblHLine.Name = "lblHLine"
+        Me.lblHLine.Size = New System.Drawing.Size(1350, 2)
+        Me.lblHLine.TabIndex = 5
         '
         'ParentTemplate
         '
@@ -178,7 +204,7 @@ Partial Class ParentTemplate
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1354, 659)
-        Me.Controls.Add(Me.btnMenu8)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.stsFooter)
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -189,6 +215,7 @@ Partial Class ParentTemplate
         Me.GroupBox1.PerformLayout()
         Me.stsFooter.ResumeLayout(False)
         Me.stsFooter.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -204,5 +231,7 @@ Partial Class ParentTemplate
     Friend WithEvents slblDay As ToolStripStatusLabel
     Friend WithEvents slblTime As ToolStripStatusLabel
     Friend WithEvents stsFooter As StatusStrip
-    Friend WithEvents btnMenu8 As Button
+    Friend WithEvents btnFinish As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblHLine As Label
 End Class

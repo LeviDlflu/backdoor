@@ -10,7 +10,7 @@
     ''' <summary>
     ''' 　終了ボタン押下
     ''' </summary>
-    Private Sub btnMenu8_Click(sender As Object, e As EventArgs) Handles btnMenu8.Click
+    Private Sub btnMenu8_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
 
         If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
             Me.Close()
