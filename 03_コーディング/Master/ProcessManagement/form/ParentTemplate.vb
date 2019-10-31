@@ -7,63 +7,6 @@
         slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
-    Private Sub btnMenu0_Click(sender As Object, e As EventArgs) 
-        btnMenu0Click()
-    End Sub
-
-    Private Sub btnMenu1_Click(sender As Object, e As EventArgs) 
-        btnMenu1Click()
-    End Sub
-
-    Private Sub btnMenu2_Click(sender As Object, e As EventArgs) 
-        btnMenu2Click()
-    End Sub
-
-    Private Sub btnMenu3_Click(sender As Object, e As EventArgs) 
-        btnMenu3Click()
-    End Sub
-
-    Private Sub btnMenu4_Click(sender As Object, e As EventArgs) 
-        btnMenu4Click()
-    End Sub
-
-    Private Sub btnMenu5_Click(sender As Object, e As EventArgs) 
-        btnMenu5Click()
-    End Sub
-
-    Private Sub btnMenu6_Click(sender As Object, e As EventArgs) 
-        btnMenu6Click()
-    End Sub
-
-    Private Sub btnMenu7_Click(sender As Object, e As EventArgs) 
-        btnMenu7Click()
-    End Sub
-
-    Public Overridable Sub btnMenu0Click()
-
-    End Sub
-    Public Overridable Sub btnMenu1Click()
-
-    End Sub
-    Public Overridable Sub btnMenu2Click()
-
-    End Sub
-    Public Overridable Sub btnMenu3Click()
-
-    End Sub
-    Public Overridable Sub btnMenu4Click()
-
-    End Sub
-    Public Overridable Sub btnMenu5Click()
-
-    End Sub
-    Public Overridable Sub btnMenu6Click()
-
-    End Sub
-    Public Overridable Sub btnMenu7Click()
-
-    End Sub
-
     ''' <summary>
     ''' 　終了ボタン押下
     ''' </summary>
