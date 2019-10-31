@@ -11,13 +11,11 @@ Public Class SC_K21C
     Private Sub init()
         Me.Target_date.Enabled = True
         Me.Withdrawal_category.Enabled = True
-        Me.bntBack.Enabled = True
+        Me.btnBack.Enabled = True
 
         Me.Target_date.Value = Date.Today()
         Me.Withdrawal_category.Text = String.Empty
 
-        Timer1.Interval = 10
-        Timer1.Start()
 
         Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
 
@@ -72,25 +70,13 @@ Public Class SC_K21C
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
-        Dim dgv As DataGridView = CType(sender, DataGridView)
-        If dgv.RowHeadersVisible Then
-            '行番号を描画する範囲を決定する
-            Dim rect As New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
-        dgv.RowHeadersWidth, e.RowBounds.Height)
-            rect.Inflate(-2, -2)
-            '行番号を描画する
-            TextRenderer.DrawText(e.Graphics,
-        (e.RowIndex + 1).ToString(),
-        e.InheritedRowStyle.Font,
-        rect,
-        e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
-        End If
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
+
     End Sub
 
     Private Sub Finish_Click(sender As Object, e As EventArgs)
@@ -98,6 +84,10 @@ Public Class SC_K21C
     End Sub
 
     Private Sub Finish_Click_1(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub btnBack_Click(sender As Object, e As EventArgs) Handles btnBack.Click
 
     End Sub
 End Class
