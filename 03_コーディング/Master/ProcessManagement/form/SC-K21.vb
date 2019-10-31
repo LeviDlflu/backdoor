@@ -94,7 +94,7 @@ Public Class SC_K21
 
         GridCtrl.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         GridCtrl.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        GridCtrl.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        GridCtrl.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         GridCtrl.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         GridCtrl.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
         GridCtrl.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft

@@ -55,6 +55,9 @@ Public Class SC_K21C
 
         GridCtrl.DataSource = dt.Copy
 
+        GridCtrl.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        GridCtrl.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         GridCtrl.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
         GridCtrl.Columns(0).Width = 100
