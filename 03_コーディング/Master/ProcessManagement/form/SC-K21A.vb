@@ -53,11 +53,14 @@ Public Class SC_K21A
 
         GridCtrl.DataSource = dt.Copy
 
+        GridCtrl.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        GridCtrl.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         GridCtrl.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
         GridCtrl.Columns(0).Width = 150
         GridCtrl.Columns(1).Width = 260
-        GridCtrl.Columns(2).Width = 300
+        GridCtrl.Columns(2).Width = 290
 
         GridCtrl.Columns(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
         GridCtrl.Columns(1).HeaderText = "Process abbreviation" & vbCrLf & "(工程略称)"
