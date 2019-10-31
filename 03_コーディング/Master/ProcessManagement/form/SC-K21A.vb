@@ -70,7 +70,7 @@ Public Class SC_K21A
         slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
             '行番号を描画する範囲を決定する
