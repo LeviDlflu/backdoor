@@ -15,6 +15,9 @@ Public Class SC_K21B
         Me.Target_date.Value = Date.Today()
         Me.Withdrawal_category.Text = String.Empty
 
+        Timer1.Interval = 10
+        Timer1.Start()
+
         Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
 
         setGrid()
@@ -118,11 +121,10 @@ Public Class SC_K21B
 
     End Sub
 
-    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
     End Sub
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
             '行番号を描画する範囲を決定する

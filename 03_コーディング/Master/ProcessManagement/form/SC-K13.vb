@@ -605,19 +605,19 @@
             dt.Rows.Add(dr)
         Next
         gridData.DataSource = dt
-        gridData.Columns(COL_FABRIC).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DIRECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_COMPLETING_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_SPOT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_REPAINT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_SPOT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        gridData.Columns(COL_FABRIC).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DIRECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETING_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_SPOT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_REPAINT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_SPOT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
 
         gridData.Columns(COL_FABRIC).HeaderText = headerName(COL_FABRIC)
@@ -694,13 +694,13 @@
         Next
 
         gridData.DataSource = dt
-        gridData.Columns(COL_START).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_COMPLETION_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_PASS).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        gridData.Columns(COL_DEFECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+        gridData.Columns(COL_START).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETION_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_PASS).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.Columns(COL_DEFECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
 
         gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = headerName(COL_TODAY)
