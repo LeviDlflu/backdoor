@@ -465,10 +465,10 @@ Partial Class SC_K12
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.gridData.DefaultCellStyle = DataGridViewCellStyle2
-        Me.gridData.Location = New System.Drawing.Point(-2, 385)
+        Me.gridData.Location = New System.Drawing.Point(16, 385)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1355, 247)
+        Me.gridData.Size = New System.Drawing.Size(1318, 247)
         Me.gridData.TabIndex = 319
         '
         'Label40
@@ -481,7 +481,7 @@ Partial Class SC_K12
         Me.Label40.TabIndex = 321
         Me.Label40.Text = "(検索結果)"
         '
-        'SC_K121
+        'SC_K12
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.ClientSize = New System.Drawing.Size(1354, 659)
@@ -494,7 +494,7 @@ Partial Class SC_K12
         Me.Controls.Add(Me.btnExcel)
         Me.Controls.Add(Me.Panel)
         Me.Controls.Add(Me.btnSearch)
-        Me.Name = "SC_K121"
+        Me.Name = "SC_K12"
         Me.Controls.SetChildIndex(Me.btnSearch, 0)
         Me.Controls.SetChildIndex(Me.Panel, 0)
         Me.Controls.SetChildIndex(Me.btnExcel, 0)
