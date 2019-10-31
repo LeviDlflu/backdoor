@@ -15,10 +15,6 @@ Public Class SC_K21A
 
         Me.Target_date.Value = Date.Today()
         Me.Withdrawal_category.Text = String.Empty
-
-        Timer1.Interval = 10
-        Timer1.Start()
-
         Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
 
         setGrid()
@@ -68,8 +64,9 @@ Public Class SC_K21A
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
@@ -93,11 +90,11 @@ Public Class SC_K21A
 
     End Sub
 
-    Private Sub BottomDate_Click(sender As Object, e As EventArgs) Handles BottomDate.Click
+    Private Sub BottomDate_Click(sender As Object, e As EventArgs)
 
     End Sub
 
-    Private Sub Finish_Click_1(sender As Object, e As EventArgs) Handles Finish.Click
+    Private Sub Finish_Click_1(sender As Object, e As EventArgs)
 
     End Sub
 End Class
