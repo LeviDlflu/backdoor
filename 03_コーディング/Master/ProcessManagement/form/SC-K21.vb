@@ -9,9 +9,9 @@ Public Class SC_K21
                              {"受払年月日", "Payment date" & vbCrLf & "(受払年月日)"},
                              {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
                              {"工程略称", "Process abbreviation" & vbCrLf & "(工程略称)"},
-                             {"個体ＮＯ", "Lot No" & vbCrLf & "(個体ＮＯ)"},
-                             {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
-                             {"払出数量", "Issued quantity" & vbCrLf & "(払出数量)"},
+                             {"個体ＮＯ", "Individual NO" & vbCrLf & "(個体ＮＯ)"},
+                             {"品名略称", "Product abbreviation" & vbCrLf & "(品名略称)"},
+                             {"払出数量", "Payment quantity" & vbCrLf & "(払出数量)"},
                              {"備考", "Remarks" & vbCrLf & "(備考)"}
                             }
 
@@ -29,16 +29,16 @@ Public Class SC_K21
     End Sub
     Private Sub init()
         Me.Target_date.Enabled = True
-        Me.Withdrawal_category.Enabled = True
-        Me.Finish.Enabled = True
+        Me.cmb_PaymentCD.Enabled = True
+        Me.btnFinish.Enabled = True
 
         Me.Target_date.Value = Date.Today()
-        Me.Withdrawal_category.Text = String.Empty
+        Me.cmb_PaymentCD.Text = String.Empty
 
         Timer1.Interval = 10
         Timer1.Start()
 
-        Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
+        Me.SearchDateTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
         setGrid()
     End Sub
@@ -82,13 +82,13 @@ Public Class SC_K21
         GridCtrl.DataSource = dt.Copy
 
         GridCtrl.Columns(0).Width = 50
-        GridCtrl.Columns(1).Width = 100
+        GridCtrl.Columns(1).Width = 120
         GridCtrl.Columns(2).Width = 150
         GridCtrl.Columns(3).Width = 150
         GridCtrl.Columns(4).Width = 150
-        GridCtrl.Columns(5).Width = 250
+        GridCtrl.Columns(5).Width = 240
         GridCtrl.Columns(6).Width = 150
-        GridCtrl.Columns(7).Width = 300
+        GridCtrl.Columns(7).Width = 240
 
         GridCtrl.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
@@ -131,6 +131,10 @@ Public Class SC_K21
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+    End Sub
+
+    Private Sub btnFinish_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
 
     End Sub
 End Class
