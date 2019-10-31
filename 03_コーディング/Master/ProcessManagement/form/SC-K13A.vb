@@ -1,11 +1,10 @@
 ﻿Public Class SC_K13A
     Dim headerName As Hashtable = New Hashtable From {
-                             {"選択", "Select" & vbCrLf & "(選択)"},
-                             {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
-                             {"不良コード", "Defect code" & vbCrLf & "(不良コード)"},
-                             {"不良現象名", "Defect phenomenon name" & vbCrLf & "(不良現象名)"},
-                             {"備考", "Remarks" & vbCrLf & "(備考)"},
-                             {"表示区分", "Display division" & vbCrLf & "(表示区分)"}
+                             {"個体No", "Individual No" & vbCrLf & "(個体No)"},
+                             {"数量", "Quantity" & vbCrLf & "(数量)"},
+                             {"日付・時間", "Date / Time" & vbCrLf & "(日付・時間)"},
+                             {"不良原因", "Cause of failure" & vbCrLf & "(不良原因)"},
+                             {"キャビ", "Caviar" & vbCrLf & "(キャビ)"}
                             }
 
     Private Const COL_NO_ID As String = "項番"
@@ -70,7 +69,7 @@
         For Each col As DataColumn In dtData.Columns
             Dim addCol As New DataGridViewTextBoxColumn()
             addCol.DataPropertyName = col.ColumnName
-            addCol.HeaderText = col.ColumnName
+            addCol.HeaderText = headerName(col.ColumnName)
             addCol.Name = col.ColumnName
             gridData.Columns.Add(addCol)
         Next
@@ -81,6 +80,10 @@
 
             '横位置
             Select Case gridData.Columns(i).Name
+                Case COL_INDIVISUAL_NO, COL_CAUSE_FAILURE, COL_CAVIAR
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case COL_QUANTITY
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             End Select
@@ -137,31 +140,31 @@
                     addRow(COL_CAVIAR) = "30000001"
                 Case 2
                     addRow(COL_INDIVISUAL_NO) = "9000001"
-                    addRow(COL_QUANTITY) = "1"
+                    addRow(COL_QUANTITY) = "2"
                     addRow(COL_DATETIME) = "2019/01/01 12:09"
                     addRow(COL_CAUSE_FAILURE) = "不良200001"
                     addRow(COL_CAVIAR) = "30000001"
                 Case 3
                     addRow(COL_INDIVISUAL_NO) = "9000001"
-                    addRow(COL_QUANTITY) = "1"
+                    addRow(COL_QUANTITY) = "11"
                     addRow(COL_DATETIME) = "2019/01/01 12:09"
                     addRow(COL_CAUSE_FAILURE) = "不良200001"
                     addRow(COL_CAVIAR) = "30000001"
                 Case 4
                     addRow(COL_INDIVISUAL_NO) = "9000001"
-                    addRow(COL_QUANTITY) = "1"
+                    addRow(COL_QUANTITY) = "31"
                     addRow(COL_DATETIME) = "2019/01/01 12:09"
                     addRow(COL_CAUSE_FAILURE) = "不良200001"
                     addRow(COL_CAVIAR) = "30000001"
                 Case 5
                     addRow(COL_INDIVISUAL_NO) = "9000001"
-                    addRow(COL_QUANTITY) = "1"
+                    addRow(COL_QUANTITY) = "5"
                     addRow(COL_DATETIME) = "2019/01/01 12:09"
                     addRow(COL_CAUSE_FAILURE) = "不良200001"
                     addRow(COL_CAVIAR) = "30000001"
                 Case 6
                     addRow(COL_INDIVISUAL_NO) = "9000001"
-                    addRow(COL_QUANTITY) = "1"
+                    addRow(COL_QUANTITY) = "7"
                     addRow(COL_DATETIME) = "2019/01/01 12:09"
                     addRow(COL_CAUSE_FAILURE) = "不良200001"
                     addRow(COL_CAVIAR) = "30000001"
