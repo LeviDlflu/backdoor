@@ -7,21 +7,6 @@
         slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) 
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        '    Me.Close()
-        'End If
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
-    End Sub
-
     Private Sub btnMenu0_Click(sender As Object, e As EventArgs) 
         btnMenu0Click()
     End Sub
@@ -77,5 +62,15 @@
     End Sub
     Public Overridable Sub btnMenu7Click()
 
+    End Sub
+
+    ''' <summary>
+    ''' 　終了ボタン押下
+    ''' </summary>
+    Private Sub btnMenu8_Click(sender As Object, e As EventArgs) Handles btnMenu8.Click
+
+        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
+            Me.Close()
+        End If
     End Sub
 End Class
