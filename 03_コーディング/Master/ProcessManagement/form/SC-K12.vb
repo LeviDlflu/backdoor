@@ -68,7 +68,7 @@
 
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
 
-    Private Sub SC_K121_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub SC_K12_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblMaster.Text = "Progress management(進捗管理)"
         Me.Text = "[" & Me.Name & "]" & "Progress management(進捗管理)"
         Dim dt As New DataTable
