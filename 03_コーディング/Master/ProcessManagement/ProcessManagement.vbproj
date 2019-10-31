@@ -72,6 +72,33 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="form\DataGridViewMerge.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="form\ParentTemplate.Designer.vb">
+      <DependentUpon>ParentTemplate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\ParentTemplate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K00.Designer.vb">
+      <DependentUpon>SC-K00.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K00.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K00A.Designer.vb">
+      <DependentUpon>SC-K00A.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K00A.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\SC-K00B.Designer.vb">
+      <DependentUpon>SC-K00B.vb</DependentUpon>
+    </Compile>
+    <Compile Include="form\SC-K00B.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="form\SC-K12.Designer.vb">
       <DependentUpon>SC-K12.vb</DependentUpon>
     </Compile>
@@ -185,6 +212,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="form\ParentTemplate.resx">
+      <DependentUpon>ParentTemplate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K00.resx">
+      <DependentUpon>SC-K00.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K00A.resx">
+      <DependentUpon>SC-K00A.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\SC-K00B.resx">
+      <DependentUpon>SC-K00B.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\SC-K12.resx">
       <DependentUpon>SC-K12.vb</DependentUpon>
     </EmbeddedResource>
