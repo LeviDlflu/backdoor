@@ -22,8 +22,9 @@ Partial Class SC_K13A
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.slblMargin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
@@ -63,6 +64,7 @@ Partial Class SC_K13A
         Me.Label57 = New System.Windows.Forms.Label()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
+        Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.grpHeader.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -109,6 +111,7 @@ Partial Class SC_K13A
         Me.cmbProcessCode.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbProcessCode.BackColor = System.Drawing.Color.Yellow
         Me.cmbProcessCode.FormattingEnabled = True
+        Me.cmbProcessCode.Items.AddRange(New Object() {"Spark", "Kafka"})
         Me.cmbProcessCode.Location = New System.Drawing.Point(8, 204)
         Me.cmbProcessCode.Name = "cmbProcessCode"
         Me.cmbProcessCode.Size = New System.Drawing.Size(145, 20)
@@ -144,11 +147,11 @@ Partial Class SC_K13A
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("MS UI Gothic", 27.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label15.Font = New System.Drawing.Font("MS UI Gothic", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.White
         Me.Label15.Location = New System.Drawing.Point(626, 13)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(345, 37)
+        Me.Label15.Size = New System.Drawing.Size(273, 29)
         Me.Label15.TabIndex = 7
         Me.Label15.Text = "(当日詳細実績参照)"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -231,26 +234,26 @@ Partial Class SC_K13A
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(13, 278)
         Me.gridData.Name = "gridData"
         Me.gridData.ReadOnly = True
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("宋体", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(134, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gridData.RowTemplate.Height = 21
         Me.gridData.Size = New System.Drawing.Size(1321, 384)
         Me.gridData.TabIndex = 182
@@ -429,6 +432,7 @@ Partial Class SC_K13A
         Me.txtProcessCd.ReadOnly = True
         Me.txtProcessCd.Size = New System.Drawing.Size(142, 21)
         Me.txtProcessCd.TabIndex = 215
+        Me.txtProcessCd.Text = "C01"
         '
         'txtFacility
         '
@@ -437,6 +441,7 @@ Partial Class SC_K13A
         Me.txtFacility.ReadOnly = True
         Me.txtFacility.Size = New System.Drawing.Size(142, 21)
         Me.txtFacility.TabIndex = 216
+        Me.txtFacility.Text = "D01"
         '
         'txtProductAbbreviation
         '
@@ -445,6 +450,7 @@ Partial Class SC_K13A
         Me.txtProductAbbreviation.ReadOnly = True
         Me.txtProductAbbreviation.Size = New System.Drawing.Size(221, 21)
         Me.txtProductAbbreviation.TabIndex = 217
+        Me.txtProductAbbreviation.Text = "SD001"
         '
         'txtMold
         '
@@ -453,6 +459,7 @@ Partial Class SC_K13A
         Me.txtMold.ReadOnly = True
         Me.txtMold.Size = New System.Drawing.Size(142, 21)
         Me.txtMold.TabIndex = 218
+        Me.txtMold.Text = "F001"
         '
         'srDate
         '
@@ -491,6 +498,11 @@ Partial Class SC_K13A
         Me.Label56.Size = New System.Drawing.Size(61, 12)
         Me.Label56.TabIndex = 299
         Me.Label56.Text = "(検索時間)"
+        '
+        'TimeSys
+        '
+        Me.TimeSys.Enabled = True
+        Me.TimeSys.Interval = 1000
         '
         'SC_K13A
         '
@@ -576,4 +588,5 @@ Partial Class SC_K13A
     Friend WithEvents Label57 As Label
     Friend WithEvents Label55 As Label
     Friend WithEvents Label56 As Label
+    Friend WithEvents TimeSys As Timer
 End Class

@@ -16,9 +16,7 @@
 
     '初期処理
     Private Sub Init()
-
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
+        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
     End Sub
 
@@ -40,6 +38,10 @@
         End If
     End Sub
 
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
+    End Sub
 
     Private Sub SC_K13A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
