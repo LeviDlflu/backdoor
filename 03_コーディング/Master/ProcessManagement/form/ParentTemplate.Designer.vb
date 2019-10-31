@@ -35,11 +35,8 @@ Partial Class ParentTemplate
         Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stsFooter = New System.Windows.Forms.StatusStrip()
         Me.btnFinish = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.lblHLine = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.stsFooter.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -170,33 +167,12 @@ Partial Class ParentTemplate
         Me.btnFinish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnFinish.BackColor = System.Drawing.SystemColors.Control
         Me.btnFinish.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnFinish.Location = New System.Drawing.Point(1242, 9)
+        Me.btnFinish.Location = New System.Drawing.Point(1234, 61)
         Me.btnFinish.Name = "btnFinish"
         Me.btnFinish.Size = New System.Drawing.Size(100, 49)
         Me.btnFinish.TabIndex = 269
         Me.btnFinish.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
         Me.btnFinish.UseVisualStyleBackColor = False
-        '
-        'Panel1
-        '
-        Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel1.Controls.Add(Me.lblHLine)
-        Me.Panel1.Controls.Add(Me.btnFinish)
-        Me.Panel1.Location = New System.Drawing.Point(0, 43)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1354, 76)
-        Me.Panel1.TabIndex = 270
-        '
-        'lblHLine
-        '
-        Me.lblHLine.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblHLine.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblHLine.Location = New System.Drawing.Point(1, 72)
-        Me.lblHLine.Name = "lblHLine"
-        Me.lblHLine.Size = New System.Drawing.Size(1350, 2)
-        Me.lblHLine.TabIndex = 5
         '
         'ParentTemplate
         '
@@ -204,7 +180,7 @@ Partial Class ParentTemplate
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1354, 659)
-        Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.btnFinish)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.stsFooter)
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -215,7 +191,6 @@ Partial Class ParentTemplate
         Me.GroupBox1.PerformLayout()
         Me.stsFooter.ResumeLayout(False)
         Me.stsFooter.PerformLayout()
-        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -232,6 +207,4 @@ Partial Class ParentTemplate
     Friend WithEvents slblTime As ToolStripStatusLabel
     Friend WithEvents stsFooter As StatusStrip
     Friend WithEvents btnFinish As Button
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents lblHLine As Label
 End Class
