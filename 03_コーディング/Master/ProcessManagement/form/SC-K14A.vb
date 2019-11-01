@@ -1,25 +1,25 @@
 ﻿Public Class SC_K14A
     Dim headerName As Hashtable = New Hashtable From {
-                             {"個体No", "Individual No" & vbCrLf & "(個体No)"},
-                             {"ラベル発行No", "Label issue No" & vbCrLf & "(ラベル発行No)"},
-                             {"設備名称", "Facility name" & vbCrLf & "(設備名称)"},
-                             {"金型", "Mold" & vbCrLf & "(金型)"},
-                             {"キャビ", "Caviar" & vbCrLf & "(金型)"},
-                             {"客先部品番号", "Customer part number" & vbCrLf & "(客先部品番号)"},
-                             {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
-                             {"判定日付・時間", "Judgment date / Time" & vbCrLf & "(判定日付・時間)"},
-                             {"数量", "Quantity" & vbCrLf & "(数量)"},
-                             {"不良原因", "Cause of failure" & vbCrLf & "(不良原因)"},
-                             {"倉庫(払出元)", "Warehouse (withdrawal source)" & vbCrLf & "(倉庫(払出元))"},
-                             {"品名", "Product name" & vbCrLf & "(品名)"},
-                             {"払出日", "Withdrawal Date" & vbCrLf & "(払出日)"},
-                             {"払出理由", "Reason For withdrawal" & vbCrLf & "(払出理由)"},
-                             {"備考", "Remarks" & vbCrLf & "(備考)"},
-                             {"リペア理由", "Reason For repair" & vbCrLf & "(リペア理由)"},
-                             {"再塗装理由", "Reason For repainting" & vbCrLf & "(再塗装理由)"},
-                             {"生地不良原因", "Cause Of fabric failure" & vbCrLf & "(生地不良原因)"},
-                             {"再投入", "Re-injection" & vbCrLf & "(再投入)"},
-                             {"氏名", "Full name" & vbCrLf & "(氏名)"}
+                             {"個体No", "Individual No" & vbCrLf & "個体No"},
+                             {"ラベル発行No", "Label issue No" & vbCrLf & "ラベル発行No"},
+                             {"設備名称", "Facility name" & vbCrLf & "設備名称"},
+                             {"金型", "Mold" & vbCrLf & "金型"},
+                             {"キャビ", "Caviar" & vbCrLf & "金型"},
+                             {"客先部品番号", "Customer part number" & vbCrLf & "客先部品番号"},
+                             {"品名略称", "Product name abbreviation" & vbCrLf & "品名略称"},
+                             {"判定日付・時間", "Judgment date / Time" & vbCrLf & "判定日付・時間"},
+                             {"数量", "Quantity" & vbCrLf & "数量"},
+                             {"不良原因", "Cause of failure" & vbCrLf & "不良原因"},
+                             {"倉庫払出元", "Warehouse withdrawal source" & vbCrLf & "倉庫払出元"},
+                             {"品名", "Product name" & vbCrLf & "品名"},
+                             {"払出日", "Withdrawal Date" & vbCrLf & "払出日"},
+                             {"払出理由", "Reason For withdrawal" & vbCrLf & "払出理由"},
+                             {"備考", "Remarks" & vbCrLf & "備考"},
+                             {"リペア理由", "Reason For repair" & vbCrLf & "リペア理由"},
+                             {"再塗装理由", "Reason For repainting" & vbCrLf & "再塗装理由"},
+                             {"生地不良原因", "Cause Of fabric failure" & vbCrLf & "生地不良原因"},
+                             {"再投入", "Re-injection" & vbCrLf & "再投入"},
+                             {"氏名", "Full name" & vbCrLf & "氏名"}
                             }
     Private Const COL_INDIVIDUAL_NO As String = "個体No"
     Private Const COL_LABEL_ISSUE_NO As String = "ラベル発行No"
@@ -55,7 +55,30 @@
     'その他払出
     Dim SMD_OTHERT As String() = {COL_INDIVIDUAL_NO, COL_WAREHOUSE, COL_PRODUCT_NAME, COL_WITHDRAWAL_DATE, COL_REASON_FOR_WITHDRAWAL, COL_REMARKS}
 
+    Dim SMD_ADJUSTMENT2 As String() = {COL_INDIVIDUAL_NO, COL_LABEL_ISSUE_NO, COL_FACILITY_NAME, COL_CUSTOMER_PART_NUMBER, COL_PRODUCT_NAME_ABBREVIATION,
+                                        COL_JUDGMENT_DATE_TIME, COL_QUANTITY, COL_CAUSE_OF_FABRIC_FAILURE, COL_FULL_NAME}
+
     Private Const CONST_SYSTEM_NAME As String = "前日以前詳細実績参照"
+    Private Const FORM_NAME As String = "The results before detail the previous days(前日以前実績参照)"
+    Dim processText As String
+
+    ''' <summary>
+    ''' 初期表示
+    ''' </summary>
+    Private Sub SC_K14A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Me.txtJudgmentCategory.Text = SC_K14.judgmentCategory
+        'Me.txtJudgmentClassification.Text = SC_K14.judgmentClassification
+        Me.txtJudgmentCategory.Text = "調整"
+        Me.txtJudgmentClassification.Text = SC_K14.judgmentClassification
+        processText = "成形"
+
+        setGrid(createGridData())
+
+
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
+
+    End Sub
 
     ''' <summary>
     ''' 　・行ヘッダーに行番号書き込み
@@ -85,7 +108,7 @@
     ''' </summary>
     Private Function createGridData() As DataTable
         Dim dt As New DataTable
-        Select Case SC_K14.cmbProcess.Text
+        Select Case processText
             Case "成形"
                 Select Case Me.txtJudgmentCategory.Text
                     Case "ショット"
@@ -140,18 +163,19 @@
                             dt.Rows.Add(addRow)
                         Next
                     Case "調整"
-                        For i As Integer = 0 To SMD_ADJUSTMENT.Length - 1
-                            dt.Columns.Add(New DataColumn(SMD_ADJUSTMENT(i), GetType(System.String)))
+                        For i As Integer = 0 To SMD_ADJUSTMENT2.Length - 1
+                            dt.Columns.Add(New DataColumn(SMD_ADJUSTMENT2(i), GetType(System.String)))
                         Next
                         For j As Integer = 0 To 3
                             Dim addRow As DataRow = dt.NewRow
-                            For index As Integer = 0 To SMD_ADJUSTMENT.Length - 1
-                                Select Case index
-                                    Case 0
-                                        addRow(SMD_ADJUSTMENT(index)) = "Adjustment" & index
-                                    Case Else
-                                        addRow(SMD_ADJUSTMENT(index)) = index
-                                End Select
+                            For index As Integer = 0 To SMD_ADJUSTMENT2.Length - 1
+                                addRow(SMD_ADJUSTMENT2(index)) = SMD_ADJUSTMENT2(index) & j
+                                'Select Case index
+                                '    Case 0
+                                '        addRow(SMD_ADJUSTMENT2(index)) = "Adjustment" & j
+                                '    Case Else
+                                '        addRow(SMD_ADJUSTMENT2(index)) = SMD_ADJUSTMENT2(index) & j
+                                'End Select
                             Next
 
                             dt.Rows.Add(addRow)
@@ -218,12 +242,15 @@
             End Select
         Next
 
-        'gridData.Columns(0).Width = 50
-        'gridData.Columns(1).Width = 150
-        'gridData.Columns(2).Width = 150
-        'gridData.Columns(3).Width = 400
-        'gridData.Columns(4).Width = 400
-        'gridData.Columns(5).Width = 100
+        gridData.Columns(0).Width = 120
+        gridData.Columns(1).Width = 120
+        gridData.Columns(2).Width = 150
+        gridData.Columns(3).Width = 150
+        gridData.Columns(4).Width = 180
+        gridData.Columns(5).Width = 150
+        gridData.Columns(6).Width = 100
+        gridData.Columns(7).Width = 170
+        gridData.Columns(8).Width = 100
 
 
         '複数選択不可
@@ -232,36 +259,6 @@
         gridData.AllowUserToDeleteRows = False
         gridData.AllowUserToAddRows = False
         gridData.AllowUserToResizeRows = False
-    End Sub
-
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        '    Me.Close()
-        'End If
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
-    End Sub
-
-    Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
-
-    End Sub
-
-    ''' <summary>
-    ''' 初期表示
-    ''' </summary>
-    Private Sub SC_K14A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.txtJudgmentCategory.Text = SC_K14.judgmentCategory
-        Me.txtJudgmentClassification.Text = SC_K14.judgmentClassification
-
-        setGrid(createGridData())
-
     End Sub
 
 End Class
