@@ -16,4 +16,9 @@
             Me.Close()
         End If
     End Sub
+
+    Private Sub ParentTemplate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        btnFinish.Location = New Point(Me.Size.Width - 135, btnFinish.Location.Y)
+        grpHead.Width = Me.Size.Width - 12
+    End Sub
 End Class
