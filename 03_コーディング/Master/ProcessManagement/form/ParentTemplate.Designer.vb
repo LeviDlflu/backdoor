@@ -23,37 +23,91 @@ Partial Class ParentTemplate
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.lblEnvironment = New System.Windows.Forms.Label()
-        Me.lblLogin = New System.Windows.Forms.Label()
-        Me.lblMaster = New System.Windows.Forms.Label()
-        Me.txbEnvironment = New System.Windows.Forms.TextBox()
-        Me.txbLogin = New System.Windows.Forms.TextBox()
         Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
         Me.slblMargin = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
         Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.stsFooter = New System.Windows.Forms.StatusStrip()
         Me.btnFinish = New System.Windows.Forms.Button()
-        Me.GroupBox1.SuspendLayout()
+        Me.grpHead = New System.Windows.Forms.GroupBox()
+        Me.lblEnvironment = New System.Windows.Forms.Label()
+        Me.lblLogin = New System.Windows.Forms.Label()
+        Me.lblMaster = New System.Windows.Forms.Label()
+        Me.txbEnvironment = New System.Windows.Forms.TextBox()
+        Me.txbLogin = New System.Windows.Forms.TextBox()
         Me.stsFooter.SuspendLayout()
+        Me.grpHead.SuspendLayout()
         Me.SuspendLayout()
         '
-        'GroupBox1
+        'TimeSys
         '
-        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TimeSys.Enabled = True
+        Me.TimeSys.Interval = 1000
+        '
+        'slblMargin
+        '
+        Me.slblMargin.BackColor = System.Drawing.SystemColors.Control
+        Me.slblMargin.Name = "slblMargin"
+        Me.slblMargin.Size = New System.Drawing.Size(1219, 19)
+        Me.slblMargin.Spring = True
+        '
+        'slblDay
+        '
+        Me.slblDay.AutoSize = False
+        Me.slblDay.BackColor = System.Drawing.SystemColors.Control
+        Me.slblDay.Name = "slblDay"
+        Me.slblDay.Size = New System.Drawing.Size(75, 19)
+        Me.slblDay.Text = "yyyy/MM/dd"
+        Me.slblDay.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'slblTime
+        '
+        Me.slblTime.AutoSize = False
+        Me.slblTime.BackColor = System.Drawing.SystemColors.Control
+        Me.slblTime.Name = "slblTime"
+        Me.slblTime.Size = New System.Drawing.Size(45, 19)
+        Me.slblTime.Text = "HH:mm"
+        Me.slblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'stsFooter
+        '
+        Me.stsFooter.BackColor = System.Drawing.SystemColors.Control
+        Me.stsFooter.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.stsFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.slblMargin, Me.slblDay, Me.slblTime})
+        Me.stsFooter.Location = New System.Drawing.Point(0, 544)
+        Me.stsFooter.Name = "stsFooter"
+        Me.stsFooter.Size = New System.Drawing.Size(1354, 24)
+        Me.stsFooter.SizingGrip = False
+        Me.stsFooter.TabIndex = 234
+        Me.stsFooter.Text = "StatusStrip1"
+        '
+        'btnFinish
+        '
+        Me.btnFinish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnFinish.BackColor = System.Drawing.SystemColors.Control
+        Me.btnFinish.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.btnFinish.Location = New System.Drawing.Point(1235, 61)
+        Me.btnFinish.Name = "btnFinish"
+        Me.btnFinish.Size = New System.Drawing.Size(100, 49)
+        Me.btnFinish.TabIndex = 269
+        Me.btnFinish.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
+        Me.btnFinish.UseVisualStyleBackColor = False
+        '
+        'grpHead
+        '
+        Me.grpHead.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.lblEnvironment)
-        Me.GroupBox1.Controls.Add(Me.lblLogin)
-        Me.GroupBox1.Controls.Add(Me.lblMaster)
-        Me.GroupBox1.Controls.Add(Me.txbEnvironment)
-        Me.GroupBox1.Controls.Add(Me.txbLogin)
-        Me.GroupBox1.Location = New System.Drawing.Point(-2, -10)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1359, 53)
-        Me.GroupBox1.TabIndex = 267
-        Me.GroupBox1.TabStop = False
+        Me.grpHead.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(204, Byte), Integer))
+        Me.grpHead.Controls.Add(Me.lblEnvironment)
+        Me.grpHead.Controls.Add(Me.lblLogin)
+        Me.grpHead.Controls.Add(Me.lblMaster)
+        Me.grpHead.Controls.Add(Me.txbEnvironment)
+        Me.grpHead.Controls.Add(Me.txbLogin)
+        Me.grpHead.Location = New System.Drawing.Point(-2, -10)
+        Me.grpHead.Name = "grpHead"
+        Me.grpHead.Size = New System.Drawing.Size(1359, 53)
+        Me.grpHead.TabIndex = 267
+        Me.grpHead.TabStop = False
         '
         'lblEnvironment
         '
@@ -120,91 +174,37 @@ Partial Class ParentTemplate
         Me.txbLogin.TabStop = False
         Me.txbLogin.Text = "ログインユーザ"
         '
-        'TimeSys
-        '
-        Me.TimeSys.Enabled = True
-        Me.TimeSys.Interval = 1000
-        '
-        'slblMargin
-        '
-        Me.slblMargin.BackColor = System.Drawing.SystemColors.Control
-        Me.slblMargin.Name = "slblMargin"
-        Me.slblMargin.Size = New System.Drawing.Size(1219, 19)
-        Me.slblMargin.Spring = True
-        '
-        'slblDay
-        '
-        Me.slblDay.AutoSize = False
-        Me.slblDay.BackColor = System.Drawing.SystemColors.Control
-        Me.slblDay.Name = "slblDay"
-        Me.slblDay.Size = New System.Drawing.Size(75, 19)
-        Me.slblDay.Text = "yyyy/MM/dd"
-        Me.slblDay.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'slblTime
-        '
-        Me.slblTime.AutoSize = False
-        Me.slblTime.BackColor = System.Drawing.SystemColors.Control
-        Me.slblTime.Name = "slblTime"
-        Me.slblTime.Size = New System.Drawing.Size(45, 19)
-        Me.slblTime.Text = "HH:mm"
-        Me.slblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'stsFooter
-        '
-        Me.stsFooter.BackColor = System.Drawing.SystemColors.Control
-        Me.stsFooter.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.stsFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.slblMargin, Me.slblDay, Me.slblTime})
-        Me.stsFooter.Location = New System.Drawing.Point(0, 635)
-        Me.stsFooter.Name = "stsFooter"
-        Me.stsFooter.Size = New System.Drawing.Size(1354, 24)
-        Me.stsFooter.SizingGrip = False
-        Me.stsFooter.TabIndex = 234
-        Me.stsFooter.Text = "StatusStrip1"
-        '
-        'btnFinish
-        '
-        Me.btnFinish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnFinish.BackColor = System.Drawing.SystemColors.Control
-        Me.btnFinish.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnFinish.Location = New System.Drawing.Point(1234, 61)
-        Me.btnFinish.Name = "btnFinish"
-        Me.btnFinish.Size = New System.Drawing.Size(100, 49)
-        Me.btnFinish.TabIndex = 269
-        Me.btnFinish.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.btnFinish.UseVisualStyleBackColor = False
-        '
         'ParentTemplate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(1354, 659)
+        Me.ClientSize = New System.Drawing.Size(1354, 568)
         Me.Controls.Add(Me.btnFinish)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.grpHead)
         Me.Controls.Add(Me.stsFooter)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "ParentTemplate"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "[ParentTemplate]生産管理システム"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
         Me.stsFooter.ResumeLayout(False)
         Me.stsFooter.PerformLayout()
+        Me.grpHead.ResumeLayout(False)
+        Me.grpHead.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents lblEnvironment As Label
-    Friend WithEvents lblLogin As Label
-    Friend WithEvents lblMaster As Label
-    Friend WithEvents txbEnvironment As TextBox
-    Friend WithEvents txbLogin As TextBox
     Friend WithEvents TimeSys As Timer
     Friend WithEvents slblMargin As ToolStripStatusLabel
     Friend WithEvents slblDay As ToolStripStatusLabel
     Friend WithEvents slblTime As ToolStripStatusLabel
     Friend WithEvents stsFooter As StatusStrip
     Friend WithEvents btnFinish As Button
+    Friend WithEvents grpHead As GroupBox
+    Friend WithEvents lblEnvironment As Label
+    Friend WithEvents lblLogin As Label
+    Friend WithEvents lblMaster As Label
+    Friend WithEvents txbEnvironment As TextBox
+    Friend WithEvents txbLogin As TextBox
 End Class
