@@ -29,6 +29,7 @@
     Private Const COL_DEFECTIVE_RATE As String = "不良率"
 
     Private Const CONST_SYSTEM_NAME As String = "成形実績参照画面"
+    Private Const FORM_NAME As String = "Molding achievement reference(成形実績参照)"
 
     Public gridCells As DataGridViewCellCollection
 
@@ -42,6 +43,9 @@
         Me.cmbProductName.Text = String.Empty
 
         Me.StartPosition = FormStartPosition.CenterScreen
+
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
     End Sub
 
@@ -173,19 +177,19 @@
             End Select
         Next
 
-        gridData.Columns(COL_DETAILS).Width = 50
-        gridData.Columns(COL_EQUIPMENT).Width = 100
-        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 150
-        gridData.Columns(COL_CUSTOMER_PART_NUMBER).Width = 100
-        gridData.Columns(COL_MONEY_TYPE).Width = 70
-        gridData.Columns(COL_INSTRUCTION_NUMBER).Width = 90
+        gridData.Columns(COL_DETAILS).Width = 55
+        gridData.Columns(COL_EQUIPMENT).Width = 90
+        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 130
+        gridData.Columns(COL_CUSTOMER_PART_NUMBER).Width = 140
+        gridData.Columns(COL_MONEY_TYPE).Width = 90
+        gridData.Columns(COL_INSTRUCTION_NUMBER).Width = 120
         gridData.Columns(COL_SHOTS_NUMBER).Width = 90
-        gridData.Columns(COL_PASSING_NUMBER).Width = 90
-        gridData.Columns(COL_FAILURE_NUMBER).Width = 90
-        gridData.Columns(COL_ADJUSTMENT_NUMBER).Width = 90
+        gridData.Columns(COL_PASSING_NUMBER).Width = 100
+        gridData.Columns(COL_FAILURE_NUMBER).Width = 100
+        gridData.Columns(COL_ADJUSTMENT_NUMBER).Width = 120
         gridData.Columns(COL_OTHER_PAYOUT).Width = 90
         gridData.Columns(COL_PASSING_RATE).Width = 85
-        gridData.Columns(COL_DEFECTIVE_RATE).Width = 85
+        gridData.Columns(COL_DEFECTIVE_RATE).Width = 100
 
 
         '複数選択不可
@@ -204,21 +208,6 @@
 
         setGrid(createGridData())
 
-    End Sub
-
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        '    Me.Close()
-        'End If
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
     End Sub
 
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick

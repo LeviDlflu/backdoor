@@ -15,6 +15,7 @@
     Private Const COL_KYABI As String = "キャビ"
 
     Private Const CONST_SYSTEM_NAME As String = "成形実績明細画面"
+    Private Const FORM_NAME As String = "Molding achievement detail(成形実績明細)"
 
     Dim gridCells As DataGridViewCellCollection
 
@@ -24,6 +25,9 @@
     Private Sub SC_K16A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         gridCells = SC_K16.gridCells
+
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
         Dim dt As New DataTable
 
@@ -63,6 +67,7 @@
                                 e.InheritedRowStyle.ForeColor,
                                 TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
+
     End Sub
 
     ''' <summary>
@@ -133,7 +138,7 @@
         Next
 
         gridData.Columns(COL_INDIVIDUAL_NO).Width = 100
-        gridData.Columns(COL_JUDGMENT_DATE_TIME).Width = 100
+        gridData.Columns(COL_JUDGMENT_DATE_TIME).Width = 120
         gridData.Columns(COL_COUNT).Width = 70
         gridData.Columns(COL_FAILURE_REASON).Width = 150
         gridData.Columns(COL_WORKER).Width = 100
@@ -152,25 +157,9 @@
     ''' 検索ボタン押下
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
         Me.Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
         setGrid(createGridData())
-
     End Sub
-
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        '    Me.Close()
-        'End If
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
-    End Sub
-
 End Class

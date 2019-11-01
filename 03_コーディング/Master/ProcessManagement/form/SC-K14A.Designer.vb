@@ -34,7 +34,6 @@ Partial Class SC_K14A
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.gridData = New ProcessManagement.DataGridViewMerge()
-        Me.Label68 = New System.Windows.Forms.Label()
         Me.Label67 = New System.Windows.Forms.Label()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.Label66 = New System.Windows.Forms.Label()
@@ -181,7 +180,6 @@ Partial Class SC_K14A
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.gridData)
-        Me.Panel1.Controls.Add(Me.Label68)
         Me.Panel1.Controls.Add(Me.Label67)
         Me.Panel1.Controls.Add(Me.Label65)
         Me.Panel1.Controls.Add(Me.Label66)
@@ -206,21 +204,11 @@ Partial Class SC_K14A
         Me.gridData.Size = New System.Drawing.Size(1285, 324)
         Me.gridData.TabIndex = 312
         '
-        'Label68
-        '
-        Me.Label68.AutoSize = True
-        Me.Label68.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label68.Location = New System.Drawing.Point(1114, 18)
-        Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(16, 16)
-        Me.Label68.TabIndex = 311
-        Me.Label68.Text = "："
-        '
         'Label67
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1158, 18)
+        Me.Label67.Location = New System.Drawing.Point(1139, 18)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(144, 16)
         Me.Label67.TabIndex = 310
@@ -230,17 +218,17 @@ Partial Class SC_K14A
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(965, 15)
+        Me.Label65.Location = New System.Drawing.Point(994, 15)
         Me.Label65.Name = "Label65"
-        Me.Label65.Size = New System.Drawing.Size(118, 19)
+        Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
-        Me.Label65.Text = "Search time"
+        Me.Label65.Text = "Search time ："
         '
         'Label66
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(969, 36)
+        Me.Label66.Location = New System.Drawing.Point(998, 36)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -306,7 +294,6 @@ Partial Class SC_K14A
     Friend WithEvents Label54 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents gridData As DataGridViewMerge
-    Friend WithEvents Label68 As Label
     Friend WithEvents Label67 As Label
     Friend WithEvents Label65 As Label
     Friend WithEvents Label66 As Label

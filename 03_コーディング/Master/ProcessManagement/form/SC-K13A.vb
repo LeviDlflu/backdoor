@@ -16,43 +16,18 @@
 
     '初期処理
     Private Sub Init()
-        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
     End Sub
 
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
-        Dim dgv As DataGridView = CType(sender, DataGridView)
-        If dgv.RowHeadersVisible Then
-            '行番号を描画する範囲を決定する
-            Dim rect As New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
-        dgv.RowHeadersWidth, e.RowBounds.Height)
-            rect.Inflate(-2, -2)
-            '行番号を描画する
-            TextRenderer.DrawText(e.Graphics,
-        (e.RowIndex + 1).ToString(),
-        e.InheritedRowStyle.Font,
-        rect,
-        e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
-        End If
-    End Sub
 
-    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
     Private Sub SC_K13A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
 
-    End Sub
-
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'Dim frm As New SC_K13()
-        'frm.ShowDialog()
-        'Me.Show()
-        Me.Close()
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click

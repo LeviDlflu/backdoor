@@ -111,8 +111,6 @@
         '列ヘッダーの高さを行数に合わせる
         Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
 
-        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
-
     End Sub
 
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
@@ -134,14 +132,8 @@
         End If
     End Sub
 
-    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
-    End Sub
-
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         gridData.Columns.Clear()
-        srDate.Text = Format(Now, "yyyy/MM/dd HH:mm")
         If cmbProcess.SelectedItem = "" Or cmbProcess.SelectedItem = "SMD" Then
             Patten1()
         ElseIf cmbProcess.SelectedItem = "SMM" Then
@@ -149,23 +141,6 @@
         ElseIf cmbProcess.SelectedItem = "SME" Then
             Patten3()
         End If
-    End Sub
-
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'Dim selectedCount As Boolean = False
-        'レコードが選択される場合、保存されていないメッセージを表示する
-        'If gridData.Rows.Count > 0 Then
-        '    For i As Integer = 0 To gridData.Rows.Count - 1
-        '        '横位置
-        '        If gridData.Rows(i).Cells(0).Value = True Then
-        '            selectedCount = True
-        '        End If
-        '    Next
-        'Dim wMsg As New clsMessage("W0099")
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
-        'End If
     End Sub
 
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
