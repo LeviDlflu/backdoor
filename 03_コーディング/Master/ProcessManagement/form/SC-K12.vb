@@ -1,4 +1,5 @@
-﻿Public Class SC_K12
+﻿Imports System.Reflection
+Public Class SC_K12
     Dim headerName As Hashtable = New Hashtable From {
                              {"詳細", "Details" & vbCrLf & "(詳細)"},
                              {"作番", "Work number" & vbCrLf & "(作番)"},
@@ -66,11 +67,13 @@
     Private Const COL_LATEST_INPUT_ACTUAL_TIME As String = "最新入力実績時間"
     Private Const COL_FORCED_EXCLUSION As String = "強制除外"
 
+
+    Private Const FORM_NAME As String = "Progress management(進捗管理)"
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
 
     Private Sub SC_K12_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblMaster.Text = "Progress management(進捗管理)"
-        Me.Text = "[" & Me.Name & "]" & "Progress management(進捗管理)"
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
         Dim dt As New DataTable
         dt.Columns.Add("Code", GetType(String))
         dt.Columns.Add("Name", GetType(String))
@@ -80,6 +83,9 @@
         cmb_Kbn.DataSource = dt
         cmb_Kbn.ValueMember = dt.Columns.Item(0).ColumnName
         cmb_Kbn.DisplayMember = dt.Columns.Item(1).ColumnName
+        Dim type As Type = gridData.GetType()
+        Dim pi As PropertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
+        pi.SetValue(gridData, True, Nothing)
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
@@ -89,6 +95,18 @@
     End Sub
 
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
+
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
+        If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex >= 0 Then
+            Dim frm As New SC_K12A()
+            frm.ShowDialog()
+            Me.Show()
+        End If
 
     End Sub
 

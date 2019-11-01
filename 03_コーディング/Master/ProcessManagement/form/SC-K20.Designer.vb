@@ -1,601 +1,497 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class SC_K20
-    Inherits System.Windows.Forms.Form
+    Inherits ProcessManagement.ParentTemplate
 
-    'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
+    'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
     End Sub
 
-    'Windows フォーム デザイナーで必要です。
+    'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
-    'Windows フォーム デザイナーを使用して変更できます。  
-    'コード エディターを使って変更しないでください。
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.btnEnd = New System.Windows.Forms.Button()
         Me.btnRegistration = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label47 = New System.Windows.Forms.Label()
-        Me.Label48 = New System.Windows.Forms.Label()
-        Me.Label49 = New System.Windows.Forms.Label()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.gbSection = New System.Windows.Forms.GroupBox()
+        Me.btnSearch = New System.Windows.Forms.Button()
+        Me.btnExcel = New System.Windows.Forms.Button()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.cmbProcess = New System.Windows.Forms.ComboBox()
-        Me.Label39 = New System.Windows.Forms.Label()
+        Me.cmb_Syasyu = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.cmbIndividual = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.Label53 = New System.Windows.Forms.Label()
+        Me.Label54 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.txtProductNameAbbreviation = New System.Windows.Forms.TextBox()
-        Me.dateWithdrawalDate = New System.Windows.Forms.DateTimePicker()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.cmbWithdrawalCategory = New System.Windows.Forms.ComboBox()
-        Me.txtWithdrawalQuantity = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.txtTransferIndicator = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.txtRemarks = New System.Windows.Forms.TextBox()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.stsFooter = New System.Windows.Forms.StatusStrip()
-        Me.slblMargin = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.slblDay = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.slblTime = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.TimeSys = New System.Windows.Forms.Timer(Me.components)
-        Me.GroupBox1.SuspendLayout()
-        Me.gbSection.SuspendLayout()
-        Me.stsFooter.SuspendLayout()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.dateWithdrawalDate = New System.Windows.Forms.DateTimePicker()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'btnEnd
-        '
-        Me.btnEnd.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnEnd.BackColor = System.Drawing.SystemColors.Control
-        Me.btnEnd.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnEnd.Location = New System.Drawing.Point(1228, 69)
-        Me.btnEnd.Name = "btnEnd"
-        Me.btnEnd.Size = New System.Drawing.Size(100, 49)
-        Me.btnEnd.TabIndex = 269
-        Me.btnEnd.Text = "Finish" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(終了)"
-        Me.btnEnd.UseVisualStyleBackColor = False
         '
         'btnRegistration
         '
         Me.btnRegistration.BackColor = System.Drawing.SystemColors.Control
         Me.btnRegistration.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnRegistration.Location = New System.Drawing.Point(44, 69)
+        Me.btnRegistration.Location = New System.Drawing.Point(284, 61)
         Me.btnRegistration.Name = "btnRegistration"
         Me.btnRegistration.Size = New System.Drawing.Size(137, 49)
-        Me.btnRegistration.TabIndex = 268
+        Me.btnRegistration.TabIndex = 270
         Me.btnRegistration.Text = "Registration" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(登録)"
         Me.btnRegistration.UseVisualStyleBackColor = False
         '
-        'GroupBox1
+        'btnSearch
         '
-        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(51, Byte), Integer), CType(CType(102, Byte), Integer), CType(CType(204, Byte), Integer))
-        Me.GroupBox1.Controls.Add(Me.Label47)
-        Me.GroupBox1.Controls.Add(Me.Label48)
-        Me.GroupBox1.Controls.Add(Me.Label49)
-        Me.GroupBox1.Controls.Add(Me.Label46)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(1351, 59)
-        Me.GroupBox1.TabIndex = 270
-        Me.GroupBox1.TabStop = False
+        Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
+        Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(10, 61)
+        Me.btnSearch.Name = "btnSearch"
+        Me.btnSearch.Size = New System.Drawing.Size(100, 49)
+        Me.btnSearch.TabIndex = 271
+        Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
+        Me.btnSearch.UseVisualStyleBackColor = False
         '
-        'Label47
+        'btnExcel
         '
-        Me.Label47.AutoSize = True
-        Me.Label47.Font = New System.Drawing.Font("MS UI Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label47.ForeColor = System.Drawing.Color.White
-        Me.Label47.Location = New System.Drawing.Point(630, 18)
-        Me.Label47.Name = "Label47"
-        Me.Label47.Size = New System.Drawing.Size(378, 27)
-        Me.Label47.TabIndex = 7
-        Me.Label47.Text = "(その他払出入力(製品・中間品)"
-        Me.Label47.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
+        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnExcel.Location = New System.Drawing.Point(148, 61)
+        Me.btnExcel.Name = "btnExcel"
+        Me.btnExcel.Size = New System.Drawing.Size(100, 49)
+        Me.btnExcel.TabIndex = 272
+        Me.btnExcel.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
+        Me.btnExcel.UseVisualStyleBackColor = False
         '
-        'Label48
+        'Panel4
         '
-        Me.Label48.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label48.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label48.ForeColor = System.Drawing.Color.White
-        Me.Label48.Location = New System.Drawing.Point(1009, 31)
-        Me.Label48.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Label48.Name = "Label48"
-        Me.Label48.Size = New System.Drawing.Size(219, 19)
-        Me.Label48.TabIndex = 6
-        Me.Label48.Text = "Connection environment(接続環境)"
-        Me.Label48.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Panel4.BackColor = System.Drawing.SystemColors.Window
+        Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.txtRemarks)
+        Me.Panel4.Controls.Add(Me.RadioButton2)
+        Me.Panel4.Controls.Add(Me.RadioButton1)
+        Me.Panel4.Controls.Add(Me.cmb_Syasyu)
+        Me.Panel4.Controls.Add(Me.Label1)
+        Me.Panel4.Controls.Add(Me.Label2)
+        Me.Panel4.Controls.Add(Me.Label37)
+        Me.Panel4.Controls.Add(Me.Label43)
+        Me.Panel4.Controls.Add(Me.Label44)
+        Me.Panel4.Controls.Add(Me.Label45)
+        Me.Panel4.Controls.Add(Me.Label53)
+        Me.Panel4.Controls.Add(Me.Label54)
+        Me.Panel4.Location = New System.Drawing.Point(0, 116)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(1357, 181)
+        Me.Panel4.TabIndex = 298
         '
-        'Label49
+        'txtRemarks
         '
-        Me.Label49.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label49.Font = New System.Drawing.Font("MS UI Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label49.ForeColor = System.Drawing.Color.White
-        Me.Label49.Location = New System.Drawing.Point(1011, 10)
-        Me.Label49.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.Label49.Name = "Label49"
-        Me.Label49.Size = New System.Drawing.Size(216, 19)
-        Me.Label49.TabIndex = 4
-        Me.Label49.Text = "Login user(ログイン者)"
-        Me.Label49.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.Font = New System.Drawing.Font("MS UI Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label46.ForeColor = System.Drawing.Color.White
-        Me.Label46.Location = New System.Drawing.Point(26, 17)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(600, 27)
-        Me.Label46.TabIndex = 1
-        Me.Label46.Text = "Other withdrawal input(Product・Middle product)"
-        Me.Label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.TextBox2.Location = New System.Drawing.Point(1227, 31)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(120, 21)
-        Me.TextBox2.TabIndex = 5
-        Me.TextBox2.TabStop = False
-        Me.TextBox2.Text = "本番環境"
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox3.BackColor = System.Drawing.Color.FromArgb(CType(CType(129, Byte), Integer), CType(CType(183, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.TextBox3.Location = New System.Drawing.Point(1227, 10)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(120, 21)
-        Me.TextBox3.TabIndex = 4
-        Me.TextBox3.TabStop = False
-        Me.TextBox3.Text = "ログインユーザ"
-        '
-        'gbSection
-        '
-        Me.gbSection.BackColor = System.Drawing.SystemColors.Window
-        Me.gbSection.Controls.Add(Me.RadioButton2)
-        Me.gbSection.Controls.Add(Me.RadioButton1)
-        Me.gbSection.Controls.Add(Me.Label6)
-        Me.gbSection.Controls.Add(Me.Label5)
-        Me.gbSection.Location = New System.Drawing.Point(45, 153)
-        Me.gbSection.Name = "gbSection"
-        Me.gbSection.Size = New System.Drawing.Size(195, 118)
-        Me.gbSection.TabIndex = 271
-        Me.gbSection.TabStop = False
-        Me.gbSection.Text = "Section(区分)"
+        Me.txtRemarks.BackColor = System.Drawing.Color.Yellow
+        Me.txtRemarks.Location = New System.Drawing.Point(528, 92)
+        Me.txtRemarks.Name = "txtRemarks"
+        Me.txtRemarks.Size = New System.Drawing.Size(152, 21)
+        Me.txtRemarks.TabIndex = 315
         '
         'RadioButton2
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(19, 81)
+        Me.RadioButton2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.RadioButton2.Location = New System.Drawing.Point(52, 92)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(59, 16)
+        Me.RadioButton2.Size = New System.Drawing.Size(161, 27)
         Me.RadioButton2.TabIndex = 271
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "中間品"
+        Me.RadioButton2.Text = "Finished(製品)"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton1
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(19, 45)
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.RadioButton1.Location = New System.Drawing.Point(52, 125)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(47, 16)
+        Me.RadioButton1.Size = New System.Drawing.Size(185, 27)
         Me.RadioButton1.TabIndex = 270
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "製品"
+        Me.RadioButton1.Text = "Semi finished(半製品)"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
-        'Label6
+        'cmb_Syasyu
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(16, 64)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(107, 14)
-        Me.Label6.TabIndex = 272
-        Me.Label6.Text = "Middle product"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(16, 28)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(61, 14)
-        Me.Label5.TabIndex = 270
-        Me.Label5.Text = "Product"
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(47, 306)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(41, 12)
-        Me.Label35.TabIndex = 293
-        Me.Label35.Text = "(工程)"
-        '
-        'cmbProcess
-        '
-        Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbProcess.BackColor = System.Drawing.Color.White
-        Me.cmbProcess.FormattingEnabled = True
-        Me.cmbProcess.Location = New System.Drawing.Point(47, 321)
-        Me.cmbProcess.Name = "cmbProcess"
-        Me.cmbProcess.Size = New System.Drawing.Size(145, 20)
-        Me.cmbProcess.TabIndex = 291
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label39.Location = New System.Drawing.Point(45, 289)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(61, 14)
-        Me.Label39.TabIndex = 292
-        Me.Label39.Text = "Process"
+        Me.cmb_Syasyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmb_Syasyu.BackColor = System.Drawing.Color.Yellow
+        Me.cmb_Syasyu.FormattingEnabled = True
+        Me.cmb_Syasyu.Location = New System.Drawing.Point(258, 93)
+        Me.cmb_Syasyu.Name = "cmb_Syasyu"
+        Me.cmb_Syasyu.Size = New System.Drawing.Size(162, 20)
+        Me.cmb_Syasyu.TabIndex = 311
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(258, 306)
+        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Location = New System.Drawing.Point(525, 57)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(54, 12)
-        Me.Label1.TabIndex = 296
-        Me.Label1.Text = "(個体ID)"
-        '
-        'cmbIndividual
-        '
-        Me.cmbIndividual.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbIndividual.BackColor = System.Drawing.Color.White
-        Me.cmbIndividual.FormattingEnabled = True
-        Me.cmbIndividual.Location = New System.Drawing.Point(258, 321)
-        Me.cmbIndividual.Name = "cmbIndividual"
-        Me.cmbIndividual.Size = New System.Drawing.Size(145, 20)
-        Me.cmbIndividual.TabIndex = 294
+        Me.Label1.Size = New System.Drawing.Size(105, 16)
+        Me.Label1.TabIndex = 307
+        Me.Label1.Text = "Individual No"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label2.Location = New System.Drawing.Point(256, 289)
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label2.Location = New System.Drawing.Point(525, 73)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(94, 14)
-        Me.Label2.TabIndex = 295
-        Me.Label2.Text = "Individual No"
+        Me.Label2.Size = New System.Drawing.Size(71, 16)
+        Me.Label2.TabIndex = 308
+        Me.Label2.Text = "(個体NO)"
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label37.Location = New System.Drawing.Point(255, 56)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(111, 16)
+        Me.Label37.TabIndex = 301
+        Me.Label37.Text = "Process code"
+        '
+        'Label43
+        '
+        Me.Label43.AutoSize = True
+        Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label43.Location = New System.Drawing.Point(255, 73)
+        Me.Label43.Name = "Label43"
+        Me.Label43.Size = New System.Drawing.Size(86, 16)
+        Me.Label43.TabIndex = 306
+        Me.Label43.Text = "(工程コード)"
+        '
+        'Label44
+        '
+        Me.Label44.AutoSize = True
+        Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label44.Location = New System.Drawing.Point(39, 73)
+        Me.Label44.Name = "Label44"
+        Me.Label44.Size = New System.Drawing.Size(50, 16)
+        Me.Label44.TabIndex = 305
+        Me.Label44.Text = "(区分)"
+        '
+        'Label45
+        '
+        Me.Label45.AutoSize = True
+        Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
+        Me.Label45.Location = New System.Drawing.Point(8, 32)
+        Me.Label45.Name = "Label45"
+        Me.Label45.Size = New System.Drawing.Size(97, 19)
+        Me.Label45.TabIndex = 304
+        Me.Label45.Text = "(検索条件)"
+        '
+        'Label53
+        '
+        Me.Label53.AutoSize = True
+        Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.Label53.Location = New System.Drawing.Point(3, 13)
+        Me.Label53.Name = "Label53"
+        Me.Label53.Size = New System.Drawing.Size(162, 19)
+        Me.Label53.TabIndex = 295
+        Me.Label53.Text = "Search condition"
+        '
+        'Label54
+        '
+        Me.Label54.AutoSize = True
+        Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label54.Location = New System.Drawing.Point(36, 56)
+        Me.Label54.Name = "Label54"
+        Me.Label54.Size = New System.Drawing.Size(66, 16)
+        Me.Label54.TabIndex = 297
+        Me.Label54.Text = "Division"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(46, 384)
+        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label3.Location = New System.Drawing.Point(40, 338)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(67, 12)
-        Me.Label3.TabIndex = 298
+        Me.Label3.Size = New System.Drawing.Size(82, 16)
+        Me.Label3.TabIndex = 313
         Me.Label3.Text = "(品名略称)"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(44, 367)
+        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label4.Location = New System.Drawing.Point(37, 321)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(190, 14)
-        Me.Label4.TabIndex = 297
-        Me.Label4.Text = "Product name abbreviation"
+        Me.Label4.Size = New System.Drawing.Size(169, 16)
+        Me.Label4.TabIndex = 312
+        Me.Label4.Text = "Product abbreviation"
         '
-        'txtProductNameAbbreviation
+        'TextBox1
         '
-        Me.txtProductNameAbbreviation.Location = New System.Drawing.Point(47, 399)
-        Me.txtProductNameAbbreviation.Name = "txtProductNameAbbreviation"
-        Me.txtProductNameAbbreviation.Size = New System.Drawing.Size(356, 21)
-        Me.txtProductNameAbbreviation.TabIndex = 299
+        Me.TextBox1.BackColor = System.Drawing.Color.White
+        Me.TextBox1.Location = New System.Drawing.Point(40, 357)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(381, 21)
+        Me.TextBox1.TabIndex = 316
         '
-        'dateWithdrawalDate
+        'Label5
         '
-        Me.dateWithdrawalDate.Location = New System.Drawing.Point(48, 475)
-        Me.dateWithdrawalDate.Name = "dateWithdrawalDate"
-        Me.dateWithdrawalDate.Size = New System.Drawing.Size(149, 21)
-        Me.dateWithdrawalDate.TabIndex = 300
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label5.Location = New System.Drawing.Point(40, 436)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(98, 16)
+        Me.Label5.TabIndex = 318
+        Me.Label5.Text = "(受払年月日)"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label6.Location = New System.Drawing.Point(37, 419)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(115, 16)
+        Me.Label6.TabIndex = 317
+        Me.Label6.Text = "Payment date"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(47, 460)
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label7.Location = New System.Drawing.Point(259, 436)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(54, 12)
-        Me.Label7.TabIndex = 302
-        Me.Label7.Text = "(払出日)"
+        Me.Label7.Size = New System.Drawing.Size(82, 16)
+        Me.Label7.TabIndex = 320
+        Me.Label7.Text = "(受払区分)"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(45, 443)
+        Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label8.Location = New System.Drawing.Point(256, 419)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(115, 14)
-        Me.Label8.TabIndex = 301
-        Me.Label8.Text = "Withdrawal date"
+        Me.Label8.Size = New System.Drawing.Size(137, 16)
+        Me.Label8.TabIndex = 319
+        Me.Label8.Text = "Payment division"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.ComboBox2.BackColor = System.Drawing.Color.White
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(259, 455)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(174, 20)
+        Me.ComboBox2.TabIndex = 321
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(258, 460)
+        Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label9.Location = New System.Drawing.Point(478, 436)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(67, 12)
-        Me.Label9.TabIndex = 304
-        Me.Label9.Text = "(受払区分)"
+        Me.Label9.Size = New System.Drawing.Size(82, 16)
+        Me.Label9.TabIndex = 323
+        Me.Label9.Text = "(受払数量)"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label10.Location = New System.Drawing.Point(256, 443)
+        Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label10.Location = New System.Drawing.Point(475, 419)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(144, 14)
-        Me.Label10.TabIndex = 303
-        Me.Label10.Text = "Withdrawal category"
+        Me.Label10.Size = New System.Drawing.Size(144, 16)
+        Me.Label10.TabIndex = 322
+        Me.Label10.Text = "Payment quantity"
         '
-        'cmbWithdrawalCategory
+        'TextBox2
         '
-        Me.cmbWithdrawalCategory.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbWithdrawalCategory.BackColor = System.Drawing.Color.White
-        Me.cmbWithdrawalCategory.FormattingEnabled = True
-        Me.cmbWithdrawalCategory.Location = New System.Drawing.Point(258, 475)
-        Me.cmbWithdrawalCategory.Name = "cmbWithdrawalCategory"
-        Me.cmbWithdrawalCategory.Size = New System.Drawing.Size(145, 20)
-        Me.cmbWithdrawalCategory.TabIndex = 305
-        '
-        'txtWithdrawalQuantity
-        '
-        Me.txtWithdrawalQuantity.Location = New System.Drawing.Point(451, 475)
-        Me.txtWithdrawalQuantity.Name = "txtWithdrawalQuantity"
-        Me.txtWithdrawalQuantity.Size = New System.Drawing.Size(124, 21)
-        Me.txtWithdrawalQuantity.TabIndex = 308
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Location = New System.Drawing.Point(481, 454)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(152, 21)
+        Me.TextBox2.TabIndex = 324
+        Me.TextBox2.Text = "1"
+        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(450, 460)
+        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label11.Location = New System.Drawing.Point(681, 436)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(67, 12)
-        Me.Label11.TabIndex = 307
-        Me.Label11.Text = "(支払数量)"
+        Me.Label11.Size = New System.Drawing.Size(82, 16)
+        Me.Label11.TabIndex = 326
+        Me.Label11.Text = "(振替区分)"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label12.Location = New System.Drawing.Point(448, 443)
+        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label12.Location = New System.Drawing.Point(678, 419)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(141, 14)
-        Me.Label12.TabIndex = 306
-        Me.Label12.Text = "Withdrawal quantity"
-        '
-        'txtTransferIndicator
-        '
-        Me.txtTransferIndicator.Location = New System.Drawing.Point(633, 475)
-        Me.txtTransferIndicator.Name = "txtTransferIndicator"
-        Me.txtTransferIndicator.Size = New System.Drawing.Size(117, 21)
-        Me.txtTransferIndicator.TabIndex = 311
+        Me.Label12.Size = New System.Drawing.Size(135, 16)
+        Me.Label12.TabIndex = 325
+        Me.Label12.Text = "Transfer division"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(632, 460)
+        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label13.Location = New System.Drawing.Point(40, 541)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(67, 12)
-        Me.Label13.TabIndex = 310
-        Me.Label13.Text = "(振替区分)"
+        Me.Label13.Size = New System.Drawing.Size(50, 16)
+        Me.Label13.TabIndex = 328
+        Me.Label13.Text = "(備考)"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label14.Location = New System.Drawing.Point(630, 443)
+        Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label14.Location = New System.Drawing.Point(37, 524)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(129, 14)
-        Me.Label14.TabIndex = 309
-        Me.Label14.Text = "Transfer indicator"
+        Me.Label14.Size = New System.Drawing.Size(73, 16)
+        Me.Label14.TabIndex = 327
+        Me.Label14.Text = "Remarks"
         '
-        'txtRemarks
+        'TextBox3
         '
-        Me.txtRemarks.Location = New System.Drawing.Point(47, 551)
-        Me.txtRemarks.Name = "txtRemarks"
-        Me.txtRemarks.Size = New System.Drawing.Size(356, 21)
-        Me.txtRemarks.TabIndex = 314
+        Me.TextBox3.BackColor = System.Drawing.Color.White
+        Me.TextBox3.Location = New System.Drawing.Point(43, 560)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(588, 21)
+        Me.TextBox3.TabIndex = 329
         '
-        'Label15
+        'ComboBox3
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(46, 536)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(41, 12)
-        Me.Label15.TabIndex = 313
-        Me.Label15.Text = "(備考)"
+        Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.ComboBox3.BackColor = System.Drawing.Color.White
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Location = New System.Drawing.Point(681, 455)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(174, 20)
+        Me.ComboBox3.TabIndex = 330
         '
-        'Label16
+        'dateWithdrawalDate
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label16.Location = New System.Drawing.Point(44, 519)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(64, 14)
-        Me.Label16.TabIndex = 312
-        Me.Label16.Text = "Remarks"
-        '
-        'stsFooter
-        '
-        Me.stsFooter.BackColor = System.Drawing.SystemColors.Control
-        Me.stsFooter.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.stsFooter.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.slblMargin, Me.slblDay, Me.slblTime})
-        Me.stsFooter.Location = New System.Drawing.Point(0, 665)
-        Me.stsFooter.Name = "stsFooter"
-        Me.stsFooter.Size = New System.Drawing.Size(1350, 24)
-        Me.stsFooter.SizingGrip = False
-        Me.stsFooter.TabIndex = 315
-        Me.stsFooter.Text = "StatusStrip1"
-        '
-        'slblMargin
-        '
-        Me.slblMargin.BackColor = System.Drawing.SystemColors.Control
-        Me.slblMargin.Name = "slblMargin"
-        Me.slblMargin.Size = New System.Drawing.Size(1215, 19)
-        Me.slblMargin.Spring = True
-        '
-        'slblDay
-        '
-        Me.slblDay.AutoSize = False
-        Me.slblDay.BackColor = System.Drawing.SystemColors.Control
-        Me.slblDay.Name = "slblDay"
-        Me.slblDay.Size = New System.Drawing.Size(75, 19)
-        Me.slblDay.Text = "yyyy/MM/dd"
-        Me.slblDay.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'slblTime
-        '
-        Me.slblTime.AutoSize = False
-        Me.slblTime.BackColor = System.Drawing.SystemColors.Control
-        Me.slblTime.Name = "slblTime"
-        Me.slblTime.Size = New System.Drawing.Size(45, 19)
-        Me.slblTime.Text = "HH:mm"
-        Me.slblTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'TimeSys
-        '
-        Me.TimeSys.Enabled = True
-        Me.TimeSys.Interval = 1000
+        Me.dateWithdrawalDate.Location = New System.Drawing.Point(40, 455)
+        Me.dateWithdrawalDate.Name = "dateWithdrawalDate"
+        Me.dateWithdrawalDate.Size = New System.Drawing.Size(174, 21)
+        Me.dateWithdrawalDate.TabIndex = 331
         '
         'SC_K20
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(1350, 689)
-        Me.Controls.Add(Me.stsFooter)
-        Me.Controls.Add(Me.txtRemarks)
-        Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.Label16)
-        Me.Controls.Add(Me.txtTransferIndicator)
+        Me.ClientSize = New System.Drawing.Size(1354, 659)
+        Me.Controls.Add(Me.dateWithdrawalDate)
+        Me.Controls.Add(Me.ComboBox3)
+        Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label14)
-        Me.Controls.Add(Me.txtWithdrawalQuantity)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.cmbWithdrawalCategory)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.dateWithdrawalDate)
-        Me.Controls.Add(Me.txtProductNameAbbreviation)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.cmbIndividual)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label35)
-        Me.Controls.Add(Me.cmbProcess)
-        Me.Controls.Add(Me.Label39)
-        Me.Controls.Add(Me.gbSection)
-        Me.Controls.Add(Me.btnEnd)
+        Me.Controls.Add(Me.Panel4)
+        Me.Controls.Add(Me.btnExcel)
+        Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.btnRegistration)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Name = "SC_K20"
-        Me.Text = "[SC_K20]Other withdrawal input(Product・Middle product)(その他払出入力(製品・中間品))Ver.1.0.0"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.gbSection.ResumeLayout(False)
-        Me.gbSection.PerformLayout()
-        Me.stsFooter.ResumeLayout(False)
-        Me.stsFooter.PerformLayout()
+        Me.Controls.SetChildIndex(Me.btnRegistration, 0)
+        Me.Controls.SetChildIndex(Me.btnSearch, 0)
+        Me.Controls.SetChildIndex(Me.btnExcel, 0)
+        Me.Controls.SetChildIndex(Me.Panel4, 0)
+        Me.Controls.SetChildIndex(Me.Label4, 0)
+        Me.Controls.SetChildIndex(Me.Label3, 0)
+        Me.Controls.SetChildIndex(Me.TextBox1, 0)
+        Me.Controls.SetChildIndex(Me.Label6, 0)
+        Me.Controls.SetChildIndex(Me.Label5, 0)
+        Me.Controls.SetChildIndex(Me.Label8, 0)
+        Me.Controls.SetChildIndex(Me.Label7, 0)
+        Me.Controls.SetChildIndex(Me.ComboBox2, 0)
+        Me.Controls.SetChildIndex(Me.Label10, 0)
+        Me.Controls.SetChildIndex(Me.Label9, 0)
+        Me.Controls.SetChildIndex(Me.TextBox2, 0)
+        Me.Controls.SetChildIndex(Me.Label12, 0)
+        Me.Controls.SetChildIndex(Me.Label11, 0)
+        Me.Controls.SetChildIndex(Me.Label14, 0)
+        Me.Controls.SetChildIndex(Me.Label13, 0)
+        Me.Controls.SetChildIndex(Me.TextBox3, 0)
+        Me.Controls.SetChildIndex(Me.ComboBox3, 0)
+        Me.Controls.SetChildIndex(Me.dateWithdrawalDate, 0)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents btnEnd As Button
     Friend WithEvents btnRegistration As Button
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Label47 As Label
-    Friend WithEvents Label48 As Label
-    Friend WithEvents Label49 As Label
-    Friend WithEvents Label46 As Label
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents gbSection As GroupBox
+    Friend WithEvents btnSearch As Button
+    Friend WithEvents btnExcel As Button
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents cmb_Syasyu As ComboBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents Label2 As Label
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents Label6 As Label
-    Friend WithEvents Label5 As Label
-    Friend WithEvents Label35 As Label
-    Friend WithEvents cmbProcess As ComboBox
-    Friend WithEvents Label39 As Label
-    Friend WithEvents Label1 As Label
-    Friend WithEvents cmbIndividual As ComboBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Label43 As Label
+    Friend WithEvents Label44 As Label
+    Friend WithEvents Label45 As Label
+    Friend WithEvents Label53 As Label
+    Friend WithEvents Label54 As Label
+    Friend WithEvents txtRemarks As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
-    Friend WithEvents txtProductNameAbbreviation As TextBox
-    Friend WithEvents dateWithdrawalDate As DateTimePicker
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents ComboBox2 As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents cmbWithdrawalCategory As ComboBox
-    Friend WithEvents txtWithdrawalQuantity As TextBox
+    Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents txtTransferIndicator As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
-    Friend WithEvents txtRemarks As TextBox
-    Friend WithEvents Label15 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents stsFooter As StatusStrip
-    Friend WithEvents slblMargin As ToolStripStatusLabel
-    Friend WithEvents slblDay As ToolStripStatusLabel
-    Friend WithEvents slblTime As ToolStripStatusLabel
-    Friend WithEvents TimeSys As Timer
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents dateWithdrawalDate As DateTimePicker
 End Class
