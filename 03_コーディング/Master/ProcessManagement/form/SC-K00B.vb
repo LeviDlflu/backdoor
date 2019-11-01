@@ -26,4 +26,19 @@
         e.Graphics.DrawLine(Pens.Black, 1, gBox.Height - 2, gBox.Width - 2, gBox.Height - 2)
         e.Graphics.DrawLine(Pens.Black, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2)
     End Sub
+
+    Private Sub btnStockInquiry_Click(sender As Object, e As EventArgs) Handles btnStockInquiry.Click
+
+    End Sub
+
+    ''' <summary>
+    ''' 進捗管理(K-12)
+    ''' </summary>
+    Private Sub btnManagement_Click(sender As Object, e As EventArgs) Handles btnManagement.Click
+
+        Dim frm As New SC_K12()
+        frm.ShowDialog()
+        Me.Show()
+
+    End Sub
 End Class
