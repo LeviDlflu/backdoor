@@ -1,9 +1,11 @@
-﻿Public Class SC_K14
+﻿Imports System.Reflection
+
+Public Class SC_K14
     Dim headerName As Hashtable = New Hashtable From {
-                             {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
-                             {"区分", "Section" & vbCrLf & "(区分)"},
-                             {"分類", "Classification" & vbCrLf & "(分類)"},
-                             {"合計", "Total" & vbCrLf & "(合計)"}
+                             {"品名略称", "Product name abbreviation" & vbCrLf & "品名略称"},
+                             {"区分", "Section" & vbCrLf & "区分"},
+                             {"分類", "Classification" & vbCrLf & "分類"},
+                             {"合計", "Total" & vbCrLf & "合計"}
                             }
     Private Const COL_PRODUCT_NAME_ABBREVIATION As String = "品名略称"
     Private Const COL_SECTION As String = "区分"
@@ -11,8 +13,19 @@
     Private Const COL_TOTAL As String = "合計"
 
     Private Const CONST_SYSTEM_NAME As String = "前日以前実績参照"
+    Private Const FORM_NAME As String = "The results before the previous days(前日以前実績参照)"
+
     Public judgmentCategory As String = String.Empty
     Public judgmentClassification As String = String.Empty
+
+    Public Sub New()
+
+        ' この呼び出しはデザイナーで必要です。
+        InitializeComponent()
+
+        ' InitializeComponent() 呼び出しの後で初期化を追加します。
+
+    End Sub
 
     ''' <summary>
     ''' 初期表示
@@ -25,6 +38,9 @@
         Me.cmbSalesVarieties.Text = String.Empty
         Me.cmbPackingSpecifications.Text = String.Empty
         Me.cmbProductName.Text = String.Empty
+
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
         Dim dt As New DataTable
 
@@ -39,13 +55,17 @@
         Me.cmbProcess.ValueMember = dt.Columns.Item(0).ColumnName
         Me.cmbProcess.DisplayMember = dt.Columns.Item(1).ColumnName
 
+        Dim type As Type = gridData.GetType()
+        Dim pi As PropertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
+        pi.SetValue(gridData, True, Nothing)
+
     End Sub
 
 
     ''' <summary>
     ''' 　・行ヘッダーに行番号書き込み
     ''' </summary>
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs)
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
             '行番号を描画する範囲を決定する
@@ -235,6 +255,18 @@
             End Select
         Next
 
+        For i As Integer = 0 To gridData.DisplayedColumnCount(True)
+            Select Case i
+                Case 0
+                    gridData.Columns(i).Width = 200
+                Case 1
+                    gridData.Columns(i).Width = 80
+                Case 2
+                    gridData.Columns(i).Width = 70
+                Case Else
+                    gridData.Columns(i).Width = 50
+            End Select
+        Next
         'gridData.Columns(0).Width = 50
         'gridData.Columns(1).Width = 150
         'gridData.Columns(2).Width = 150
@@ -259,37 +291,8 @@
 
         setGrid(createGridData())
 
-        Dim cmbGridView As New CmbDataGridGiew(Me.gridData)
-        Select Case cmbProcess.Text
-            Case "成形"
-                cmbGridView.Add(0, 0, 3, 0)
-                cmbGridView.Add(4, 0, 7, 0)
-                cmbGridView.Add(8, 0, 11, 0)
-            Case "塗装"
-                cmbGridView.Add(0, 0, 9, 0)
-                cmbGridView.Add(0, 1, 1, 1)
-                cmbGridView.Add(2, 1, 4, 1)
-                cmbGridView.Add(8, 1, 9, 1)
-            Case "組立"
-                cmbGridView.Add(0, 0, 2, 0)
-                cmbGridView.Add(3, 0, 5, 0)
-                cmbGridView.Add(6, 0, 8, 0)
-        End Select
-    End Sub
+        gridData.MergeColumnNames.Add(COL_PRODUCT_NAME_ABBREVIATION)
 
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        '    Me.Close()
-        'End If
-
-        If MsgBox("画面を閉じてよろしいですか？", vbOKCancel + vbQuestion, CONST_SYSTEM_NAME) = DialogResult.OK Then
-            Me.Close()
-        End If
     End Sub
 
     Private Sub gridData_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentDoubleClick
@@ -305,114 +308,10 @@
             Me.Show()
         End If
     End Sub
-End Class
 
-''' <summary>
-''' データグリッドロード後
-''' Dim cmbGridView As New CmbDataGridGiew(Me.gridData)
-''' cmbGridView.Add(0, 0, 3, 0)
-''' </summary>
-Public Class CmbDataGridGiew
-    Private data As New List(Of MyRect)
-    Private Dgv As DataGridView
-
-    Public Sub New(_dgv As DataGridView)
-        Me.Dgv = _dgv
-        AddHandler _dgv.CellPainting, AddressOf DGV_Cellparnting
+    Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
+        slblDay.Text = Format(Now, "yyyy/MM/dd")
+        slblTime.Text = Format(Now, "HH:mm")
     End Sub
 
-    Public Sub Add(_rect As MyRect)
-        Me.data.Add(_rect)
-        Me.SetCellEnabled(_rect)
-    End Sub
-    Public Sub Add(_top As Integer, _left As Integer, _bottom As Integer, _right As Integer)
-        Me.data.Add(New MyRect(_top, _left, _bottom, _right))
-        Me.SetCellEnabled(New MyRect(_top, _left, _bottom, _right))
-    End Sub
-
-    Private Sub SetCellEnabled(_rect As MyRect)
-        For i = _rect.Top To _rect.Bottom
-            For j = _rect.Left To _rect.Right
-                Me.Dgv.Rows(i).Cells(j).ReadOnly = True
-            Next
-        Next
-    End Sub
-
-    Private Function InRects(rowIndex As Integer, colIndex As Integer) As Integer
-        For i = 0 To Me.data.Count - 1
-            If Me.data(i).InRect(rowIndex, colIndex) Then
-                Return i
-            End If
-        Next
-
-        Return -1
-
-    End Function
-
-    Private Sub DGV_Cellparnting(sender As Object, e As DataGridViewCellPaintingEventArgs)
-        Using gridBrush As Brush = New SolidBrush(Me.Dgv.GridColor), backColorBrush As SolidBrush = New SolidBrush(e.CellStyle.BackColor)
-            Using gridLinePen = New Pen(gridBrush)
-                If Me.data.Count = 0 Then
-                    Return
-                End If
-
-                Dim index As Integer = Me.InRects(e.RowIndex, e.ColumnIndex)
-                If index = -1 Then
-                    Return
-                End If
-
-                e.Graphics.FillRectangle(backColorBrush, e.CellBounds)
-
-                If e.RowIndex = Me.data(index).Bottom Then
-                    e.Graphics.DrawLine(gridLinePen, e.CellBounds.Left, e.CellBounds.Bottom - 1, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1)
-                End If
-                If e.ColumnIndex = Me.data(index).Right Then
-                    e.Graphics.DrawLine(gridLinePen, e.CellBounds.Right - 1, e.CellBounds.Top, e.CellBounds.Right - 1, e.CellBounds.Bottom - 1)
-                End If
-
-                e.Handled = True
-
-                For i = 0 To Me.data.Count - 1
-                    Dim rect1 As Rectangle = Me.Dgv.GetCellDisplayRectangle(Me.data(i).Left, Me.data(i).Top, False)
-                    Dim rect2 As Rectangle = Me.Dgv.GetCellDisplayRectangle(Me.data(i).Right, Me.data(i).Bottom, False)
-                    Dim rect As New Rectangle(rect1.Left, rect1.Top, rect2.Right - rect1.Left, rect2.Bottom - rect1.Top)
-                    Dim text As String
-
-                    Try
-                        text = Me.Dgv.Rows(Me.data(i).Top).Cells(Me.data(i).Left).Value.ToString().Trim()
-                    Catch ex As Exception
-                        text = ""
-                    End Try
-
-                    Dim sz As SizeF = e.Graphics.MeasureString(text, e.CellStyle.Font)
-                    e.Graphics.DrawString(text, e.CellStyle.Font, New SolidBrush(e.CellStyle.ForeColor),
-                                          rect.Left + (rect.Width - sz.Width) / 2,
-                                          rect.Top + (rect.Height - sz.Height) / 2,
-                                          StringFormat.GenericDefault)
-                Next
-
-            End Using
-
-        End Using
-    End Sub
-End Class
-
-Public Class MyRect
-    Public Top As Integer
-    Public Bottom As Integer
-    Public Right As Integer
-    Public Left As Integer
-    Public Sub New(_top As Integer, _left As Integer, _bottom As Integer, _right As Integer)
-        Me.Top = _top
-        Me.Left = _left
-        Me.Bottom = _bottom
-        Me.Right = _right
-    End Sub
-    Public Function InRect(rowIndex As Integer, colIndex As Integer) As Boolean
-        If rowIndex >= Me.Top And rowIndex <= Me.Bottom And colIndex >= Me.Left And colIndex <= Me.Right Then
-            Return True
-        Else
-            Return False
-        End If
-    End Function
 End Class
