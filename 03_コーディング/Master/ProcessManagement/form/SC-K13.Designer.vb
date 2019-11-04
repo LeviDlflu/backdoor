@@ -308,7 +308,7 @@ Partial Class SC_K13
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.Location = New System.Drawing.Point(32, 54)
-        Me.gridData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.ControlDark
+        Me.gridData.MergeColumnHeaderBackColor = System.Drawing.Color.White
         Me.gridData.MergeColumnNames = CType(resources.GetObject("gridData.MergeColumnNames"), System.Collections.Generic.List(Of String))
         Me.gridData.Name = "gridData"
         Me.gridData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]

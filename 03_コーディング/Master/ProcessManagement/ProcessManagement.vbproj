@@ -72,6 +72,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="form\DataGridViewMerge.Designer.vb">
+      <DependentUpon>DataGridViewMerge.vb</DependentUpon>
+    </Compile>
     <Compile Include="form\DataGridViewMerge.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -212,6 +215,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="form\DataGridViewMerge.resx">
+      <DependentUpon>DataGridViewMerge.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\ParentTemplate.resx">
       <DependentUpon>ParentTemplate.vb</DependentUpon>
     </EmbeddedResource>
