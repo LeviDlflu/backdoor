@@ -28,81 +28,106 @@ Public Class SC_K21
         init()
     End Sub
     Private Sub init()
-        Me.Target_date.Enabled = True
-        Me.cmb_PaymentCD.Enabled = True
-        Me.btnFinish.Enabled = True
-
-        Me.Target_date.Value = Date.Today()
-        Me.cmb_PaymentCD.Text = String.Empty
-
-        Timer1.Interval = 10
-        Timer1.Start()
-
-        Me.SearchDateTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
-
-        setGrid()
+        Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        setGrid(createGridData())
     End Sub
 
-    Private Sub setGrid()
+    ''' <summary>
+    ''' 　グリッド用のデータを作成
+    ''' </summary>
+    Private Function createGridData() As DataTable
+        Dim dt = New DataTable()
 
-        GridCtrl.Columns.Clear()
-        GridCtrl.AutoResizeColumns()
+        dt.Columns.Add(New DataColumn(COL_PAYMENT_DATE, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_PROCESS_ABBREVIATION, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_LOT_NO, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_PRODUCT_NAME_ABBREVIATION, GetType(System.String)))
+        dt.Columns.Add(New DataColumn(COL_ISSUED_QUANTITY, GetType(System.Double)))
+        dt.Columns.Add(New DataColumn(COL_REMARKS, GetType(System.String)))
+
+        Dim dr As DataRow
+
+        For index = 1 To 5
+            dr = dt.NewRow()
+            dr.Item(COL_PAYMENT_DATE) = Format(Now, "yyyy/MM/dd hh:mm")
+            dr.Item(COL_PROCESS_CODE) = COL_PROCESS_CODE & index
+            dr.Item(COL_PROCESS_ABBREVIATION) = COL_PROCESS_ABBREVIATION & index
+            dr.Item(COL_LOT_NO) = COL_LOT_NO & index
+            dr.Item(COL_PRODUCT_NAME_ABBREVIATION) = COL_PRODUCT_NAME_ABBREVIATION & index
+            dr.Item(COL_ISSUED_QUANTITY) = index
+            dr.Item(COL_REMARKS) = COL_REMARKS & index
+            dt.Rows.Add(dr)
+        Next
+
+        Return dt
+
+    End Function
+
+    ''' <summary>
+    ''' 　グリッドを設定する
+    ''' </summary>
+    ''' <param name="dtData">データソース</param>
+    Private Sub setGrid(ByRef dtData As DataTable)
+        gridData.Columns.Clear()
 
         Dim addColSentaku As New DataGridViewCheckBoxColumn()
         addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
         addColSentaku.HeaderText = headerName(COL_SENTAKU)
         addColSentaku.Name = "sentaku"
-        GridCtrl.Columns.Add(addColSentaku)
+        gridData.Columns.Add(addColSentaku)
 
-        GridCtrl.ReadOnly = True
-        Dim dt = New DataTable()
+        For Each col As DataColumn In dtData.Columns
 
-        dt.Columns.Add(New DataColumn(headerName(COL_PAYMENT_DATE), Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn(headerName(COL_PROCESS_CODE), Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn(headerName(COL_PROCESS_ABBREVIATION), Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn(headerName(COL_LOT_NO), Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn(headerName(COL_PRODUCT_NAME_ABBREVIATION), Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn(headerName(COL_ISSUED_QUANTITY), Type.GetType("System.Double")))
-        dt.Columns.Add(New DataColumn(headerName(COL_REMARKS), Type.GetType("System.String")))
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            addCol.HeaderText = headerName(col.ColumnName)
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
+        Next
 
-        Dim dr As DataRow
+        gridData.DataSource = dtData.Copy
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        For i As Integer = 0 To gridData.Columns.Count - 1
+            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
 
-        dr = dt.NewRow()
-        dr.Item(0) = "JAS"
-        dr.Item(1) = "JAS 組立"
-        dr.Item(2) = 61
-        dt.Rows.Add(dr)
+            '横位置
+            Select Case gridData.Columns(i).Name
+                Case COL_PROCESS_CODE
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End Select
 
-        dr = dt.NewRow()
-        dr.Item(0) = "KAS"
-        dr.Item(1) = "モ 組立"
-        dr.Item(2) = 29
-        dt.Rows.Add(dr)
+        Next
+        gridData.AutoResizeColumns()
 
-        GridCtrl.DataSource = dt.Copy
+        For Each col As DataGridViewColumn In gridData.Columns
+            Select Case col.Name
+                Case Else
+                    col.ReadOnly = True
+            End Select
+        Next
 
-        GridCtrl.Columns(0).Width = 50
-        GridCtrl.Columns(1).Width = 120
-        GridCtrl.Columns(2).Width = 150
-        GridCtrl.Columns(3).Width = 150
-        GridCtrl.Columns(4).Width = 150
-        GridCtrl.Columns(5).Width = 240
-        GridCtrl.Columns(6).Width = 150
-        GridCtrl.Columns(7).Width = 240
+        gridData.Columns(0).Width = 120
+        gridData.Columns(1).Width = 200
+        gridData.Columns(2).Width = 200
+        gridData.Columns(3).Width = 260
+        gridData.Columns(4).Width = 200
+        gridData.Columns(5).Width = 200
+        gridData.Columns(6).Width = 200
+        gridData.Columns(7).Width = 200
 
-        GridCtrl.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-        GridCtrl.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        GridCtrl.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        GridCtrl.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        GridCtrl.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        GridCtrl.Columns(4).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        GridCtrl.Columns(5).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        GridCtrl.Columns(6).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-        GridCtrl.Columns(7).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+        '複数選択不可
+        gridData.MultiSelect = False
+        '編集不可
+        gridData.AllowUserToDeleteRows = False
+        gridData.AllowUserToAddRows = False
+        gridData.AllowUserToResizeRows = False
 
     End Sub
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
             '行番号を描画する範囲を決定する
@@ -118,23 +143,5 @@ Public Class SC_K21
         TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Total_by_process.Click
 
-    End Sub
-
-    Private Sub Cancel_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
-    End Sub
-
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-
-    End Sub
-
-    Private Sub btnFinish_Click(sender As Object, e As EventArgs) Handles btnFinish.Click
-
-    End Sub
 End Class

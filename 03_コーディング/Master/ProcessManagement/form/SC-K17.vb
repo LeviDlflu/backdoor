@@ -1,4 +1,5 @@
-﻿Public Class SC_K17
+﻿Imports System.Reflection
+Public Class SC_K17
     Dim headerName As Hashtable = New Hashtable From {
                              {"品名略称", "Product abbreviation" & vbCrLf & "(品名略称)"},
                              {"金型", "Mold" & vbCrLf & "(金型)"},
@@ -29,6 +30,9 @@
         gridData.MergeColumnNames.Add(COL_MOLD)
         Label67.Text = Format(Now, "yyyy/MM/dd hh:mm")
         Label67.BackColor = Color.SkyBlue
+        Dim type As Type = gridData.GetType()
+        Dim pi As PropertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
+        pi.SetValue(gridData, True, Nothing)
     End Sub
 
     ''' <summary>

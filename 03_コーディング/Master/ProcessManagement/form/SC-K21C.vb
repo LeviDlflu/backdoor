@@ -1,82 +1,110 @@
-﻿Imports System.Text
-Imports System.Data
-Imports System.Data.SqlClient
+﻿Public Class SC_K21C
+    Dim headerName As Hashtable = New Hashtable From {
+                             {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
+                             {"工程略称", "Process abbreviation" & vbCrLf & "(工程略称)"},
+                             {"品種", "Variety" & vbCrLf & "(品種)"},
+                             {"払出数量合計", "Payment quantity total" & vbCrLf & "(払出数量合計)"}
+                            }
+    Private Const COL_PROCESS_CODE As String = "工程コード"
+    Private Const COL_PROCESS_ABBREVIATION As String = "工程略称"
+    Private Const COL_VARIETY As String = "品種"
+    Private Const COL_PAYMENT_QUANTITY_TOTAL As String = "払出数量合計"
 
-
-Public Class SC_K21C
-    Private Sub SC_K21C_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Const FORM_NAME As String = "Total by process variety (工程品種別集計)"
+    Private Sub SC_K21A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         init()
     End Sub
 
     Private Sub init()
-        Me.Target_date.Enabled = True
-        Me.Withdrawal_category.Enabled = True
-        Me.bntBack.Enabled = True
-
-        Me.Target_date.Value = Date.Today()
-        Me.Withdrawal_category.Text = String.Empty
-
-        Timer1.Interval = 10
-        Timer1.Start()
-
-        Me.SearchDateTime.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
-
-        setGrid()
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[" & Me.Name & "]" & FORM_NAME
+        Label67.Text = Format(Now, "yyyy/MM/dd hh:mm")
+        Label67.BackColor = Color.SkyBlue
+        setGrid(createGridData())
     End Sub
 
-    Private Sub setGrid()
-        GridCtrl.Columns.Clear()
-        GridCtrl.AutoResizeColumns()
-
-
-        GridCtrl.ReadOnly = True
+    ''' <summary>
+    ''' 　グリッド用のデータを作成
+    ''' </summary>
+    Private Function createGridData() As DataTable
         Dim dt = New DataTable()
 
-        dt.Columns.Add(New DataColumn("工程コード", Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn("工程略称", Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn("品種", Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn("払出数量合計", Type.GetType("System.Double")))
+        dt.Columns.Add(New DataColumn(COL_PROCESS_CODE, Type.GetType("System.String")))
+        dt.Columns.Add(New DataColumn(COL_PROCESS_ABBREVIATION, Type.GetType("System.String")))
+        dt.Columns.Add(New DataColumn(COL_VARIETY, Type.GetType("System.String")))
+        dt.Columns.Add(New DataColumn(COL_PAYMENT_QUANTITY_TOTAL, Type.GetType("System.Double")))
 
         Dim dr As DataRow
 
-        dr = dt.NewRow()
-        dr.Item(0) = "JAS"
-        dr.Item(1) = "JAS 組立"
-        dr.Item(2) = "P32R"
-        dr.Item(3) = 61
-        dt.Rows.Add(dr)
+        For index = 1 To 5
+            dr = dt.NewRow()
+            dr.Item(COL_PROCESS_CODE) = COL_PROCESS_CODE & index
+            dr.Item(COL_PROCESS_ABBREVIATION) = COL_PROCESS_ABBREVIATION & index
+            dr.Item(COL_VARIETY) = COL_VARIETY & index
+            dr.Item(COL_PAYMENT_QUANTITY_TOTAL) = index
+            dt.Rows.Add(dr)
+        Next
 
-        dr = dt.NewRow()
-        dr.Item(0) = "KAS"
-        dr.Item(1) = "モ 組立"
-        dr.Item(2) = "J32U"
-        dr.Item(3) = 29
-        dt.Rows.Add(dr)
+        Return dt
 
-        GridCtrl.DataSource = dt.Copy
+    End Function
 
-        GridCtrl.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+    ''' <summary>
+    ''' 　グリッドを設定する
+    ''' </summary>
+    ''' <param name="dtData">データソース</param>
+    Private Sub setGrid(ByRef dtData As DataTable)
+        gridData.Columns.Clear()
 
-        GridCtrl.Columns(0).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        GridCtrl.Columns(3).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
 
-        GridCtrl.Columns(0).Width = 100
-        GridCtrl.Columns(1).Width = 200
-        GridCtrl.Columns(2).Width = 200
-        GridCtrl.Columns(3).Width = 200
+        For Each col As DataColumn In dtData.Columns
 
-        GridCtrl.Columns(0).HeaderText = "Process code" & vbCrLf & "(工程コード)"
-        GridCtrl.Columns(1).HeaderText = "Process abbreviation" & vbCrLf & "(工程略称)"
-        GridCtrl.Columns(2).HeaderText = "Variety" & vbCrLf & "(品種)"
-        GridCtrl.Columns(3).HeaderText = "Withdrawal count" & vbCrLf & "(払出数量合計)"
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            addCol.HeaderText = headerName(col.ColumnName)
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
+        Next
+
+        gridData.DataSource = dtData.Copy
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        For i As Integer = 0 To gridData.Columns.Count - 1
+            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
+
+            '横位置
+            Select Case gridData.Columns(i).Name
+                Case COL_PROCESS_CODE
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            End Select
+
+        Next
+        gridData.AutoResizeColumns()
+
+        For Each col As DataGridViewColumn In gridData.Columns
+            Select Case col.Name
+                Case Else
+                    col.ReadOnly = True
+            End Select
+        Next
+
+        gridData.Columns(0).Width = 120
+        gridData.Columns(1).Width = 200
+        gridData.Columns(2).Width = 200
+        gridData.Columns(3).Width = 260
+
+
+        '複数選択不可
+        gridData.MultiSelect = False
+        '編集不可
+        gridData.AllowUserToDeleteRows = False
+        gridData.AllowUserToAddRows = False
+        gridData.AllowUserToResizeRows = False
 
     End Sub
 
-    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        BottomDate.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm")
-    End Sub
-
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles GridCtrl.RowPostPaint
+    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
             '行番号を描画する範囲を決定する
@@ -93,11 +121,4 @@ Public Class SC_K21C
         End If
     End Sub
 
-    Private Sub Finish_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Finish_Click_1(sender As Object, e As EventArgs)
-
-    End Sub
 End Class
