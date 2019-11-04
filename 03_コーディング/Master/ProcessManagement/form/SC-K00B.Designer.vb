@@ -48,7 +48,7 @@ Partial Class SC_K00B
         Me.btnStockInquiry.Name = "btnStockInquiry"
         Me.btnStockInquiry.Size = New System.Drawing.Size(270, 49)
         Me.btnStockInquiry.TabIndex = 1
-        Me.btnStockInquiry.Text = "               Stock inquiry                  在庫照会(K-01)"
+        Me.btnStockInquiry.Text = "               Stock inquiry                  在庫照会(Z-01)"
         Me.btnStockInquiry.UseVisualStyleBackColor = True
         '
         'btnManagement
