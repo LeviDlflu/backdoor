@@ -223,12 +223,12 @@
         gridDataList.Columns("引当可能残量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.AutoResizeColumns()
 
-        gridDataList.Columns(0).Width = 150
-        gridDataList.Columns(1).Width = 120
-        gridDataList.Columns(2).Width = 110
-        gridDataList.Columns(3).Width = 110
-        gridDataList.Columns(4).Width = 110
-        gridDataList.Columns(5).Width = 150
+        gridDataList.Columns(0).Width = 120
+        gridDataList.Columns(1).Width = 110
+        gridDataList.Columns(2).Width = 100
+        gridDataList.Columns(3).Width = 100
+        gridDataList.Columns(4).Width = 100
+        gridDataList.Columns(5).Width = 120
     End Sub
 
     Private Sub Patten3()
@@ -271,12 +271,12 @@
         gridData.Columns("その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridData.AutoResizeColumns()
 
-        gridData.Columns(0).Width = 150
-        gridData.Columns(1).Width = 150
-        gridData.Columns(2).Width = 150
-        gridData.Columns(3).Width = 150
-        gridData.Columns(4).Width = 150
-        gridData.Columns(5).Width = 150
+        gridData.Columns(0).Width = 170
+        gridData.Columns(1).Width = 170
+        gridData.Columns(2).Width = 170
+        gridData.Columns(3).Width = 170
+        gridData.Columns(4).Width = 170
+        gridData.Columns(5).Width = 170
     End Sub
 
     ''' <summary>
