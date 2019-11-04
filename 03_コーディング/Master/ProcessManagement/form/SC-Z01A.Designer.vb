@@ -109,17 +109,17 @@ Partial Class SC_Z01A
         Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.EnableHeadersVisualStyles = False
-        Me.gridData.Location = New System.Drawing.Point(31, 55)
+        Me.gridData.Location = New System.Drawing.Point(41, 55)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1197, 262)
+        Me.gridData.Size = New System.Drawing.Size(1063, 262)
         Me.gridData.TabIndex = 311
         '
         'Label67
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1158, 18)
+        Me.Label67.Location = New System.Drawing.Point(1040, 18)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(144, 16)
         Me.Label67.TabIndex = 310
@@ -129,7 +129,7 @@ Partial Class SC_Z01A
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(1015, 15)
+        Me.Label65.Location = New System.Drawing.Point(897, 15)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -139,7 +139,7 @@ Partial Class SC_Z01A
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(1019, 36)
+        Me.Label66.Location = New System.Drawing.Point(901, 36)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -200,8 +200,7 @@ Partial Class SC_Z01A
         Me.gridDataList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gridDataList.BackgroundColor = System.Drawing.Color.White
-        Me.gridDataList.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.gridDataList.BackgroundColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -223,7 +222,7 @@ Partial Class SC_Z01A
         Me.gridDataList.Enabled = False
         Me.gridDataList.EnableHeadersVisualStyles = False
         Me.gridDataList.GridColor = System.Drawing.SystemColors.Control
-        Me.gridDataList.Location = New System.Drawing.Point(576, 117)
+        Me.gridDataList.Location = New System.Drawing.Point(562, 117)
         Me.gridDataList.MultiSelect = False
         Me.gridDataList.Name = "gridDataList"
         Me.gridDataList.ReadOnly = True
@@ -238,7 +237,7 @@ Partial Class SC_Z01A
         Me.gridDataList.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gridDataList.RowHeadersVisible = False
         Me.gridDataList.RowTemplate.Height = 21
-        Me.gridDataList.Size = New System.Drawing.Size(751, 70)
+        Me.gridDataList.Size = New System.Drawing.Size(653, 63)
         Me.gridDataList.StandardTab = True
         Me.gridDataList.TabIndex = 314
         Me.gridDataList.TabStop = False
