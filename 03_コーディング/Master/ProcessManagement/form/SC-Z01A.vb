@@ -52,9 +52,7 @@
 
         Patten3()
 
-        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
-        slblDay.Text = Format(Now, "yyyy/MM/dd")
-        slblTime.Text = Format(Now, "HH:mm")
+        Me.Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
     End Sub
 
@@ -175,23 +173,6 @@
         gridData.AllowUserToResizeRows = False
     End Sub
 
-    Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
-        Dim dgv As DataGridView = CType(sender, DataGridView)
-        If dgv.RowHeadersVisible Then
-            '行番号を描画する範囲を決定する
-            Dim rect As New Rectangle(e.RowBounds.Left, e.RowBounds.Top,
-        dgv.RowHeadersWidth, e.RowBounds.Height)
-            rect.Inflate(-2, -2)
-            '行番号を描画する
-            TextRenderer.DrawText(e.Graphics,
-        (e.RowIndex + 1).ToString(),
-        e.InheritedRowStyle.Font,
-        rect,
-        e.InheritedRowStyle.ForeColor,
-        TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
-        End If
-    End Sub
-
     ''' <summary>
     ''' 　画面Load
     ''' </summary>
@@ -199,18 +180,6 @@
     ''' <param name="e">e</param>
     Private Sub SC_M22_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Init()
-    End Sub
-
-    ''' <summary>
-    ''' 　終了ボタン押下
-    ''' </summary>
-    Private Sub btnEnd_Click(sender As Object, e As EventArgs) Handles btnEnd.Click
-
-        'If MsgBox(String.Format(clsGlobal.MSG2("I0099")),
-        '          vbYesNo + vbQuestion,
-        '          My.Settings.systemName) = DialogResult.Yes Then
-        Me.Close()
-        'End If
     End Sub
 
     Private Sub PattenList()
@@ -314,28 +283,6 @@
     ''' 　チェックボックス事件
     ''' </summary>
     Private Sub gridData_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles gridData.CurrentCellDirtyStateChanged
-
-        If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
-            gridData.EndEdit()
-            Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
-            If Checked Then
-
-                For i As Integer = 3 To 5
-                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.Yellow
-
-                    gridData.CurrentRow.Cells(i).ReadOnly = False
-                Next
-            Else
-
-                For i As Integer = 3 To 5
-
-                    gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
-
-                    gridData.CurrentRow.Cells(i).ReadOnly = True
-
-                Next
-            End If
-        End If
 
     End Sub
 
