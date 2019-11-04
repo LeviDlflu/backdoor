@@ -27,8 +27,16 @@
         e.Graphics.DrawLine(Pens.Black, gBox.Width - 2, vSize.Height / 2, gBox.Width - 2, gBox.Height - 2)
     End Sub
 
+    ''' <summary>
+    ''' 在庫照会(Z-01)
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub btnStockInquiry_Click(sender As Object, e As EventArgs) Handles btnStockInquiry.Click
 
+        Dim frm As New SC_Z01()
+        frm.ShowDialog()
+        Me.Show()
     End Sub
 
     ''' <summary>
