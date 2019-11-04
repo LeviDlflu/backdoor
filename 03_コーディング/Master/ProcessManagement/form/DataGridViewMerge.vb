@@ -118,9 +118,9 @@ Partial Public Class DataGridViewMerge
         Next
     End Sub
 
-    Protected Overrides Sub OnCellClick(e As DataGridViewCellEventArgs)
-        Me.OnCellClick(e)
-    End Sub
+    'Protected Overrides Sub OnCellClick(e As DataGridViewCellEventArgs)
+    '    Me.OnCellClick(e)
+    'End Sub
 
     ''' <summary>
     ''' 統合された列をクリア
