@@ -1,0 +1,66 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-K20>
+    <Selects>
+      <!--コードマスタ-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+          コード,
+          (コード+ ':' +コード名称) AS コード名称
+          FROM
+          コードマスタ
+          WHERE
+          コード区分 IN ('005','032')
+          ORDER BY
+          コード区分 DESC,
+          コード
+        </Text>
+      </SQL>
+
+      <!--工程マスタ-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            '' AS 大工程コード,
+            '' AS 工程略称
+          UNION SELECT
+            大工程コード,
+            (大工程コード+ ':' +工程略称) AS 工程略称
+          FROM
+            工程マスタ
+          ORDER BY
+            大工程コード
+        </Text>
+      </SQL>
+
+      <!--1-->
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+            品名コード,
+            品名事業所コード,
+            パック品名略称,
+            納入先コード,
+            納入区分,
+            品名略称,
+            事業所コード,
+            製品半製品区分,
+            区分個体ＮＯ,
+            大工程コード
+          FROM
+            K20_01
+          WHERE
+            事業所コード ='{0}'
+          AND
+            製品半製品区分 ='{1}'
+          AND
+            区分個体ＮＯ ='{2}'
+          AND
+            大工程コード ='{3}'
+        </Text>
+      </SQL>
+      
+    </Selects>
+  </SC-K20>
+</Configuration>
