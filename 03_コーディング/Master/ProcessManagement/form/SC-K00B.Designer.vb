@@ -34,9 +34,9 @@ Partial Class SC_K00B
         Me.GroupBox2.Controls.Add(Me.btnStockInquiry)
         Me.GroupBox2.Controls.Add(Me.btnManagement)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 152)
+        Me.GroupBox2.Location = New System.Drawing.Point(14, 165)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1327, 437)
+        Me.GroupBox2.Size = New System.Drawing.Size(1548, 473)
         Me.GroupBox2.TabIndex = 271
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Inventory inquiry and progress manage menu(在庫照会と進捗管理メニュー)"
@@ -44,9 +44,9 @@ Partial Class SC_K00B
         'btnStockInquiry
         '
         Me.btnStockInquiry.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnStockInquiry.Location = New System.Drawing.Point(370, 61)
+        Me.btnStockInquiry.Location = New System.Drawing.Point(432, 66)
         Me.btnStockInquiry.Name = "btnStockInquiry"
-        Me.btnStockInquiry.Size = New System.Drawing.Size(270, 49)
+        Me.btnStockInquiry.Size = New System.Drawing.Size(270, 53)
         Me.btnStockInquiry.TabIndex = 1
         Me.btnStockInquiry.Text = "               Stock inquiry                  在庫照会(Z-01)"
         Me.btnStockInquiry.UseVisualStyleBackColor = True
@@ -54,17 +54,17 @@ Partial Class SC_K00B
         'btnManagement
         '
         Me.btnManagement.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnManagement.Location = New System.Drawing.Point(34, 61)
+        Me.btnManagement.Location = New System.Drawing.Point(40, 66)
         Me.btnManagement.Name = "btnManagement"
-        Me.btnManagement.Size = New System.Drawing.Size(270, 49)
+        Me.btnManagement.Size = New System.Drawing.Size(270, 53)
         Me.btnManagement.TabIndex = 0
         Me.btnManagement.Text = "          Progress management          進捗管理(K-12)"
         Me.btnManagement.UseVisualStyleBackColor = True
         '
         'SC_K00B
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.ClientSize = New System.Drawing.Size(1354, 664)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(1580, 719)
         Me.Controls.Add(Me.GroupBox2)
         Me.Name = "SC_K00B"
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)
