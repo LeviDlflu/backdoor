@@ -104,7 +104,7 @@ Partial Class ParentTemplate
         Me.grpHead.Controls.Add(Me.lblMaster)
         Me.grpHead.Controls.Add(Me.txbEnvironment)
         Me.grpHead.Controls.Add(Me.txbLogin)
-        Me.grpHead.Location = New System.Drawing.Point(-2, -11)
+        Me.grpHead.Location = New System.Drawing.Point(-2, -10)
         Me.grpHead.Name = "grpHead"
         Me.grpHead.Size = New System.Drawing.Size(1581, 57)
         Me.grpHead.TabIndex = 267
@@ -114,12 +114,12 @@ Partial Class ParentTemplate
         '
         Me.lblEnvironment.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblEnvironment.AutoSize = True
-        Me.lblEnvironment.Font = New System.Drawing.Font("MS UI Gothic", 9.75!)
+        Me.lblEnvironment.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblEnvironment.ForeColor = System.Drawing.Color.White
-        Me.lblEnvironment.Location = New System.Drawing.Point(1188, 35)
+        Me.lblEnvironment.Location = New System.Drawing.Point(1158, 36)
         Me.lblEnvironment.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lblEnvironment.Name = "lblEnvironment"
-        Me.lblEnvironment.Size = New System.Drawing.Size(208, 13)
+        Me.lblEnvironment.Size = New System.Drawing.Size(274, 16)
         Me.lblEnvironment.TabIndex = 6
         Me.lblEnvironment.Text = "Connection environment(接続環境)"
         Me.lblEnvironment.TextAlign = System.Drawing.ContentAlignment.BottomRight
@@ -128,12 +128,12 @@ Partial Class ParentTemplate
         '
         Me.lblLogin.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblLogin.AutoSize = True
-        Me.lblLogin.Font = New System.Drawing.Font("MS UI Gothic", 9.75!)
+        Me.lblLogin.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblLogin.ForeColor = System.Drawing.Color.White
-        Me.lblLogin.Location = New System.Drawing.Point(1284, 13)
+        Me.lblLogin.Location = New System.Drawing.Point(1263, 14)
         Me.lblLogin.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.lblLogin.Name = "lblLogin"
-        Me.lblLogin.Size = New System.Drawing.Size(125, 13)
+        Me.lblLogin.Size = New System.Drawing.Size(168, 16)
         Me.lblLogin.TabIndex = 4
         Me.lblLogin.Text = "Login user(ログイン者)"
         Me.lblLogin.TextAlign = System.Drawing.ContentAlignment.BottomRight
