@@ -309,4 +309,7 @@
     <Content Include="dll\PUCCommon.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy "$(SolutionDir)ProcessManagement\XmlFiles\*.*" "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
 </Project>
