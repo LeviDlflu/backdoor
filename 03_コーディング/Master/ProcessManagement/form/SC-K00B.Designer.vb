@@ -36,7 +36,7 @@ Partial Class SC_K00B
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
         Me.GroupBox2.Location = New System.Drawing.Point(14, 165)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(1548, 473)
+        Me.GroupBox2.Size = New System.Drawing.Size(1318, 443)
         Me.GroupBox2.TabIndex = 271
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Inventory inquiry and progress manage menu(在庫照会と進捗管理メニュー)"
@@ -44,7 +44,7 @@ Partial Class SC_K00B
         'btnStockInquiry
         '
         Me.btnStockInquiry.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnStockInquiry.Location = New System.Drawing.Point(432, 66)
+        Me.btnStockInquiry.Location = New System.Drawing.Point(396, 66)
         Me.btnStockInquiry.Name = "btnStockInquiry"
         Me.btnStockInquiry.Size = New System.Drawing.Size(270, 53)
         Me.btnStockInquiry.TabIndex = 1
@@ -64,7 +64,7 @@ Partial Class SC_K00B
         'SC_K00B
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1580, 719)
+        Me.ClientSize = New System.Drawing.Size(1350, 689)
         Me.Controls.Add(Me.GroupBox2)
         Me.Name = "SC_K00B"
         Me.Controls.SetChildIndex(Me.GroupBox2, 0)

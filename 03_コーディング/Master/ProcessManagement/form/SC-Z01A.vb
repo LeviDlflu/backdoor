@@ -223,8 +223,8 @@
         gridDataList.Columns("引当可能残量").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         gridDataList.AutoResizeColumns()
 
-        gridDataList.Columns(0).Width = 120
-        gridDataList.Columns(1).Width = 110
+        gridDataList.Columns(0).Width = 140
+        gridDataList.Columns(1).Width = 120
         gridDataList.Columns(2).Width = 100
         gridDataList.Columns(3).Width = 100
         gridDataList.Columns(4).Width = 100

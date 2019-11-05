@@ -151,7 +151,7 @@ Public Class SC_K13
             dr = dt.NewRow()
             dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
             dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
-            dr.Item(COL_MOLD) = COL_MOLD & COL_MOLD & COL_MOLD & index
+            dr.Item(COL_MOLD) = COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & index
             dr.Item(COL_COMPLETION_THE_DAY) = index
             dr.Item(COL_COMPLETION_CORRECTION) = 2 & index
             dr.Item(COL_DEFECT_THE_DAY) = index

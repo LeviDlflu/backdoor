@@ -36,7 +36,6 @@ Public Class SC_K14
         Me.cmbSection.Text = String.Empty
         Me.cmbVehicleType.Text = String.Empty
         Me.cmbSalesVarieties.Text = String.Empty
-        Me.cmbPackingSpecifications.Text = String.Empty
         Me.cmbProductName.Text = String.Empty
 
         lblMaster.Text = FORM_NAME

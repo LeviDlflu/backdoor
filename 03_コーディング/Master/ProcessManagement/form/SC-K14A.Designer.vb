@@ -48,9 +48,9 @@ Partial Class SC_K14A
         '
         Me.Button1.BackColor = System.Drawing.SystemColors.Control
         Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Button1.Location = New System.Drawing.Point(291, 61)
+        Me.Button1.Location = New System.Drawing.Point(339, 66)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(100, 49)
+        Me.Button1.Size = New System.Drawing.Size(117, 53)
         Me.Button1.TabIndex = 272
         Me.Button1.Text = "Desc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(降順)"
         Me.Button1.UseVisualStyleBackColor = False
@@ -59,9 +59,9 @@ Partial Class SC_K14A
         '
         Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
         Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDesc.Location = New System.Drawing.Point(24, 61)
+        Me.btnDesc.Location = New System.Drawing.Point(28, 66)
         Me.btnDesc.Name = "btnDesc"
-        Me.btnDesc.Size = New System.Drawing.Size(100, 49)
+        Me.btnDesc.Size = New System.Drawing.Size(117, 53)
         Me.btnDesc.TabIndex = 271
         Me.btnDesc.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
         Me.btnDesc.UseVisualStyleBackColor = False
@@ -70,9 +70,9 @@ Partial Class SC_K14A
         '
         Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnSearch.Location = New System.Drawing.Point(157, 61)
+        Me.btnSearch.Location = New System.Drawing.Point(183, 66)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(100, 49)
+        Me.btnSearch.Size = New System.Drawing.Size(117, 53)
         Me.btnSearch.TabIndex = 270
         Me.btnSearch.Text = "Asｃ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(昇順)"
         Me.btnSearch.UseVisualStyleBackColor = False
@@ -89,36 +89,36 @@ Partial Class SC_K14A
         Me.Panel4.Controls.Add(Me.Label45)
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Controls.Add(Me.Label54)
-        Me.Panel4.Location = New System.Drawing.Point(-1, 116)
+        Me.Panel4.Location = New System.Drawing.Point(-1, 126)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1357, 135)
+        Me.Panel4.Size = New System.Drawing.Size(1583, 146)
         Me.Panel4.TabIndex = 296
         '
         'txtJudgmentClassification
         '
         Me.txtJudgmentClassification.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.txtJudgmentClassification.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtJudgmentClassification.Location = New System.Drawing.Point(298, 92)
+        Me.txtJudgmentClassification.Location = New System.Drawing.Point(348, 100)
         Me.txtJudgmentClassification.Name = "txtJudgmentClassification"
         Me.txtJudgmentClassification.ReadOnly = True
-        Me.txtJudgmentClassification.Size = New System.Drawing.Size(180, 21)
+        Me.txtJudgmentClassification.Size = New System.Drawing.Size(209, 21)
         Me.txtJudgmentClassification.TabIndex = 308
         '
         'txtJudgmentCategory
         '
         Me.txtJudgmentCategory.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.txtJudgmentCategory.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtJudgmentCategory.Location = New System.Drawing.Point(39, 92)
+        Me.txtJudgmentCategory.Location = New System.Drawing.Point(45, 100)
         Me.txtJudgmentCategory.Name = "txtJudgmentCategory"
         Me.txtJudgmentCategory.ReadOnly = True
-        Me.txtJudgmentCategory.Size = New System.Drawing.Size(180, 21)
+        Me.txtJudgmentCategory.Size = New System.Drawing.Size(209, 21)
         Me.txtJudgmentCategory.TabIndex = 307
         '
         'Label37
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label37.Location = New System.Drawing.Point(295, 56)
+        Me.Label37.Location = New System.Drawing.Point(344, 61)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(187, 16)
         Me.Label37.TabIndex = 301
@@ -128,7 +128,7 @@ Partial Class SC_K14A
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label43.Location = New System.Drawing.Point(295, 73)
+        Me.Label43.Location = New System.Drawing.Point(344, 79)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(82, 16)
         Me.Label43.TabIndex = 306
@@ -138,7 +138,7 @@ Partial Class SC_K14A
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label44.Location = New System.Drawing.Point(39, 73)
+        Me.Label44.Location = New System.Drawing.Point(45, 79)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(82, 16)
         Me.Label44.TabIndex = 305
@@ -148,7 +148,7 @@ Partial Class SC_K14A
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(8, 32)
+        Me.Label45.Location = New System.Drawing.Point(9, 35)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 304
@@ -158,7 +158,7 @@ Partial Class SC_K14A
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 13)
+        Me.Label53.Location = New System.Drawing.Point(3, 14)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(162, 19)
         Me.Label53.TabIndex = 295
@@ -168,7 +168,7 @@ Partial Class SC_K14A
         '
         Me.Label54.AutoSize = True
         Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label54.Location = New System.Drawing.Point(36, 56)
+        Me.Label54.Location = New System.Drawing.Point(42, 61)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(155, 16)
         Me.Label54.TabIndex = 297
@@ -185,9 +185,9 @@ Partial Class SC_K14A
         Me.Panel1.Controls.Add(Me.Label66)
         Me.Panel1.Controls.Add(Me.Label38)
         Me.Panel1.Controls.Add(Me.Label40)
-        Me.Panel1.Location = New System.Drawing.Point(-1, 251)
+        Me.Panel1.Location = New System.Drawing.Point(-1, 272)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1357, 381)
+        Me.Panel1.Size = New System.Drawing.Size(1353, 388)
         Me.Panel1.TabIndex = 308
         '
         'gridData
@@ -196,19 +196,19 @@ Partial Class SC_K14A
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridData.Location = New System.Drawing.Point(32, 54)
+        Me.gridData.Location = New System.Drawing.Point(37, 59)
         Me.gridData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control
         Me.gridData.MergeColumnNames = CType(resources.GetObject("gridData.MergeColumnNames"), System.Collections.Generic.List(Of String))
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 23
-        Me.gridData.Size = New System.Drawing.Size(1285, 324)
+        Me.gridData.Size = New System.Drawing.Size(1269, 326)
         Me.gridData.TabIndex = 312
         '
         'Label67
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1139, 18)
+        Me.Label67.Location = New System.Drawing.Point(1114, 19)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(144, 16)
         Me.Label67.TabIndex = 310
@@ -218,7 +218,7 @@ Partial Class SC_K14A
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(994, 15)
+        Me.Label65.Location = New System.Drawing.Point(972, 16)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -228,7 +228,7 @@ Partial Class SC_K14A
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(998, 36)
+        Me.Label66.Location = New System.Drawing.Point(976, 39)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -238,7 +238,7 @@ Partial Class SC_K14A
         '
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label38.Location = New System.Drawing.Point(6, 3)
+        Me.Label38.Location = New System.Drawing.Point(7, 3)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(142, 19)
         Me.Label38.TabIndex = 306
@@ -248,7 +248,7 @@ Partial Class SC_K14A
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label40.Location = New System.Drawing.Point(10, 22)
+        Me.Label40.Location = New System.Drawing.Point(12, 24)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(97, 19)
         Me.Label40.TabIndex = 307
@@ -256,8 +256,8 @@ Partial Class SC_K14A
         '
         'SC_K14A
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.ClientSize = New System.Drawing.Size(1354, 659)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(1350, 689)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Button1)
