@@ -1,6 +1,6 @@
 ﻿Public Class ParentTemplate
 
-    Private Const CONST_SYSTEM_NAME As String = "生産管理システム"
+    Private Const CONST_SYSTEM_NAME As String = "B／D生産管理システム"
 
     Private Sub TimeSys_Tick(sender As Object, e As EventArgs) Handles TimeSys.Tick
         slblDay.Text = Format(Now, "yyyy/MM/dd")
@@ -18,7 +18,7 @@
     End Sub
 
     Private Sub ParentTemplate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        btnFinish.Location = New Point(Me.Size.Width - 135, btnFinish.Location.Y)
+        btnFinish.Location = New Point(Me.Size.Width - 155, btnFinish.Location.Y)
         grpHead.Width = Me.Size.Width - 12
     End Sub
 End Class
