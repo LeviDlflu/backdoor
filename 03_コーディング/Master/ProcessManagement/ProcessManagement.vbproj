@@ -47,8 +47,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PUCCommon">
-      <HintPath>..\PUCCommon\bin\Debug\PUCCommon.dll</HintPath>
+    <Reference Include="PUCCommon, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\PUCCommon.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -303,6 +304,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="XmlFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dll\PUCCommon.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
