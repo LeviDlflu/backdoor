@@ -1,0 +1,71 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-Z01>
+    <Selects>
+      <!--コードマスタ-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+          コード,
+          (コード+ ':' +コード名称) AS コード名称
+          FROM
+          コードマスタ
+          WHERE
+          コード区分 IN ('005','032')
+          ORDER BY
+          コード区分 DESC,
+          コード
+        </Text>
+      </SQL>
+
+      <!--工程マスタ-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            ' ' AS 工程コード,
+            '' AS 工程略称
+          UNION SELECT
+            工程コード,
+            (工程コード+ ':' +工程略称) AS 工程略称
+          FROM
+            工程マスタ 
+          ORDER BY
+            工程コード
+        </Text>
+      </SQL>
+
+      <!--品種マスタ-->
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+          ' ' AS 品種コード,
+          '' AS 品種名
+          UNION SELECT
+          品種コード,
+          (品種コード+ ':' +品種名) AS 品種名
+          FROM
+          品種マスタ
+          ORDER BY
+          品種コード
+        </Text>
+      </SQL>
+
+      <!--車種マスタ-->
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+          ' ' AS 車種コード,
+          '' AS 車種名
+          UNION SELECT
+          車種コード,
+          (車種コード+ ':' +車種名) AS 車種名
+          FROM
+          車種マスタ
+          ORDER BY
+          車種コード
+        </Text>
+      </SQL>
+      
+    </Selects>
+  </SC-Z01>
+</Configuration>
