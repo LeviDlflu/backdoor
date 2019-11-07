@@ -1,72 +1,7 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
-  <Profiles />
-  <Settings>
-    <Setting Name="server" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">13.78.28.199</Value>
-    </Setting>
-    <Setting Name="db" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">BackDoor</Value>
-    </Setting>
-    <Setting Name="userid" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">sqladmin</Value>
-    </Setting>
-    <Setting Name="password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Adsursql@@tokyo</Value>
-    </Setting>
-    <Setting Name="LogPeriod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">7</Value>
-    </Setting>
-    <Setting Name="ConnectString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source={1};Initial Catalog={2};User ID={3};Password={4};</Value>
-    </Setting>
-    <Setting Name="SqlLogFlag" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">false</Value>
-    </Setting>
-    <Setting Name="LogFileFormat" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{0}\{1}_{2}_SYSTEM.log</Value>
-    </Setting>
-    <Setting Name="ExcFileFormat" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{0}\{1}_{2}_EXCEPTION.log</Value>
-    </Setting>
-    <Setting Name="Message" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">..\..\message</Value>
-    </Setting>
-    <Setting Name="MailSender" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">hidekazu.fujinami.ee@hitachi.com</Value>
-    </Setting>
-    <Setting Name="MailHost" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">mail001.hitachi-chem.co.jp</Value>
-    </Setting>
-    <Setting Name="MailPort" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">25</Value>
-    </Setting>
-    <Setting Name="MailTimeOut" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">100000</Value>
-    </Setting>
-    <Setting Name="MailErrType1" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">マッピングエラー</Value>
-    </Setting>
-    <Setting Name="MailErrType2" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">CUPエラー</Value>
-    </Setting>
-    <Setting Name="MailErrType3" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">入力連携出力結果エラー</Value>
-    </Setting>
-    <Setting Name="MailErrType4" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">システムエラー</Value>
-    </Setting>
-    <Setting Name="LogFolder" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">.\</Value>
-    </Setting>
-    <Setting Name="LogFile" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">LOG</Value>
-    </Setting>
-    <Setting Name="systemName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">B/D生産管理システム</Value>
-    </Setting>
-    <Setting Name="Language" Type="System.String" Scope="User">
-      <Value Profile="(Default)">jpn</Value>
-    </Setting>
-  </Settings>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" UseMySettingsClassName="true">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
 </SettingsFile>
