@@ -1,4 +1,8 @@
-﻿Public Class SC_Z01
+﻿Imports System.IO
+Imports System.Text
+Imports PUCCommon
+
+Public Class SC_Z01
 
     ''' <summary>
     ''' 　画面一覧のヘッダ部初期化
@@ -8,7 +12,7 @@
                              {"工程", "Process" & vbCrLf & "工程"},
                              {"品名略称", "Product name abbreviation" & vbCrLf & "品名略称"},
                              {"部品番号", "Part number" & vbCrLf & "部品番号"},
-                             {"前月末残", "Fluctuation data section" & vbCrLf & "前月" & vbCrLf & "末残"},
+                             {"前月末残", "Last month balance" & vbCrLf & "前月" & vbCrLf & "末残"},
                              {"当月累計", "Cumulative month" & vbCrLf & "当月累計"},
                              {"受入", "Acceptance" & vbCrLf & "受入"},
                              {"払出", "Withdrawaln" & vbCrLf & "払出"},
@@ -22,24 +26,27 @@
     Private Const COL_PROCESS As String = "工程"
     Private Const COL_PRODUCT_NAME As String = "品名略称"
     Private Const COL_PART_NUMBER As String = "部品番号"
-    Private Const COL_FLUCTUATION_DATA As String = "前月末残"
+    Private Const COL_LAST_MONTH_BALANCE As String = "前月末残"
     Private Const COL_CUMULATIVE_MONTH As String = "当月累計"
     Private Const COL_ACCEPTANCE As String = "受入"
     Private Const COL_WITHDRAWALN As String = "払出"
     Private Const COL_OTHER As String = "その他払出"
-    Private Const COL_CUMULATIVE_ACCEPTANCE As String = "当月累計_受入"
-    Private Const COL_CUMULATIVE_WITHDRAWALN As String = "当月累計_払出"
-    Private Const COL_CUMULATIVE_OTHER As String = "当月累計_その他払出"
+    Private Const COL_CUMULATIVE_ACCEPTANCE As String = "当月受入数量"
+    Private Const COL_CUMULATIVE_WITHDRAWALN As String = "当月払出数量"
+    Private Const COL_CUMULATIVE_OTHER As String = "当月その他払出数量"
     Private Const COL_DAY As String = "当日"
-    Private Const COL_DAY_ACCEPTANCE As String = "当日_受入"
-    Private Const COL_DAY_WITHDRAWALN As String = "当日_払出"
-    Private Const COL_DAY_OTHER As String = "当日_その他払出"
+    Private Const COL_DAY_ACCEPTANCE As String = "当日受入数量"
+    Private Const COL_DAY_WITHDRAWALN As String = "当日払出数量"
+    Private Const COL_DAY_OTHER As String = "当日その他払出数量"
     Private Const COL_STOCK_BALANCE As String = "在庫残"
+
+    Private Const YARD = "置場"
+    Private sortList As New List(Of String)
 
     Dim PATTEN_1 As String() = {COL_PROCESS,
                                 COL_PRODUCT_NAME,
                                 COL_PART_NUMBER,
-                                COL_FLUCTUATION_DATA,
+                                COL_LAST_MONTH_BALANCE,
                                 COL_CUMULATIVE_ACCEPTANCE,
                                 COL_CUMULATIVE_WITHDRAWALN,
                                 COL_CUMULATIVE_OTHER,
@@ -47,171 +54,153 @@
                                 COL_DAY_WITHDRAWALN,
                                 COL_DAY_OTHER,
                                 COL_STOCK_BALANCE}
+    '製品半製品区分
+    Dim productKubun As Integer = 1
 
-    Dim dt As New DataTable
-
-    'Dim xml As New CmnXML("SC-Z01.xml", "SC-Z01")
+    Dim msg As clsMessage
+    Dim xml As New clsGetSqlXML("SC-Z01.xml", "SC-Z01")
 
     ''' <summary>
-    ''' 　画面Load
+    ''' 　画面初期化
     ''' </summary>
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
     Private Sub SC_M22_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Init()
+
         Try
 
             Dim strSelect As String
             Dim dt As New DataTable
+
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                '置場
+                strSelect = xml.GetSQL_Str("SELECT_001")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbYard.DataSource = dt
+                Me.cmbYard.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbYard.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '工程
+                strSelect = xml.GetSQL_Str("SELECT_002")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbProcess.DataSource = dt
+                Me.cmbProcess.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcess.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '品種
+                strSelect = xml.GetSQL_Str("SELECT_003")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbVariety.DataSource = dt
+                Me.cmbVariety.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbVariety.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '車種
+                strSelect = xml.GetSQL_Str("SELECT_004")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbVehicleType.DataSource = dt
+                Me.cmbVehicleType.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbVehicleType.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                clsSQLServer.Disconnect()
+
+            End If
 
         Catch ex As Exception
 
         End Try
     End Sub
 
-
     ''' <summary>
-    ''' 　画面初期化
+    ''' 　グリッドを設定する
     ''' </summary>
-    Private Sub Init()
+    ''' <param name="dtData">データソース</param>
+    Private Sub setGrid(ByRef dtData As DataTable)
 
-        setManagementNoType("")
+        gridData.Columns.Clear()
 
-        'xml.InitUser(Me.txtLoginUser, Me.TextBox1)
+        '詳細
+        Dim btn As New DataGridViewButtonColumn()
+        btn.Name = COL_BIOGRAPHY
+        btn.HeaderText = headerName(COL_DETAILS)
+        btn.DefaultCellStyle.NullValue = COL_BIOGRAPHY
+        gridData.Columns.Add(btn)
 
+        For Each col As DataColumn In dtData.Columns
 
-        'ちらつき防止
-        'Dim myType As Type = GetType(DataGridView)
-        'Dim myPropInfo As System.Reflection.PropertyInfo = myType.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
-        'myPropInfo.SetValue(Me.gridData, True, Nothing)
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            If headerName(col.ColumnName) IsNot Nothing Then
+                addCol.HeaderText = headerName(col.ColumnName)
+            Else
+                addCol.HeaderText = col.ColumnName
+            End If
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
+        Next
 
-        '列ヘッダーの高さの調整モード
-        'Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        gridData.DataSource = dtData.Copy
 
-        ''列ヘッダーの高さを行数に合わせる
-        'Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
+        gridData.ColumnHeadersHeight = 68
+        gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter
+        For i As Integer = 0 To gridData.Columns.Count - 1
+            'ソート
+            gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
 
-        Me.Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
+            '横位置
+            Select Case gridData.Columns(i).Name
+                Case COL_PROCESS
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter
+                Case COL_PRODUCT_NAME, COL_PART_NUMBER
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomLeft
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight
+            End Select
+        Next
+        gridData.AutoResizeColumns()
 
+        'マージ列
+        gridData.AddSpanHeader(5, 3, headerName(COL_CUMULATIVE_MONTH))
+        gridData.AddSpanHeader(8, 3, headerName(COL_DAY))
+        gridData.MergeColumnHeaderBackColor = SystemColors.Control
+
+        'ヘーダ名前変更
+        gridData.Columns(COL_CUMULATIVE_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
+        gridData.Columns(COL_CUMULATIVE_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
+        gridData.Columns(COL_CUMULATIVE_OTHER).HeaderText = headerName(COL_OTHER)
+        gridData.Columns(COL_DAY_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
+        gridData.Columns(COL_DAY_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
+        gridData.Columns(COL_DAY_OTHER).HeaderText = headerName(COL_OTHER)
+
+        '列の幅の設定
+        gridData.Columns(0).Width = 50
+        gridData.Columns(1).Width = 65
+        gridData.Columns(2).Width = 190
+        gridData.Columns(3).Width = 110
+        gridData.Columns(4).Width = 100
+        gridData.Columns(5).Width = 95
+        gridData.Columns(6).Width = 95
+        gridData.Columns(7).Width = 95
+        gridData.Columns(8).Width = 95
+        gridData.Columns(9).Width = 95
+        gridData.Columns(10).Width = 95
+        gridData.Columns(11).Width = 140
+
+        '複数選択不可
+        gridData.MultiSelect = False
+        '編集不可
+        gridData.AllowUserToDeleteRows = False
+        gridData.AllowUserToAddRows = False
+        gridData.AllowUserToResizeRows = False
     End Sub
 
     ''' <summary>
-    ''' 　画面項目管理NO種別初期化
+    ''' 行ヘッダーに行番号書き込み
     ''' </summary>
-    Private Sub setManagementNoType(ByVal str As String)
-
-        'Try
-
-        '    If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-
-        '        Dim sqlstr As String = xml.GetSQL_Str("SELECT_001")
-
-        '        Dim dt As New DataTable()
-
-        '        dt = clsSQLServer.GetDataTable(sqlstr)
-
-        '        Dim drWork As DataRow = dt.NewRow
-
-        '        drWork(dt.Columns.Item(0).ColumnName) = "00"
-        '        drWork(dt.Columns.Item(0).ColumnName) = ""
-        '        dt.Rows.InsertAt(drWork, 0)
-
-        '        Me.cmbManagementNoType.DataSource = dt
-
-        '        ' 表示用の列を設定
-        '        Me.cmbManagementNoType.DisplayMember = dt.Columns.Item(0).ColumnName
-        '        ' データ用の列を設定
-        '        Me.cmbManagementNoType.ValueMember = dt.Columns.Item(0).ColumnName
-
-        '        clsSQLServer.Disconnect()
-
-        '    End If
-
-        '    If Not IsNothing(str) Then
-        '        Me.cmbManagementNoType.Text = str
-        '    End If
-
-        'Catch ex As Exception
-        '    Throw
-        'End Try
-    End Sub
-
-    '''' <summary>
-    '''' 　グリッドを設定する
-    '''' </summary>
-    '''' <param name="dtData">データソース</param>
-    'Private Sub setGrid(ByRef dtData As DataTable)
-
-    '    gridData.Columns.Clear()
-
-    '    '選択
-    '    Dim addColSentaku As New DataGridViewCheckBoxColumn()
-    '    addColSentaku.DataPropertyName = headerName(COL_SENTAKU)
-    '    addColSentaku.HeaderText = headerName(COL_SENTAKU)
-    '    addColSentaku.Name = "sentaku"
-    '    gridData.Columns.Add(addColSentaku)
-
-    '    Dim addCol As New DataGridViewTextBoxColumn()
-
-    '    For Each col As DataColumn In dtData.Columns
-    '        addCol = New DataGridViewTextBoxColumn()
-    '        addCol.DataPropertyName = col.ColumnName
-    '        addCol.HeaderText = headerName(col.ColumnName)
-    '        addCol.Name = col.ColumnName
-
-    '        If col.ColumnName = COL_SNUMBER Then
-    '            addCol.MaxInputLength = 10
-    '        ElseIf col.ColumnName = COL_SSECTION Then
-    '            addCol.MaxInputLength = 10
-    '        ElseIf col.ColumnName = COL_SBIKOU Then
-    '            addCol.MaxInputLength = 50
-    '        End If
-
-    '        gridData.Columns.Add(addCol)
-    '    Next
-
-    '    gridData.DataSource = dtData.Copy
-    '    gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-    '    For i As Integer = 0 To gridData.Columns.Count - 1
-    '        gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
-
-    '        '横位置
-    '        Select Case gridData.Columns(i).Name
-    '            Case COL_SFIXEDPART, COL_SBIKOU, COL_SSECTION
-    '                gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-    '            Case COL_SNUMBER
-    '                gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-    '            Case Else
-    '                gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-    '        End Select
-    '    Next
-    '    gridData.AutoResizeColumns()
-
-    '    For Each col As DataGridViewColumn In gridData.Columns
-    '        Select Case col.Name
-    '            Case "sentaku"
-    '                col.ReadOnly = False
-    '                col.DefaultCellStyle.BackColor = Color.LightSkyBlue
-    '            Case Else
-    '                col.ReadOnly = True
-    '        End Select
-    '    Next
-
-    '    gridData.Columns(0).Width = 90
-    '    gridData.Columns(1).Width = 180
-    '    gridData.Columns(2).Width = 180
-    '    gridData.Columns(3).Width = 180
-    '    gridData.Columns(4).Width = 180
-    '    gridData.Columns(5).Width = 200
-
-    '    '複数選択不可
-    '    gridData.MultiSelect = False
-    '    '編集不可
-    '    gridData.AllowUserToDeleteRows = False
-    '    gridData.AllowUserToAddRows = False
-    '    gridData.AllowUserToResizeRows = False
-    'End Sub
-
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub gridData_RowPostPaint(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles gridData.RowPostPaint
         Dim dgv As DataGridView = CType(sender, DataGridView)
         If dgv.RowHeadersVisible Then
@@ -240,33 +229,10 @@
     End Sub
 
     ''' <summary>
-    ''' コントロールのサイズが変更された時
+    ''' 詳細画面を開く
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub gridData_SizeChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles gridData.SizeChanged
-        gridData.InvalidateUnitColumns()
-    End Sub
-
-    ''' <summary>
-    ''' マウスのボタンが離された時
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
-    ''' <remarks></remarks>
-    Private Sub gridData_MouseUp(sender As System.Object, e As System.Windows.Forms.MouseEventArgs) Handles gridData.MouseUp
-
-        Try
-            ''OnMouseDownイベントで解除されたダブルバッファを適用する
-            Dim myType As Type = GetType(DataGridView)
-            Dim myPropInfo As System.Reflection.PropertyInfo = myType.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
-            myPropInfo.SetValue(Me.gridData, True, Nothing)
-        Catch ex As Exception
-            MessageBox.Show(ex.ToString)
-        End Try
-    End Sub
-
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
 
         If gridData.Columns(e.ColumnIndex).Name = COL_BIOGRAPHY And e.RowIndex >= 0 Then
@@ -284,242 +250,119 @@
     ''' <param name="e">e</param>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-        'Try
+        lblSearchTime.Visible = True
+        lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
-        '    If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+        '納入先コード
+        Dim cdYard As String
+        '大工程コード
+        Dim cdProcess As String = String.Empty
+        '品種コード
+        Dim cdVariety As String = String.Empty
+        '車種コード
+        Dim cdVehicleType As String = String.Empty
+        'ゼロデータを除く
+        Dim zeroData As String = String.Empty
+        '納入区分
+        Dim deliveryFormat As String = "({0})"
+        Dim deliveryKubun As String = String.Empty
 
-        '        Dim sqlstr As String
-        '        Dim dt As New DataTable()
+        '必須チェック
+        '置場
+        If cmbYard.Text.Equals(String.Empty) Then
+            MessageBox.Show(msg.GetMessageStr("W0001", YARD))
+            cmbYard.BackColor = Color.Red
+            Return
+        Else
+            cmbYard.BackColor = Color.Yellow
+        End If
 
-        '        If Me.cmbManagementNoType.Text.Equals(String.Empty) Then
-        '            sqlstr = xml.GetSQL_Str("SELECT_002")
-        '        Else
-        '            sqlstr = xml.GetSQL_Str("SELECT_003")
-        '            sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
-        '        End If
+        cdYard = cmbYard.SelectedValue
+        cdProcess = cmbProcess.SelectedValue
+        cdVariety = cmbVariety.SelectedValue
+        cdVehicleType = cmbVehicleType.SelectedValue
 
-        '        dt = clsSQLServer.GetDataTable(sqlstr)
+        'ライン
+        If chkLine.Checked = True Then
+            deliveryKubun = "'L'"
+        End If
 
-        '        If dt.Rows.Count = 0 Then
-
-        '            gridData.Columns.Clear()
-
-        '            MsgBox(String.Format(clsGlobal.MSG2("W0008")),
-        '                   vbExclamation,
-        '                   My.Settings.systemName)
-
-        '            clsSQLServer.Disconnect()
-
-        '            Return
-
-        '        End If
-
-
-        '        sqlstr = xml.GetSQL_Str("SELECT_004")
-        '        sqlstr = String.Format(sqlstr, cmbManagementNoType.Text)
-
-        '        dt = clsSQLServer.GetDataTable(sqlstr)
-
-        '        setGrid(dt)
-
-        '        clsSQLServer.Disconnect()
-
-        '    End If
-
-        'Catch ex As Exception
-        '    Throw
-        'Finally
-        '    clsSQLServer.Disconnect()
-        'End Try
-        gridData.Columns.Clear()
-        Patten3()
-    End Sub
-
-    Private Sub Patten3()
-
-        dt = New DataTable
-
-        For i As Integer = 0 To PATTEN_1.Length - 1
-            dt.Columns.Add(New DataColumn(PATTEN_1(i), GetType(System.String)))
-        Next
-
-        Dim dr As DataRow
-        Dim num As Integer = 1
-
-        For index = 1 To 8
-            dr = dt.NewRow()
-            dr.Item("工程") = "工程" & index
-            dr.Item("品名略称") = "品名略称" & index
-            dr.Item("部品番号") = "ABC610" & index
-
-            dr.Item("前月末残") = (num + 3 + index).ToString("#.00")
-
-            dr.Item("当月累計_受入") = (num + 3 + index).ToString("#.00")
-            dr.Item("当月累計_払出") = (num + 3 + index).ToString("#.00")
-            dr.Item("当月累計_その他払出") = (num + 3 + index).ToString("#.00")
-
-            dr.Item("当日_受入") = (num + 3 + index).ToString("#.00")
-            dr.Item("当日_払出") = (num + 3 + index).ToString("#.00")
-            dr.Item("当日_その他払出") = (num + 3 + index).ToString("#.00")
-
-            dr.Item("在庫残") = (num + 3 + index).ToString("#.00")
-            dt.Rows.Add(dr)
-        Next
-
-        Dim btn As New DataGridViewButtonColumn()
-        btn.Name = COL_BIOGRAPHY
-        btn.HeaderText = headerName(COL_DETAILS)
-        btn.DefaultCellStyle.NullValue = COL_BIOGRAPHY
-        gridData.Columns.Add(btn)
-
-        For Each col As DataColumn In dt.Columns
-
-            Dim addCol As New DataGridViewTextBoxColumn()
-            addCol.DataPropertyName = col.ColumnName
-            If headerName(col.ColumnName) IsNot Nothing Then
-                addCol.HeaderText = headerName(col.ColumnName)
+        'KD
+        If chkKD.Checked = True Then
+            If deliveryKubun IsNot String.Empty Then
+                deliveryKubun = deliveryKubun & "," & "'K'"
             Else
-                addCol.HeaderText = col.ColumnName
+                deliveryKubun = "'K'"
             End If
-            addCol.Name = col.ColumnName
-            gridData.Columns.Add(addCol)
-        Next
+        End If
 
-        gridData.DataSource = dt.Copy
-        gridData.ColumnHeadersHeight = 70
-        gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.AddSpanHeader(5, 3, headerName(COL_CUMULATIVE_MONTH))
-        gridData.AddSpanHeader(8, 3, headerName(COL_DAY))
+        'SP
+        If chkSP.Checked = True Then
+            If deliveryKubun IsNot String.Empty Then
+                deliveryKubun = deliveryKubun & "," & "'S'"
+            Else
+                deliveryKubun = "'S'"
+            End If
+        End If
 
-        gridData.Columns(COL_CUMULATIVE_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
-        gridData.Columns(COL_CUMULATIVE_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
-        gridData.Columns(COL_CUMULATIVE_OTHER).HeaderText = headerName(COL_OTHER)
-        gridData.Columns(COL_DAY_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
-        gridData.Columns(COL_DAY_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
-        gridData.Columns(COL_DAY_OTHER).HeaderText = headerName(COL_OTHER)
+        If deliveryKubun IsNot String.Empty Then
+            deliveryKubun = " AND 納入区分 IN " & String.Format(deliveryFormat, deliveryKubun)
+        End If
 
+        'ゼロデータを除く
+        If chkZero.Checked = True Then
+            zeroData = xml.GetSQL_Str("WHERE_001")
+        End If
 
-        'HeaderCells = {
-        '    New HeaderCell(0, 0, 2, 1, "Details" & vbCrLf & "(詳細)"),
-        '    New HeaderCell(0, 1, 2, 1, "Process" & vbCrLf & "(工程)"),
-        '    New HeaderCell(0, 2, 2, 1, "Product name abbreviation" & vbCrLf & "(品名略称)"),
-        '    New HeaderCell(0, 3, 2, 1, "Part number" & vbCrLf & "(部品番号)"),
-        '    New HeaderCell(0, 4, 2, 1, "Last month" & vbCrLf & "balance" & vbCrLf & "(前月" & vbCrLf & "末残)"),
-        '    New HeaderCell(0, 5, 1, 3, "Cumulative month" & vbCrLf & "(当月累計)"),
-        '    New HeaderCell(0, 8, 1, 3, "On the day" & vbCrLf & "(当日)"),
-        '    New HeaderCell(0, 11, 2, 1, "Stock balance" & vbCrLf & "(在庫残)")}
+        Try
 
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-        'Dim btn As New DataGridViewButtonColumn()
-        'btn.Name = "詳細"
-        'btn.HeaderText = "来歴"
-        'btn.DefaultCellStyle.NullValue = "来歴"
-        'gridData.Columns.Add(btn)
+                Dim sqlstr As String
+                Dim sqlWhere As String = String.Empty
+                Dim dt As New DataTable()
 
-        ''dt.Columns.Add("詳細")
-        'dt.Columns.Add("工程")
-        'dt.Columns.Add("品名略称")
-        'dt.Columns.Add("部品番号")
-        'dt.Columns.Add("前月末残")
-        'dt.Columns.Add("当月累計_受入")
-        'dt.Columns.Add("当月累計_払出")
-        'dt.Columns.Add("当月累計_その他払出")
-        'dt.Columns.Add("当日_受入")
-        'dt.Columns.Add("当日_払出")
-        'dt.Columns.Add("当日_その他払出")
-        'dt.Columns.Add("在庫残")
+                If IsNothing(cdProcess) = False And String.IsNullOrWhiteSpace(cdProcess) = False Then
+                    sqlWhere = " AND 工程 ='" & cdProcess & "'"
+                End If
 
-        'Dim dr As DataRow
-        'Dim num As Integer = 1
+                If IsNothing(cdVariety) = False And String.IsNullOrWhiteSpace(cdVariety) = False Then
+                    sqlWhere = sqlWhere & " AND 品種コード ='" & cdVariety & "'"
+                End If
 
-        'For index = 1 To 8
-        '    dr = dt.NewRow()
-        '    'dr.Item("詳細") = "詳細" & index
-        '    dr.Item("工程") = "工程" & index
-        '    dr.Item("品名略称") = "品名略称" & index
-        '    dr.Item("部品番号") = "ABC610" & index
+                If IsNothing(cdVehicleType) = False And String.IsNullOrWhiteSpace(cdVehicleType) = False Then
+                    sqlWhere = sqlWhere & " AND 車種コード ='" & cdVehicleType & "'"
+                End If
 
-        '    dr.Item("前月末残") = (num + 3 + index).ToString("#.00")
+                sqlWhere = sqlWhere & deliveryKubun & zeroData
 
-        '    dr.Item("当月累計_受入") = (num + 3 + index).ToString("#.00")
-        '    dr.Item("当月累計_払出") = (num + 3 + index).ToString("#.00")
-        '    dr.Item("当月累計_その他払出") = (num + 3 + index).ToString("#.00")
+                sqlstr = xml.GetSQL_Str("SELECT_005")
 
-        '    dr.Item("当日_受入") = (num + 3 + index).ToString("#.00")
-        '    dr.Item("当日_払出") = (num + 3 + index).ToString("#.00")
-        '    dr.Item("当日_その他払出") = (num + 3 + index).ToString("#.00")
+                dt = clsSQLServer.GetDataTable(String.Format(sqlstr, productKubun, cdYard, sqlWhere))
 
-        '    dr.Item("在庫残") = (num + 3 + index).ToString("#.00")
-        '    dt.Rows.Add(dr)
-        'Next
+                If dt.Rows.Count = 0 Then
 
-        'gridData.DataSource = dt
-        'gridData.Columns("工程").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns("品名略称").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'gridData.Columns("部品番号").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                    gridData.Columns.Clear()
 
-        'gridData.Columns("前月末残").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           My.Settings.systemName)
 
-        'gridData.Columns("当月累計_受入").HeaderText = "Acceptance" & vbCrLf & "(受入)"
-        'gridData.Columns("当月累計_受入").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns("当月累計_払出").HeaderText = "Withdrawal" & vbCrLf & "(払出)"
-        'gridData.Columns("当月累計_払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns("当月累計_その他払出").HeaderText = "Other payout" & vbCrLf & "(その他払出)"
-        'gridData.Columns("当月累計_その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                    Return
 
-        'gridData.Columns("当日_受入").HeaderText = "Acceptance" & vbCrLf & "(受入)"
-        'gridData.Columns("当日_受入").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns("当日_払出").HeaderText = "Withdrawal" & vbCrLf & "(払出)"
-        'gridData.Columns("当日_払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns("当日_その他払出").HeaderText = "Other payout" & vbCrLf & "(その他払出)"
-        'gridData.Columns("当日_その他払出").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                End If
 
-        'gridData.Columns("在庫残").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.AutoResizeColumns()
+                setGrid(dt)
 
-        gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 63
-        gridData.Columns(2).Width = 180
-        gridData.Columns(3).Width = 120
-        gridData.Columns(4).Width = 120
-        gridData.Columns(5).Width = 100
-        gridData.Columns(6).Width = 100
-        gridData.Columns(7).Width = 100
-        gridData.Columns(8).Width = 100
-        gridData.Columns(9).Width = 100
-        gridData.Columns(10).Width = 100
-        gridData.Columns(11).Width = 150
+            End If
+
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
+
     End Sub
-
-    '''' <summary>
-    '''' 　チェックボックス事件
-    '''' </summary>
-    'Private Sub gridData_CurrentCellDirtyStateChanged(sender As Object, e As EventArgs) Handles gridData.CurrentCellDirtyStateChanged
-
-    '    If TypeOf gridData.CurrentCell Is DataGridViewCheckBoxCell Then
-    '        gridData.EndEdit()
-    '        Dim Checked As Boolean = CType(gridData.CurrentCell.Value, Boolean)
-    '        If Checked Then
-
-    '            For i As Integer = 3 To 5
-    '                gridData.CurrentRow.Cells(i).Style.BackColor = Color.Yellow
-
-    '                gridData.CurrentRow.Cells(i).ReadOnly = False
-    '            Next
-    '        Else
-
-    '            For i As Integer = 3 To 5
-
-    '                gridData.CurrentRow.Cells(i).Style.BackColor = Color.White
-
-    '                gridData.CurrentRow.Cells(i).ReadOnly = True
-
-    '            Next
-    '        End If
-    '    End If
-
-    'End Sub
 
     ''' <summary>
     ''' 　昇順ボタン押下
@@ -528,6 +371,24 @@
     ''' <param name="e">e</param>
     Private Sub btnAsc_Click(sender As Object, e As EventArgs) Handles btnAsc.Click
 
+        If sortList.Count = 0 Then
+            MessageBox.Show("ソート項目を選択してください")
+            Return
+        End If
+
+        Dim sortSql As New StringBuilder
+        For Each item As String In sortList
+            sortSql.Append(item).Append(" ASC,")
+        Next
+        sortSql.Remove(sortSql.Length - 1, 1)
+
+        Dim dv As DataView = gridData.DataSource.DefaultView
+        dv.Sort = sortSql.ToString
+
+        Dim dt As New DataTable
+        dt = dv.ToTable
+        gridData.DataSource = dt
+        gridData.Refresh()
 
     End Sub
 
@@ -538,6 +399,25 @@
     ''' <param name="e">e</param>
     Private Sub btnDesc_Click(sender As Object, e As EventArgs) Handles btnDesc.Click
 
+        If sortList.Count = 0 Then
+            MessageBox.Show("ソート項目を選択してください")
+            Return
+        End If
+
+        Dim sortSql As New StringBuilder
+        For Each item As String In sortList
+            sortSql.Append(item).Append(" DESC,")
+        Next
+        sortSql.Remove(sortSql.Length - 1, 1)
+
+        Dim dv As DataView = gridData.DataSource.DefaultView
+        dv.Sort = sortSql.ToString
+
+        Dim dt As New DataTable
+        dt = dv.ToTable
+        gridData.DataSource = dt
+        gridData.Refresh()
+
     End Sub
 
     ''' <summary>
@@ -547,24 +427,116 @@
     ''' <param name="e">e</param>
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
 
-        'Dim headers As clsExcel.HeaderCell()
+        ExportToExcel(gridData)
+        MessageBox.Show(Me, "エクスポート完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 
+    ''' <summary>
+    ''' データをEXCELファイルに保存する
+    ''' </summary>
+    ''' <param name="m_DataView">エクスポートデータ</param>
+    Private Sub ExportToExcel(ByVal m_DataView As DataGridView)
+        Dim saveFile As New SaveFileDialog()
+        saveFile.Title = "保存Excleファイル"
+        saveFile.Filter = "Excleファイル(*.xls) |*.xls |すべてファイル(*.*) |*.*"
+        saveFile.FilterIndex = 1
+        saveFile.FileName = "Z01" & "_" & Format(Now, "yyyyMMdd")
+        If saveFile.ShowDialog() = DialogResult.OK Then
+            Dim FileName As String = saveFile.FileName
+            If File.Exists(FileName) Then
+                File.Delete(FileName)
+            End If
+            Dim objFileStream As FileStream
+            Dim objStreamWriter As StreamWriter
+            Dim strLine As String = ""
+            objFileStream = New FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write)
+            objStreamWriter = New StreamWriter(objFileStream, System.Text.Encoding.Unicode)
+            For i As Integer = 1 To m_DataView.Columns.Count - 1
+                If m_DataView.Columns(i).Visible = True Then
+                    strLine = strLine + m_DataView.Columns(i).HeaderText.ToString().Replace(vbCrLf, "") + Convert.ToChar(9)
+                End If
+            Next
+            objStreamWriter.WriteLine(strLine)
+            strLine = ""
 
-        'headers = {
-        '    New clsExcel.HeaderCell(1, 1, 2, 1, "工程"),
-        '    New clsExcel.HeaderCell(1, 2, 2, 2, "品名略称"),
-        '    New clsExcel.HeaderCell(1, 3, 2, 3, "部品番号"),
-        '    New clsExcel.HeaderCell(1, 4, 2, 4, "前月末残"),
-        '    New clsExcel.HeaderCell(1, 5, 1, 7, "当月累計"),
-        '    New clsExcel.HeaderCell(2, 5, 2, 5, "受入"),
-        '    New clsExcel.HeaderCell(2, 6, 2, 6, "払出"),
-        '    New clsExcel.HeaderCell(2, 7, 2, 7, "その他払出"),
-        '    New clsExcel.HeaderCell(1, 8, 1, 10, "当日"),
-        '    New clsExcel.HeaderCell(2, 8, 2, 8, "受入"),
-        '    New clsExcel.HeaderCell(2, 9, 2, 9, "払出"),
-        '    New clsExcel.HeaderCell(2, 10, 2, 10, "その他払出"),
-        '    New clsExcel.HeaderCell(1, 11, 2, 11, "在庫残")}
+            For i As Integer = 0 To m_DataView.Rows.Count - 1
+                'If m_DataView.Columns(0).Visible = True Then
+                '    If m_DataView.Rows(i).Cells(0).Value Is Nothing Then
+                '        strLine = (strLine & " ") + Convert.ToChar(9)
+                '    Else
+                '        strLine = strLine + m_DataView.Rows(i).Cells(0).Value.ToString() + Convert.ToChar(9)
+                '    End If
+                'End If
+                For j As Integer = 1 To m_DataView.Columns.Count - 1
+                    If m_DataView.Columns(j).Visible = True Then
+                        If m_DataView.Rows(i).Cells(j).Value Is Nothing Then
+                            strLine = (strLine & " ") + Convert.ToChar(9)
+                        Else
+                            Dim rowstr As String = ""
+                            rowstr = m_DataView.Rows(i).Cells(j).Value.ToString()
+                            If rowstr.IndexOf(vbCr & vbLf) > 0 Then
+                                rowstr = rowstr.Replace(vbCr & vbLf, " ")
+                            End If
+                            If rowstr.IndexOf(vbTab) > 0 Then
+                                rowstr = rowstr.Replace(vbTab, " ")
+                            End If
+                            strLine = strLine + rowstr + Convert.ToChar(9)
+                        End If
+                    End If
+                Next
+                objStreamWriter.WriteLine(strLine)
+                strLine = ""
+            Next
+            objStreamWriter.Close()
+            objFileStream.Close()
+        End If
+    End Sub
 
-        'clsExcel.ExportExcel2(dt, headers, ColumnHeaderRowCount, "SC-Z01")
+    ''' <summary>
+    ''' 製品/半製品区分
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub rodProduct_CheckedChanged(sender As Object, e As EventArgs) Handles rodProduct.CheckedChanged
+        If rodProduct.Checked = True Then
+            productKubun = 1
+        Else
+            productKubun = 2
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' 列の書式設定
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub gridData_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gridData.CellFormatting
+        If e.ColumnIndex > 3 Then
+            If IsDBNull(e.Value) = False Then
+                e.Value = Format(e.Value, "N")
+            End If
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' ソート項目を選択
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub gridData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellClick
+
+        If e.ColumnIndex > 0 Then
+            If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
+                sortList.Remove(gridData.Columns.Item(e.ColumnIndex).Name)
+                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
+            Else
+                If sortList.Count > 2 Then
+                    MessageBox.Show("最大3つの項目を選択します。")
+                    Return
+                End If
+                sortList.Add(gridData.Columns.Item(e.ColumnIndex).Name)
+                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
+            End If
+        End If
     End Sub
 End Class

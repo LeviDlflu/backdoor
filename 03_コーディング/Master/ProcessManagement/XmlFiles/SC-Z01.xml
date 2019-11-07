@@ -22,15 +22,15 @@
       <SQL ID="SELECT_002">
         <Text>
           SELECT
-            ' ' AS 工程コード,
-            '' AS 工程略称
+          '' AS 大工程コード,
+          '' AS 工程略称
           UNION SELECT
-            工程コード,
-            (工程コード+ ':' +工程略称) AS 工程略称
+          大工程コード,
+          (大工程コード+ ':' +工程略称) AS 工程略称
           FROM
-            工程マスタ 
+          工程マスタ
           ORDER BY
-            工程コード
+          大工程コード
         </Text>
       </SQL>
 
@@ -38,7 +38,7 @@
       <SQL ID="SELECT_003">
         <Text>
           SELECT
-          ' ' AS 品種コード,
+          '' AS 品種コード,
           '' AS 品種名
           UNION SELECT
           品種コード,
@@ -54,7 +54,7 @@
       <SQL ID="SELECT_004">
         <Text>
           SELECT
-          ' ' AS 車種コード,
+          '' AS 車種コード,
           '' AS 車種名
           UNION SELECT
           車種コード,
@@ -65,7 +65,50 @@
           車種コード
         </Text>
       </SQL>
-      
+
+      <!--ビュー-->
+      <SQL ID="SELECT_005">
+        <Text>
+          SELECT
+          工程
+          ,品名略称
+          ,部品番号
+          ,前月末残
+          ,当月受入数量
+          ,当月払出数量
+          ,当月その他払出数量
+          ,当日受入数量
+          ,当日払出数量
+          ,当日その他払出数量
+          ,在庫残
+          FROM
+          Z01
+          WHERE
+          製品半製品区分='{0}' AND
+          納入先コード='{1}'
+          {2}
+          ORDER BY
+          工程,
+          品名略称,
+          部品番号
+        </Text>
+      </SQL>
     </Selects>
+
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          AND (前月末残 != 0
+          OR 当月受入数量 != 0
+          OR 当月払出数量 != 0
+          OR 当月その他払出数量 != 0
+          OR 当日受入数量 != 0
+          OR 当日払出数量 != 0
+          OR 当日その他払出数量 != 0
+          OR 在庫残 != 0)
+        </Text>
+      </SQL>
+    </Wheres>
+    
   </SC-Z01>
 </Configuration>
