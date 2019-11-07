@@ -346,7 +346,7 @@ Public Class SC_Z01
 
                     MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
-                           My.Settings.systemName)
+                           "B/D生産管理システム")
 
                     Return
 
