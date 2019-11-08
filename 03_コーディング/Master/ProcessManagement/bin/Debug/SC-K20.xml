@@ -1,0 +1,124 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-K20>
+    
+    <Selects>
+      <!--払出区分-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+            '' AS コード,
+            '' AS コード名称
+          UNION SELECT
+            コード,
+            (コード+ ':' +コード名称) AS コード名称
+          FROM
+           コードマスタ
+          WHERE
+            コード区分 = 'PAYMENT_CD'
+          ORDER BY
+           コード
+        </Text>
+      </SQL>
+
+      <!--工程コード-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            '' AS 大工程コード,
+            '' AS 工程略称
+          UNION SELECT
+            大工程コード,
+            (大工程コード+ ':' +工程略称) AS 工程略称
+          FROM
+            工程マスタ
+          ORDER BY
+            大工程コード
+        </Text>
+      </SQL>
+
+      <!--検索条件-->
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+            品名コード,
+            品名事業所コード,
+            パック品名略称,
+            納入先コード,
+            納入区分,
+            品名略称
+          FROM
+            K20_01
+          WHERE
+            事業所コード ='{0}'
+          AND
+            製品半製品区分 ='{1}'
+          AND
+            区分個体ＮＯ ='{2}'
+          AND
+            大工程コード ='{3}'
+        </Text>
+      </SQL>
+
+      <!--振替区分-->
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+            '' AS コード,
+            '' AS コード名称
+          UNION SELECT
+            コード,
+            (コード+ ':' +コード名称) AS コード名称
+          FROM
+           コードマスタ
+          WHERE
+            コード区分 = 'TRANSFER_CD'
+          ORDER BY
+           コード
+        </Text>
+      </SQL>
+    </Selects>
+
+    <!--在庫データ更新処理-->
+    <Updates>
+      <SQL ID="UPDATE_001">
+        <Text>
+          UPDATE
+          在庫データ
+          SET
+           当月その他払出数量 = 当月その他払出数量 + '{7}'
+            ,在庫数 = 在庫数 - '{7}'
+           ,引当可能数量 = 引当可能数量 - '{7}'
+          WHERE
+            品名コード = '{0}'
+          AND
+           品名事業所コード = '{1}'
+          AND
+            パック品名略称 = '{2}'
+          AND
+           納入先コード = '{3}'
+          AND
+           納入区分 = '{4}'
+          AND
+           製品半製品区分 = '{5}'
+          AND
+           大工程コード = '{6}'
+        </Text>
+      </SQL>
+    </Updates>
+
+    <!--受払データ登録処理-->
+    <Inserts>
+      <SQL ID="INSERT_001">
+        <Text>
+          INSERT INTO
+          受払データ
+          (事業所コード,個体ＮＯ,.品名コード,品名事業所コード,パック品名略称,納入先コード,納入区分,製品半製品区分,大工程コード,受払年月日,受払区分,払出区分,振替区分,備考)
+          VALUES
+          ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')
+        </Text>
+      </SQL>
+    </Inserts>
+    
+  </SC-K20>
+</Configuration>

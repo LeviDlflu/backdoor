@@ -21,7 +21,6 @@ Partial Class SC_K20
     Private Sub InitializeComponent()
         Me.btnRegistration = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
-        Me.btnExcel = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtNO = New System.Windows.Forms.TextBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
@@ -53,6 +52,7 @@ Partial Class SC_K20
         Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.dateWithdrawalDate = New System.Windows.Forms.DateTimePicker()
+        Me.btnClear = New System.Windows.Forms.Button()
         Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -77,17 +77,6 @@ Partial Class SC_K20
         Me.btnSearch.TabIndex = 271
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
         Me.btnSearch.UseVisualStyleBackColor = False
-        '
-        'btnExcel
-        '
-        Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
-        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnExcel.Location = New System.Drawing.Point(173, 66)
-        Me.btnExcel.Name = "btnExcel"
-        Me.btnExcel.Size = New System.Drawing.Size(117, 53)
-        Me.btnExcel.TabIndex = 272
-        Me.btnExcel.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
-        Me.btnExcel.UseVisualStyleBackColor = False
         '
         'Panel4
         '
@@ -253,6 +242,7 @@ Partial Class SC_K20
         'txtProName
         '
         Me.txtProName.BackColor = System.Drawing.Color.White
+        Me.txtProName.Enabled = False
         Me.txtProName.Location = New System.Drawing.Point(47, 387)
         Me.txtProName.Name = "txtProName"
         Me.txtProName.Size = New System.Drawing.Size(444, 21)
@@ -266,7 +256,7 @@ Partial Class SC_K20
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(98, 16)
         Me.Label5.TabIndex = 318
-        Me.Label5.Text = "(受払年月日)"
+        Me.Label5.Text = "(払出年月日)"
         '
         'Label6
         '
@@ -274,9 +264,9 @@ Partial Class SC_K20
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Label6.Location = New System.Drawing.Point(43, 454)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(115, 16)
+        Me.Label6.Size = New System.Drawing.Size(95, 16)
         Me.Label6.TabIndex = 317
-        Me.Label6.Text = "Payment date"
+        Me.Label6.Text = "Issues date"
         '
         'Label7
         '
@@ -286,7 +276,7 @@ Partial Class SC_K20
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(82, 16)
         Me.Label7.TabIndex = 320
-        Me.Label7.Text = "(受払区分)"
+        Me.Label7.Text = "(払出区分)"
         '
         'Label8
         '
@@ -294,9 +284,9 @@ Partial Class SC_K20
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.Location = New System.Drawing.Point(299, 454)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(137, 16)
+        Me.Label8.Size = New System.Drawing.Size(117, 16)
         Me.Label8.TabIndex = 319
-        Me.Label8.Text = "Payment division"
+        Me.Label8.Text = "Issues division"
         '
         'ComboBox2
         '
@@ -316,7 +306,7 @@ Partial Class SC_K20
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(82, 16)
         Me.Label9.TabIndex = 323
-        Me.Label9.Text = "(受払数量)"
+        Me.Label9.Text = "(払出数量)"
         '
         'Label10
         '
@@ -324,9 +314,9 @@ Partial Class SC_K20
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Label10.Location = New System.Drawing.Point(554, 454)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(144, 16)
+        Me.Label10.Size = New System.Drawing.Size(124, 16)
         Me.Label10.TabIndex = 322
-        Me.Label10.Text = "Payment quantity"
+        Me.Label10.Text = "Issues quantity"
         '
         'TextBox2
         '
@@ -404,10 +394,22 @@ Partial Class SC_K20
         Me.dateWithdrawalDate.Size = New System.Drawing.Size(202, 21)
         Me.dateWithdrawalDate.TabIndex = 331
         '
+        'btnClear
+        '
+        Me.btnClear.BackColor = System.Drawing.SystemColors.Control
+        Me.btnClear.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnClear.Location = New System.Drawing.Point(176, 66)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(117, 53)
+        Me.btnClear.TabIndex = 332
+        Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
+        Me.btnClear.UseVisualStyleBackColor = False
+        '
         'SC_K20
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1575, 746)
+        Me.Controls.Add(Me.btnClear)
         Me.Controls.Add(Me.dateWithdrawalDate)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.txtRemarks)
@@ -427,13 +429,11 @@ Partial Class SC_K20
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Panel4)
-        Me.Controls.Add(Me.btnExcel)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.btnRegistration)
         Me.Name = "SC_K20"
         Me.Controls.SetChildIndex(Me.btnRegistration, 0)
         Me.Controls.SetChildIndex(Me.btnSearch, 0)
-        Me.Controls.SetChildIndex(Me.btnExcel, 0)
         Me.Controls.SetChildIndex(Me.Panel4, 0)
         Me.Controls.SetChildIndex(Me.Label4, 0)
         Me.Controls.SetChildIndex(Me.Label3, 0)
@@ -453,6 +453,7 @@ Partial Class SC_K20
         Me.Controls.SetChildIndex(Me.txtRemarks, 0)
         Me.Controls.SetChildIndex(Me.ComboBox3, 0)
         Me.Controls.SetChildIndex(Me.dateWithdrawalDate, 0)
+        Me.Controls.SetChildIndex(Me.btnClear, 0)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
@@ -462,7 +463,6 @@ Partial Class SC_K20
 
     Friend WithEvents btnRegistration As Button
     Friend WithEvents btnSearch As Button
-    Friend WithEvents btnExcel As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents cmb_Syasyu As ComboBox
     Friend WithEvents Label1 As Label
@@ -494,4 +494,5 @@ Partial Class SC_K20
     Friend WithEvents txtRemarks As TextBox
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents dateWithdrawalDate As DateTimePicker
+    Friend WithEvents btnClear As Button
 End Class
