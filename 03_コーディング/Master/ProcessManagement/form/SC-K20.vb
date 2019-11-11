@@ -27,30 +27,34 @@ Public Class SC_K20
         Dim dt2 As New DataTable
         Dim dt3 As New DataTable
 
-        'データベース接続
-        If clsSQLServer.Connect(clsGlobal.ConnectString) Then
-            '工程コード
-            strSelect = xml.GetSQL_Str("SELECT_002")
-            dt1 = clsSQLServer.GetDataTable(strSelect)
-            Me.cmb_Syasyu.DataSource = dt1
-            Me.cmb_Syasyu.ValueMember = dt1.Columns.Item(0).ColumnName
-            Me.cmb_Syasyu.DisplayMember = dt1.Columns.Item(1).ColumnName
+        Try
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+                '工程コード
+                strSelect = xml.GetSQL_Str("SELECT_002")
+                dt1 = clsSQLServer.GetDataTable(strSelect)
+                Me.cmb_Syasyu.DataSource = dt1
+                Me.cmb_Syasyu.ValueMember = dt1.Columns.Item(0).ColumnName
+                Me.cmb_Syasyu.DisplayMember = dt1.Columns.Item(1).ColumnName
 
-            '払出区分
-            strSelect = xml.GetSQL_Str("SELECT_001")
-            dt2 = clsSQLServer.GetDataTable(strSelect)
-            Me.ComboBox2.DataSource = dt2
-            Me.ComboBox2.ValueMember = dt2.Columns.Item(0).ColumnName
-            Me.ComboBox2.DisplayMember = dt2.Columns.Item(1).ColumnName
+                '払出区分
+                strSelect = xml.GetSQL_Str("SELECT_001")
+                dt2 = clsSQLServer.GetDataTable(strSelect)
+                Me.ComboBox2.DataSource = dt2
+                Me.ComboBox2.ValueMember = dt2.Columns.Item(0).ColumnName
+                Me.ComboBox2.DisplayMember = dt2.Columns.Item(1).ColumnName
 
-            '振替区分
-            strSelect = xml.GetSQL_Str("SELECT_004")
-            dt3 = clsSQLServer.GetDataTable(strSelect)
-            Me.ComboBox3.DataSource = dt3
-            Me.ComboBox3.ValueMember = dt3.Columns.Item(0).ColumnName
-            Me.ComboBox3.DisplayMember = dt3.Columns.Item(1).ColumnName
-            clsSQLServer.Disconnect()
-        End If
+                '振替区分
+                strSelect = xml.GetSQL_Str("SELECT_004")
+                dt3 = clsSQLServer.GetDataTable(strSelect)
+                Me.ComboBox3.DataSource = dt3
+                Me.ComboBox3.ValueMember = dt3.Columns.Item(0).ColumnName
+                Me.ComboBox3.DisplayMember = dt3.Columns.Item(1).ColumnName
+                clsSQLServer.Disconnect()
+            End If
+        Catch ex As Exception
+            Throw
+        End Try
 
         lblMaster.Text = FORM_NAME
         Me.Text = "[" & Me.Name & "]" & FORM_NAME
@@ -85,7 +89,7 @@ Public Class SC_K20
         End Try
 
         If searchResult.Rows.Count = 0 Then
-            'MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_KOUTEI))
+            MessageBox.Show(clsGlobal.MSG2("W0008"))
             Return
         End If
 
@@ -143,7 +147,7 @@ Public Class SC_K20
                                                                       txtRemarks.Text
                                                                       ))
                 If insertCount = 0 Then
-                    'MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_KOUTEI))
+                    MessageBox.Show(clsGlobal.MSG2("W0014"))
                     Return
                 End If
 
@@ -159,7 +163,7 @@ Public Class SC_K20
                                                                       CInt（TextBox2.Text）
                                                                       ))
                 If updateCount = 0 Then
-                    'MessageBox.Show(cmnUtil.GetMessageStr("W0001", ITEM_KOUTEI))
+                    MessageBox.Show(clsGlobal.MSG2("W0015"))
                     Return
                 End If
 
