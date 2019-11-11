@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Runtime.InteropServices
 Imports System.Text
 Imports Microsoft.Office.Interop
 Imports PUCCommon
@@ -8,7 +9,7 @@ Public Class SC_Z01
     ''' <summary>
     ''' 　画面一覧のヘッダ部初期化
     ''' </summary>
-    Dim headerName As Hashtable = New Hashtable From {
+    Dim HEADER_NAME As Hashtable = New Hashtable From {
                              {"詳細", "Details" & vbCrLf & "詳細"},
                              {"工程", "Process" & vbCrLf & "工程"},
                              {"品名略称", "Product name abbreviation" & vbCrLf & "品名略称"},
@@ -59,7 +60,7 @@ Public Class SC_Z01
                                 COL_DAY_OTHER,
                                 COL_STOCK_BALANCE}
 
-    Dim headerNameToExcel As String(,) = {
+    Dim EXCEL_HEADER_NAME As String(,) = {
                                 {COL_PROCESS,
                                 COL_PRODUCT_NAME,
                                 COL_PART_NUMBER,
@@ -139,7 +140,7 @@ Public Class SC_Z01
             End If
 
         Catch ex As Exception
-
+            Throw
         End Try
     End Sub
 
@@ -154,7 +155,7 @@ Public Class SC_Z01
         '詳細
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = COL_BIOGRAPHY
-        btn.HeaderText = headerName(COL_DETAILS)
+        btn.HeaderText = HEADER_NAME(COL_DETAILS)
         btn.DefaultCellStyle.NullValue = COL_BIOGRAPHY
         gridData.Columns.Add(btn)
 
@@ -162,11 +163,12 @@ Public Class SC_Z01
 
             Dim addCol As New DataGridViewTextBoxColumn()
             addCol.DataPropertyName = col.ColumnName
-            If headerName(col.ColumnName) IsNot Nothing Then
-                addCol.HeaderText = headerName(col.ColumnName)
+            If HEADER_NAME(col.ColumnName) IsNot Nothing Then
+                addCol.HeaderText = HEADER_NAME(col.ColumnName)
             Else
                 addCol.HeaderText = col.ColumnName
             End If
+
             addCol.Name = col.ColumnName
             gridData.Columns.Add(addCol)
         Next
@@ -176,10 +178,14 @@ Public Class SC_Z01
         gridData.ColumnHeadersHeight = 68
         gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopCenter
+        gridData.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray
         For i As Integer = 0 To gridData.Columns.Count - 1
             'ソート
             gridData.Columns(i).SortMode = DataGridViewColumnSortMode.NotSortable
 
+            If gridData.Columns(i).Name = COL_BIOGRAPHY Then
+                gridData.Columns(i).DefaultCellStyle.BackColor = Color.White
+            End If
             '横位置
             Select Case gridData.Columns(i).Name
                 Case COL_PROCESS
@@ -195,17 +201,17 @@ Public Class SC_Z01
         gridData.AutoResizeColumns()
 
         'マージ列
-        gridData.AddSpanHeader(5, 3, headerName(COL_CUMULATIVE_MONTH))
-        gridData.AddSpanHeader(8, 3, headerName(COL_DAY))
-        gridData.MergeColumnHeaderBackColor = SystemColors.Control
+        gridData.AddSpanHeader(5, 3, HEADER_NAME(COL_CUMULATIVE_MONTH))
+        gridData.AddSpanHeader(8, 3, HEADER_NAME(COL_DAY))
+        gridData.MergeColumnHeaderBackColor = Color.LightGray
 
         'ヘーダ名前変更
-        gridData.Columns(COL_CUMULATIVE_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
-        gridData.Columns(COL_CUMULATIVE_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
-        gridData.Columns(COL_CUMULATIVE_OTHER).HeaderText = headerName(COL_OTHER)
-        gridData.Columns(COL_DAY_ACCEPTANCE).HeaderText = headerName(COL_ACCEPTANCE)
-        gridData.Columns(COL_DAY_WITHDRAWALN).HeaderText = headerName(COL_WITHDRAWALN)
-        gridData.Columns(COL_DAY_OTHER).HeaderText = headerName(COL_OTHER)
+        gridData.Columns(COL_CUMULATIVE_ACCEPTANCE).HeaderText = HEADER_NAME(COL_ACCEPTANCE)
+        gridData.Columns(COL_CUMULATIVE_WITHDRAWALN).HeaderText = HEADER_NAME(COL_WITHDRAWALN)
+        gridData.Columns(COL_CUMULATIVE_OTHER).HeaderText = HEADER_NAME(COL_OTHER)
+        gridData.Columns(COL_DAY_ACCEPTANCE).HeaderText = HEADER_NAME(COL_ACCEPTANCE)
+        gridData.Columns(COL_DAY_WITHDRAWALN).HeaderText = HEADER_NAME(COL_WITHDRAWALN)
+        gridData.Columns(COL_DAY_OTHER).HeaderText = HEADER_NAME(COL_OTHER)
 
         '列の幅の設定
         gridData.Columns(0).Width = 50
@@ -271,6 +277,10 @@ Public Class SC_Z01
         If gridData.Columns(e.ColumnIndex).Name = COL_BIOGRAPHY And e.RowIndex >= 0 Then
             'パラメータ.工程
             formParameter.Process = Me.cmbProcess.Text
+            'パラメータ.部品番号
+            formParameter.PartNumber = gridData.CurrentRow.Cells(COL_PART_NUMBER).Value
+            'パラメータ.品名略称
+            formParameter.ProductName = gridData.CurrentRow.Cells(COL_PRODUCT_NAME).Value
             'パラメータ.品名事業所コード
             formParameter.ProductNamePlantCode = gridData.CurrentRow.Cells(COL_PRODUCT_PLANT_CODE).Value
             'パラメータ.パック品名略称
@@ -309,7 +319,7 @@ Public Class SC_Z01
         '車種コード
         Dim cdVehicleType As String = String.Empty
         'ゼロデータを除く
-        Dim zeroData As String = String.Empty
+        Dim zeroData As String = ""
         '納入区分
         Dim deliveryFormat As String = "({0})"
         Dim deliveryKubun As String = String.Empty
@@ -337,7 +347,7 @@ Public Class SC_Z01
         'KD
         If chkKD.Checked = True Then
             If deliveryKubun IsNot String.Empty Then
-                deliveryKubun = deliveryKubun & "," & "'K'"
+                deliveryKubun = deliveryKubun & ",'K'"
             Else
                 deliveryKubun = "'K'"
             End If
@@ -346,7 +356,7 @@ Public Class SC_Z01
         'SP
         If chkSP.Checked = True Then
             If deliveryKubun IsNot String.Empty Then
-                deliveryKubun = deliveryKubun & "," & "'S'"
+                deliveryKubun = deliveryKubun & ",'S'"
             Else
                 deliveryKubun = "'S'"
             End If
@@ -365,7 +375,7 @@ Public Class SC_Z01
 
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                Dim sqlstr As String
+                Dim strSql As String
                 Dim sqlWhere As String = String.Empty
                 Dim dt As New DataTable()
 
@@ -383,9 +393,9 @@ Public Class SC_Z01
 
                 sqlWhere = sqlWhere & deliveryKubun & zeroData
 
-                sqlstr = xml.GetSQL_Str("SELECT_005")
+                strSql = xml.GetSQL_Str("SELECT_005")
 
-                dt = clsSQLServer.GetDataTable(String.Format(sqlstr, productKubun, cdYard, sqlWhere))
+                dt = clsSQLServer.GetDataTable(String.Format(strSql, productKubun, cdYard, sqlWhere))
 
                 If dt.Rows.Count = 0 Then
 
@@ -419,7 +429,6 @@ Public Class SC_Z01
     Private Sub btnAsc_Click(sender As Object, e As EventArgs) Handles btnAsc.Click
 
         If sortList.Count = 0 Then
-            MessageBox.Show("ソート項目を選択してください")
             Return
         End If
 
@@ -447,7 +456,6 @@ Public Class SC_Z01
     Private Sub btnDesc_Click(sender As Object, e As EventArgs) Handles btnDesc.Click
 
         If sortList.Count = 0 Then
-            MessageBox.Show("ソート項目を選択してください")
             Return
         End If
 
@@ -473,40 +481,24 @@ Public Class SC_Z01
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
+        If gridData.Rows.Count > 0 Then
+            Dim dv As DataView = gridData.DataSource.DefaultView
 
-        Dim dv As DataView = gridData.DataSource.DefaultView
+            Dim isOK = ExportExcel(dv.ToTable, "在庫照会")
 
-        ExportExcel(dv.ToTable, "在庫照会")
-        'ExportToExcel(gridData)
-        MessageBox.Show(Me, "エクスポート完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If isOK = True Then
+                MessageBox.Show(Me, "エクスポート完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+            'ExportToExcel(gridData)
+        End If
     End Sub
 
-    Private Sub Patten3()
-
-        For Each item In PATTEN_1
-            dtHeader.Columns.Add(item)
-        Next
-
-        Dim dr As DataRow
-        Dim num As Integer = 1
-
-        For index = 1 To 8
-            dr = dtHeader.NewRow()
-            dr.Item("入出庫日") = Now.AddDays(index).ToString("yyyy/MM/dd")
-            dr.Item("処理日") = Now.AddDays(index)
-            dr.Item("作番") = "E0D610" & index
-            dr.Item("入庫量") = num.ToString("#.00")
-            dr.Item("出庫量") = num.ToString("#.00")
-            dr.Item("その他払出") = num.ToString("#.00")
-            dtHeader.Rows.Add(dr)
-        Next
-    End Sub
     ''' <summary>
     ''' DataTableの内容をEXCELファイルに保存する
     ''' </summary>
     ''' <param name="dt">EXCELに変換するDataTable</param>
     ''' <param name="fileName">保存先のEXCELファイル名</param>
-    Public Sub ExportExcel(ByVal dt As DataTable, ByVal fileName As String)
+    Public Function ExportExcel(ByVal dt As DataTable, ByVal fileName As String) As Boolean
 
         Dim xlApp As Object = Nothing
         Dim xlBooks As Object = Nothing
@@ -514,7 +506,12 @@ Public Class SC_Z01
         Dim xlSheet As Excel.Worksheet = Nothing
         Dim xlCells As Object = Nothing
         Dim xlRange As Object = Nothing
+
         '保存ディレクトリとファイル名を設定
+        If String.IsNullOrWhiteSpace(fileName) Then
+            MessageBox.Show(String.Format(clsGlobal.MSG2("W0004"), YARD))
+            Return False
+        End If
 
         Try
             xlApp = CreateObject("Excel.Application")
@@ -531,37 +528,35 @@ Public Class SC_Z01
                                                     FileFilter:="Excel File (*.xlsx),*.xlsx")
 
             xlCells = xlSheet.Cells
-            Dim dc As DataColumn
             Dim columnData(dt.Rows.Count, 1) As Object
 
             Dim row As Integer = 1
             Dim col As Integer = 1
 
-            Dim i, j, k As Integer
-            'For k = 1 To gridData.ColumnCount - 1
-            '    xlCells(1, k + 1) = customSplit(gridData.Columns(k).HeaderText)
-            'Next
+            Dim i, j As Integer
 
+            'ヘーダ
             For headerRow = 0 To 1
-                For headerCol = 0 To headerNameToExcel.Length / 2 - 1
+                For headerCol = 0 To EXCEL_HEADER_NAME.Length / 2 - 1
                     If headerRow > 0 Then
-                        If headerNameToExcel(headerRow, headerCol) = xlCells(headerRow, headerCol + 1).value Then
+                        '縦マージ
+                        If EXCEL_HEADER_NAME(headerRow, headerCol) = xlCells(headerRow, headerCol + 1).value Then
                             xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow + 1, headerCol + 1)).Merge(Reflection.Missing.Value)
                         Else
+                            '横マージ
                             If xlCells(headerRow, headerCol + 1).value = xlCells(headerRow, headerCol + 2).value Or xlCells(headerRow, headerCol).value = xlCells(headerRow, headerCol + 2).value Then
                                 xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow, headerCol + 2)).Merge(Reflection.Missing.Value)
                                 xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow, headerCol + 2)).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
                             End If
-                            xlCells(headerRow + 1, headerCol + 1) = headerNameToExcel(headerRow, headerCol)
+                            xlCells(headerRow + 1, headerCol + 1) = EXCEL_HEADER_NAME(headerRow, headerCol)
                         End If
                     Else
-                        xlCells(headerRow + 1, headerCol + 1) = headerNameToExcel(headerRow, headerCol)
+                        xlCells(headerRow + 1, headerCol + 1) = EXCEL_HEADER_NAME(headerRow, headerCol)
                     End If
                 Next
-
             Next
 
-
+            '明細
             For i = 0 To gridData.Rows.Count - 1
                 For j = 1 To gridData.ColumnCount - 1
                     If gridData(j, i).Visible = True Then
@@ -583,24 +578,26 @@ Public Class SC_Z01
 
             xlApp.Visible = False
 
+            Return True
+
         Catch ex As Exception
             xlApp.DisplayAlerts = False
             xlApp.Quit()
             Throw
         Finally
-            If xlRange IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlRange)
-            If xlCells IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlCells)
-            If xlSheet IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlSheet)
+            If xlRange IsNot Nothing Then Marshal.ReleaseComObject(xlRange)
+            If xlCells IsNot Nothing Then Marshal.ReleaseComObject(xlCells)
+            If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
 
             xlApp.Quit()
-            If xlBook IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlBook)
-            If xlBook IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlBooks)
-            If xlApp IsNot Nothing Then System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp)
+            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBook)
+            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBooks)
+            If xlApp IsNot Nothing Then Marshal.ReleaseComObject(xlApp)
 
             GC.Collect()
 
         End Try
-    End Sub
+    End Function
 
     ''' <summary>
     ''' データをEXCELファイルに保存する
@@ -624,7 +621,7 @@ Public Class SC_Z01
             objStreamWriter = New StreamWriter(objFileStream, System.Text.Encoding.Unicode)
             For i As Integer = 1 To m_DataView.Columns.Count - 1
                 If m_DataView.Columns(i).Visible = True Then
-                    strLine = strLine + customSplit(m_DataView.Columns(i).HeaderText) + Convert.ToChar(9)
+                    strLine = strLine + customSplit(m_DataView.Columns(i).HeaderText, 1) + Convert.ToChar(9)
                 End If
             Next
             objStreamWriter.WriteLine(strLine)
@@ -663,33 +660,13 @@ Public Class SC_Z01
         End If
     End Sub
 
-    Public Sub ExportExcel(ByVal dgv As DataGridView, ByVal fileName As String)
-        Dim myExcel As New Microsoft.Office.Interop.Excel.Application
-        myExcel.Application.Workbooks.Add(True)
-        myExcel.Visible = True
-
-        Dim i, j, k As Integer
-        For k = 0 To dgv.ColumnCount - 1
-            myExcel.Cells(1, k + 1) = dgv.Columns(k).HeaderText
-        Next
-
-        For i = 0 To dgv.Rows.Count - 1
-            For j = 0 To dgv.ColumnCount - 1
-                myExcel.Cells(i + 2, j + 1) = dgv(j, i).Value.ToString
-            Next
-        Next
-
-
-
-    End Sub
-
-    Public Function customSplit(ByRef strObject As String) As String
+    Public Function customSplit(ByRef strObject As String, Optional intStart As Integer = 0) As String
         Dim result As String = ""
 
         Dim strSplit As String() = strObject.Split(New String() {vbCr & vbLf}, StringSplitOptions.RemoveEmptyEntries)
 
         If strSplit.Length > 0 Then
-            For i = 1 To strSplit.Length - 1
+            For i = intStart To strSplit.Length - 1
                 result = result & strSplit(i)
             Next
         End If
@@ -729,20 +706,17 @@ Public Class SC_Z01
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub gridData_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellClick
+    Private Sub gridData_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles gridData.ColumnHeaderMouseClick
 
         If e.ColumnIndex > 0 Then
             If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
                 sortList.Remove(gridData.Columns.Item(e.ColumnIndex).Name)
                 gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
             Else
-                'If sortList.Count > 2 Then
-                '    MessageBox.Show("")
-                '    Return
-                'End If
                 sortList.Add(gridData.Columns.Item(e.ColumnIndex).Name)
                 gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
             End If
         End If
+
     End Sub
 End Class
