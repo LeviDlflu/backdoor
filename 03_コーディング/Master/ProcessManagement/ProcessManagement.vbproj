@@ -310,6 +310,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="dll\PUCCommon.dll" />
+    <Content Include="message\Message.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

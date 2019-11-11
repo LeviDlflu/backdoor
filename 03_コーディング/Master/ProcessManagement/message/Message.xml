@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Messages>
+    <Error>
+      <Message ID="E001">
+        <Text>　入出力連携で使用するフォルダが存在しません。設定ファイルの設定内容を確認してください。</Text>
+      </Message>
+      <Message ID="E002">
+        <Text>　入力ファイルが存在しません。</Text>
+      </Message>
+      <Message ID="E003">
+        <Text>　入力ファイルの読み込みに失敗しました。ヘッダとデータの項目数が異なるなどフォーマットに誤りがないか、入力ファイルを確認してください。</Text>
+      </Message>
+      <Message ID="E004">
+        <Text>　入力ファイルが0件です。</Text>
+      </Message>
+      <Message ID="E005">
+        <Text>　ファイル出力に失敗しました。</Text>
+      </Message>
+      <Message ID="E006">
+        <Text>　入力結果ファイルチェックでエラーが発生しました。</Text>
+      </Message>
+      <Message ID="E007">
+        <Text>　入力連携結果ファイル読み取り時に例外エラーが発生しました。</Text>
+      </Message>
+      <Message ID="E008">
+        <Text>　入力ファイル、ログファイルをバックアップフォルダに移動させるときに例外エラー発生がしました。</Text>
+      </Message>
+      <Message ID="E009">
+        <Text>　ファイル読み取り時に例外エラーが発生しました。</Text>
+      </Message>
+      <Message ID="E010">
+        <Text>　CUP連携でエラーが発生しました。詳細はログファイルを確認してください。</Text>
+      </Message>
+      <Message ID="E011">
+        <Text>　連携処理日テーブルの更新に失敗しました。</Text>
+      </Message>
+      <Message ID="E012">
+        <Text>　マッピングでエラーが発生しました。詳細はマッピングエラーファイルを確認してください。</Text>
+      </Message>
+      <Message ID="E013">
+        <Text>　発注依頼区分、発注決定区分、情報コードの組合せに誤りがあります。{0}</Text>
+      </Message>
+      <Message ID="E014">
+        <Text>　SQLServerの前日情報格納用テーブル参照時に例外エラーが発生しました。</Text>
+      </Message>
+      <Message ID="E015">
+        <Text>　SQLServerの前日情報格納用テーブル更新時に例外エラーが発生しました。</Text>
+      </Message>
+      <Message ID="E016">
+        <Text>　訂正対象のデータが存在しません。{0}</Text>
+      </Message>
+      <Message ID="E017">
+        <Text>　訂正対象のデータがレガシー発注残テーブルに存在しません。{0}</Text>
+      </Message>
+      <Message ID="E018">
+        <Text>　実在しない日付に発注数量が入力されています。{0}</Text>
+      </Message>
+      <Message ID="E019">
+        <Text>　直貿諸掛用の注番体系のため連携できません。注番＝{0}</Text>
+      </Message>
+      <Message ID="E020">
+        <Text>　データ集約でエラーが発生しました。{0}が数値以外です。{0}＝{1}</Text>
+      </Message>
+      <Message ID="E021">
+        <Text>　入力データと出力データの件数が不一致となりました。</Text>
+      </Message>
+      <Message ID="E022">
+        <Text>　振区と原要の組合せに誤りがあります。{0}</Text>
+      </Message>
+      <Message ID="E023">
+        <Text>項目マッピング時に例外エラーが発生しました。詳細は例外エラーログを確認してください。</Text>
+      </Message>
+      <Message ID="E024">
+        <Text>SOCIOコード変換テーブルの変換元に項目が存在しません。項目値を確認して下さい。</Text>
+      </Message>
+      <Message ID="E025">
+        <Text>資材マスタ（MSIZ）に該当するパック品名が存在しません。</Text>
+      </Message>
+      <Message ID="E026">
+        <Text>資材略称と事業所発注残の{0}に相違があります。(資材略称「{1}」,事業所発注残「{2}」)</Text>
+      </Message>
+      <Message ID="E027">
+        <Text>取引先コードと事業所発注残の{0}に相違があります。(取引先コード「{1}」,事業所発注残「{2}」</Text>
+      </Message>
+      <Message ID="E028">
+        <Text>振替Noの6バイト目から2バイトが"SA","SB"のデータのため入力連携対象外となります。{0}</Text>
+      </Message>
+      <Message ID="E029">
+        <Text>振替Noの6バイト目から2バイトが"SB"かつ工区が"2"以外のため入力連携対象外となります。{0}</Text>
+      </Message>
+      <Message ID="E030">
+        <Text>振替Noの6バイト目から2バイトが"SB"かつ情報コードが"C4"以外のため入力連携対象外となります。{0}</Text>
+      </Message>
+      <Message ID="E031">
+        <Text>数量桁がフォーマットエラー（12桁以上）です。</Text>
+      </Message>
+      <Message ID="E032">
+        <Text>レガシーに注文ＮＯの空番が存在しません。注文NO＝{0}～{1}</Text>
+      </Message>
+      <Message ID="E033">
+        <Text>資材マスタ（SG01）に該当する資材コードが存在しません。資材コード＝{0}</Text>
+      </Message>
+      <Message ID="E034">
+        <Text>該当する注文NOが存在しません。注文NO＝{0}</Text>
+      </Message>
+      <Message ID="E035">
+        <Text>　連携対象外の振区が設定されています。{0}</Text>
+      </Message>
+      <Message ID="E036">
+        <Text>　レガシー側に訂正データがないため、訂正データを新規登録します。注文NO＝{0}</Text>
+      </Message>
+      <Message ID="E037">
+        <Text>　発注単価が決められた範囲外ですので、見直して下さい。発注単価＝{0}</Text>
+      </Message>
+      <Message ID="E038">
+        <Text>CUP連携時に例外エラーが発生しました。詳細は例外エラーログを確認してください。</Text>
+      </Message>
+      <Message ID="E039">
+        <Text>当社の用途{0}番目が指定桁を超過しています。</Text>
+      </Message>
+      <Message ID="E040">
+        <Text>当社の用途取得時に例外エラーが発生しました。</Text>
+      </Message>
+      <Message ID="E041">
+        <Text>当社の用途がフォーマットエラー（{0}個未満）です。</Text>
+      </Message>
+      <Message ID="E042">
+        <Text>情報コードが"C8"（有償支給）のデータのため、入力連携対象外となります。</Text>
+      </Message>
+      <Message ID="E043">
+        <Text>　事業所発注残の取引先略称を更新して登録します。(変更前「{0}」変更後「{1}」) 注文NO＝{2}</Text>
+      </Message>
+      <Message ID="E044">
+        <Text>出力連携対象外の資材コードと取引先コードの組合せです。</Text>
+      </Message>
+      <Message ID="E045">
+        <Text>{0}番目に全角文字が含まれています。</Text>
+      </Message>
+      <Message ID="E046">
+        <Text>　入力ファイルにヘッダーが存在しません。連携ファイルを確認してください。</Text>
+      </Message>
+
+      <Message ID="E101">
+        <Text>　メールアドレスの取得に失敗しました。</Text>
+      </Message>
+      <Message ID="E102">
+        <Text>　メールアドレスが未設定です。</Text>
+      </Message>
+      <Message ID="E103">
+        <Text>　メール送信時の例外エラーが発生しました。</Text>
+      </Message>
+
+      <Message ID="E999">
+        <Text>　例外エラーが発生しました。</Text>
+      </Message>
+    </Error>
+    
+    <Information>
+      <Message ID="I001">
+        <Text>【処理開始】</Text>
+      </Message>
+      <Message ID="I002">
+        <Text>【処理終了】</Text>
+      </Message>
+      <Message ID="I003">
+        <Text>　ファイル入力件数＝{0}件:マッピング正常件数＝{1}件</Text>
+      </Message>
+      <Message ID="I004">
+        <Text>　ファイル名：{0}</Text>
+      </Message>
+      <Message ID="I005">
+        <Text>　システムログファイルが存在しません。</Text>
+      </Message>
+      <Message ID="I006">
+        <Text>　マッピングファイルが存在しません。</Text>
+      </Message>
+      <Message ID="I007">
+        <Text>　結果ファイルが存在しません。</Text>
+      </Message>
+      <Message ID="I008">
+        <Text>　マッピング開始</Text>
+      </Message>
+      <Message ID="I009">
+        <Text>　マッピング終了</Text>
+      </Message>
+      <Message ID="I010">
+        <Text>【出力結果処理】</Text>
+      </Message>
+      <Message ID="I011">
+        <Text>【入力連携処理】</Text>
+      </Message>
+      <Message ID="I012">
+        <Text>【システムエラーログ出力処理】</Text>
+      </Message>
+      <Message ID="I013">
+        <Text>【出力連携処理】</Text>
+      </Message>
+      <Message ID="I014">
+        <Text>　CUP連携開始</Text>
+      </Message>
+      <Message ID="I015">
+        <Text>　CUP連携終了</Text>
+      </Message>
+      <Message ID="I016">
+        <Text>　CUP連携件数＝{0}件:正常件数＝{1}件</Text>
+      </Message>
+      <Message ID="I017">
+        <Text>　入力ファイルが存在しません。</Text>
+      </Message>
+      <Message ID="I018">
+        <Text>　入力ファイル内のデータが0件です。</Text>
+      </Message>
+      <Message ID="I019">
+        <Text>　---------------------------------------------------------</Text>
+      </Message>
+      <Message ID="I023">
+        <Text>　{0}更新件数＝{1}件</Text>
+      </Message>
+      <Message ID="I024">
+        <Text>　データ集約開始</Text>
+      </Message>
+      <Message ID="I025">
+        <Text>　データ集約終了</Text>
+      </Message>
+      <Message ID="I026">
+        <Text>　ファイル入力件数＝{0}件:集約後件数＝{1}件</Text>
+      </Message>
+      <Message ID="I027">
+        <Text>　入荷件数＝{0}件:検査合格件数＝{1}件</Text>
+      </Message>
+
+
+
+      <Message ID="I101">
+        <Text>　メール送信開始</Text>
+      </Message>
+      <Message ID="I102">
+        <Text>　メール送信が未送信設定です。メールは送信されません。</Text>
+      </Message>
+      <Message ID="I103">
+        <Text>　メール送信終了：正常</Text>
+      </Message>
+      <Message ID="I104">
+        <Text>　警告メール送信開始</Text>
+      </Message>
+      <Message ID="I105">
+        <Text>　警告メール送信終了：正常</Text>
+      </Message>
+      <Message ID="I0001">
+        <Text>追加しますか？</Text>
+      </Message>
+      <Message ID="I0002">
+        <Text>更新しますか?</Text>
+      </Message>
+      <Message ID="I0003">
+        <Text>削除しますか?</Text>
+      </Message>
+      <Message ID="I0009">
+        <Text>検索結果をクリアしてよろしいですか？</Text>
+      </Message>
+      <Message ID="I0099">
+        <Text>画面を閉じてよろしいですか？</Text>
+      </Message>
+
+    </Information>
+    <Warning>
+      <Message ID="W001">
+        <Text>　マッピングでワーニングエラーが発生しました。詳細はマッピングエラーファイルを確認してください。</Text>
+      </Message>
+      <Message ID="W002">
+        <Text>　CUP連携でワーニングエラーが発生しました。詳細はログファイルを確認してください。</Text>
+      </Message>
+      <Message ID="W0001">
+        <Text>{0}を入力してください。</Text>
+      </Message>
+      <Message ID="W0003">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0004">
+        <Text>ファイル名入力してください。</Text>
+      </Message>
+      <Message ID="W0007">
+        <Text>{0}を選択してください。</Text>
+      </Message>
+      <Message ID="W0008">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0009">
+        <Text>データが既に存在しています。</Text>
+      </Message>
+      <Message ID="W0014">
+        <Text>データが存在していません。</Text>
+      </Message>
+      <Message ID="W0015">
+        <Text>払出データの追加に失敗しました。</Text>
+      </Message>
+      <Message ID="W0016">
+        <Text>在庫データの更新に失敗しました。</Text>
+      </Message>
+      <Message ID="W0030">
+        <Text>{0}は{1}桁で入力してください。</Text>
+      </Message>
+      <Message ID="W0066">
+        <Text>更新対象データが消されました。</Text>
+      </Message>
+      <Message ID="W0099">
+        <Text>修正内容が更新されていませんため、画面を閉じてよろしいですか？</Text>
+      </Message>
+      <Message ID="W9001">
+        <Text>対象レコードを選択してください。</Text>
+      </Message>
+      <Message ID="W9002">
+        <Text>{0}は最大値超えましたため、再入力してください。(0~2147483647以内に入力してください。)</Text>
+      </Message>
+      <Message ID="W9003">
+        <Text>数字を入力してください。</Text>
+      </Message>
+    </Warning>
+  </Messages>
+</Configuration>
