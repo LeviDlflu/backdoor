@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-Z01A>
+    <Selects>
+      <!--一覧部-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+            前月残量,
+            入庫量,
+            売上量,
+            その他出庫量,
+            在庫量,
+            引当可能残量
+          FROM
+            Z01A_01
+          WHERE
+            品名事業所コード='{0}' AND
+            パック品名略称='{1}' AND
+            納入先コード='{2}' AND
+            納入区分='{3}' AND
+            製品半製品区分='{4}'
+        </Text>
+      </SQL>
+
+      <!--明細部-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            入出庫日
+            ,処理日
+            ,作番
+            ,入庫量
+            ,出庫量
+            ,その他払出
+          FROM
+            Z01A_02
+          WHERE
+            品名事業所コード='{0}' AND
+            パック品名略称='{1}' AND
+            納入先コード='{2}' AND
+            納入区分='{3}' AND
+            製品半製品区分='{4}'
+          ORDER BY
+            入出庫日
+            ,処理日
+        </Text>
+      </SQL>
+    </Selects>
+  </SC-Z01A>
+</Configuration>

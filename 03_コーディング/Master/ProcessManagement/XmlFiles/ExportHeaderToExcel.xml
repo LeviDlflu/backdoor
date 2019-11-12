@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-Z01>
+    <HEADER ID="HEADER_001">
+      <Text>工程,品名略称,部品番号,前月末残,当月累計,当月累計,当月累計,当日,当日,当日,在庫残</Text>
+      <Text>工程,品名略称,部品番号,前月末残,受入,払出,その他払出,受入,払出,その他払出,在庫残</Text>
+    </HEADER>
+  </SC-Z01>
+</Configuration>
