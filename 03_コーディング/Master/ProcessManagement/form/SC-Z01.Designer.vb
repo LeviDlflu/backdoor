@@ -276,7 +276,7 @@ Partial Class SC_Z01
         Me.chkSP.Location = New System.Drawing.Point(292, 46)
         Me.chkSP.Name = "chkSP"
         Me.chkSP.Size = New System.Drawing.Size(43, 18)
-        Me.chkSP.TabIndex = 284
+        Me.chkSP.TabIndex = 330
         Me.chkSP.Text = "SP"
         Me.chkSP.UseVisualStyleBackColor = True
         '
@@ -288,7 +288,7 @@ Partial Class SC_Z01
         Me.chkKD.Location = New System.Drawing.Point(142, 46)
         Me.chkKD.Name = "chkKD"
         Me.chkKD.Size = New System.Drawing.Size(43, 18)
-        Me.chkKD.TabIndex = 284
+        Me.chkKD.TabIndex = 329
         Me.chkKD.Text = "KD"
         Me.chkKD.UseVisualStyleBackColor = True
         '
@@ -300,7 +300,7 @@ Partial Class SC_Z01
         Me.chkLine.Location = New System.Drawing.Point(39, 46)
         Me.chkLine.Name = "chkLine"
         Me.chkLine.Size = New System.Drawing.Size(56, 18)
-        Me.chkLine.TabIndex = 0
+        Me.chkLine.TabIndex = 328
         Me.chkLine.Text = "ライン"
         Me.chkLine.UseVisualStyleBackColor = True
         '
@@ -322,7 +322,7 @@ Partial Class SC_Z01
         Me.cmbVehicleType.Location = New System.Drawing.Point(1063, 83)
         Me.cmbVehicleType.Name = "cmbVehicleType"
         Me.cmbVehicleType.Size = New System.Drawing.Size(200, 21)
-        Me.cmbVehicleType.TabIndex = 335
+        Me.cmbVehicleType.TabIndex = 326
         '
         'Label22
         '
@@ -352,7 +352,7 @@ Partial Class SC_Z01
         Me.cmbVariety.Location = New System.Drawing.Point(817, 83)
         Me.cmbVariety.Name = "cmbVariety"
         Me.cmbVariety.Size = New System.Drawing.Size(200, 21)
-        Me.cmbVariety.TabIndex = 332
+        Me.cmbVariety.TabIndex = 325
         '
         'Label17
         '
@@ -372,7 +372,7 @@ Partial Class SC_Z01
         Me.chkZero.Location = New System.Drawing.Point(327, 154)
         Me.chkZero.Name = "chkZero"
         Me.chkZero.Size = New System.Drawing.Size(112, 18)
-        Me.chkZero.TabIndex = 331
+        Me.chkZero.TabIndex = 327
         Me.chkZero.Text = "ゼロデータを除く"
         Me.chkZero.UseVisualStyleBackColor = True
         '
