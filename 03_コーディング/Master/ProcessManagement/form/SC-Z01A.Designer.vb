@@ -27,7 +27,7 @@ Partial Class SC_Z01A
         Me.btnAsc = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.gridData = New System.Windows.Forms.DataGridView()
-        Me.Label67 = New System.Windows.Forms.Label()
+        Me.lblSearchTime = New System.Windows.Forms.Label()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
@@ -35,7 +35,7 @@ Partial Class SC_Z01A
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.gridDataList = New System.Windows.Forms.DataGridView()
         Me.txtProductNameAbbreviation = New System.Windows.Forms.TextBox()
-        Me.txtPartnumber = New System.Windows.Forms.TextBox()
+        Me.txtPartNumber = New System.Windows.Forms.TextBox()
         Me.txtProcess = New System.Windows.Forms.TextBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -69,7 +69,7 @@ Partial Class SC_Z01A
         '
         Me.btnAsc.BackColor = System.Drawing.SystemColors.Control
         Me.btnAsc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnAsc.Location = New System.Drawing.Point(35, 66)
+        Me.btnAsc.Location = New System.Drawing.Point(27, 66)
         Me.btnAsc.Name = "btnAsc"
         Me.btnAsc.Size = New System.Drawing.Size(117, 53)
         Me.btnAsc.TabIndex = 270
@@ -82,14 +82,14 @@ Partial Class SC_Z01A
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.gridData)
-        Me.Panel1.Controls.Add(Me.Label67)
+        Me.Panel1.Controls.Add(Me.lblSearchTime)
         Me.Panel1.Controls.Add(Me.Label65)
         Me.Panel1.Controls.Add(Me.Label66)
         Me.Panel1.Controls.Add(Me.Label38)
         Me.Panel1.Controls.Add(Me.Label40)
-        Me.Panel1.Location = New System.Drawing.Point(-1, 348)
+        Me.Panel1.Location = New System.Drawing.Point(-1, 338)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1353, 313)
+        Me.Panel1.Size = New System.Drawing.Size(1353, 323)
         Me.Panel1.TabIndex = 310
         '
         'gridData
@@ -112,18 +112,18 @@ Partial Class SC_Z01A
         Me.gridData.Location = New System.Drawing.Point(48, 60)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1063, 250)
+        Me.gridData.Size = New System.Drawing.Size(1100, 262)
         Me.gridData.TabIndex = 311
         '
-        'Label67
+        'lblSearchTime
         '
-        Me.Label67.AutoSize = True
-        Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1049, 21)
-        Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(144, 16)
-        Me.Label67.TabIndex = 310
-        Me.Label67.Text = "yyyy/MM/dd hh:mm"
+        Me.lblSearchTime.AutoSize = True
+        Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1049, 21)
+        Me.lblSearchTime.Name = "lblSearchTime"
+        Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
+        Me.lblSearchTime.TabIndex = 310
+        Me.lblSearchTime.Text = "yyyy/MM/dd hh:mm"
         '
         'Label65
         '
@@ -173,7 +173,7 @@ Partial Class SC_Z01A
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.gridDataList)
         Me.Panel4.Controls.Add(Me.txtProductNameAbbreviation)
-        Me.Panel4.Controls.Add(Me.txtPartnumber)
+        Me.Panel4.Controls.Add(Me.txtPartNumber)
         Me.Panel4.Controls.Add(Me.txtProcess)
         Me.Panel4.Controls.Add(Me.Label21)
         Me.Panel4.Controls.Add(Me.Label13)
@@ -188,7 +188,7 @@ Partial Class SC_Z01A
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Location = New System.Drawing.Point(-1, 128)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1353, 220)
+        Me.Panel4.Size = New System.Drawing.Size(1353, 210)
         Me.Panel4.TabIndex = 309
         '
         'gridDataList
@@ -197,8 +197,7 @@ Partial Class SC_Z01A
         Me.gridDataList.AllowUserToDeleteRows = False
         Me.gridDataList.AllowUserToResizeColumns = False
         Me.gridDataList.AllowUserToResizeRows = False
-        Me.gridDataList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.gridDataList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridDataList.BackgroundColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -219,9 +218,7 @@ Partial Class SC_Z01A
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridDataList.DefaultCellStyle = DataGridViewCellStyle3
-        Me.gridDataList.Enabled = False
         Me.gridDataList.EnableHeadersVisualStyles = False
-        Me.gridDataList.GridColor = System.Drawing.SystemColors.Control
         Me.gridDataList.Location = New System.Drawing.Point(548, 129)
         Me.gridDataList.MultiSelect = False
         Me.gridDataList.Name = "gridDataList"
@@ -237,14 +234,14 @@ Partial Class SC_Z01A
         Me.gridDataList.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.gridDataList.RowHeadersVisible = False
         Me.gridDataList.RowTemplate.Height = 21
-        Me.gridDataList.Size = New System.Drawing.Size(683, 63)
+        Me.gridDataList.Size = New System.Drawing.Size(683, 55)
         Me.gridDataList.StandardTab = True
         Me.gridDataList.TabIndex = 314
         Me.gridDataList.TabStop = False
         '
         'txtProductNameAbbreviation
         '
-        Me.txtProductNameAbbreviation.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtProductNameAbbreviation.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtProductNameAbbreviation.Enabled = False
         Me.txtProductNameAbbreviation.Location = New System.Drawing.Point(509, 92)
         Me.txtProductNameAbbreviation.Margin = New System.Windows.Forms.Padding(2)
@@ -254,21 +251,21 @@ Partial Class SC_Z01A
         Me.txtProductNameAbbreviation.TabIndex = 325
         Me.txtProductNameAbbreviation.Text = "XX"
         '
-        'txtPartnumber
+        'txtPartNumber
         '
-        Me.txtPartnumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.txtPartnumber.Enabled = False
-        Me.txtPartnumber.Location = New System.Drawing.Point(273, 92)
-        Me.txtPartnumber.Margin = New System.Windows.Forms.Padding(2)
-        Me.txtPartnumber.MaxLength = 2
-        Me.txtPartnumber.Name = "txtPartnumber"
-        Me.txtPartnumber.Size = New System.Drawing.Size(206, 21)
-        Me.txtPartnumber.TabIndex = 324
-        Me.txtPartnumber.Text = "XX"
+        Me.txtPartNumber.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtPartNumber.Enabled = False
+        Me.txtPartNumber.Location = New System.Drawing.Point(273, 92)
+        Me.txtPartNumber.Margin = New System.Windows.Forms.Padding(2)
+        Me.txtPartNumber.MaxLength = 2
+        Me.txtPartNumber.Name = "txtPartNumber"
+        Me.txtPartNumber.Size = New System.Drawing.Size(206, 21)
+        Me.txtPartNumber.TabIndex = 324
+        Me.txtPartNumber.Text = "XX"
         '
         'txtProcess
         '
-        Me.txtProcess.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.txtProcess.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtProcess.Enabled = False
         Me.txtProcess.Location = New System.Drawing.Point(33, 92)
         Me.txtProcess.Margin = New System.Windows.Forms.Padding(2)
@@ -412,7 +409,7 @@ Partial Class SC_Z01A
     Friend WithEvents btnDesc As Button
     Friend WithEvents btnAsc As Button
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label67 As Label
+    Friend WithEvents lblSearchTime As Label
     Friend WithEvents Label65 As Label
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label
@@ -420,7 +417,7 @@ Partial Class SC_Z01A
     Friend WithEvents Panel4 As Panel
     Friend WithEvents gridDataList As DataGridView
     Friend WithEvents txtProductNameAbbreviation As TextBox
-    Friend WithEvents txtPartnumber As TextBox
+    Friend WithEvents txtPartNumber As TextBox
     Friend WithEvents txtProcess As TextBox
     Friend WithEvents Label21 As Label
     Friend WithEvents Label13 As Label

@@ -46,7 +46,7 @@ Public Class SC_Z01
     Private Const COL_PACK_PRODUCT_NAME As String = "パック品名略称"
 
     Private Const YARD = "置場"
-    Private sortList As New List(Of String)
+    Private sortList As New Hashtable
 
     Dim PATTEN_1 As String() = {COL_PROCESS,
                                 COL_PRODUCT_NAME,
@@ -59,30 +59,6 @@ Public Class SC_Z01
                                 COL_DAY_WITHDRAWALN,
                                 COL_DAY_OTHER,
                                 COL_STOCK_BALANCE}
-
-    Dim EXCEL_HEADER_NAME As String(,) = {
-                                {COL_PROCESS,
-                                COL_PRODUCT_NAME,
-                                COL_PART_NUMBER,
-                                COL_LAST_MONTH_BALANCE,
-                                COL_CUMULATIVE_MONTH,
-                                COL_CUMULATIVE_MONTH,
-                                COL_CUMULATIVE_MONTH,
-                                COL_DAY,
-                                COL_DAY,
-                                COL_DAY,
-                                COL_STOCK_BALANCE},
-                                {COL_PROCESS,
-                                COL_PRODUCT_NAME,
-                                COL_PART_NUMBER,
-                                COL_LAST_MONTH_BALANCE,
-                                COL_ACCEPTANCE,
-                                COL_WITHDRAWALN,
-                                COL_OTHER,
-                                COL_ACCEPTANCE,
-                                COL_WITHDRAWALN,
-                                COL_OTHER,
-                                COL_STOCK_BALANCE}}
 
     '製品半製品区分
     Dim productKubun As Integer = 1
@@ -432,14 +408,13 @@ Public Class SC_Z01
             Return
         End If
 
-        Dim sortSql As New StringBuilder
-        For Each item As String In sortList
-            sortSql.Append(item).Append(" ASC,")
+        Dim sortFile As String = ""
+        For Each item As DictionaryEntry In sortList
+            sortFile = item.Value & "," & sortFile
         Next
-        sortSql.Remove(sortSql.Length - 1, 1)
 
         Dim dv As DataView = gridData.DataSource.DefaultView
-        dv.Sort = sortSql.ToString
+        dv.Sort = sortFile.Remove(sortFile.Length - 1, 1)
 
         Dim dt As New DataTable
         dt = dv.ToTable
@@ -459,14 +434,13 @@ Public Class SC_Z01
             Return
         End If
 
-        Dim sortSql As New StringBuilder
-        For Each item As String In sortList
-            sortSql.Append(item).Append(" DESC,")
+        Dim sortFile As String = ""
+        For Each item As DictionaryEntry In sortList
+            sortFile = item.Value & " DESC," & sortFile
         Next
-        sortSql.Remove(sortSql.Length - 1, 1)
 
         Dim dv As DataView = gridData.DataSource.DefaultView
-        dv.Sort = sortSql.ToString
+        dv.Sort = sortFile.Remove(sortFile.Length - 1, 1)
 
         Dim dt As New DataTable
         dt = dv.ToTable
@@ -481,24 +455,31 @@ Public Class SC_Z01
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
     Private Sub btnExcel_Click(sender As Object, e As EventArgs) Handles btnExcel.Click
-        If gridData.Rows.Count > 0 Then
-            Dim dv As DataView = gridData.DataSource.DefaultView
 
-            Dim isOK = ExportExcel(dv.ToTable, "在庫照会")
+        If gridData.Rows.Count > 0 Then
+            Dim xmlHeader As New clsGetSqlXML("ExportHeaderToExcel.xml", "SC-Z01")
+
+            Dim strNodeList As ArrayList = xmlHeader.GetXmlNodeList("HEADER_001")
+
+            Dim dgv As DataGridView = gridData
+
+            Dim isOK = ExportExcel(dgv, "在庫照会", strNodeList)
 
             If isOK = True Then
                 MessageBox.Show(Me, "エクスポート完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-            'ExportToExcel(gridData)
         End If
+
     End Sub
 
     ''' <summary>
     ''' DataTableの内容をEXCELファイルに保存する
     ''' </summary>
-    ''' <param name="dt">EXCELに変換するDataTable</param>
+    ''' <param name="dgv">エクスポートデータ</param>
     ''' <param name="fileName">保存先のEXCELファイル名</param>
-    Public Function ExportExcel(ByVal dt As DataTable, ByVal fileName As String) As Boolean
+    ''' <param name="headerNames">ヘーダ名前</param>
+    ''' <returns></returns>
+    Public Function ExportExcel(ByVal dgv As DataGridView, ByVal fileName As String, Optional headerNames As ArrayList = Nothing) As Boolean
 
         Dim xlApp As Object = Nothing
         Dim xlBooks As Object = Nothing
@@ -528,39 +509,48 @@ Public Class SC_Z01
                                                     FileFilter:="Excel File (*.xlsx),*.xlsx")
 
             xlCells = xlSheet.Cells
-            Dim columnData(dt.Rows.Count, 1) As Object
-
-            Dim row As Integer = 1
-            Dim col As Integer = 1
-
-            Dim i, j As Integer
 
             'ヘーダ
-            For headerRow = 0 To 1
-                For headerCol = 0 To EXCEL_HEADER_NAME.Length / 2 - 1
-                    If headerRow > 0 Then
-                        '縦マージ
-                        If EXCEL_HEADER_NAME(headerRow, headerCol) = xlCells(headerRow, headerCol + 1).value Then
-                            xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow + 1, headerCol + 1)).Merge(Reflection.Missing.Value)
-                        Else
-                            '横マージ
-                            If xlCells(headerRow, headerCol + 1).value = xlCells(headerRow, headerCol + 2).value Or xlCells(headerRow, headerCol).value = xlCells(headerRow, headerCol + 2).value Then
-                                xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow, headerCol + 2)).Merge(Reflection.Missing.Value)
-                                xlSheet.Range(xlCells(headerRow, headerCol + 1), xlCells(headerRow, headerCol + 2)).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+            Dim row As Integer = 0
+            If IsNothing(headerNames) = False Then
+                For Each item As String In headerNames
+                    Dim itemList As String() = item.Split(",")
+                    For col = 0 To itemList.Length - 1
+                        If row > 0 Then
+                            '縦マージ
+                            If itemList(col) = xlCells(row, col + 1).value Then
+                                xlSheet.Range(xlCells(row, col + 1), xlCells(row + 1, col + 1)).Merge(Reflection.Missing.Value)
+                            Else
+                                '横マージ
+                                If xlCells(row, col + 1).value = xlCells(row, col + 2).value Or xlCells(row, col).value = xlCells(row, col + 2).value Then
+                                    xlSheet.Range(xlCells(row, col + 1), xlCells(row, col + 2)).Merge(Reflection.Missing.Value)
+                                    xlSheet.Range(xlCells(row, col + 1), xlCells(row, col + 2)).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+                                End If
+                                xlCells(row + 1, col + 1) = itemList(col)
                             End If
-                            xlCells(headerRow + 1, headerCol + 1) = EXCEL_HEADER_NAME(headerRow, headerCol)
+                        Else
+                            xlCells(row + 1, col + 1) = itemList(col)
                         End If
-                    Else
-                        xlCells(headerRow + 1, headerCol + 1) = EXCEL_HEADER_NAME(headerRow, headerCol)
+                    Next
+
+                    row += 1
+                Next
+            Else
+                row += 1
+                For i = 1 To dgv.ColumnCount - 1
+                    If dgv.Columns(i).Visible = True Then
+                        xlCells(row, i) = customSplit(dgv.Columns(i).HeaderText, 1)
                     End If
                 Next
-            Next
+
+            End If
 
             '明細
-            For i = 0 To gridData.Rows.Count - 1
-                For j = 1 To gridData.ColumnCount - 1
-                    If gridData(j, i).Visible = True Then
-                        xlCells(i + 3, j) = gridData(j, i).Value.ToString
+            row += 1
+            For i = 0 To dgv.Rows.Count - 1
+                For j = 1 To dgv.ColumnCount - 1
+                    If dgv(j, i).Visible = True Then
+                        xlCells(i + row, j) = dgv(j, i).Value.ToString
                     End If
                 Next
             Next
@@ -598,67 +588,6 @@ Public Class SC_Z01
 
         End Try
     End Function
-
-    ''' <summary>
-    ''' データをEXCELファイルに保存する
-    ''' </summary>
-    ''' <param name="m_DataView">エクスポートデータ</param>
-    Private Sub ExportToExcel(ByVal m_DataView As DataGridView)
-        Dim saveFile As New SaveFileDialog()
-        saveFile.Title = "保存Excleファイル"
-        saveFile.Filter = "Excleファイル(*.xls) |*.xls |すべてファイル(*.*) |*.*"
-        saveFile.FilterIndex = 1
-        saveFile.FileName = "Z01" & "_" & Format(Now, "yyyyMMdd")
-        If saveFile.ShowDialog() = DialogResult.OK Then
-            Dim FileName As String = saveFile.FileName
-            If File.Exists(FileName) Then
-                File.Delete(FileName)
-            End If
-            Dim objFileStream As FileStream
-            Dim objStreamWriter As StreamWriter
-            Dim strLine As String = ""
-            objFileStream = New FileStream(FileName, FileMode.OpenOrCreate, FileAccess.Write)
-            objStreamWriter = New StreamWriter(objFileStream, System.Text.Encoding.Unicode)
-            For i As Integer = 1 To m_DataView.Columns.Count - 1
-                If m_DataView.Columns(i).Visible = True Then
-                    strLine = strLine + customSplit(m_DataView.Columns(i).HeaderText, 1) + Convert.ToChar(9)
-                End If
-            Next
-            objStreamWriter.WriteLine(strLine)
-            strLine = ""
-
-            For i As Integer = 0 To m_DataView.Rows.Count - 1
-                'If m_DataView.Columns(0).Visible = True Then
-                '    If m_DataView.Rows(i).Cells(0).Value Is Nothing Then
-                '        strLine = (strLine & " ") + Convert.ToChar(9)
-                '    Else
-                '        strLine = strLine + m_DataView.Rows(i).Cells(0).Value.ToString() + Convert.ToChar(9)
-                '    End If
-                'End If
-                For j As Integer = 1 To m_DataView.Columns.Count - 1
-                    If m_DataView.Columns(j).Visible = True Then
-                        If m_DataView.Rows(i).Cells(j).Value Is Nothing Then
-                            strLine = (strLine & " ") + Convert.ToChar(9)
-                        Else
-                            Dim rowstr As String = ""
-                            rowstr = m_DataView.Rows(i).Cells(j).Value.ToString()
-                            If rowstr.IndexOf(vbCr & vbLf) > 0 Then
-                                rowstr = rowstr.Replace(vbCr & vbLf, " ")
-                            End If
-                            If rowstr.IndexOf(vbTab) > 0 Then
-                                rowstr = rowstr.Replace(vbTab, " ")
-                            End If
-                            strLine = strLine + rowstr + Convert.ToChar(9)
-                        End If
-                    End If
-                Next
-                objStreamWriter.WriteLine(strLine)
-                strLine = ""
-            Next
-            objStreamWriter.Close()
-            objFileStream.Close()
-        End If
-    End Sub
 
     Public Function customSplit(ByRef strObject As String, Optional intStart As Integer = 0) As String
         Dim result As String = ""
@@ -710,10 +639,10 @@ Public Class SC_Z01
 
         If e.ColumnIndex > 0 Then
             If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
-                sortList.Remove(gridData.Columns.Item(e.ColumnIndex).Name)
+                sortList.Remove(e.ColumnIndex)
                 gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
             Else
-                sortList.Add(gridData.Columns.Item(e.ColumnIndex).Name)
+                sortList.Add(e.ColumnIndex, gridData.Columns.Item(e.ColumnIndex).Name)
                 gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
             End If
         End If
