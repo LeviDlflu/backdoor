@@ -3,6 +3,8 @@ Imports PUCCommon
 
 Public Class SC_Z01A
 
+    Private Const FORM_NAME As String = "Entry / Exit history info(入出庫来歴照会)"
+
     ''' <summary>
     ''' 　画面一覧のヘッダ部初期化
     ''' </summary>
@@ -37,7 +39,10 @@ Public Class SC_Z01A
     ''' </summary>
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
-    Private Sub SC_M22_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub SC_Z01A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+        lblMaster.Text = FORM_NAME
+        Me.Text = "[Z-01A]" & FORM_NAME
 
         lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
@@ -68,6 +73,7 @@ Public Class SC_Z01A
                 '一覧部
                 sqlstr = xml.GetSQL_Str("SELECT_001")
                 dt = clsSQLServer.GetDataTable(String.Format(sqlstr,
+                                                             businessCode,
                                                              formParameter.ProductNamePlantCode,
                                                              formParameter.PackProductName,
                                                              formParameter.DeliveryCode,
@@ -83,6 +89,7 @@ Public Class SC_Z01A
                 '明細部
                 sqlstr = xml.GetSQL_Str("SELECT_002")
                 dt = clsSQLServer.GetDataTable(String.Format(sqlstr,
+                                                             businessCode,
                                                              formParameter.ProductNamePlantCode,
                                                              formParameter.PackProductName,
                                                              formParameter.DeliveryCode,
