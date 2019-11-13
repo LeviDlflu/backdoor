@@ -219,7 +219,7 @@ Partial Class SC_Z01A
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridDataList.DefaultCellStyle = DataGridViewCellStyle3
         Me.gridDataList.EnableHeadersVisualStyles = False
-        Me.gridDataList.Location = New System.Drawing.Point(548, 129)
+        Me.gridDataList.Location = New System.Drawing.Point(592, 129)
         Me.gridDataList.MultiSelect = False
         Me.gridDataList.Name = "gridDataList"
         Me.gridDataList.ReadOnly = True
