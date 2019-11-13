@@ -371,7 +371,7 @@ Public Class SC_Z01
 
                 strSql = xml.GetSQL_Str("SELECT_005")
 
-                dt = clsSQLServer.GetDataTable(String.Format(strSql, productKubun, cdYard, sqlWhere))
+                dt = clsSQLServer.GetDataTable(String.Format(strSql, businessCode, productKubun, cdYard, sqlWhere))
 
                 If dt.Rows.Count = 0 Then
 
