@@ -96,11 +96,28 @@ Public Class SC_Z01A
                                                              formParameter.DeliveryDivision,
                                                              formParameter.SemiFinishedProductDivision))
 
-                If dt.Rows.Count > 0 Then
-                    SetGridToDetail(dt)
-                Else
+                If dt.Rows.Count = 0 Then
+
                     gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           systemName)
+
+                    Return
+
+                ElseIf dt.Rows.Count > 1000 Then
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004")),
+                           vbExclamation,
+                           systemName)
+
+                    Return
+
                 End If
+
+                SetGridToDetail(dt)
 
             End If
 

@@ -316,6 +316,9 @@
       <Message ID="W9003">
         <Text>数字を入力してください。</Text>
       </Message>
+      <Message ID="W9004">
+        <Text>検索結果表示の最大件数「{0}」件を超えています。</Text>
+      </Message>
     </Warning>
   </Messages>
 </Configuration>

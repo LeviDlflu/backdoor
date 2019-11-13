@@ -383,6 +383,15 @@ Public Class SC_Z01
 
                     Return
 
+                ElseIf dt.Rows.Count > 1000 Then
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004")),
+                           vbExclamation,
+                           systemName)
+
+                    Return
+
                 End If
 
                 setGrid(dt)
