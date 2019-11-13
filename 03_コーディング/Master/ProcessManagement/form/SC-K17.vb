@@ -16,9 +16,6 @@ Public Class SC_K17
     Private Const COL_DATE As String = "日付"
 
 
-    Private Const FORM_NAME As String = "Defect analysis by mold(成形金型番号別不良分析)"
-    Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
-
     ''' <summary>
     ''' 
     ''' </summary>
@@ -41,8 +38,7 @@ Public Class SC_K17
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub SC_K17_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblMaster.Text = FORM_NAME
-        Me.Text = "[" & Me.Name & "]" & FORM_NAME
+
     End Sub
 
     ''' <summary>

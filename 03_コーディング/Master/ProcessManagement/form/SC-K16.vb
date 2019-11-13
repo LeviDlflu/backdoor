@@ -28,9 +28,6 @@
     Private Const COL_PASSING_RATE As String = "合格率"
     Private Const COL_DEFECTIVE_RATE As String = "不良率"
 
-    Private Const CONST_SYSTEM_NAME As String = "成形実績参照画面"
-    Private Const FORM_NAME As String = "Molding achievement reference(成形実績参照)"
-
     Public gridCells As DataGridViewCellCollection
 
     ''' <summary>
@@ -43,9 +40,6 @@
         Me.cmbProductName.Text = String.Empty
 
         Me.StartPosition = FormStartPosition.CenterScreen
-
-        lblMaster.Text = FORM_NAME
-        Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
     End Sub
 
@@ -204,7 +198,7 @@
     ''' 検索ボタン押下
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Me.Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
         setGrid(createGridData())
 

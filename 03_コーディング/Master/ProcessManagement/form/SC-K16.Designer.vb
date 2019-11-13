@@ -33,9 +33,13 @@ Partial Class SC_K16
         Me.cmbProductName = New System.Windows.Forms.ComboBox()
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.dtpWorkingYMD = New System.Windows.Forms.DateTimePicker()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
@@ -51,15 +55,11 @@ Partial Class SC_K16
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.gridData = New ProcessManagement.DataGridViewMerge()
-        Me.Label67 = New System.Windows.Forms.Label()
+        Me.lblSearchTime = New System.Windows.Forms.Label()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -70,7 +70,7 @@ Partial Class SC_K16
         '
         Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
         Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDesc.Location = New System.Drawing.Point(173, 66)
+        Me.btnDesc.Location = New System.Drawing.Point(151, 66)
         Me.btnDesc.Name = "btnDesc"
         Me.btnDesc.Size = New System.Drawing.Size(117, 53)
         Me.btnDesc.TabIndex = 271
@@ -114,7 +114,7 @@ Partial Class SC_K16
         Me.Panel4.Controls.Add(Me.Label54)
         Me.Panel4.Location = New System.Drawing.Point(-1, 126)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1354, 248)
+        Me.Panel4.Size = New System.Drawing.Size(1354, 220)
         Me.Panel4.TabIndex = 296
         '
         'cmbMoneyType
@@ -122,7 +122,7 @@ Partial Class SC_K16
         Me.cmbMoneyType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbMoneyType.BackColor = System.Drawing.Color.White
         Me.cmbMoneyType.FormattingEnabled = True
-        Me.cmbMoneyType.Location = New System.Drawing.Point(845, 93)
+        Me.cmbMoneyType.Location = New System.Drawing.Point(852, 82)
         Me.cmbMoneyType.Name = "cmbMoneyType"
         Me.cmbMoneyType.Size = New System.Drawing.Size(55, 21)
         Me.cmbMoneyType.TabIndex = 328
@@ -131,7 +131,7 @@ Partial Class SC_K16
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label36.Location = New System.Drawing.Point(843, 52)
+        Me.Label36.Location = New System.Drawing.Point(850, 47)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(43, 16)
         Me.Label36.TabIndex = 329
@@ -141,7 +141,7 @@ Partial Class SC_K16
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label39.Location = New System.Drawing.Point(843, 71)
+        Me.Label39.Location = New System.Drawing.Point(850, 65)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(50, 16)
         Me.Label39.TabIndex = 330
@@ -151,7 +151,7 @@ Partial Class SC_K16
         '
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("MS UI Gothic", 11.0!)
-        Me.Label35.Location = New System.Drawing.Point(35, 220)
+        Me.Label35.Location = New System.Drawing.Point(18, 188)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(1223, 15)
         Me.Label35.TabIndex = 327
@@ -162,7 +162,7 @@ Partial Class SC_K16
         '
         Me.Label64.AutoSize = True
         Me.Label64.Font = New System.Drawing.Font("MS UI Gothic", 11.0!)
-        Me.Label64.Location = New System.Drawing.Point(34, 192)
+        Me.Label64.Location = New System.Drawing.Point(18, 169)
         Me.Label64.Name = "Label64"
         Me.Label64.Size = New System.Drawing.Size(625, 15)
         Me.Label64.TabIndex = 326
@@ -171,7 +171,7 @@ Partial Class SC_K16
         'CheckBox2
         '
         Me.CheckBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!)
-        Me.CheckBox2.Location = New System.Drawing.Point(515, 129)
+        Me.CheckBox2.Location = New System.Drawing.Point(592, 116)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(343, 30)
         Me.CheckBox2.TabIndex = 324
@@ -183,7 +183,7 @@ Partial Class SC_K16
         '
         Me.Label59.AutoSize = True
         Me.Label59.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label59.Location = New System.Drawing.Point(450, 143)
+        Me.Label59.Location = New System.Drawing.Point(517, 125)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(50, 16)
         Me.Label59.TabIndex = 321
@@ -194,16 +194,16 @@ Partial Class SC_K16
         Me.cmbProductName.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbProductName.BackColor = System.Drawing.Color.White
         Me.cmbProductName.FormattingEnabled = True
-        Me.cmbProductName.Location = New System.Drawing.Point(450, 164)
+        Me.cmbProductName.Location = New System.Drawing.Point(517, 146)
         Me.cmbProductName.Name = "cmbProductName"
-        Me.cmbProductName.Size = New System.Drawing.Size(244, 21)
+        Me.cmbProductName.Size = New System.Drawing.Size(316, 21)
         Me.cmbProductName.TabIndex = 319
         '
         'Label60
         '
         Me.Label60.AutoSize = True
         Me.Label60.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label60.Location = New System.Drawing.Point(446, 120)
+        Me.Label60.Location = New System.Drawing.Point(517, 106)
         Me.Label60.Name = "Label60"
         Me.Label60.Size = New System.Drawing.Size(69, 16)
         Me.Label60.TabIndex = 320
@@ -211,6 +211,7 @@ Partial Class SC_K16
         '
         'Panel3
         '
+        Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.DateTimePicker2)
@@ -224,79 +225,119 @@ Partial Class SC_K16
         Me.Panel3.Controls.Add(Me.RadioButton1)
         Me.Panel3.Controls.Add(Me.Label55)
         Me.Panel3.Controls.Add(Me.Label47)
-        Me.Panel3.Location = New System.Drawing.Point(18, 66)
+        Me.Panel3.Location = New System.Drawing.Point(18, 62)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(410, 123)
+        Me.Panel3.Size = New System.Drawing.Size(469, 105)
         Me.Panel3.TabIndex = 315
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label3.Location = New System.Drawing.Point(251, 49)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(66, 16)
+        Me.Label3.TabIndex = 334
+        Me.Label3.Text = "(実績月)"
         '
         'DateTimePicker2
         '
-        Me.DateTimePicker2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DateTimePicker2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DateTimePicker2.CustomFormat = "yyyy/MM"
         Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker2.Location = New System.Drawing.Point(154, 90)
+        Me.DateTimePicker2.Location = New System.Drawing.Point(143, 65)
         Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(110, 21)
+        Me.DateTimePicker2.Size = New System.Drawing.Size(145, 21)
         Me.DateTimePicker2.TabIndex = 279
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label4.Location = New System.Drawing.Point(143, 46)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(110, 16)
+        Me.Label4.TabIndex = 333
+        Me.Label4.Text = "Actual month"
         '
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(266, 36)
+        Me.Label56.Location = New System.Drawing.Point(290, 24)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(21, 14)
         Me.Label56.TabIndex = 278
         Me.Label56.Text = "～"
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label1.Location = New System.Drawing.Point(233, 3)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(66, 16)
+        Me.Label1.TabIndex = 332
+        Me.Label1.Text = "(実績日)"
+        '
         'DateTimePicker1
         '
-        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DateTimePicker1.CustomFormat = "yyyy/MM/dd"
         Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker1.Location = New System.Drawing.Point(287, 32)
+        Me.DateTimePicker1.Location = New System.Drawing.Point(313, 20)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(110, 21)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(145, 21)
         Me.DateTimePicker1.TabIndex = 277
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label2.Location = New System.Drawing.Point(140, 2)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(97, 16)
+        Me.Label2.TabIndex = 331
+        Me.Label2.Text = "Actual date"
         '
         'dtpWorkingYMD
         '
-        Me.dtpWorkingYMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.dtpWorkingYMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dtpWorkingYMD.CustomFormat = "yyyy/MM/dd"
         Me.dtpWorkingYMD.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpWorkingYMD.Location = New System.Drawing.Point(154, 32)
+        Me.dtpWorkingYMD.Location = New System.Drawing.Point(143, 20)
         Me.dtpWorkingYMD.Name = "dtpWorkingYMD"
-        Me.dtpWorkingYMD.Size = New System.Drawing.Size(110, 21)
+        Me.dtpWorkingYMD.Size = New System.Drawing.Size(145, 21)
         Me.dtpWorkingYMD.TabIndex = 276
         '
         'RadioButton2
         '
         Me.RadioButton2.AutoSize = True
         Me.RadioButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!)
-        Me.RadioButton2.Location = New System.Drawing.Point(16, 93)
+        Me.RadioButton2.Location = New System.Drawing.Point(5, 67)
         Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(71, 16)
+        Me.RadioButton2.Size = New System.Drawing.Size(79, 16)
         Me.RadioButton2.TabIndex = 275
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "過去検索"
+        Me.RadioButton2.Text = "(過去検索)"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
         Me.RadioButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!)
-        Me.RadioButton1.Location = New System.Drawing.Point(16, 34)
+        Me.RadioButton1.Location = New System.Drawing.Point(5, 22)
         Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(71, 16)
+        Me.RadioButton1.Size = New System.Drawing.Size(79, 16)
         Me.RadioButton1.TabIndex = 274
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "範囲検索"
+        Me.RadioButton1.Text = "(範囲検索)"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'Label55
         '
         Me.Label55.AutoSize = True
         Me.Label55.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label55.Location = New System.Drawing.Point(33, 12)
+        Me.Label55.Location = New System.Drawing.Point(21, 3)
         Me.Label55.Name = "Label55"
         Me.Label55.Size = New System.Drawing.Size(111, 16)
         Me.Label55.TabIndex = 273
@@ -306,7 +347,7 @@ Partial Class SC_K16
         '
         Me.Label47.AutoSize = True
         Me.Label47.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label47.Location = New System.Drawing.Point(33, 72)
+        Me.Label47.Location = New System.Drawing.Point(21, 50)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(100, 16)
         Me.Label47.TabIndex = 272
@@ -317,16 +358,16 @@ Partial Class SC_K16
         Me.cmbVariety.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbVariety.BackColor = System.Drawing.Color.White
         Me.cmbVariety.FormattingEnabled = True
-        Me.cmbVariety.Location = New System.Drawing.Point(632, 93)
+        Me.cmbVariety.Location = New System.Drawing.Point(679, 82)
         Me.cmbVariety.Name = "cmbVariety"
-        Me.cmbVariety.Size = New System.Drawing.Size(180, 21)
+        Me.cmbVariety.Size = New System.Drawing.Size(154, 21)
         Me.cmbVariety.TabIndex = 300
         '
         'Label37
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label37.Location = New System.Drawing.Point(630, 52)
+        Me.Label37.Location = New System.Drawing.Point(677, 47)
         Me.Label37.Name = "Label37"
         Me.Label37.Size = New System.Drawing.Size(64, 16)
         Me.Label37.TabIndex = 301
@@ -336,7 +377,7 @@ Partial Class SC_K16
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label43.Location = New System.Drawing.Point(630, 71)
+        Me.Label43.Location = New System.Drawing.Point(677, 65)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(50, 16)
         Me.Label43.TabIndex = 306
@@ -346,7 +387,7 @@ Partial Class SC_K16
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label44.Location = New System.Drawing.Point(451, 71)
+        Me.Label44.Location = New System.Drawing.Point(518, 65)
         Me.Label44.Name = "Label44"
         Me.Label44.Size = New System.Drawing.Size(50, 16)
         Me.Label44.TabIndex = 305
@@ -356,7 +397,7 @@ Partial Class SC_K16
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 35)
+        Me.Label45.Location = New System.Drawing.Point(9, 31)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 304
@@ -367,26 +408,26 @@ Partial Class SC_K16
         Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbProcess.BackColor = System.Drawing.Color.White
         Me.cmbProcess.FormattingEnabled = True
-        Me.cmbProcess.Location = New System.Drawing.Point(449, 93)
+        Me.cmbProcess.Location = New System.Drawing.Point(516, 82)
         Me.cmbProcess.Name = "cmbProcess"
-        Me.cmbProcess.Size = New System.Drawing.Size(150, 21)
+        Me.cmbProcess.Size = New System.Drawing.Size(143, 21)
         Me.cmbProcess.TabIndex = 296
         '
         'Label53
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 14)
+        Me.Label53.Location = New System.Drawing.Point(3, 10)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(162, 19)
+        Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 295
-        Me.Label53.Text = "Search condition"
+        Me.Label53.Text = "Search criteria"
         '
         'Label54
         '
         Me.Label54.AutoSize = True
         Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label54.Location = New System.Drawing.Point(447, 52)
+        Me.Label54.Location = New System.Drawing.Point(518, 47)
         Me.Label54.Name = "Label54"
         Me.Label54.Size = New System.Drawing.Size(87, 16)
         Me.Label54.TabIndex = 297
@@ -398,14 +439,14 @@ Partial Class SC_K16
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.gridData)
-        Me.Panel1.Controls.Add(Me.Label67)
+        Me.Panel1.Controls.Add(Me.lblSearchTime)
         Me.Panel1.Controls.Add(Me.Label65)
         Me.Panel1.Controls.Add(Me.Label66)
         Me.Panel1.Controls.Add(Me.Label38)
         Me.Panel1.Controls.Add(Me.Label40)
-        Me.Panel1.Location = New System.Drawing.Point(-2, 374)
+        Me.Panel1.Location = New System.Drawing.Point(-2, 346)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1353, 286)
+        Me.Panel1.Size = New System.Drawing.Size(1353, 316)
         Me.Panel1.TabIndex = 308
         '
         'gridData
@@ -420,24 +461,25 @@ Partial Class SC_K16
         Me.gridData.Name = "gridData"
         Me.gridData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.gridData.RowTemplate.Height = 23
-        Me.gridData.Size = New System.Drawing.Size(1269, 225)
+        Me.gridData.Size = New System.Drawing.Size(1206, 255)
         Me.gridData.TabIndex = 312
         '
-        'Label67
+        'lblSearchTime
         '
-        Me.Label67.AutoSize = True
-        Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1142, 19)
-        Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(144, 16)
-        Me.Label67.TabIndex = 310
-        Me.Label67.Text = "yyyy/MM/dd hh:mm"
+        Me.lblSearchTime.AutoSize = True
+        Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1073, 19)
+        Me.lblSearchTime.Name = "lblSearchTime"
+        Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
+        Me.lblSearchTime.TabIndex = 310
+        Me.lblSearchTime.Text = "yyyy/MM/dd hh:mm"
+        Me.lblSearchTime.Visible = False
         '
         'Label65
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(1000, 16)
+        Me.Label65.Location = New System.Drawing.Point(931, 17)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -447,7 +489,7 @@ Partial Class SC_K16
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(1004, 39)
+        Me.Label66.Location = New System.Drawing.Point(935, 40)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -472,46 +514,6 @@ Partial Class SC_K16
         Me.Label40.Size = New System.Drawing.Size(97, 19)
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label1.Location = New System.Drawing.Point(244, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(66, 16)
-        Me.Label1.TabIndex = 332
-        Me.Label1.Text = "(実績日)"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label2.Location = New System.Drawing.Point(151, 11)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(97, 16)
-        Me.Label2.TabIndex = 331
-        Me.Label2.Text = "Actual date"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label3.Location = New System.Drawing.Point(262, 68)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(66, 16)
-        Me.Label3.TabIndex = 334
-        Me.Label3.Text = "(実績月)"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label4.Location = New System.Drawing.Point(154, 68)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(110, 16)
-        Me.Label4.TabIndex = 333
-        Me.Label4.Text = "Actual month"
         '
         'SC_K16
         '
@@ -569,7 +571,7 @@ Partial Class SC_K16
     Friend WithEvents Label54 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents gridData As DataGridViewMerge
-    Friend WithEvents Label67 As Label
+    Friend WithEvents lblSearchTime As Label
     Friend WithEvents Label65 As Label
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label

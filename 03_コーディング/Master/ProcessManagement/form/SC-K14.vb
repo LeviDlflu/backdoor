@@ -12,9 +12,6 @@ Public Class SC_K14
     Private Const COL_CLASSIFICATION As String = "分類"
     Private Const COL_TOTAL As String = "合計"
 
-    Private Const CONST_SYSTEM_NAME As String = "前日以前実績参照"
-    Private Const FORM_NAME As String = "The results before the previous days(前日以前実績参照)"
-
     Public judgmentCategory As String = String.Empty
     Public judgmentClassification As String = String.Empty
 
@@ -37,9 +34,6 @@ Public Class SC_K14
         Me.cmbVehicleType.Text = String.Empty
         Me.cmbSalesVarieties.Text = String.Empty
         Me.cmbProductName.Text = String.Empty
-
-        lblMaster.Text = FORM_NAME
-        Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
         Dim dt As New DataTable
 

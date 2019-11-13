@@ -1,6 +1,8 @@
 ﻿Public Class SC_K00B
 
     Private Const FORM_NAME As String = "Inventory inquiry and progress manage menu(在庫照会と進捗管理メニュー)"
+    Public Const FORM_NAME_Z01 As String = "Stock inquiry(在庫照会)"
+    Private Const FORM_NAME_K12 As String = "Progress management(進捗管理)"
 
     ''' <summary>
     ''' 初期表示
@@ -35,6 +37,8 @@
     Private Sub btnStockInquiry_Click(sender As Object, e As EventArgs) Handles btnStockInquiry.Click
 
         Dim frm As New SC_Z01()
+        frm.Text = "[Z-01]" & FORM_NAME_Z01
+        frm.lblMaster.Text = FORM_NAME_Z01
         frm.ShowDialog()
         Me.Show()
     End Sub
@@ -45,6 +49,8 @@
     Private Sub btnManagement_Click(sender As Object, e As EventArgs) Handles btnManagement.Click
 
         Dim frm As New SC_K12()
+        frm.Text = "[K-12]" & FORM_NAME_K12
+        frm.lblMaster.Text = FORM_NAME_K12
         frm.ShowDialog()
         Me.Show()
 

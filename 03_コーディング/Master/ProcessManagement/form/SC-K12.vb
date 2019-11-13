@@ -68,12 +68,7 @@ Public Class SC_K12
     Private Const COL_FORCED_EXCLUSION As String = "強制除外"
 
 
-    Private Const FORM_NAME As String = "Progress management(進捗管理)"
-    Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
-
     Private Sub SC_K12_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        lblMaster.Text = FORM_NAME
-        Me.Text = "[" & Me.Name & "]" & FORM_NAME
         Dim dt As New DataTable
         dt.Columns.Add("Code", GetType(String))
         dt.Columns.Add("Name", GetType(String))
