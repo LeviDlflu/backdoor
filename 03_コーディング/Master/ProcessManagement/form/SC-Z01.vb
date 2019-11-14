@@ -65,7 +65,6 @@ Public Class SC_Z01
 
     Dim dtHeader As New DataTable
 
-    Dim msg As clsMessage
     Dim xml As New clsGetSqlXML("SC-Z01.xml", "SC-Z01")
 
     ''' <summary>
@@ -270,6 +269,7 @@ Public Class SC_Z01
 
             Dim frm As New SC_Z01A()
             frm.ShowDialog()
+            frm.Visible = False
             Me.Show()
 
         End If
@@ -384,13 +384,10 @@ Public Class SC_Z01
                     Return
 
                 ElseIf dt.Rows.Count > 1000 Then
-                    gridData.Columns.Clear()
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W9004")),
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
                            vbExclamation,
                            systemName)
-
-                    Return
 
                 End If
 

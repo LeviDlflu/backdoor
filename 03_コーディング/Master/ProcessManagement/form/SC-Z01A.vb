@@ -103,21 +103,20 @@ Public Class SC_Z01A
                     MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
                            systemName)
-
+                    Me.Close()
                     Return
 
                 ElseIf dt.Rows.Count > 1000 Then
-                    gridData.Columns.Clear()
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W9004")),
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
                            vbExclamation,
                            systemName)
-
-                    Return
 
                 End If
 
                 SetGridToDetail(dt)
+
+                Me.Visible = True
 
             End If
 

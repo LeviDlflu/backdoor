@@ -138,6 +138,7 @@ Partial Class SC_Z01
         Me.gridData.MergeColumnHeaderBackColor = System.Drawing.Color.White
         Me.gridData.MergeColumnNames = CType(resources.GetObject("gridData.MergeColumnNames"), System.Collections.Generic.List(Of String))
         Me.gridData.Name = "gridData"
+        Me.gridData.ReadOnly = True
         Me.gridData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.gridData.RowTemplate.Height = 23
         Me.gridData.Size = New System.Drawing.Size(1269, 265)

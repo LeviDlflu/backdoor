@@ -2,7 +2,7 @@
 
     Private Const FORM_NAME As String = "Inventory inquiry and progress manage menu(在庫照会と進捗管理メニュー)"
     Public Const FORM_NAME_Z01 As String = "Stock inquiry(在庫照会)"
-    Private Const FORM_NAME_K12 As String = "Progress management(進捗管理)"
+    Private Const FORM_NAME_K12 As String = "Process progress management(工程進捗管理)"
 
     ''' <summary>
     ''' 初期表示
