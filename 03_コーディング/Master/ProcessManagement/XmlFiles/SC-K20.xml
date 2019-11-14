@@ -77,8 +77,23 @@
            コード
         </Text>
       </SQL>
-    </Selects>
 
+      <SQL ID="SELECT_005">
+        <Text>
+          SELECT
+            '' AS 区分個体ＮＯ
+          UNION SELECT
+            区分個体ＮＯ
+          FROM
+            実績管理データ
+          WHERE
+            製品半製品区分 ='{0}'
+          AND
+            大工程コード ='{1}'
+        </Text>
+      </SQL>
+    </Selects>
+    
     <!--在庫データ更新処理-->
     <Updates>
       <SQL ID="UPDATE_001">

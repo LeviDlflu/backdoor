@@ -229,8 +229,12 @@
       <Message ID="I027">
         <Text>　入荷件数＝{0}件:検査合格件数＝{1}件</Text>
       </Message>
-
-
+      <Message ID="I028">
+        <Text>　払出します。よろしいですか？</Text>
+      </Message>
+      <Message ID="I029">
+        <Text>　登録しました。</Text>
+      </Message>
 
       <Message ID="I101">
         <Text>　メール送信開始</Text>

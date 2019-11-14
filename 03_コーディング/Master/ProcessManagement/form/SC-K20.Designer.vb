@@ -22,7 +22,7 @@ Partial Class SC_K20
         Me.btnRegistration = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.txtNO = New System.Windows.Forms.TextBox()
+        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
         Me.cmb_Syasyu = New System.Windows.Forms.ComboBox()
@@ -51,8 +51,8 @@ Partial Class SC_K20
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtRemarks = New System.Windows.Forms.TextBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.dateWithdrawalDate = New System.Windows.Forms.DateTimePicker()
         Me.btnClear = New System.Windows.Forms.Button()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -60,10 +60,10 @@ Partial Class SC_K20
         '
         Me.btnRegistration.BackColor = System.Drawing.SystemColors.Control
         Me.btnRegistration.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnRegistration.Location = New System.Drawing.Point(331, 66)
+        Me.btnRegistration.Location = New System.Drawing.Point(258, 66)
         Me.btnRegistration.Name = "btnRegistration"
         Me.btnRegistration.Size = New System.Drawing.Size(160, 53)
-        Me.btnRegistration.TabIndex = 270
+        Me.btnRegistration.TabIndex = 268
         Me.btnRegistration.Text = "Registration" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(登録)"
         Me.btnRegistration.UseVisualStyleBackColor = False
         '
@@ -74,7 +74,7 @@ Partial Class SC_K20
         Me.btnSearch.Location = New System.Drawing.Point(12, 66)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 53)
-        Me.btnSearch.TabIndex = 271
+        Me.btnSearch.TabIndex = 266
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
@@ -82,7 +82,7 @@ Partial Class SC_K20
         '
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel4.Controls.Add(Me.txtNO)
+        Me.Panel4.Controls.Add(Me.ComboBox4)
         Me.Panel4.Controls.Add(Me.RadioButton2)
         Me.Panel4.Controls.Add(Me.RadioButton1)
         Me.Panel4.Controls.Add(Me.cmb_Syasyu)
@@ -97,35 +97,37 @@ Partial Class SC_K20
         Me.Panel4.Location = New System.Drawing.Point(0, 126)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1583, 196)
-        Me.Panel4.TabIndex = 298
+        Me.Panel4.TabIndex = 274
         '
-        'txtNO
+        'ComboBox4
         '
-        Me.txtNO.BackColor = System.Drawing.Color.Yellow
-        Me.txtNO.Location = New System.Drawing.Point(616, 100)
-        Me.txtNO.Name = "txtNO"
-        Me.txtNO.Size = New System.Drawing.Size(177, 21)
-        Me.txtNO.TabIndex = 315
+        Me.ComboBox4.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.ComboBox4.BackColor = System.Drawing.Color.Yellow
+        Me.ComboBox4.FormattingEnabled = True
+        Me.ComboBox4.Location = New System.Drawing.Point(615, 100)
+        Me.ComboBox4.Name = "ComboBox4"
+        Me.ComboBox4.Size = New System.Drawing.Size(116, 21)
+        Me.ComboBox4.TabIndex = 309
         '
         'RadioButton2
         '
+        Me.RadioButton2.Checked = True
         Me.RadioButton2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
         Me.RadioButton2.Location = New System.Drawing.Point(61, 100)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(188, 29)
-        Me.RadioButton2.TabIndex = 271
+        Me.RadioButton2.TabIndex = 275
+        Me.RadioButton2.TabStop = True
         Me.RadioButton2.Text = "Finished(製品)"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
         'RadioButton1
         '
-        Me.RadioButton1.Checked = True
         Me.RadioButton1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
         Me.RadioButton1.Location = New System.Drawing.Point(61, 135)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(216, 29)
-        Me.RadioButton1.TabIndex = 270
-        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.TabIndex = 276
         Me.RadioButton1.Text = "Semi finished(半製品)"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
@@ -133,11 +135,12 @@ Partial Class SC_K20
         '
         Me.cmb_Syasyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmb_Syasyu.BackColor = System.Drawing.Color.Yellow
+        Me.cmb_Syasyu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmb_Syasyu.FormattingEnabled = True
         Me.cmb_Syasyu.Location = New System.Drawing.Point(301, 101)
         Me.cmb_Syasyu.Name = "cmb_Syasyu"
-        Me.cmb_Syasyu.Size = New System.Drawing.Size(188, 21)
-        Me.cmb_Syasyu.TabIndex = 311
+        Me.cmb_Syasyu.Size = New System.Drawing.Size(116, 21)
+        Me.cmb_Syasyu.TabIndex = 277
         '
         'Label1
         '
@@ -205,9 +208,9 @@ Partial Class SC_K20
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
         Me.Label53.Location = New System.Drawing.Point(3, 14)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(162, 19)
+        Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 295
-        Me.Label53.Text = "Search condition"
+        Me.Label53.Text = "Search criteria"
         '
         'Label54
         '
@@ -246,7 +249,7 @@ Partial Class SC_K20
         Me.txtProName.Location = New System.Drawing.Point(47, 387)
         Me.txtProName.Name = "txtProName"
         Me.txtProName.Size = New System.Drawing.Size(444, 21)
-        Me.txtProName.TabIndex = 316
+        Me.txtProName.TabIndex = 279
         '
         'Label5
         '
@@ -292,11 +295,12 @@ Partial Class SC_K20
         '
         Me.ComboBox2.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.ComboBox2.BackColor = System.Drawing.Color.White
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(302, 493)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(202, 21)
-        Me.ComboBox2.TabIndex = 321
+        Me.ComboBox2.Size = New System.Drawing.Size(116, 21)
+        Me.ComboBox2.TabIndex = 281
         '
         'Label9
         '
@@ -320,14 +324,13 @@ Partial Class SC_K20
         '
         'TextBox2
         '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.TextBox2.BackColor = System.Drawing.Color.DarkGray
         Me.TextBox2.Enabled = False
         Me.TextBox2.Location = New System.Drawing.Point(561, 492)
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(177, 21)
-        Me.TextBox2.TabIndex = 324
+        Me.TextBox2.Size = New System.Drawing.Size(117, 21)
+        Me.TextBox2.TabIndex = 282
         Me.TextBox2.Text = "1"
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label11
         '
@@ -373,44 +376,50 @@ Partial Class SC_K20
         '
         Me.txtRemarks.BackColor = System.Drawing.Color.White
         Me.txtRemarks.Location = New System.Drawing.Point(50, 607)
+        Me.txtRemarks.Multiline = True
         Me.txtRemarks.Name = "txtRemarks"
-        Me.txtRemarks.Size = New System.Drawing.Size(685, 21)
-        Me.txtRemarks.TabIndex = 329
+        Me.txtRemarks.Size = New System.Drawing.Size(368, 69)
+        Me.txtRemarks.TabIndex = 284
         '
         'ComboBox3
         '
         Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.ComboBox3.BackColor = System.Drawing.Color.White
+        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(794, 493)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(202, 21)
-        Me.ComboBox3.TabIndex = 330
-        '
-        'dateWithdrawalDate
-        '
-        Me.dateWithdrawalDate.Location = New System.Drawing.Point(47, 493)
-        Me.dateWithdrawalDate.Name = "dateWithdrawalDate"
-        Me.dateWithdrawalDate.Size = New System.Drawing.Size(202, 21)
-        Me.dateWithdrawalDate.TabIndex = 331
+        Me.ComboBox3.Size = New System.Drawing.Size(132, 21)
+        Me.ComboBox3.TabIndex = 283
         '
         'btnClear
         '
         Me.btnClear.BackColor = System.Drawing.SystemColors.Control
         Me.btnClear.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnClear.Location = New System.Drawing.Point(176, 66)
+        Me.btnClear.Location = New System.Drawing.Point(135, 66)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(117, 53)
-        Me.btnClear.TabIndex = 332
+        Me.btnClear.TabIndex = 267
         Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
         Me.btnClear.UseVisualStyleBackColor = False
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.ComboBox1.BackColor = System.Drawing.Color.Yellow
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(46, 493)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(99, 21)
+        Me.ComboBox1.TabIndex = 280
         '
         'SC_K20
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1575, 746)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.btnClear)
-        Me.Controls.Add(Me.dateWithdrawalDate)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.txtRemarks)
         Me.Controls.Add(Me.Label13)
@@ -452,8 +461,8 @@ Partial Class SC_K20
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.txtRemarks, 0)
         Me.Controls.SetChildIndex(Me.ComboBox3, 0)
-        Me.Controls.SetChildIndex(Me.dateWithdrawalDate, 0)
         Me.Controls.SetChildIndex(Me.btnClear, 0)
+        Me.Controls.SetChildIndex(Me.ComboBox1, 0)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
@@ -475,7 +484,6 @@ Partial Class SC_K20
     Friend WithEvents Label45 As Label
     Friend WithEvents Label53 As Label
     Friend WithEvents Label54 As Label
-    Friend WithEvents txtNO As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents txtProName As TextBox
@@ -493,6 +501,7 @@ Partial Class SC_K20
     Friend WithEvents Label14 As Label
     Friend WithEvents txtRemarks As TextBox
     Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents dateWithdrawalDate As DateTimePicker
     Friend WithEvents btnClear As Button
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ComboBox4 As ComboBox
 End Class
