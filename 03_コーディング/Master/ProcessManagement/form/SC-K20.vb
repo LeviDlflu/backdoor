@@ -11,6 +11,7 @@ Public Class SC_K20
     Private Const REMARKS As String = "備考"
     Dim xml As New clsGetSqlXML("SC-K20.xml", "SC-K20")
     Dim searchResult As New DataTable
+    Dim dt5 As New DataTable
     Dim DIVISION As String = "1"
     Dim errorMessage As clsMessage
 
@@ -107,11 +108,13 @@ Public Class SC_K20
 
         '品名略称必須チェック
         If searchResult.Rows(0).Item(5) Is DBNull.Value Then
-            MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), PRODUCT_ABBREVIATION))
-            Return
+            'MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), PRODUCT_ABBREVIATION))
+            'Return
+            txtProName.Text = String.Empty
+        Else
+            txtProName.Text = searchResult.Rows(0).Item(5)
         End If
         ComboBox4.BackColor = Color.Yellow
-        txtProName.Text = searchResult.Rows(0).Item(5)
 
     End Sub
 
@@ -331,8 +334,6 @@ Public Class SC_K20
             DIVISION = "0"
         End If
         Dim Selectsql As String
-        Dim dt5 As New DataTable
-
         If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
         Else
             Try
@@ -365,8 +366,6 @@ Public Class SC_K20
             DIVISION = "1"
         End If
         Dim Selectsql As String
-        Dim dt5 As New DataTable
-
         If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
         Else
             Try
@@ -395,7 +394,6 @@ Public Class SC_K20
     ''' </summary>
     Private Sub cmb_Syasyu_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Syasyu.SelectedIndexChanged
         Dim Selectsql As String
-        Dim dt5 As New DataTable
 
         If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
         Else
@@ -422,8 +420,31 @@ Public Class SC_K20
 
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
     Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
-
         txtProName.Text = String.Empty
     End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    Private Sub ComboBox4_TextChanged(sender As Object, e As EventArgs) Handles ComboBox4.TextChanged
+        Dim dt As New DataTable
+        If String.IsNullOrEmpty(ComboBox4.Text) Then
+            Me.ComboBox4.DataSource = dt5
+            Me.ComboBox4.ValueMember = dt5.Columns.Item(0).ColumnName
+            Me.ComboBox4.DisplayMember = dt5.Columns.Item(0).ColumnName
+        Else
+            Dim dv As DataView = New DataView(dt5)
+            dv.RowFilter = String.Format("{0} like '{1}%' ", "区分個体ＮＯ", ComboBox4.Text)
+            dt = dv.ToTable
+            Me.ComboBox4.DataSource = dt
+            Me.ComboBox4.ValueMember = dt.Columns.Item(0).ColumnName
+            Me.ComboBox4.DisplayMember = dt.Columns.Item(0).ColumnName
+        End If
+
+    End Sub
+
 End Class
