@@ -469,7 +469,7 @@ Public Class SC_Z01
 
             Dim dgv As DataGridView = gridData
 
-            Dim isOK = ExportExcel(dgv, "在庫照会", strNodeList)
+            Dim isOK = clsExcel.ExportToExcel(dgv, "在庫照会", strNodeList)
 
             If isOK = True Then
                 MessageBox.Show(Me, "エクスポート完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -477,138 +477,6 @@ Public Class SC_Z01
         End If
 
     End Sub
-
-    ''' <summary>
-    ''' DataTableの内容をEXCELファイルに保存する
-    ''' </summary>
-    ''' <param name="dgv">エクスポートデータ</param>
-    ''' <param name="fileName">保存先のEXCELファイル名</param>
-    ''' <param name="headerNames">ヘーダ名前</param>
-    ''' <returns></returns>
-    Public Function ExportExcel(ByVal dgv As DataGridView, ByVal fileName As String, Optional headerNames As ArrayList = Nothing) As Boolean
-
-        Dim xlApp As Object = Nothing
-        Dim xlBooks As Object = Nothing
-        Dim xlBook As Object = Nothing
-        Dim xlSheet As Excel.Worksheet = Nothing
-        Dim xlCells As Object = Nothing
-        Dim xlRange As Object = Nothing
-
-        '保存ディレクトリとファイル名を設定
-        If String.IsNullOrWhiteSpace(fileName) Then
-            MessageBox.Show(String.Format(clsGlobal.MSG2("W0004"), YARD))
-            Return False
-        End If
-
-        Try
-            xlApp = CreateObject("Excel.Application")
-            xlBooks = xlApp.Workbooks
-            xlBook = xlBooks.Add
-            xlSheet = xlBook.WorkSheets(1)
-            xlSheet.Name = fileName
-
-            'アラートメッセージ非表示設定
-            xlApp.DisplayAlerts = False
-
-            Dim saveFileName As String
-            saveFileName = xlApp.GetSaveAsFilename(InitialFilename:=fileName,
-                                                    FileFilter:="Excel File (*.xlsx),*.xlsx")
-
-            xlCells = xlSheet.Cells
-
-            'ヘーダ
-            Dim row As Integer = 0
-            If IsNothing(headerNames) = False Then
-                For Each item As String In headerNames
-                    Dim itemList As String() = item.Split(",")
-                    For col = 0 To itemList.Length - 1
-                        If row > 0 Then
-                            '縦マージ
-                            If itemList(col) = xlCells(row, col + 1).value Then
-                                xlSheet.Range(xlCells(row, col + 1), xlCells(row + 1, col + 1)).Merge(Reflection.Missing.Value)
-                            Else
-                                '横マージ
-                                If xlCells(row, col + 1).value = xlCells(row, col + 2).value Or xlCells(row, col).value = xlCells(row, col + 2).value Then
-                                    xlSheet.Range(xlCells(row, col + 1), xlCells(row, col + 2)).Merge(Reflection.Missing.Value)
-                                    xlSheet.Range(xlCells(row, col + 1), xlCells(row, col + 2)).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
-                                End If
-                                xlCells(row + 1, col + 1) = itemList(col)
-                            End If
-                        Else
-                            xlCells(row + 1, col + 1) = itemList(col)
-                        End If
-                    Next
-
-                    row += 1
-                Next
-            Else
-                row += 1
-                For i = 1 To dgv.ColumnCount - 1
-                    If dgv.Columns(i).Visible = True Then
-                        xlCells(row, i) = customSplit(dgv.Columns(i).HeaderText, 1)
-                    End If
-                Next
-
-            End If
-
-            '明細
-            row += 1
-            For i = 0 To dgv.Rows.Count - 1
-                For j = 1 To dgv.ColumnCount - 1
-                    If dgv(j, i).Visible = True Then
-                        xlCells(i + row, j) = dgv(j, i).Value.ToString
-                    End If
-                Next
-            Next
-
-            xlCells.EntireColumn.AutoFit()
-
-            xlRange = xlSheet.UsedRange
-            xlRange.Borders.LineStyle = True
-
-            '保存先ディレクトリの設定が有効の場合はブックを保存
-            If saveFileName <> "False" Then
-                xlBook.SaveAs(Filename:=saveFileName)
-                xlBook.close()
-            End If
-
-            xlApp.Visible = False
-
-            Return True
-
-        Catch ex As Exception
-            xlApp.DisplayAlerts = False
-            xlApp.Quit()
-            Throw
-        Finally
-            If xlRange IsNot Nothing Then Marshal.ReleaseComObject(xlRange)
-            If xlCells IsNot Nothing Then Marshal.ReleaseComObject(xlCells)
-            If xlSheet IsNot Nothing Then Marshal.ReleaseComObject(xlSheet)
-
-            xlApp.Quit()
-            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBook)
-            If xlBook IsNot Nothing Then Marshal.ReleaseComObject(xlBooks)
-            If xlApp IsNot Nothing Then Marshal.ReleaseComObject(xlApp)
-
-            GC.Collect()
-
-        End Try
-    End Function
-
-    Public Function customSplit(ByRef strObject As String, Optional intStart As Integer = 0) As String
-        Dim result As String = ""
-
-        Dim strSplit As String() = strObject.Split(New String() {vbCr & vbLf}, StringSplitOptions.RemoveEmptyEntries)
-
-        If strSplit.Length > 0 Then
-            For i = intStart To strSplit.Length - 1
-                result = result & strSplit(i)
-            Next
-        End If
-
-        Return result
-
-    End Function
 
     ''' <summary>
     ''' 製品/半製品区分
