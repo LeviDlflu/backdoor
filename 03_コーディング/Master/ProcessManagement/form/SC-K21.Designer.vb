@@ -29,8 +29,8 @@ Partial Class SC_K21
         Me.Aggregation_product_name = New System.Windows.Forms.Button()
         Me.Process_type_summary = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Target_date = New System.Windows.Forms.DateTimePicker()
         Me.cmb_Syasyu = New System.Windows.Forms.ComboBox()
-        Me.dtpWorkingYMD = New System.Windows.Forms.DateTimePicker()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
@@ -51,9 +51,9 @@ Partial Class SC_K21
         '
         Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
         Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnExcel.Location = New System.Drawing.Point(1055, 62)
+        Me.btnExcel.Location = New System.Drawing.Point(1231, 67)
         Me.btnExcel.Name = "btnExcel"
-        Me.btnExcel.Size = New System.Drawing.Size(100, 49)
+        Me.btnExcel.Size = New System.Drawing.Size(117, 53)
         Me.btnExcel.TabIndex = 277
         Me.btnExcel.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
         Me.btnExcel.UseVisualStyleBackColor = False
@@ -63,9 +63,9 @@ Partial Class SC_K21
         Me.DESC.BackColor = System.Drawing.SystemColors.Control
         Me.DESC.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.DESC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.DESC.Location = New System.Drawing.Point(949, 61)
+        Me.DESC.Location = New System.Drawing.Point(1107, 66)
         Me.DESC.Name = "DESC"
-        Me.DESC.Size = New System.Drawing.Size(100, 49)
+        Me.DESC.Size = New System.Drawing.Size(117, 53)
         Me.DESC.TabIndex = 276
         Me.DESC.Text = "DESC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(降 順)"
         Me.DESC.UseVisualStyleBackColor = False
@@ -74,9 +74,9 @@ Partial Class SC_K21
         '
         Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(10, 61)
+        Me.btnSearch.Location = New System.Drawing.Point(12, 66)
         Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(100, 49)
+        Me.btnSearch.Size = New System.Drawing.Size(117, 53)
         Me.btnSearch.TabIndex = 270
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検  索)"
         Me.btnSearch.UseVisualStyleBackColor = False
@@ -86,9 +86,9 @@ Partial Class SC_K21
         Me.ASC.BackColor = System.Drawing.SystemColors.Control
         Me.ASC.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.ASC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ASC.Location = New System.Drawing.Point(843, 62)
+        Me.ASC.Location = New System.Drawing.Point(983, 67)
         Me.ASC.Name = "ASC"
-        Me.ASC.Size = New System.Drawing.Size(100, 49)
+        Me.ASC.Size = New System.Drawing.Size(117, 53)
         Me.ASC.TabIndex = 271
         Me.ASC.Text = "ASC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(昇 順)"
         Me.ASC.UseVisualStyleBackColor = False
@@ -97,9 +97,9 @@ Partial Class SC_K21
         '
         Me.Total_by_process.BackColor = System.Drawing.SystemColors.Control
         Me.Total_by_process.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Total_by_process.Location = New System.Drawing.Point(116, 61)
+        Me.Total_by_process.Location = New System.Drawing.Point(135, 66)
         Me.Total_by_process.Name = "Total_by_process"
-        Me.Total_by_process.Size = New System.Drawing.Size(179, 49)
+        Me.Total_by_process.Size = New System.Drawing.Size(209, 53)
         Me.Total_by_process.TabIndex = 272
         Me.Total_by_process.Text = "Total by process" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(工程別集計)"
         Me.Total_by_process.UseVisualStyleBackColor = False
@@ -108,9 +108,9 @@ Partial Class SC_K21
         '
         Me.Cancel.BackColor = System.Drawing.SystemColors.Control
         Me.Cancel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Cancel.Location = New System.Drawing.Point(737, 62)
+        Me.Cancel.Location = New System.Drawing.Point(860, 67)
         Me.Cancel.Name = "Cancel"
-        Me.Cancel.Size = New System.Drawing.Size(100, 49)
+        Me.Cancel.Size = New System.Drawing.Size(117, 53)
         Me.Cancel.TabIndex = 273
         Me.Cancel.Text = "Cancel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(取 消)"
         Me.Cancel.UseVisualStyleBackColor = False
@@ -119,9 +119,9 @@ Partial Class SC_K21
         '
         Me.Aggregation_product_name.BackColor = System.Drawing.SystemColors.Control
         Me.Aggregation_product_name.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Aggregation_product_name.Location = New System.Drawing.Point(301, 62)
+        Me.Aggregation_product_name.Location = New System.Drawing.Point(351, 67)
         Me.Aggregation_product_name.Name = "Aggregation_product_name"
-        Me.Aggregation_product_name.Size = New System.Drawing.Size(179, 49)
+        Me.Aggregation_product_name.Size = New System.Drawing.Size(209, 53)
         Me.Aggregation_product_name.TabIndex = 274
         Me.Aggregation_product_name.Text = "Total by product" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(品名別集計)"
         Me.Aggregation_product_name.UseVisualStyleBackColor = False
@@ -130,9 +130,9 @@ Partial Class SC_K21
         '
         Me.Process_type_summary.BackColor = System.Drawing.SystemColors.Control
         Me.Process_type_summary.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Process_type_summary.Location = New System.Drawing.Point(486, 62)
+        Me.Process_type_summary.Location = New System.Drawing.Point(567, 67)
         Me.Process_type_summary.Name = "Process_type_summary"
-        Me.Process_type_summary.Size = New System.Drawing.Size(245, 49)
+        Me.Process_type_summary.Size = New System.Drawing.Size(286, 53)
         Me.Process_type_summary.TabIndex = 275
         Me.Process_type_summary.Text = "Total by process variety (工程品種別集計)"
         Me.Process_type_summary.UseVisualStyleBackColor = False
@@ -143,72 +143,75 @@ Partial Class SC_K21
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.Target_date)
         Me.Panel4.Controls.Add(Me.cmb_Syasyu)
-        Me.Panel4.Controls.Add(Me.dtpWorkingYMD)
         Me.Panel4.Controls.Add(Me.Label37)
         Me.Panel4.Controls.Add(Me.Label43)
         Me.Panel4.Controls.Add(Me.Label44)
         Me.Panel4.Controls.Add(Me.Label45)
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Controls.Add(Me.Label54)
-        Me.Panel4.Location = New System.Drawing.Point(0, 117)
+        Me.Panel4.Location = New System.Drawing.Point(0, 127)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1357, 128)
+        Me.Panel4.Size = New System.Drawing.Size(1583, 139)
         Me.Panel4.TabIndex = 298
+        '
+        'Target_date
+        '
+        Me.Target_date.CustomFormat = "yyyy/MM"
+        Me.Target_date.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Target_date.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.Target_date.Location = New System.Drawing.Point(45, 99)
+        Me.Target_date.Margin = New System.Windows.Forms.Padding(2)
+        Me.Target_date.Name = "Target_date"
+        Me.Target_date.Size = New System.Drawing.Size(120, 23)
+        Me.Target_date.TabIndex = 325
         '
         'cmb_Syasyu
         '
         Me.cmb_Syasyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmb_Syasyu.BackColor = System.Drawing.Color.Yellow
         Me.cmb_Syasyu.FormattingEnabled = True
-        Me.cmb_Syasyu.Location = New System.Drawing.Point(325, 93)
+        Me.cmb_Syasyu.Location = New System.Drawing.Point(379, 101)
         Me.cmb_Syasyu.Name = "cmb_Syasyu"
-        Me.cmb_Syasyu.Size = New System.Drawing.Size(161, 20)
+        Me.cmb_Syasyu.Size = New System.Drawing.Size(119, 21)
         Me.cmb_Syasyu.TabIndex = 311
-        '
-        'dtpWorkingYMD
-        '
-        Me.dtpWorkingYMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dtpWorkingYMD.Location = New System.Drawing.Point(39, 93)
-        Me.dtpWorkingYMD.Name = "dtpWorkingYMD"
-        Me.dtpWorkingYMD.Size = New System.Drawing.Size(179, 21)
-        Me.dtpWorkingYMD.TabIndex = 310
         '
         'Label37
         '
         Me.Label37.AutoSize = True
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label37.Location = New System.Drawing.Point(322, 56)
+        Me.Label37.Location = New System.Drawing.Point(376, 61)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(64, 16)
+        Me.Label37.Size = New System.Drawing.Size(117, 16)
         Me.Label37.TabIndex = 301
-        Me.Label37.Text = "Variety"
+        Me.Label37.Text = "Issues division"
         '
         'Label43
         '
         Me.Label43.AutoSize = True
         Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label43.Location = New System.Drawing.Point(322, 73)
+        Me.Label43.Location = New System.Drawing.Point(376, 79)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(50, 16)
+        Me.Label43.Size = New System.Drawing.Size(82, 16)
         Me.Label43.TabIndex = 306
-        Me.Label43.Text = "(品種)"
+        Me.Label43.Text = "(払出区分)"
         '
         'Label44
         '
         Me.Label44.AutoSize = True
         Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label44.Location = New System.Drawing.Point(39, 73)
+        Me.Label44.Location = New System.Drawing.Point(45, 79)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(66, 16)
+        Me.Label44.Size = New System.Drawing.Size(82, 16)
         Me.Label44.TabIndex = 305
-        Me.Label44.Text = "(実績日)"
+        Me.Label44.Text = "(対象年月)"
         '
         'Label45
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(8, 32)
+        Me.Label45.Location = New System.Drawing.Point(9, 35)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 304
@@ -218,7 +221,7 @@ Partial Class SC_K21
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 13)
+        Me.Label53.Location = New System.Drawing.Point(3, 14)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(162, 19)
         Me.Label53.TabIndex = 295
@@ -228,11 +231,11 @@ Partial Class SC_K21
         '
         Me.Label54.AutoSize = True
         Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label54.Location = New System.Drawing.Point(36, 56)
+        Me.Label54.Location = New System.Drawing.Point(42, 61)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(105, 16)
+        Me.Label54.Size = New System.Drawing.Size(98, 16)
         Me.Label54.TabIndex = 297
-        Me.Label54.Text = "Actual dates"
+        Me.Label54.Text = "Target date"
         '
         'gridData
         '
@@ -241,19 +244,20 @@ Partial Class SC_K21
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridData.Location = New System.Drawing.Point(23, 307)
+        Me.gridData.EnableHeadersVisualStyles = False
+        Me.gridData.Location = New System.Drawing.Point(27, 333)
         Me.gridData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control
         Me.gridData.MergeColumnNames = CType(resources.GetObject("gridData.MergeColumnNames"), System.Collections.Generic.List(Of String))
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 23
-        Me.gridData.Size = New System.Drawing.Size(1285, 325)
+        Me.gridData.Size = New System.Drawing.Size(1499, 352)
         Me.gridData.TabIndex = 324
         '
         'Label67
         '
         Me.Label67.AutoSize = True
         Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1149, 271)
+        Me.Label67.Location = New System.Drawing.Point(1340, 294)
         Me.Label67.Name = "Label67"
         Me.Label67.Size = New System.Drawing.Size(144, 16)
         Me.Label67.TabIndex = 323
@@ -263,7 +267,7 @@ Partial Class SC_K21
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(956, 268)
+        Me.Label65.Location = New System.Drawing.Point(1115, 290)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(118, 19)
         Me.Label65.TabIndex = 321
@@ -273,7 +277,7 @@ Partial Class SC_K21
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(960, 289)
+        Me.Label66.Location = New System.Drawing.Point(1120, 313)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 322
@@ -283,7 +287,7 @@ Partial Class SC_K21
         '
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label38.Location = New System.Drawing.Point(4, 256)
+        Me.Label38.Location = New System.Drawing.Point(5, 277)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(142, 19)
         Me.Label38.TabIndex = 319
@@ -293,7 +297,7 @@ Partial Class SC_K21
         '
         Me.Label40.AutoSize = True
         Me.Label40.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label40.Location = New System.Drawing.Point(6, 275)
+        Me.Label40.Location = New System.Drawing.Point(7, 298)
         Me.Label40.Name = "Label40"
         Me.Label40.Size = New System.Drawing.Size(97, 19)
         Me.Label40.TabIndex = 320
@@ -301,8 +305,8 @@ Partial Class SC_K21
         '
         'SC_K21
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
-        Me.ClientSize = New System.Drawing.Size(1354, 659)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
+        Me.ClientSize = New System.Drawing.Size(1580, 714)
         Me.Controls.Add(Me.gridData)
         Me.Controls.Add(Me.Label67)
         Me.Controls.Add(Me.Label65)
@@ -352,7 +356,6 @@ Partial Class SC_K21
     Friend WithEvents Process_type_summary As Button
     Friend WithEvents Panel4 As Panel
     Friend WithEvents cmb_Syasyu As ComboBox
-    Friend WithEvents dtpWorkingYMD As DateTimePicker
     Friend WithEvents Label37 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
@@ -365,4 +368,5 @@ Partial Class SC_K21
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents Label40 As Label
+    Friend WithEvents Target_date As DateTimePicker
 End Class
