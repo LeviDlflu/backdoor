@@ -71,7 +71,7 @@ Partial Class SC_Z01
         '
         Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
         Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnExcel.Location = New System.Drawing.Point(400, 66)
+        Me.btnExcel.Location = New System.Drawing.Point(386, 66)
         Me.btnExcel.Name = "btnExcel"
         Me.btnExcel.Size = New System.Drawing.Size(117, 53)
         Me.btnExcel.TabIndex = 273
@@ -82,7 +82,7 @@ Partial Class SC_Z01
         '
         Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
         Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnDesc.Location = New System.Drawing.Point(274, 66)
+        Me.btnDesc.Location = New System.Drawing.Point(261, 66)
         Me.btnDesc.Name = "btnDesc"
         Me.btnDesc.Size = New System.Drawing.Size(119, 53)
         Me.btnDesc.TabIndex = 272
@@ -93,7 +93,7 @@ Partial Class SC_Z01
         '
         Me.btnAsc.BackColor = System.Drawing.SystemColors.Control
         Me.btnAsc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnAsc.Location = New System.Drawing.Point(150, 66)
+        Me.btnAsc.Location = New System.Drawing.Point(138, 66)
         Me.btnAsc.Name = "btnAsc"
         Me.btnAsc.Size = New System.Drawing.Size(117, 53)
         Me.btnAsc.TabIndex = 271
@@ -104,7 +104,7 @@ Partial Class SC_Z01
         '
         Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(27, 66)
+        Me.btnSearch.Location = New System.Drawing.Point(15, 66)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 53)
         Me.btnSearch.TabIndex = 270
@@ -148,7 +148,7 @@ Partial Class SC_Z01
         '
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(1113, 19)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1162, 15)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
         Me.lblSearchTime.TabIndex = 310
@@ -159,7 +159,7 @@ Partial Class SC_Z01
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(971, 16)
+        Me.Label65.Location = New System.Drawing.Point(1020, 12)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -169,7 +169,7 @@ Partial Class SC_Z01
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(979, 39)
+        Me.Label66.Location = New System.Drawing.Point(1028, 35)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -243,7 +243,7 @@ Partial Class SC_Z01
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label25.Location = New System.Drawing.Point(309, 30)
+        Me.Label25.Location = New System.Drawing.Point(305, 27)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(114, 16)
         Me.Label25.TabIndex = 284
@@ -253,7 +253,7 @@ Partial Class SC_Z01
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label24.Location = New System.Drawing.Point(162, 30)
+        Me.Label24.Location = New System.Drawing.Point(158, 27)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(100, 16)
         Me.Label24.TabIndex = 284
@@ -263,7 +263,7 @@ Partial Class SC_Z01
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label23.Location = New System.Drawing.Point(57, 30)
+        Me.Label23.Location = New System.Drawing.Point(55, 27)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(40, 16)
         Me.Label23.TabIndex = 284

@@ -9,21 +9,21 @@ Public Class SC_Z01A
     ''' 　画面一覧のヘッダ部初期化
     ''' </summary>
     Dim VIEW_HEADER As Hashtable = New Hashtable From {
-                                {"前月残量", "Last month remaining" & vbCrLf & "前月残量"},
-                                {"入庫量", "Amount received" & vbCrLf & "入庫量"},
-                                {"売上量", "Sales volume" & vbCrLf & "売上量"},
-                                {"その他出庫量", "Other issues" & vbCrLf & "その他出庫量"},
-                                {"在庫量", "Stock quantity" & vbCrLf & "在庫量"},
-                                {"引当可能残量", "Allowable balance" & vbCrLf & "引当可能残量"}
+                                {"前月残量", "Last month remaining" & vbCrLf & "(前月残量)"},
+                                {"入庫量", "Amount received" & vbCrLf & "(入庫量)"},
+                                {"売上量", "Sales volume" & vbCrLf & "(売上量)"},
+                                {"その他出庫量", "Other issues" & vbCrLf & "(その他出庫量)"},
+                                {"在庫量", "Stock quantity" & vbCrLf & "(在庫量)"},
+                                {"引当可能残量", "Allowable balance" & vbCrLf & "(引当可能残量)"}
                             }
 
     Dim DETAIL_HEADER As Hashtable = New Hashtable From {
-                                {"入出庫日", "Entry / exit date" & vbCrLf & "入出庫日"},
-                                {"処理日", "Processing date" & vbCrLf & "処理日"},
-                                {"作番", "Production number" & vbCrLf & "作番"},
-                                {"入庫量", "Amount received" & vbCrLf & "入庫量"},
-                                {"出庫量", "Issued quantity" & vbCrLf & "出庫量"},
-                                {"その他払出", "Other payout" & vbCrLf & "その他払出"}
+                                {"入出庫日", "Entry / exit date" & vbCrLf & "(入出庫日)"},
+                                {"処理日", "Processing date" & vbCrLf & "(処理日)"},
+                                {"作番", "Production number" & vbCrLf & "(作番)"},
+                                {"入庫量", "Amount received" & vbCrLf & "(入庫量)"},
+                                {"出庫量", "Issued quantity" & vbCrLf & "(出庫量)"},
+                                {"その他払出", "Other payout" & vbCrLf & "(その他払出)"}
                             }
 
     Private Const COL_AMOUNT_RECEIVED As String = "入庫量"
@@ -45,6 +45,8 @@ Public Class SC_Z01A
         Me.Text = "[Z-01A]" & FORM_NAME
 
         lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+
+        Me.btnFinish.Text = "Return" & vbCrLf & "(戻る)"
 
         '工程
         Me.txtProcess.Text = formParameter.Process

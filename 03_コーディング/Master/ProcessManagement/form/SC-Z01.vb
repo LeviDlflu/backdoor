@@ -12,15 +12,18 @@ Public Class SC_Z01
     Dim HEADER_NAME As Hashtable = New Hashtable From {
                              {"詳細", "Details" & vbCrLf & "詳細"},
                              {"工程", "Process" & vbCrLf & "工程"},
-                             {"品名略称", "Product name abbreviation" & vbCrLf & "品名略称"},
                              {"部品番号", "Part number" & vbCrLf & "部品番号"},
-                             {"前月末残", "Last month balance" & vbCrLf & "前月" & vbCrLf & "末残"},
-                             {"当月累計", "Cumulative month" & vbCrLf & "当月累計"},
-                             {"受入", "Acceptance" & vbCrLf & "受入"},
-                             {"払出", "Withdrawaln" & vbCrLf & "払出"},
-                             {"その他払出", "Other payout" & vbCrLf & "その他払出"},
-                             {"当日", "On the day" & vbCrLf & "当日"},
-                             {"在庫残", "Stock balance" & vbCrLf & "在庫残"}
+                             {"詳細", "Details" & vbCrLf & "(詳細)"},
+                             {"工程", "Process" & vbCrLf & "(工程)"},
+                             {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
+                             {"部品番号", "Part number" & vbCrLf & "(部品番号)"},
+                             {"前月末残", "Last month balance" & vbCrLf & "(前月" & vbCrLf & "末残)"},
+                             {"当月累計", "Cumulative month" & vbCrLf & "(当月累計)"},
+                             {"受入", "Acceptance" & vbCrLf & "(受入)"},
+                             {"払出", "Withdrawaln" & vbCrLf & "(払出)"},
+                             {"その他払出", "Other payout" & vbCrLf & "(その他払出)"},
+                             {"当日", "On the day" & vbCrLf & "(当日)"},
+                             {"在庫残", "Stock balance" & vbCrLf & "(在庫残)"}
                             }
 
     Private Const COL_BIOGRAPHY As String = "来歴"
@@ -72,7 +75,7 @@ Public Class SC_Z01
     ''' </summary>
     ''' <param name="sender">sender</param>
     ''' <param name="e">e</param>
-    Private Sub SC_M22_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub SC_Z01_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Try
 
@@ -163,9 +166,7 @@ Public Class SC_Z01
             End If
             '横位置
             Select Case gridData.Columns(i).Name
-                Case COL_PROCESS
-                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomCenter
-                Case COL_PRODUCT_NAME, COL_PART_NUMBER
+                Case COL_PROCESS, COL_PRODUCT_NAME, COL_PART_NUMBER
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomLeft
                 Case COL_DELIVERY_DIVISION, COL_PRODUCT_PLANT_CODE, COL_PACK_PRODUCT_NAME
                     gridData.Columns(i).Visible = False
@@ -190,7 +191,7 @@ Public Class SC_Z01
 
         '列の幅の設定
         gridData.Columns(0).Width = 50
-        gridData.Columns(1).Width = 65
+        gridData.Columns(1).Width = 95
         gridData.Columns(2).Width = 190
         gridData.Columns(3).Width = 110
         gridData.Columns(4).Width = 100
@@ -200,7 +201,7 @@ Public Class SC_Z01
         gridData.Columns(8).Width = 95
         gridData.Columns(9).Width = 95
         gridData.Columns(10).Width = 95
-        gridData.Columns(11).Width = 140
+        gridData.Columns(11).Width = 110
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -251,21 +252,21 @@ Public Class SC_Z01
 
         If gridData.Columns(e.ColumnIndex).Name = COL_BIOGRAPHY And e.RowIndex >= 0 Then
             'パラメータ.工程
-            formParameter.Process = Me.cmbProcess.Text
+            formParameter.Process = gridData.CurrentRow.Cells(COL_PROCESS).Value.ToString
             'パラメータ.部品番号
-            formParameter.PartNumber = gridData.CurrentRow.Cells(COL_PART_NUMBER).Value
+            formParameter.PartNumber = gridData.CurrentRow.Cells(COL_PART_NUMBER).Value.ToString
             'パラメータ.品名略称
-            formParameter.ProductName = gridData.CurrentRow.Cells(COL_PRODUCT_NAME).Value
+            formParameter.ProductName = gridData.CurrentRow.Cells(COL_PRODUCT_NAME).Value.ToString
             'パラメータ.品名事業所コード
-            formParameter.ProductNamePlantCode = gridData.CurrentRow.Cells(COL_PRODUCT_PLANT_CODE).Value
+            formParameter.ProductNamePlantCode = gridData.CurrentRow.Cells(COL_PRODUCT_PLANT_CODE).Value.ToString
             'パラメータ.パック品名略称
-            formParameter.PackProductName = gridData.CurrentRow.Cells(COL_PACK_PRODUCT_NAME).Value
+            formParameter.PackProductName = gridData.CurrentRow.Cells(COL_PACK_PRODUCT_NAME).Value.ToString
             'パラメータ.納入先コード
-            formParameter.DeliveryCode = Me.cmbYard.SelectedValue
+            formParameter.DeliveryCode = Me.cmbYard.SelectedValue.ToString
             'パラメータ.納入区分
-            formParameter.DeliveryDivision = gridData.CurrentRow.Cells(COL_DELIVERY_DIVISION).Value
+            formParameter.DeliveryDivision = gridData.CurrentRow.Cells(COL_DELIVERY_DIVISION).Value.ToString
             'パラメータ.製品半製品区分
-            formParameter.SemiFinishedProductDivision = productKubun
+            formParameter.SemiFinishedProductDivision = productKubun.ToString
 
             Dim frm As New SC_Z01A()
             frm.ShowDialog()

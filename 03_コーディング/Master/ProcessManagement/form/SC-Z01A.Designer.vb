@@ -58,7 +58,7 @@ Partial Class SC_Z01A
         '
         Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
         Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnDesc.Location = New System.Drawing.Point(159, 66)
+        Me.btnDesc.Location = New System.Drawing.Point(138, 66)
         Me.btnDesc.Name = "btnDesc"
         Me.btnDesc.Size = New System.Drawing.Size(119, 53)
         Me.btnDesc.TabIndex = 271
@@ -69,7 +69,7 @@ Partial Class SC_Z01A
         '
         Me.btnAsc.BackColor = System.Drawing.SystemColors.Control
         Me.btnAsc.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnAsc.Location = New System.Drawing.Point(27, 66)
+        Me.btnAsc.Location = New System.Drawing.Point(15, 66)
         Me.btnAsc.Name = "btnAsc"
         Me.btnAsc.Size = New System.Drawing.Size(117, 53)
         Me.btnAsc.TabIndex = 270
