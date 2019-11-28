@@ -148,7 +148,7 @@ Partial Class SC_Z01
         '
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(1162, 15)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1163, 19)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
         Me.lblSearchTime.TabIndex = 310
@@ -159,7 +159,7 @@ Partial Class SC_Z01
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(1020, 12)
+        Me.Label65.Location = New System.Drawing.Point(1021, 17)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -169,7 +169,7 @@ Partial Class SC_Z01
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(1028, 35)
+        Me.Label66.Location = New System.Drawing.Point(1029, 40)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -426,7 +426,7 @@ Partial Class SC_Z01
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Location = New System.Drawing.Point(41, 65)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(197, 120)
+        Me.GroupBox1.Size = New System.Drawing.Size(217, 120)
         Me.GroupBox1.TabIndex = 327
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Section(区分)"

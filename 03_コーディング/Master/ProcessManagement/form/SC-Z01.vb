@@ -126,6 +126,7 @@ Public Class SC_Z01
     Private Sub setGrid(ByRef dtData As DataTable)
 
         gridData.Columns.Clear()
+        sortList.Clear()
 
         '詳細
         Dim btn As New DataGridViewButtonColumn()

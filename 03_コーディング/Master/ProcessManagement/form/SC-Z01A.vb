@@ -175,6 +175,7 @@ Public Class SC_Z01A
     Private Sub SetGridToDetail(ByRef dtData As DataTable)
 
         gridData.Columns.Clear()
+        sortList.Clear()
 
         For Each col As DataColumn In dtData.Columns
 
@@ -273,14 +274,12 @@ Public Class SC_Z01A
     ''' <param name="e"></param>
     Private Sub gridData_ColumnHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles gridData.ColumnHeaderMouseClick
 
-        If e.ColumnIndex > 0 Then
-            If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
-                sortList.Remove(e.ColumnIndex)
-                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
-            Else
-                sortList.Add(e.ColumnIndex, gridData.Columns.Item(e.ColumnIndex).Name)
-                gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
-            End If
+        If gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue Then
+            sortList.Remove(e.ColumnIndex)
+            gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.LightGray
+        Else
+            sortList.Add(e.ColumnIndex, gridData.Columns.Item(e.ColumnIndex).Name)
+            gridData.Columns(e.ColumnIndex).HeaderCell.Style.BackColor = Color.SkyBlue
         End If
 
     End Sub

@@ -112,14 +112,14 @@ Partial Class SC_Z01A
         Me.gridData.Location = New System.Drawing.Point(48, 60)
         Me.gridData.Name = "gridData"
         Me.gridData.RowTemplate.Height = 21
-        Me.gridData.Size = New System.Drawing.Size(1100, 262)
+        Me.gridData.Size = New System.Drawing.Size(1247, 262)
         Me.gridData.TabIndex = 311
         '
         'lblSearchTime
         '
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(1049, 21)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1151, 24)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
         Me.lblSearchTime.TabIndex = 310
@@ -129,7 +129,7 @@ Partial Class SC_Z01A
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(907, 18)
+        Me.Label65.Location = New System.Drawing.Point(1009, 21)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -139,7 +139,7 @@ Partial Class SC_Z01A
         '
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(912, 41)
+        Me.Label66.Location = New System.Drawing.Point(1014, 44)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(82, 16)
         Me.Label66.TabIndex = 309
@@ -219,7 +219,7 @@ Partial Class SC_Z01A
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.gridDataList.DefaultCellStyle = DataGridViewCellStyle3
         Me.gridDataList.EnableHeadersVisualStyles = False
-        Me.gridDataList.Location = New System.Drawing.Point(592, 129)
+        Me.gridDataList.Location = New System.Drawing.Point(611, 129)
         Me.gridDataList.MultiSelect = False
         Me.gridDataList.Name = "gridDataList"
         Me.gridDataList.ReadOnly = True
