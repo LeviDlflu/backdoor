@@ -10,9 +10,6 @@ Public Class SC_Z01
     ''' 　画面一覧のヘッダ部初期化
     ''' </summary>
     Dim HEADER_NAME As Hashtable = New Hashtable From {
-                             {"詳細", "Details" & vbCrLf & "詳細"},
-                             {"工程", "Process" & vbCrLf & "工程"},
-                             {"部品番号", "Part number" & vbCrLf & "部品番号"},
                              {"詳細", "Details" & vbCrLf & "(詳細)"},
                              {"工程", "Process" & vbCrLf & "(工程)"},
                              {"品名略称", "Product name abbreviation" & vbCrLf & "(品名略称)"},
