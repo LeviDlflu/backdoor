@@ -209,10 +209,10 @@ Public Class SC_Z01A
 
         gridData.Columns(0).Width = 170
         gridData.Columns(1).Width = 170
-        gridData.Columns(2).Width = 190
-        gridData.Columns(3).Width = 170
-        gridData.Columns(4).Width = 170
-        gridData.Columns(5).Width = 170
+        gridData.Columns(2).Width = 290
+        gridData.Columns(3).Width = 190
+        gridData.Columns(4).Width = 190
+        gridData.Columns(5).Width = 190
     End Sub
 
     ''' <summary>

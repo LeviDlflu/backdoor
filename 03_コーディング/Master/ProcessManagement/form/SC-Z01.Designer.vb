@@ -232,6 +232,7 @@ Partial Class SC_Z01
         Me.GroupBox2.Controls.Add(Me.chkSP)
         Me.GroupBox2.Controls.Add(Me.chkKD)
         Me.GroupBox2.Controls.Add(Me.chkLine)
+        Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
         Me.GroupBox2.Location = New System.Drawing.Point(576, 114)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(441, 71)
@@ -243,7 +244,7 @@ Partial Class SC_Z01
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label25.Location = New System.Drawing.Point(305, 27)
+        Me.Label25.Location = New System.Drawing.Point(307, 27)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(114, 16)
         Me.Label25.TabIndex = 284
@@ -276,7 +277,7 @@ Partial Class SC_Z01
         Me.chkSP.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkSP.Location = New System.Drawing.Point(292, 46)
         Me.chkSP.Name = "chkSP"
-        Me.chkSP.Size = New System.Drawing.Size(43, 18)
+        Me.chkSP.Size = New System.Drawing.Size(47, 20)
         Me.chkSP.TabIndex = 330
         Me.chkSP.Text = "SP"
         Me.chkSP.UseVisualStyleBackColor = True
@@ -288,7 +289,7 @@ Partial Class SC_Z01
         Me.chkKD.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkKD.Location = New System.Drawing.Point(142, 46)
         Me.chkKD.Name = "chkKD"
-        Me.chkKD.Size = New System.Drawing.Size(43, 18)
+        Me.chkKD.Size = New System.Drawing.Size(47, 20)
         Me.chkKD.TabIndex = 329
         Me.chkKD.Text = "KD"
         Me.chkKD.UseVisualStyleBackColor = True
@@ -300,7 +301,7 @@ Partial Class SC_Z01
         Me.chkLine.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chkLine.Location = New System.Drawing.Point(39, 46)
         Me.chkLine.Name = "chkLine"
-        Me.chkLine.Size = New System.Drawing.Size(56, 18)
+        Me.chkLine.Size = New System.Drawing.Size(62, 20)
         Me.chkLine.TabIndex = 328
         Me.chkLine.Text = "ライン"
         Me.chkLine.UseVisualStyleBackColor = True
@@ -370,7 +371,7 @@ Partial Class SC_Z01
         Me.chkZero.AutoSize = True
         Me.chkZero.Checked = True
         Me.chkZero.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkZero.Location = New System.Drawing.Point(327, 154)
+        Me.chkZero.Location = New System.Drawing.Point(328, 159)
         Me.chkZero.Name = "chkZero"
         Me.chkZero.Size = New System.Drawing.Size(112, 18)
         Me.chkZero.TabIndex = 327
@@ -381,7 +382,7 @@ Partial Class SC_Z01
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label10.Location = New System.Drawing.Point(344, 134)
+        Me.Label10.Location = New System.Drawing.Point(325, 135)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(157, 16)
         Me.Label10.TabIndex = 330
@@ -424,6 +425,7 @@ Partial Class SC_Z01
         Me.GroupBox1.Controls.Add(Me.rodProduct)
         Me.GroupBox1.Controls.Add(Me.Label6)
         Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
         Me.GroupBox1.Location = New System.Drawing.Point(41, 65)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(217, 120)
@@ -433,9 +435,10 @@ Partial Class SC_Z01
         '
         'rdoSemifinished
         '
-        Me.rdoSemifinished.Location = New System.Drawing.Point(22, 88)
+        Me.rdoSemifinished.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.rdoSemifinished.Location = New System.Drawing.Point(22, 90)
         Me.rdoSemifinished.Name = "rdoSemifinished"
-        Me.rdoSemifinished.Size = New System.Drawing.Size(69, 17)
+        Me.rdoSemifinished.Size = New System.Drawing.Size(85, 23)
         Me.rdoSemifinished.TabIndex = 271
         Me.rdoSemifinished.Text = "半製品"
         Me.rdoSemifinished.UseVisualStyleBackColor = True
@@ -443,9 +446,10 @@ Partial Class SC_Z01
         'rodProduct
         '
         Me.rodProduct.Checked = True
-        Me.rodProduct.Location = New System.Drawing.Point(22, 49)
+        Me.rodProduct.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.rodProduct.Location = New System.Drawing.Point(22, 42)
         Me.rodProduct.Name = "rodProduct"
-        Me.rodProduct.Size = New System.Drawing.Size(55, 17)
+        Me.rodProduct.Size = New System.Drawing.Size(69, 24)
         Me.rodProduct.TabIndex = 270
         Me.rodProduct.TabStop = True
         Me.rodProduct.Text = "製品"
@@ -455,7 +459,7 @@ Partial Class SC_Z01
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(21, 69)
+        Me.Label6.Location = New System.Drawing.Point(19, 69)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(168, 16)
         Me.Label6.TabIndex = 272
@@ -465,7 +469,7 @@ Partial Class SC_Z01
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(22, 30)
+        Me.Label5.Location = New System.Drawing.Point(22, 23)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(69, 16)
         Me.Label5.TabIndex = 270
