@@ -118,10 +118,10 @@ Partial Class SC_Z01A
         'lblSearchTime
         '
         Me.lblSearchTime.AutoSize = True
-        Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.lblSearchTime.Location = New System.Drawing.Point(1151, 24)
         Me.lblSearchTime.Name = "lblSearchTime"
-        Me.lblSearchTime.Size = New System.Drawing.Size(144, 16)
+        Me.lblSearchTime.Size = New System.Drawing.Size(124, 14)
         Me.lblSearchTime.TabIndex = 310
         Me.lblSearchTime.Text = "yyyy/MM/dd hh:mm"
         '
@@ -138,10 +138,10 @@ Partial Class SC_Z01A
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label66.Location = New System.Drawing.Point(1014, 44)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(82, 16)
+        Me.Label66.Size = New System.Drawing.Size(71, 14)
         Me.Label66.TabIndex = 309
         Me.Label66.Text = "(検索時間)"
         '
@@ -287,10 +287,10 @@ Partial Class SC_Z01A
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label13.Location = New System.Drawing.Point(271, 75)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(82, 16)
+        Me.Label13.Size = New System.Drawing.Size(71, 14)
         Me.Label13.TabIndex = 320
         Me.Label13.Text = "(部品番号)"
         '
@@ -306,40 +306,40 @@ Partial Class SC_Z01A
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label20.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label20.Location = New System.Drawing.Point(506, 75)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(82, 16)
+        Me.Label20.Size = New System.Drawing.Size(71, 14)
         Me.Label20.TabIndex = 323
         Me.Label20.Text = "(品名略称)"
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label22.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label22.Location = New System.Drawing.Point(505, 56)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(215, 16)
+        Me.Label22.Size = New System.Drawing.Size(190, 14)
         Me.Label22.TabIndex = 321
         Me.Label22.Text = "Product name abbreviation"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label17.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label17.Location = New System.Drawing.Point(269, 56)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(104, 16)
+        Me.Label17.Size = New System.Drawing.Size(91, 14)
         Me.Label17.TabIndex = 318
         Me.Label17.Text = "Part number"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label7.Location = New System.Drawing.Point(30, 75)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(50, 16)
+        Me.Label7.Size = New System.Drawing.Size(43, 14)
         Me.Label7.TabIndex = 317
         Me.Label7.Text = "(工程)"
         '
@@ -355,10 +355,10 @@ Partial Class SC_Z01A
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label16.Location = New System.Drawing.Point(29, 56)
+        Me.Label16.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.Label16.Location = New System.Drawing.Point(30, 56)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(69, 16)
+        Me.Label16.Size = New System.Drawing.Size(61, 14)
         Me.Label16.TabIndex = 315
         Me.Label16.Text = "Process"
         '
