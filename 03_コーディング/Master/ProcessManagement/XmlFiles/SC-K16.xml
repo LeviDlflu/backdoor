@@ -1,0 +1,198 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-K16>
+    <Selects>
+
+      <!--設備マスタ-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+          '' AS 設備NO,
+          '' AS 設備名
+          UNION SELECT
+          設備NO,
+          (設備NO+ ':' +設備名) AS 設備名
+          FROM
+          設備マスタ
+          WHERE
+          大工程コード='10'
+          ORDER BY
+          設備NO
+        </Text>
+      </SQL>
+
+      <!--品種マスタ-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+            '' AS 品種コード,
+            '' AS 品種名
+          UNION SELECT
+            品種マスタ.品種コード AS 品種コード,
+            (品種マスタ.品種コード+ ':' +品種マスタ.品種名) AS 品種名
+          FROM
+            品種マスタ
+            LEFT JOIN 生産製品マスタ
+            ON 品種マスタ.品種コード=生産製品マスタ.品種コード
+            LEFT JOIN 生産品名マスタ
+            ON 生産製品マスタ.品名事業所コード=生産品名マスタ.品名事業所コード
+            AND 生産製品マスタ.パック品名略称=生産品名マスタ.パック品名略称
+            AND 生産製品マスタ.納入先コード=生産品名マスタ.納入先コード
+            AND 生産製品マスタ.納入区分=生産品名マスタ.納入区分
+            AND 生産製品マスタ.製品半製品区分=生産品名マスタ.製品半製品区分
+          WHERE
+            生産製品マスタ.品名事業所コード='{0}' AND
+            生産品名マスタ.大工程コード='10'
+          ORDER BY
+            品種コード
+        </Text>
+      </SQL>
+
+      <!--生産品名マスタ-->
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+            '' AS 品名コード,
+            '' AS 品名略称
+          UNION SELECT
+            生産品名マスタ.品名コード AS 品名コード,
+            (生産品名マスタ.品名略称+ ':' +生産品名マスタ.品名コード) AS 品名略称
+          FROM
+            生産品名マスタ
+            LEFT JOIN 生産製品マスタ
+            ON 生産品名マスタ.品名事業所コード=生産製品マスタ.品名事業所コード
+            AND 生産品名マスタ.パック品名略称=生産製品マスタ.パック品名略称
+            AND 生産品名マスタ.納入先コード=生産製品マスタ.納入先コード
+            AND 生産品名マスタ.納入区分=生産製品マスタ.納入区分
+            AND 生産品名マスタ.製品半製品区分=生産製品マスタ.製品半製品区分
+          WHERE
+            生産品名マスタ.品名事業所コード='{0}' AND
+            生産品名マスタ.大工程コード='10' AND
+            生産製品マスタ.品種コード='{1}'
+          ORDER BY
+            品名コード
+        </Text>
+      </SQL>
+
+      <!--コードマスタ-->
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+          '' AS コード,
+          '' AS コード名称
+          UNION SELECT
+          コード,
+          (コード+ ':' +コード名称) AS コード名称
+          FROM
+          コードマスタ
+          WHERE
+          コード区分='MOLD'
+          ORDER BY
+          コード
+        </Text>
+      </SQL>
+
+      <!--ビュー-->
+      <SQL ID="SELECT_005">
+        <Text>
+          SELECT
+            設備,
+            品名略称,
+            客先部品番号,
+            金型,
+            指示数,
+            ショット数,
+            合格数,
+            不良数,
+            調整数,
+            その他払出,
+            合格率,
+            不良率
+          FROM
+            K16
+          WHERE
+            その他払出_事業所コード='{0}' AND
+            事業所コード='{0}' AND
+            大工程コード='10'
+            {1}
+        </Text>
+      </SQL>
+
+      <!--合計-->
+      <SQL ID="SELECT_006">
+        <Text>
+          SELECT
+            '',
+            '合計' as 品名略称,
+            '',
+            '',
+            SUM(指示数) as 指示数,
+            SUM(ショット数) as ショット数,
+            SUM(合格数) as 合格数,
+            SUM(不良数) as 不良数,
+            SUM(調整数) as 調整数,
+            SUM(その他払出) as その他払出,
+            SUM(合格率) as 合格率,
+            SUM(不良率) as 不良率
+          FROM
+            K16
+          WHERE
+            その他払出_事業所コード='{0}' AND
+            事業所コード='{0}' AND
+            大工程コード='10'
+            {1}
+        </Text>
+      </SQL>
+    </Selects>
+
+    <!--条件-->
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          AND 受払年月日 BETWEEN '{0}' AND '{1}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_002">
+        <Text>
+          AND 受払年月='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_003">
+        <Text>
+          AND 作業年月日 BETWEEN '{0}' AND '{1}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_004">
+        <Text>
+          AND 作業年月='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_005">
+        <Text>
+          AND 設備NO='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_006">
+        <Text>
+          AND 品種コード='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_007">
+        <Text>
+          AND 金型='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_008">
+        <Text>
+          AND 品名コード='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_009">
+        <Text>
+          AND 品名略称 LIKE '{0}%'
+        </Text>
+      </SQL>
+    </Wheres>
+    
+  </SC-K16>
+</Configuration>

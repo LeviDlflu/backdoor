@@ -1,0 +1,108 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-Z01>
+    <Selects>
+
+      <!--工程マスタ-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+          大工程コード,
+          (大工程コード+ ':' +工程略称) AS 工程略称
+          FROM
+          工程マスタ
+          WHERE
+          取消フラグ='0'
+          ORDER BY
+          大工程コード
+        </Text>
+      </SQL>
+
+      <!--品種マスタ-->
+      <SQL ID="SELECT_002">
+        <Text>
+          SELECT
+          品種コード,
+          (品種コード+ ':' +品種名) AS 品種名
+          FROM
+          品種マスタ
+          WHERE
+          取消フラグ='0'
+          ORDER BY
+          表示順序,
+          品種コード
+        </Text>
+      </SQL>
+
+      <!--コードマスタ-->
+      <SQL ID="SELECT_003">
+        <Text>
+          SELECT
+          '' AS コード,
+          '' AS コード名称
+          UNION SELECT
+          コード,
+          (コード+ ':' +コード名称) AS コード名称
+          FROM
+          コードマスタ
+          WHERE
+          コード区分='ELTYPE' AND
+          <!--表示フラグ='1' AND-->
+          取消フラグ='0'
+          ORDER BY
+          表示順序,
+          コード
+        </Text>
+      </SQL>
+
+      <!--車種マスタ-->
+      <SQL ID="SELECT_004">
+        <Text>
+          SELECT
+          '' AS 車種コード,
+          '' AS 車種名
+          UNION SELECT
+          車種コード,
+          (車種コード+ ':' +車種名) AS 車種名
+          FROM
+          車種マスタ
+          WHERE
+          表示フラグ='1' AND
+          取消フラグ='0'
+          ORDER BY
+          表示順序,
+          車種コード
+        </Text>
+      </SQL>
+
+      <!--設備マスタ-->
+      <SQL ID="SELECT_005">
+        <Text>
+          SELECT
+          '' AS 設備NO,
+          '' AS 設備名
+          UNION SELECT
+          設備NO,
+          (設備NO+ ':' +設備名) AS 設備名
+          FROM
+          設備マスタ
+          WHERE
+          中工程コード='{0}' AND
+          設備NO !='0000' AND
+          取消フラグ='0'
+          ORDER BY
+          表示順序,
+          設備NO
+        </Text>
+      </SQL>
+    </Selects>
+
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+        </Text>
+      </SQL>
+    </Wheres>
+    
+  </SC-Z01>
+</Configuration>
