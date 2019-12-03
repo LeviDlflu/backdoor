@@ -1,49 +1,67 @@
-﻿Public Class SC_K21A
+﻿Imports PUCCommon
+Imports System.Text
+Imports System.Reflection
+
+Public Class SC_K21A
     Dim headerName As Hashtable = New Hashtable From {
-                             {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
+                             {"大工程コード", "Process code" & vbCrLf & "(工程コード)"},
                              {"工程略称", "Process abbreviation" & vbCrLf & "(工程略称)"},
-                             {"払出数量合計", "Payment quantity total" & vbCrLf & "(払出数量合計)"}
+                             {"数量", "Payment quantity total" & vbCrLf & "(払出数量合計)"}
                             }
-    Private Const COL_PROCESS_CODE As String = "工程コード"
+    Private Const COL_PROCESS_CODE As String = "大工程コード"
     Private Const COL_PROCESS_ABBREVIATION As String = "工程略称"
-    Private Const COL_PAYMENT_QUANTITY_TOTAL As String = "払出数量合計"
+    Private Const COL_PAYMENT_QUANTITY_TOTAL As String = "数量"
 
     Private Const FORM_NAME As String = "Total by process(工程別集計)"
+
+    Dim xml As New clsGetSqlXML("SC-K21A.xml", "SC-K21A")
+
+
     Private Sub SC_K21A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         init()
     End Sub
 
+    ''' <summary>
+    ''' 初期化
+    ''' </summary>
     Private Sub init()
         lblMaster.Text = FORM_NAME
         Me.Text = "[" & Me.Name & "]" & FORM_NAME
-        Label67.Text = Format(Now, "yyyy/MM/dd hh:mm")
-        Label67.BackColor = Color.SkyBlue
-        setGrid(createGridData())
+
+        '対象年月
+        Me.txtDate.Text = formParameter.TargetDate
+        '払出区分
+        Me.txtDivision.Text = formParameter.Division
+
+        Dim strSelect As String
+        Dim dt As New DataTable
+
+        Try
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                strSelect = xml.GetSQL_Str("SELECT_001")
+
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect,
+                                                                       businessCode,
+                                                                       txtDate.Text,
+                                                                       formParameter.DiviCode))
+                clsSQLServer.Disconnect()
+
+            End If
+        Catch ex As Exception
+        End Try
+
+        If dt.Rows.Count = 0 Then
+            MessageBox.Show(clsGlobal.MSG2("W0008"))
+            gridData.Columns.Clear()
+            Return
+        End If
+
+        setGrid(dt)
+        lblSearchTime.Text = Format(Now, "yyyy/MM/dd hh:mm")
+
     End Sub
-
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt = New DataTable()
-
-        dt.Columns.Add(New DataColumn("工程コード", Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn("工程略称", Type.GetType("System.String")))
-        dt.Columns.Add(New DataColumn("払出数量合計", Type.GetType("System.Double")))
-
-        Dim dr As DataRow
-
-        For index = 1 To 5
-            dr = dt.NewRow()
-            dr.Item(COL_PROCESS_CODE) = COL_PROCESS_CODE & index
-            dr.Item(COL_PROCESS_ABBREVIATION) = COL_PROCESS_ABBREVIATION & index
-            dr.Item(COL_PAYMENT_QUANTITY_TOTAL) = index
-            dt.Rows.Add(dr)
-        Next
-
-        Return dt
-
-    End Function
 
     ''' <summary>
     ''' 　グリッドを設定する
@@ -51,7 +69,6 @@
     ''' <param name="dtData">データソース</param>
     Private Sub setGrid(ByRef dtData As DataTable)
         gridData.Columns.Clear()
-
 
         For Each col As DataColumn In dtData.Columns
 
@@ -70,9 +87,11 @@
             '横位置
             Select Case gridData.Columns(i).Name
                 Case COL_PROCESS_CODE
-                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                Case Else
                     gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Case COL_PAYMENT_QUANTITY_TOTAL
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+                Case Else
+                    gridData.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
             End Select
 
         Next
@@ -86,9 +105,8 @@
         Next
 
         gridData.Columns(0).Width = 120
-        gridData.Columns(1).Width = 200
-        gridData.Columns(2).Width = 260
-
+        gridData.Columns(1).Width = 250
+        gridData.Columns(2).Width = 180
 
         '複数選択不可
         gridData.MultiSelect = False

@@ -1,4 +1,5 @@
 ﻿Imports System.Reflection
+Imports PUCCommon
 
 Public Class SC_K13
     Dim headerName As Hashtable = New Hashtable From {
@@ -83,18 +84,65 @@ Public Class SC_K13
     ''' <remarks></remarks>
     Private columnHeaderrRowHeight As Integer = 30
 
-    '初期処理
-    Private Sub Init()
-        'ちらつき防止
-        'Dim myType As Type = GetType(DataGridView)
-        'Dim myPropInfo As System.Reflection.PropertyInfo = myType.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
-        'myPropInfo.SetValue(Me.gridData, True, Nothing)
+    Dim xml As New clsGetSqlXML("SC-K13.xml", "SC-K13")
 
-        ''列ヘッダーの高さの調整モード
-        'Me.gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+    ''' <summary>
+    ''' 初期処理
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub SC_K13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        ''列ヘッダーの高さを行数に合わせる
-        'Me.gridData.ColumnHeadersHeight = columnHeaderrRowHeight * ColumnHeaderRowCount
+        Try
+
+            Dim strSelect As String
+            Dim dt As New DataTable
+
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                '大工程
+                strSelect = xml.GetSQL_Str("SELECT_001")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbProcess.DataSource = dt
+                Me.cmbProcess.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProcess.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '品種
+                strSelect = xml.GetSQL_Str("SELECT_002")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbVariety.DataSource = dt
+                Me.cmbVariety.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbVariety.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '区分
+                strSelect = xml.GetSQL_Str("SELECT_003")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbSection.DataSource = dt
+                Me.cmbSection.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbSection.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '車種
+                strSelect = xml.GetSQL_Str("SELECT_004")
+                dt = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbVehicleType.DataSource = dt
+                Me.cmbVehicleType.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbVehicleType.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                '設備
+                strSelect = xml.GetSQL_Str("SELECT_005")
+                dt = clsSQLServer.GetDataTable(Format(strSelect, cmbProcess.SelectedValue))
+                Me.cmbFacility.DataSource = dt
+                Me.cmbFacility.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbFacility.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                clsSQLServer.Disconnect()
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        End Try
 
     End Sub
 
@@ -442,12 +490,4 @@ Public Class SC_K13
         gridData.Columns(COL_DEFECT).Width = 160
     End Sub
 
-    Private Sub SC_K13_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Init()
-
-        Dim type As Type = gridData.GetType()
-        Dim pi As PropertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
-        pi.SetValue(gridData, True, Nothing)
-
-    End Sub
 End Class

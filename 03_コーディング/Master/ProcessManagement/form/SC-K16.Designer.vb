@@ -20,25 +20,24 @@ Partial Class SC_K16
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SC_K16))
-        Me.btnDesc = New System.Windows.Forms.Button()
+        Me.btnExcel = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.cmbMoneyType = New System.Windows.Forms.ComboBox()
+        Me.cmbMold = New System.Windows.Forms.ComboBox()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label64 = New System.Windows.Forms.Label()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.chkSimilar = New System.Windows.Forms.CheckBox()
         Me.Label59 = New System.Windows.Forms.Label()
-        Me.cmbProductName = New System.Windows.Forms.ComboBox()
+        Me.cmbProduct = New System.Windows.Forms.ComboBox()
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.Label56 = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.dtpWorkingYMD = New System.Windows.Forms.DateTimePicker()
+        Me.dtpActualTo = New ProcessManagement.CustomDateTimePicker()
+        Me.dtpActualFrom = New ProcessManagement.CustomDateTimePicker()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.rdoRange = New System.Windows.Forms.RadioButton()
         Me.Label55 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.cmbVariety = New System.Windows.Forms.ComboBox()
@@ -46,7 +45,7 @@ Partial Class SC_K16
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label44 = New System.Windows.Forms.Label()
         Me.Label45 = New System.Windows.Forms.Label()
-        Me.cmbProcess = New System.Windows.Forms.ComboBox()
+        Me.cmbEquipment = New System.Windows.Forms.ComboBox()
         Me.Label53 = New System.Windows.Forms.Label()
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -56,22 +55,23 @@ Partial Class SC_K16
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
+        Me.dtpActualMonth = New ProcessManagement.CustomDateTimePicker()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'btnDesc
+        'btnExcel
         '
-        Me.btnDesc.BackColor = System.Drawing.SystemColors.Control
-        Me.btnDesc.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDesc.Location = New System.Drawing.Point(144, 66)
-        Me.btnDesc.Name = "btnDesc"
-        Me.btnDesc.Size = New System.Drawing.Size(117, 53)
-        Me.btnDesc.TabIndex = 271
-        Me.btnDesc.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
-        Me.btnDesc.UseVisualStyleBackColor = False
+        Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
+        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.btnExcel.Location = New System.Drawing.Point(144, 66)
+        Me.btnExcel.Name = "btnExcel"
+        Me.btnExcel.Size = New System.Drawing.Size(117, 53)
+        Me.btnExcel.TabIndex = 271
+        Me.btnExcel.Text = "Excel" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(エクセル)"
+        Me.btnExcel.UseVisualStyleBackColor = False
         '
         'btnSearch
         '
@@ -90,14 +90,14 @@ Partial Class SC_K16
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel4.Controls.Add(Me.cmbMoneyType)
+        Me.Panel4.Controls.Add(Me.cmbMold)
         Me.Panel4.Controls.Add(Me.Label36)
         Me.Panel4.Controls.Add(Me.Label39)
         Me.Panel4.Controls.Add(Me.Label35)
         Me.Panel4.Controls.Add(Me.Label64)
-        Me.Panel4.Controls.Add(Me.CheckBox2)
+        Me.Panel4.Controls.Add(Me.chkSimilar)
         Me.Panel4.Controls.Add(Me.Label59)
-        Me.Panel4.Controls.Add(Me.cmbProductName)
+        Me.Panel4.Controls.Add(Me.cmbProduct)
         Me.Panel4.Controls.Add(Me.Label60)
         Me.Panel4.Controls.Add(Me.Panel3)
         Me.Panel4.Controls.Add(Me.cmbVariety)
@@ -105,7 +105,7 @@ Partial Class SC_K16
         Me.Panel4.Controls.Add(Me.Label43)
         Me.Panel4.Controls.Add(Me.Label44)
         Me.Panel4.Controls.Add(Me.Label45)
-        Me.Panel4.Controls.Add(Me.cmbProcess)
+        Me.Panel4.Controls.Add(Me.cmbEquipment)
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Controls.Add(Me.Label54)
         Me.Panel4.Location = New System.Drawing.Point(-1, 126)
@@ -113,15 +113,15 @@ Partial Class SC_K16
         Me.Panel4.Size = New System.Drawing.Size(1354, 220)
         Me.Panel4.TabIndex = 296
         '
-        'cmbMoneyType
+        'cmbMold
         '
-        Me.cmbMoneyType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbMoneyType.BackColor = System.Drawing.Color.White
-        Me.cmbMoneyType.FormattingEnabled = True
-        Me.cmbMoneyType.Location = New System.Drawing.Point(1074, 82)
-        Me.cmbMoneyType.Name = "cmbMoneyType"
-        Me.cmbMoneyType.Size = New System.Drawing.Size(167, 21)
-        Me.cmbMoneyType.TabIndex = 328
+        Me.cmbMold.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbMold.BackColor = System.Drawing.Color.White
+        Me.cmbMold.FormattingEnabled = True
+        Me.cmbMold.Location = New System.Drawing.Point(1074, 82)
+        Me.cmbMold.Name = "cmbMold"
+        Me.cmbMold.Size = New System.Drawing.Size(167, 21)
+        Me.cmbMold.TabIndex = 328
         '
         'Label36
         '
@@ -164,16 +164,16 @@ Partial Class SC_K16
         Me.Label64.TabIndex = 326
         Me.Label64.Text = "Note 1) You can see the results up to the previous day.[注1)前日までの実績を見ることができます。]"
         '
-        'CheckBox2
+        'chkSimilar
         '
-        Me.CheckBox2.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.CheckBox2.Location = New System.Drawing.Point(788, 106)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(453, 37)
-        Me.CheckBox2.TabIndex = 324
-        Me.CheckBox2.Text = "* Similar search(Search for product names start with entered)※類似検索(入力した文字で始まる品名を検" &
+        Me.chkSimilar.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.chkSimilar.Location = New System.Drawing.Point(788, 106)
+        Me.chkSimilar.Name = "chkSimilar"
+        Me.chkSimilar.Size = New System.Drawing.Size(453, 37)
+        Me.chkSimilar.TabIndex = 324
+        Me.chkSimilar.Text = "* Similar search(Search for product names start with entered)※類似検索(入力した文字で始まる品名を検" &
     "索)"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.chkSimilar.UseVisualStyleBackColor = True
         '
         'Label59
         '
@@ -185,15 +185,15 @@ Partial Class SC_K16
         Me.Label59.TabIndex = 321
         Me.Label59.Text = "(品名)"
         '
-        'cmbProductName
+        'cmbProduct
         '
-        Me.cmbProductName.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbProductName.BackColor = System.Drawing.Color.White
-        Me.cmbProductName.FormattingEnabled = True
-        Me.cmbProductName.Location = New System.Drawing.Point(517, 143)
-        Me.cmbProductName.Name = "cmbProductName"
-        Me.cmbProductName.Size = New System.Drawing.Size(724, 21)
-        Me.cmbProductName.TabIndex = 319
+        Me.cmbProduct.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbProduct.BackColor = System.Drawing.Color.White
+        Me.cmbProduct.FormattingEnabled = True
+        Me.cmbProduct.Location = New System.Drawing.Point(517, 143)
+        Me.cmbProduct.Name = "cmbProduct"
+        Me.cmbProduct.Size = New System.Drawing.Size(724, 21)
+        Me.cmbProduct.TabIndex = 319
         '
         'Label60
         '
@@ -209,12 +209,12 @@ Partial Class SC_K16
         '
         Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.DateTimePicker2)
+        Me.Panel3.Controls.Add(Me.dtpActualMonth)
         Me.Panel3.Controls.Add(Me.Label56)
-        Me.Panel3.Controls.Add(Me.DateTimePicker1)
-        Me.Panel3.Controls.Add(Me.dtpWorkingYMD)
+        Me.Panel3.Controls.Add(Me.dtpActualTo)
+        Me.Panel3.Controls.Add(Me.dtpActualFrom)
         Me.Panel3.Controls.Add(Me.RadioButton2)
-        Me.Panel3.Controls.Add(Me.RadioButton1)
+        Me.Panel3.Controls.Add(Me.rdoRange)
         Me.Panel3.Controls.Add(Me.Label55)
         Me.Panel3.Controls.Add(Me.Label47)
         Me.Panel3.Location = New System.Drawing.Point(18, 65)
@@ -222,44 +222,30 @@ Partial Class SC_K16
         Me.Panel3.Size = New System.Drawing.Size(469, 102)
         Me.Panel3.TabIndex = 315
         '
-        'DateTimePicker2
-        '
-        Me.DateTimePicker2.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DateTimePicker2.CustomFormat = "yyyy/MM"
-        Me.DateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker2.Location = New System.Drawing.Point(165, 73)
-        Me.DateTimePicker2.Name = "DateTimePicker2"
-        Me.DateTimePicker2.Size = New System.Drawing.Size(110, 21)
-        Me.DateTimePicker2.TabIndex = 279
-        '
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(281, 33)
+        Me.Label56.Location = New System.Drawing.Point(284, 32)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(21, 14)
         Me.Label56.TabIndex = 278
         Me.Label56.Text = "～"
         '
-        'DateTimePicker1
+        'dtpActualTo
         '
-        Me.DateTimePicker1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DateTimePicker1.CustomFormat = "yyyy/MM/dd"
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker1.Location = New System.Drawing.Point(308, 26)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(110, 21)
-        Me.DateTimePicker1.TabIndex = 277
+        Me.dtpActualTo.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpActualTo.Location = New System.Drawing.Point(307, 28)
+        Me.dtpActualTo.Name = "dtpActualTo"
+        Me.dtpActualTo.Size = New System.Drawing.Size(145, 21)
+        Me.dtpActualTo.TabIndex = 332
         '
-        'dtpWorkingYMD
+        'dtpActualFrom
         '
-        Me.dtpWorkingYMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.dtpWorkingYMD.CustomFormat = "yyyy/MM/dd"
-        Me.dtpWorkingYMD.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpWorkingYMD.Location = New System.Drawing.Point(165, 26)
-        Me.dtpWorkingYMD.Name = "dtpWorkingYMD"
-        Me.dtpWorkingYMD.Size = New System.Drawing.Size(110, 21)
-        Me.dtpWorkingYMD.TabIndex = 276
+        Me.dtpActualFrom.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpActualFrom.Location = New System.Drawing.Point(139, 28)
+        Me.dtpActualFrom.Name = "dtpActualFrom"
+        Me.dtpActualFrom.Size = New System.Drawing.Size(150, 21)
+        Me.dtpActualFrom.TabIndex = 331
         '
         'RadioButton2
         '
@@ -272,18 +258,18 @@ Partial Class SC_K16
         Me.RadioButton2.Text = "(過去検索)"
         Me.RadioButton2.UseVisualStyleBackColor = True
         '
-        'RadioButton1
+        'rdoRange
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.RadioButton1.Location = New System.Drawing.Point(27, 28)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(89, 18)
-        Me.RadioButton1.TabIndex = 274
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "(範囲検索)"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.rdoRange.AutoSize = True
+        Me.rdoRange.Checked = True
+        Me.rdoRange.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.rdoRange.Location = New System.Drawing.Point(27, 28)
+        Me.rdoRange.Name = "rdoRange"
+        Me.rdoRange.Size = New System.Drawing.Size(89, 18)
+        Me.rdoRange.TabIndex = 274
+        Me.rdoRange.TabStop = True
+        Me.rdoRange.Text = "(範囲検索)"
+        Me.rdoRange.UseVisualStyleBackColor = True
         '
         'Label55
         '
@@ -355,15 +341,15 @@ Partial Class SC_K16
         Me.Label45.TabIndex = 304
         Me.Label45.Text = "(検索条件)"
         '
-        'cmbProcess
+        'cmbEquipment
         '
-        Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmbProcess.BackColor = System.Drawing.Color.White
-        Me.cmbProcess.FormattingEnabled = True
-        Me.cmbProcess.Location = New System.Drawing.Point(516, 82)
-        Me.cmbProcess.Name = "cmbProcess"
-        Me.cmbProcess.Size = New System.Drawing.Size(203, 21)
-        Me.cmbProcess.TabIndex = 296
+        Me.cmbEquipment.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbEquipment.BackColor = System.Drawing.Color.White
+        Me.cmbEquipment.FormattingEnabled = True
+        Me.cmbEquipment.Location = New System.Drawing.Point(516, 82)
+        Me.cmbEquipment.Name = "cmbEquipment"
+        Me.cmbEquipment.Size = New System.Drawing.Size(203, 21)
+        Me.cmbEquipment.TabIndex = 296
         '
         'Label53
         '
@@ -467,17 +453,25 @@ Partial Class SC_K16
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
         '
+        'dtpActualMonth
+        '
+        Me.dtpActualMonth.BackColor = System.Drawing.SystemColors.Window
+        Me.dtpActualMonth.Location = New System.Drawing.Point(139, 75)
+        Me.dtpActualMonth.Name = "dtpActualMonth"
+        Me.dtpActualMonth.Size = New System.Drawing.Size(145, 21)
+        Me.dtpActualMonth.TabIndex = 333
+        '
         'SC_K16
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.ClientSize = New System.Drawing.Size(1350, 689)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel4)
-        Me.Controls.Add(Me.btnDesc)
+        Me.Controls.Add(Me.btnExcel)
         Me.Controls.Add(Me.btnSearch)
         Me.Name = "SC_K16"
         Me.Controls.SetChildIndex(Me.btnSearch, 0)
-        Me.Controls.SetChildIndex(Me.btnDesc, 0)
+        Me.Controls.SetChildIndex(Me.btnExcel, 0)
         Me.Controls.SetChildIndex(Me.Panel4, 0)
         Me.Controls.SetChildIndex(Me.Panel1, 0)
         Me.Panel4.ResumeLayout(False)
@@ -492,25 +486,22 @@ Partial Class SC_K16
 
     End Sub
 
-    Friend WithEvents btnDesc As Button
+    Friend WithEvents btnExcel As Button
     Friend WithEvents btnSearch As Button
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents cmbMoneyType As ComboBox
+    Friend WithEvents cmbMold As ComboBox
     Friend WithEvents Label36 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents Label35 As Label
     Friend WithEvents Label64 As Label
-    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents chkSimilar As CheckBox
     Friend WithEvents Label59 As Label
-    Friend WithEvents cmbProductName As ComboBox
+    Friend WithEvents cmbProduct As ComboBox
     Friend WithEvents Label60 As Label
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents DateTimePicker2 As DateTimePicker
     Friend WithEvents Label56 As Label
-    Friend WithEvents DateTimePicker1 As DateTimePicker
-    Friend WithEvents dtpWorkingYMD As DateTimePicker
     Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents rdoRange As RadioButton
     Friend WithEvents Label55 As Label
     Friend WithEvents Label47 As Label
     Friend WithEvents cmbVariety As ComboBox
@@ -518,7 +509,7 @@ Partial Class SC_K16
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
-    Friend WithEvents cmbProcess As ComboBox
+    Friend WithEvents cmbEquipment As ComboBox
     Friend WithEvents Label53 As Label
     Friend WithEvents Label54 As Label
     Friend WithEvents Panel1 As Panel
@@ -528,4 +519,7 @@ Partial Class SC_K16
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents Label40 As Label
+    Friend WithEvents dtpActualFrom As CustomDateTimePicker
+    Friend WithEvents dtpActualTo As CustomDateTimePicker
+    Friend WithEvents dtpActualMonth As CustomDateTimePicker
 End Class

@@ -22,10 +22,10 @@ Partial Class SC_K20
         Me.btnRegistration = New System.Windows.Forms.Button()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.ComboBox4 = New System.Windows.Forms.ComboBox()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
-        Me.cmb_Syasyu = New System.Windows.Forms.ComboBox()
+        Me.cmbIndividual = New System.Windows.Forms.ComboBox()
+        Me.rdoFinish = New System.Windows.Forms.RadioButton()
+        Me.rdoSemi = New System.Windows.Forms.RadioButton()
+        Me.cmbProcess = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label37 = New System.Windows.Forms.Label()
@@ -41,18 +41,18 @@ Partial Class SC_K20
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.cmbDivision = New System.Windows.Forms.ComboBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.txtQuantity = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtRemarks = New System.Windows.Forms.TextBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.cmbTransfer = New System.Windows.Forms.ComboBox()
         Me.btnClear = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cmbDate = New System.Windows.Forms.ComboBox()
         Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -62,8 +62,8 @@ Partial Class SC_K20
         Me.btnRegistration.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.btnRegistration.Location = New System.Drawing.Point(258, 66)
         Me.btnRegistration.Name = "btnRegistration"
-        Me.btnRegistration.Size = New System.Drawing.Size(160, 53)
-        Me.btnRegistration.TabIndex = 268
+        Me.btnRegistration.Size = New System.Drawing.Size(159, 53)
+        Me.btnRegistration.TabIndex = 5
         Me.btnRegistration.Text = "Registration" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(登録)"
         Me.btnRegistration.UseVisualStyleBackColor = False
         '
@@ -74,7 +74,7 @@ Partial Class SC_K20
         Me.btnSearch.Location = New System.Drawing.Point(12, 66)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 53)
-        Me.btnSearch.TabIndex = 266
+        Me.btnSearch.TabIndex = 3
         Me.btnSearch.Text = "Search" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(検索)"
         Me.btnSearch.UseVisualStyleBackColor = False
         '
@@ -82,10 +82,10 @@ Partial Class SC_K20
         '
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel4.Controls.Add(Me.ComboBox4)
-        Me.Panel4.Controls.Add(Me.RadioButton2)
-        Me.Panel4.Controls.Add(Me.RadioButton1)
-        Me.Panel4.Controls.Add(Me.cmb_Syasyu)
+        Me.Panel4.Controls.Add(Me.cmbIndividual)
+        Me.Panel4.Controls.Add(Me.rdoFinish)
+        Me.Panel4.Controls.Add(Me.rdoSemi)
+        Me.Panel4.Controls.Add(Me.cmbProcess)
         Me.Panel4.Controls.Add(Me.Label1)
         Me.Panel4.Controls.Add(Me.Label2)
         Me.Panel4.Controls.Add(Me.Label37)
@@ -94,59 +94,62 @@ Partial Class SC_K20
         Me.Panel4.Controls.Add(Me.Label45)
         Me.Panel4.Controls.Add(Me.Label53)
         Me.Panel4.Controls.Add(Me.Label54)
-        Me.Panel4.Location = New System.Drawing.Point(0, 126)
+        Me.Panel4.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Panel4.Location = New System.Drawing.Point(-12, 135)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(1583, 196)
+        Me.Panel4.Size = New System.Drawing.Size(1595, 196)
         Me.Panel4.TabIndex = 274
         '
-        'ComboBox4
+        'cmbIndividual
         '
-        Me.ComboBox4.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox4.BackColor = System.Drawing.Color.Yellow
-        Me.ComboBox4.FormattingEnabled = True
-        Me.ComboBox4.Location = New System.Drawing.Point(615, 100)
-        Me.ComboBox4.Name = "ComboBox4"
-        Me.ComboBox4.Size = New System.Drawing.Size(116, 21)
-        Me.ComboBox4.TabIndex = 309
+        Me.cmbIndividual.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbIndividual.BackColor = System.Drawing.Color.Yellow
+        Me.cmbIndividual.Cursor = System.Windows.Forms.Cursors.Default
+        Me.cmbIndividual.FormattingEnabled = True
+        Me.cmbIndividual.Location = New System.Drawing.Point(512, 100)
+        Me.cmbIndividual.MaxLength = 14
+        Me.cmbIndividual.Name = "cmbIndividual"
+        Me.cmbIndividual.Size = New System.Drawing.Size(148, 21)
+        Me.cmbIndividual.TabIndex = 8
         '
-        'RadioButton2
+        'rdoFinish
         '
-        Me.RadioButton2.Checked = True
-        Me.RadioButton2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.RadioButton2.Location = New System.Drawing.Point(61, 100)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(188, 29)
-        Me.RadioButton2.TabIndex = 275
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Finished(製品)"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.rdoFinish.Checked = True
+        Me.rdoFinish.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.rdoFinish.Location = New System.Drawing.Point(61, 100)
+        Me.rdoFinish.Name = "rdoFinish"
+        Me.rdoFinish.Size = New System.Drawing.Size(188, 29)
+        Me.rdoFinish.TabIndex = 6
+        Me.rdoFinish.TabStop = True
+        Me.rdoFinish.Text = "Finished(製品)"
+        Me.rdoFinish.UseVisualStyleBackColor = True
         '
-        'RadioButton1
+        'rdoSemi
         '
-        Me.RadioButton1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.RadioButton1.Location = New System.Drawing.Point(61, 135)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(216, 29)
-        Me.RadioButton1.TabIndex = 276
-        Me.RadioButton1.Text = "Semi finished(半製品)"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.rdoSemi.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.rdoSemi.Location = New System.Drawing.Point(61, 135)
+        Me.rdoSemi.Name = "rdoSemi"
+        Me.rdoSemi.Size = New System.Drawing.Size(216, 29)
+        Me.rdoSemi.TabIndex = 6
+        Me.rdoSemi.Text = "Semi finished(半製品)"
+        Me.rdoSemi.UseVisualStyleBackColor = True
         '
-        'cmb_Syasyu
+        'cmbProcess
         '
-        Me.cmb_Syasyu.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.cmb_Syasyu.BackColor = System.Drawing.Color.Yellow
-        Me.cmb_Syasyu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb_Syasyu.FormattingEnabled = True
-        Me.cmb_Syasyu.Location = New System.Drawing.Point(301, 101)
-        Me.cmb_Syasyu.Name = "cmb_Syasyu"
-        Me.cmb_Syasyu.Size = New System.Drawing.Size(116, 21)
-        Me.cmb_Syasyu.TabIndex = 277
+        Me.cmbProcess.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbProcess.BackColor = System.Drawing.Color.Yellow
+        Me.cmbProcess.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cmbProcess.FormattingEnabled = True
+        Me.cmbProcess.Location = New System.Drawing.Point(297, 101)
+        Me.cmbProcess.Name = "cmbProcess"
+        Me.cmbProcess.Size = New System.Drawing.Size(116, 21)
+        Me.cmbProcess.TabIndex = 7
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label1.Location = New System.Drawing.Point(612, 62)
+        Me.Label1.Location = New System.Drawing.Point(512, 62)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(105, 16)
         Me.Label1.TabIndex = 307
@@ -156,7 +159,7 @@ Partial Class SC_K20
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label2.Location = New System.Drawing.Point(612, 79)
+        Me.Label2.Location = New System.Drawing.Point(512, 79)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(71, 16)
         Me.Label2.TabIndex = 308
@@ -196,7 +199,7 @@ Partial Class SC_K20
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 35)
+        Me.Label45.Location = New System.Drawing.Point(19, 33)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 304
@@ -206,7 +209,7 @@ Partial Class SC_K20
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 14)
+        Me.Label53.Location = New System.Drawing.Point(19, 14)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 295
@@ -226,7 +229,7 @@ Partial Class SC_K20
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label3.Location = New System.Drawing.Point(47, 366)
+        Me.Label3.Location = New System.Drawing.Point(43, 366)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(82, 16)
         Me.Label3.TabIndex = 313
@@ -246,16 +249,16 @@ Partial Class SC_K20
         '
         Me.txtProName.BackColor = System.Drawing.Color.White
         Me.txtProName.Enabled = False
-        Me.txtProName.Location = New System.Drawing.Point(47, 387)
+        Me.txtProName.Location = New System.Drawing.Point(43, 387)
         Me.txtProName.Name = "txtProName"
         Me.txtProName.Size = New System.Drawing.Size(444, 21)
-        Me.txtProName.TabIndex = 279
+        Me.txtProName.TabIndex = 9
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label5.Location = New System.Drawing.Point(47, 472)
+        Me.Label5.Location = New System.Drawing.Point(46, 454)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(98, 16)
         Me.Label5.TabIndex = 318
@@ -265,7 +268,7 @@ Partial Class SC_K20
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label6.Location = New System.Drawing.Point(43, 454)
+        Me.Label6.Location = New System.Drawing.Point(43, 436)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(95, 16)
         Me.Label6.TabIndex = 317
@@ -275,7 +278,7 @@ Partial Class SC_K20
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label7.Location = New System.Drawing.Point(302, 472)
+        Me.Label7.Location = New System.Drawing.Point(303, 454)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(82, 16)
         Me.Label7.TabIndex = 320
@@ -285,28 +288,28 @@ Partial Class SC_K20
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label8.Location = New System.Drawing.Point(299, 454)
+        Me.Label8.Location = New System.Drawing.Point(300, 436)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(117, 16)
         Me.Label8.TabIndex = 319
         Me.Label8.Text = "Issues division"
         '
-        'ComboBox2
+        'cmbDivision
         '
-        Me.ComboBox2.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox2.BackColor = System.Drawing.Color.White
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(302, 493)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(116, 21)
-        Me.ComboBox2.TabIndex = 281
+        Me.cmbDivision.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbDivision.BackColor = System.Drawing.Color.White
+        Me.cmbDivision.Cursor = System.Windows.Forms.Cursors.Default
+        Me.cmbDivision.FormattingEnabled = True
+        Me.cmbDivision.Location = New System.Drawing.Point(303, 475)
+        Me.cmbDivision.Name = "cmbDivision"
+        Me.cmbDivision.Size = New System.Drawing.Size(116, 21)
+        Me.cmbDivision.TabIndex = 11
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label9.Location = New System.Drawing.Point(558, 472)
+        Me.Label9.Location = New System.Drawing.Point(557, 454)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(82, 16)
         Me.Label9.TabIndex = 323
@@ -316,27 +319,27 @@ Partial Class SC_K20
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label10.Location = New System.Drawing.Point(554, 454)
+        Me.Label10.Location = New System.Drawing.Point(554, 436)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(124, 16)
         Me.Label10.TabIndex = 322
         Me.Label10.Text = "Issues quantity"
         '
-        'TextBox2
+        'txtQuantity
         '
-        Me.TextBox2.BackColor = System.Drawing.Color.DarkGray
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Location = New System.Drawing.Point(561, 492)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(117, 21)
-        Me.TextBox2.TabIndex = 282
-        Me.TextBox2.Text = "1"
+        Me.txtQuantity.BackColor = System.Drawing.Color.LightGray
+        Me.txtQuantity.Enabled = False
+        Me.txtQuantity.Location = New System.Drawing.Point(557, 474)
+        Me.txtQuantity.Name = "txtQuantity"
+        Me.txtQuantity.Size = New System.Drawing.Size(117, 21)
+        Me.txtQuantity.TabIndex = 12
+        Me.txtQuantity.Text = "1"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label11.Location = New System.Drawing.Point(794, 472)
+        Me.Label11.Location = New System.Drawing.Point(794, 454)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(82, 16)
         Me.Label11.TabIndex = 326
@@ -346,7 +349,7 @@ Partial Class SC_K20
         '
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label12.Location = New System.Drawing.Point(791, 454)
+        Me.Label12.Location = New System.Drawing.Point(791, 436)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(135, 16)
         Me.Label12.TabIndex = 325
@@ -356,7 +359,7 @@ Partial Class SC_K20
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label13.Location = New System.Drawing.Point(47, 586)
+        Me.Label13.Location = New System.Drawing.Point(46, 547)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(50, 16)
         Me.Label13.TabIndex = 328
@@ -366,7 +369,7 @@ Partial Class SC_K20
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.Label14.Location = New System.Drawing.Point(43, 568)
+        Me.Label14.Location = New System.Drawing.Point(43, 529)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(73, 16)
         Me.Label14.TabIndex = 327
@@ -375,22 +378,22 @@ Partial Class SC_K20
         'txtRemarks
         '
         Me.txtRemarks.BackColor = System.Drawing.Color.White
-        Me.txtRemarks.Location = New System.Drawing.Point(50, 607)
+        Me.txtRemarks.Location = New System.Drawing.Point(46, 568)
+        Me.txtRemarks.MaxLength = 100
         Me.txtRemarks.Multiline = True
         Me.txtRemarks.Name = "txtRemarks"
-        Me.txtRemarks.Size = New System.Drawing.Size(368, 69)
-        Me.txtRemarks.TabIndex = 284
+        Me.txtRemarks.Size = New System.Drawing.Size(368, 73)
+        Me.txtRemarks.TabIndex = 14
         '
-        'ComboBox3
+        'cmbTransfer
         '
-        Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox3.BackColor = System.Drawing.Color.White
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(794, 493)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(132, 21)
-        Me.ComboBox3.TabIndex = 283
+        Me.cmbTransfer.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbTransfer.BackColor = System.Drawing.Color.White
+        Me.cmbTransfer.FormattingEnabled = True
+        Me.cmbTransfer.Location = New System.Drawing.Point(794, 475)
+        Me.cmbTransfer.Name = "cmbTransfer"
+        Me.cmbTransfer.Size = New System.Drawing.Size(132, 21)
+        Me.cmbTransfer.TabIndex = 13
         '
         'btnClear
         '
@@ -399,37 +402,36 @@ Partial Class SC_K20
         Me.btnClear.Location = New System.Drawing.Point(135, 66)
         Me.btnClear.Name = "btnClear"
         Me.btnClear.Size = New System.Drawing.Size(117, 53)
-        Me.btnClear.TabIndex = 267
+        Me.btnClear.TabIndex = 4
         Me.btnClear.Text = "Clear" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(クリア)"
         Me.btnClear.UseVisualStyleBackColor = False
         '
-        'ComboBox1
+        'cmbDate
         '
-        Me.ComboBox1.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
-        Me.ComboBox1.BackColor = System.Drawing.Color.Yellow
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(46, 493)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(99, 21)
-        Me.ComboBox1.TabIndex = 280
+        Me.cmbDate.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
+        Me.cmbDate.BackColor = System.Drawing.Color.White
+        Me.cmbDate.FormattingEnabled = True
+        Me.cmbDate.Location = New System.Drawing.Point(46, 475)
+        Me.cmbDate.Name = "cmbDate"
+        Me.cmbDate.Size = New System.Drawing.Size(99, 21)
+        Me.cmbDate.TabIndex = 10
         '
         'SC_K20
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
-        Me.ClientSize = New System.Drawing.Size(1575, 746)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.ClientSize = New System.Drawing.Size(1350, 689)
+        Me.Controls.Add(Me.cmbDate)
         Me.Controls.Add(Me.btnClear)
-        Me.Controls.Add(Me.ComboBox3)
+        Me.Controls.Add(Me.cmbTransfer)
         Me.Controls.Add(Me.txtRemarks)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.txtQuantity)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Label10)
-        Me.Controls.Add(Me.ComboBox2)
+        Me.Controls.Add(Me.cmbDivision)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label5)
@@ -451,18 +453,18 @@ Partial Class SC_K20
         Me.Controls.SetChildIndex(Me.Label5, 0)
         Me.Controls.SetChildIndex(Me.Label8, 0)
         Me.Controls.SetChildIndex(Me.Label7, 0)
-        Me.Controls.SetChildIndex(Me.ComboBox2, 0)
+        Me.Controls.SetChildIndex(Me.cmbDivision, 0)
         Me.Controls.SetChildIndex(Me.Label10, 0)
         Me.Controls.SetChildIndex(Me.Label9, 0)
-        Me.Controls.SetChildIndex(Me.TextBox2, 0)
+        Me.Controls.SetChildIndex(Me.txtQuantity, 0)
         Me.Controls.SetChildIndex(Me.Label12, 0)
         Me.Controls.SetChildIndex(Me.Label11, 0)
         Me.Controls.SetChildIndex(Me.Label14, 0)
         Me.Controls.SetChildIndex(Me.Label13, 0)
         Me.Controls.SetChildIndex(Me.txtRemarks, 0)
-        Me.Controls.SetChildIndex(Me.ComboBox3, 0)
+        Me.Controls.SetChildIndex(Me.cmbTransfer, 0)
         Me.Controls.SetChildIndex(Me.btnClear, 0)
-        Me.Controls.SetChildIndex(Me.ComboBox1, 0)
+        Me.Controls.SetChildIndex(Me.cmbDate, 0)
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
@@ -473,11 +475,11 @@ Partial Class SC_K20
     Friend WithEvents btnRegistration As Button
     Friend WithEvents btnSearch As Button
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents cmb_Syasyu As ComboBox
+    Friend WithEvents cmbProcess As ComboBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents rdoFinish As RadioButton
+    Friend WithEvents rdoSemi As RadioButton
     Friend WithEvents Label37 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
@@ -491,17 +493,17 @@ Partial Class SC_K20
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents cmbDivision As ComboBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents txtQuantity As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents txtRemarks As TextBox
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents cmbTransfer As ComboBox
     Friend WithEvents btnClear As Button
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents ComboBox4 As ComboBox
+    Friend WithEvents cmbDate As ComboBox
+    Friend WithEvents cmbIndividual As ComboBox
 End Class

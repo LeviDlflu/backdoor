@@ -9,9 +9,13 @@ Public Class SC_K20
     Private Const ISSUES_QUANTITY As String = "払出数量"
     Private Const TRANSFER_DIVISION As String = "振替区分"
     Private Const REMARKS As String = "備考"
+    Private Const PLANT_CODE As String = "C"
+    Private Const SCID As String = "K-20"
+    Private Const LOGINID As String = "管理員"
     Dim xml As New clsGetSqlXML("SC-K20.xml", "SC-K20")
     Dim searchResult As New DataTable
     Dim dt5 As New DataTable
+
     Dim DIVISION As String = "1"
     Dim errorMessage As clsMessage
 
@@ -20,11 +24,12 @@ Public Class SC_K20
     ''' </summary>
     Private Sub SC_K20_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        init()
-
         Dim strSelect As String
+        '工程コード
         Dim dt1 As New DataTable
+        '払出区分
         Dim dt2 As New DataTable
+        '振替区分
         Dim dt3 As New DataTable
 
         Try
@@ -34,43 +39,48 @@ Public Class SC_K20
                 '払出区分
                 strSelect = xml.GetSQL_Str("SELECT_001")
                 dt2 = clsSQLServer.GetDataTable(strSelect)
-                Me.ComboBox2.DataSource = dt2
-                Me.ComboBox2.ValueMember = dt2.Columns.Item(0).ColumnName
-                Me.ComboBox2.DisplayMember = dt2.Columns.Item(1).ColumnName
+                Me.cmbDivision.DataSource = dt2
+                Me.cmbDivision.ValueMember = dt2.Columns.Item(0).ColumnName
+                Me.cmbDivision.DisplayMember = dt2.Columns.Item(1).ColumnName
 
                 '振替区分
                 strSelect = xml.GetSQL_Str("SELECT_004")
-                dt3 = clsSQLServer.GetDataTable(strSelect)
-                Me.ComboBox3.DataSource = dt3
-                Me.ComboBox3.ValueMember = dt3.Columns.Item(0).ColumnName
-                Me.ComboBox3.DisplayMember = dt3.Columns.Item(1).ColumnName
+                dt1 = clsSQLServer.GetDataTable(strSelect)
+                Me.cmbTransfer.DataSource = dt1
+                Me.cmbTransfer.ValueMember = dt1.Columns.Item(0).ColumnName
+                Me.cmbTransfer.DisplayMember = dt1.Columns.Item(1).ColumnName
 
                 '工程コード
                 strSelect = xml.GetSQL_Str("SELECT_002")
                 dt1 = clsSQLServer.GetDataTable(strSelect)
-                Me.cmb_Syasyu.DataSource = dt1
-                Me.cmb_Syasyu.ValueMember = dt1.Columns.Item(0).ColumnName
-                Me.cmb_Syasyu.DisplayMember = dt1.Columns.Item(1).ColumnName
+                Me.cmbProcess.DataSource = dt1
+                Me.cmbProcess.ValueMember = dt1.Columns.Item(0).ColumnName
+                Me.cmbProcess.DisplayMember = dt1.Columns.Item(1).ColumnName
+
                 clsSQLServer.Disconnect()
             End If
         Catch ex As Exception
             Throw
         End Try
 
+        '払出年月日
         Dim dt4 As New DataTable
         Dim dr As DataRow
 
         dt4.Columns.Add(New DataColumn(ISSUES_DATE, GetType(System.String)))
 
+        '過去一週間の日付を取得する
         For index = 0 To 6
             dr = dt4.NewRow()
             dr.Item(ISSUES_DATE) = Format(Now().AddDays(-index), "yyyy/MM/dd")
             dt4.Rows.Add(dr)
         Next
 
-        Me.ComboBox1.DataSource = dt4
-        Me.ComboBox1.ValueMember = dt4.Columns.Item(0).ColumnName
-        Me.ComboBox1.DisplayMember = dt4.Columns.Item(0).ColumnName
+        Me.cmbDate.DataSource = dt4
+        Me.cmbDate.ValueMember = dt4.Columns.Item(0).ColumnName
+        Me.cmbDate.DisplayMember = dt4.Columns.Item(0).ColumnName
+
+        init()
 
     End Sub
 
@@ -78,10 +88,14 @@ Public Class SC_K20
     ''' 検索
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+        btnSearch.Enabled = False
+
         Dim selectSql As String
 
         '検索条件必須チェック
         If Not isNecessarySearch() Then
+            btnSearch.Enabled = True
             Return
         End If
 
@@ -92,8 +106,8 @@ Public Class SC_K20
                 searchResult = clsSQLServer.GetDataTable(String.Format(selectSql,
                                                                        businessCode,
                                                                        DIVISION,
-                                                                       ComboBox4.SelectedValue,
-                                                                       cmb_Syasyu.SelectedValue))
+                                                                       cmbIndividual.SelectedValue,
+                                                                       cmbProcess.SelectedValue))
                 clsSQLServer.Disconnect()
             End If
 
@@ -103,18 +117,29 @@ Public Class SC_K20
 
         If searchResult.Rows.Count = 0 Then
             MessageBox.Show(clsGlobal.MSG2("W0008"))
+            btnSearch.Enabled = True
             Return
         End If
 
-        '品名略称必須チェック
+        '品名略称存在チェック
         If searchResult.Rows(0).Item(5) Is DBNull.Value Then
-            'MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), PRODUCT_ABBREVIATION))
-            'Return
+            MessageBox.Show(clsGlobal.MSG2("W0067"))
             txtProName.Text = String.Empty
+            btnSearch.Enabled = True
+            Return
         Else
             txtProName.Text = searchResult.Rows(0).Item(5)
         End If
-        ComboBox4.BackColor = Color.Yellow
+
+        cmbIndividual.BackColor = Color.Yellow
+        txtProName.BackColor = Color.White
+        cmbDate.BackColor = Color.White
+        cmbDivision.BackColor = Color.White
+        txtQuantity.BackColor = Color.LightGray
+        cmbTransfer.BackColor = Color.White
+        txtRemarks.BackColor = Color.White
+
+        btnSearch.Enabled = True
 
     End Sub
 
@@ -122,9 +147,7 @@ Public Class SC_K20
     ''' クリア
     ''' </summary>
     Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
-
         init()
-
     End Sub
 
     ''' <summary>
@@ -132,67 +155,91 @@ Public Class SC_K20
     ''' </summary>
     Private Sub btnRegistration_Click(sender As Object, e As EventArgs) Handles btnRegistration.Click
 
+        btnRegistration.Enabled = False
+
         Dim insertsql As String
         Dim updatesql As String
         Dim insertCount As Integer
         Dim updateCount As Integer
+
+        '検索条件必須チェック
+        If Not isNecessarySearch() Then
+            btnRegistration.Enabled = True
+            Return
+        End If
+
+        '登録項目必須チェック
+        If Not isNecessaryInsert() Then
+            btnRegistration.Enabled = True
+            Return
+        End If
+
         If MsgBox(String.Format(clsGlobal.MSG2("I028")),
                  vbOKCancel + vbQuestion,
                  systemName) = DialogResult.OK Then
-            '検索条件必須チェック
-            If Not isNecessarySearch() Then
-                Return
-            End If
-
-            '登録項目必須チェック
-            If Not isNecessaryInsert() Then
-                Return
-            End If
-
             Try
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     clsSQLServer.BeginTransaction()
                     insertsql = xml.GetSQL_Str("INSERT_001")
+
                     insertCount = clsSQLServer.ExecuteQuery(String.Format(insertsql,
                                                                           businessCode,
-                                                                          ComboBox4.SelectedValue,
+                                                                          cmbIndividual.SelectedValue,
                                                                           searchResult.Rows(0).Item(0)，
                                                                           searchResult.Rows(0).Item(1)，
                                                                           searchResult.Rows(0).Item(2)，
                                                                           searchResult.Rows(0).Item(3)，
                                                                           searchResult.Rows(0).Item(4)，
                                                                           DIVISION,
-                                                                          cmb_Syasyu.SelectedValue,
-                                                                          ComboBox1.SelectedValue,
+                                                                          cmbProcess.SelectedValue,
+                                                                          cmbDate.SelectedValue,
                                                                           "8",
-                                                                          ComboBox2.SelectedValue,
-                                                                          ComboBox3.SelectedValue,
-                                                                          txtRemarks.Text
+                                                                          cmbDivision.SelectedValue,
+                                                                          cmbTransfer.SelectedValue,
+                                                                          txtRemarks.Text,
+                                                                          SCID,
+                                                                          LOGINID,
+                                                                          Now
                                                                           ))
                     If insertCount = 0 Then
-                        MessageBox.Show(clsGlobal.MSG2("W0014"))
+                        '払出データの追加に失敗する場合、処理中止
+                        clsSQLServer.Rollback()
+                        clsSQLServer.Disconnect()
+                        MessageBox.Show(clsGlobal.MSG2("W0015"))
+                        clsSQLServer.Disconnect()
+                        btnRegistration.Enabled = True
                         Return
                     End If
 
                     updatesql = xml.GetSQL_Str("UPDATE_001")
+
                     updateCount = clsSQLServer.ExecuteQuery(String.Format(updatesql,
-                                                                          searchResult.Rows(0).Item(0)，
+                                                                          businessCode，
                                                                           searchResult.Rows(0).Item(1)，
                                                                           searchResult.Rows(0).Item(2)，
                                                                           searchResult.Rows(0).Item(3)，
                                                                           searchResult.Rows(0).Item(4)，
                                                                           DIVISION,
-                                                                          cmb_Syasyu.SelectedValue,
-                                                                          CInt（TextBox2.Text）
+                                                                          CInt（txtQuantity.Text）,
+                                                                          SCID,
+                                                                          LOGINID,
+                                                                          Now
                                                                           ))
-                    clsSQLServer.Commit()
+
                     If updateCount = 0 Then
-                        MessageBox.Show(clsGlobal.MSG2("W0015"))
+                        '在庫データの更新に失敗する場合、処理中止
+                        clsSQLServer.Rollback()
+                        clsSQLServer.Disconnect()
+                        MessageBox.Show(clsGlobal.MSG2("W0016"))
+                        btnRegistration.Enabled = True
                         Return
                     End If
 
+                    '払出処理が正常に実行する。
+                    clsSQLServer.Commit()
+
                     '正常に処理後、画面を初期表示に戻す。
-                    TextBox2.BackColor = Color.DarkGray
+                    txtQuantity.BackColor = Color.LightGray
                     init()
 
                     clsSQLServer.Disconnect()
@@ -203,7 +250,9 @@ Public Class SC_K20
                 Throw
             End Try
             MessageBox.Show(clsGlobal.MSG2("I029"))
+
         End If
+        btnRegistration.Enabled = True
     End Sub
 
     ''' <summary>
@@ -211,18 +260,20 @@ Public Class SC_K20
     ''' </summary>
     Private Sub init()
 
-        RadioButton1.Checked = False
-        RadioButton2.Checked = True
-        cmb_Syasyu.SelectedIndex = -1
-        cmb_Syasyu.BackColor = Color.Yellow
-        ComboBox4.SelectedIndex = -1
-        ComboBox4.BackColor = Color.Yellow
+        rdoSemi.Checked = False
+        rdoFinish.Checked = True
+        cmbProcess.SelectedIndex = -1
+        cmbProcess.BackColor = Color.Yellow
+        cmbIndividual.SelectedIndex = -1
+        cmbIndividual.BackColor = Color.Yellow
         txtProName.Text = String.Empty
         txtProName.BackColor = Color.White
-        ComboBox2.SelectedIndex = -1
-        ComboBox2.BackColor = Color.White
-        ComboBox3.SelectedIndex = -1
-        ComboBox3.BackColor = Color.White
+        cmbDate.SelectedIndex = 0
+        cmbDate.BackColor = Color.White
+        cmbDivision.SelectedIndex = -1
+        cmbDivision.BackColor = Color.White
+        cmbTransfer.SelectedIndex = -1
+        cmbTransfer.BackColor = Color.White
         txtRemarks.Text = String.Empty
         txtRemarks.BackColor = Color.White
 
@@ -234,30 +285,30 @@ Public Class SC_K20
     Private Function isNecessarySearch() As Boolean
 
         '工程コード必須チェック
-        If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
+        If String.IsNullOrEmpty(cmbProcess.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), PROCESS_CODE))
-            cmb_Syasyu.BackColor = Color.Red
+            cmbProcess.BackColor = Color.Red
             Return False
         Else
-            cmb_Syasyu.BackColor = Color.Yellow
+            cmbProcess.BackColor = Color.Yellow
         End If
 
         '個体NO必須チェック
-        If String.IsNullOrEmpty(ComboBox4.Text) Then
+        If String.IsNullOrEmpty(cmbIndividual.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), INDIVIDUAL_NO))
-            ComboBox4.BackColor = Color.Red
+            cmbIndividual.BackColor = Color.Red
             Return False
         Else
-            ComboBox4.BackColor = Color.Yellow
+            cmbIndividual.BackColor = Color.Yellow
         End If
 
         '個体NO桁数チェック
-        If ComboBox4.Text.Length > 14 Then
+        If cmbIndividual.Text.Length > 14 Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0030"), INDIVIDUAL_NO, "14"))
-            ComboBox4.BackColor = Color.Red
+            cmbIndividual.BackColor = Color.Red
             Return False
         Else
-            ComboBox4.BackColor = Color.White
+            cmbIndividual.BackColor = Color.Yellow
         End If
 
         Return True
@@ -278,39 +329,39 @@ Public Class SC_K20
         End If
 
         '払出年月日必須チェック
-        If String.IsNullOrEmpty(ComboBox1.Text) Then
+        If String.IsNullOrEmpty(cmbDate.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), ISSUES_DATE))
-            ComboBox1.BackColor = Color.Red
+            cmbDate.BackColor = Color.Red
             Return False
         Else
-            ComboBox1.BackColor = Color.White
+            cmbDate.BackColor = Color.White
         End If
 
         '払出区分必須チェック
-        If String.IsNullOrEmpty(ComboBox2.Text) Then
+        If String.IsNullOrEmpty(cmbDivision.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), ISSUES_DIVISION))
-            ComboBox2.BackColor = Color.Red
+            cmbDivision.BackColor = Color.Red
             Return False
         Else
-            ComboBox2.BackColor = Color.White
+            cmbDivision.BackColor = Color.White
         End If
 
         '払出数量必須チェック
-        If String.IsNullOrEmpty(TextBox2.Text) Then
+        If String.IsNullOrEmpty(txtQuantity.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), ISSUES_QUANTITY))
-            TextBox2.BackColor = Color.Red
+            txtQuantity.BackColor = Color.Red
             Return False
         Else
-            TextBox2.BackColor = Color.White
+            txtQuantity.BackColor = Color.LightGray
         End If
 
         '振替区分必須チェック
-        If String.IsNullOrEmpty(ComboBox3.Text) Then
+        If String.IsNullOrEmpty(cmbTransfer.Text) Then
             MessageBox.Show(String.Format(clsGlobal.MSG2("W0001"), TRANSFER_DIVISION))
-            ComboBox3.BackColor = Color.Red
+            cmbTransfer.BackColor = Color.Red
             Return False
         Else
-            ComboBox3.BackColor = Color.White
+            cmbTransfer.BackColor = Color.White
         End If
 
         '個体NO桁数チェック
@@ -328,13 +379,13 @@ Public Class SC_K20
     ''' <summary>
     ''' 半製品
     ''' </summary>
-    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+    Private Sub rdoSemi_CheckedChanged(sender As Object, e As EventArgs) Handles rdoSemi.CheckedChanged
 
-        If RadioButton1.Checked = True Then
+        If rdoSemi.Checked = True Then
             DIVISION = "0"
         End If
         Dim Selectsql As String
-        If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
+        If String.IsNullOrEmpty(cmbProcess.Text) Then
         Else
             Try
                 'データベース接続
@@ -343,10 +394,10 @@ Public Class SC_K20
                     Selectsql = xml.GetSQL_Str("SELECT_005")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
-                                                                       cmb_Syasyu.SelectedValue))
-                    Me.ComboBox4.DataSource = dt5
-                    Me.ComboBox4.ValueMember = dt5.Columns.Item(0).ColumnName
-                    Me.ComboBox4.DisplayMember = dt5.Columns.Item(0).ColumnName
+                                                                       cmbProcess.SelectedValue))
+                    Me.cmbIndividual.DataSource = dt5
+                    Me.cmbIndividual.ValueMember = dt5.Columns.Item(0).ColumnName
+                    Me.cmbIndividual.DisplayMember = dt5.Columns.Item(0).ColumnName
 
                     clsSQLServer.Disconnect()
                 End If
@@ -360,13 +411,13 @@ Public Class SC_K20
     ''' <summary>
     ''' 製品
     ''' </summary>
-    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+    Private Sub rdoFinish_CheckedChanged(sender As Object, e As EventArgs) Handles rdoFinish.CheckedChanged
 
-        If RadioButton2.Checked = True Then
+        If rdoFinish.Checked = True Then
             DIVISION = "1"
         End If
         Dim Selectsql As String
-        If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
+        If String.IsNullOrEmpty(cmbProcess.Text) Then
         Else
             Try
                 'データベース接続
@@ -375,10 +426,10 @@ Public Class SC_K20
                     Selectsql = xml.GetSQL_Str("SELECT_005")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
-                                                                       cmb_Syasyu.SelectedValue))
-                    Me.ComboBox4.DataSource = dt5
-                    Me.ComboBox4.ValueMember = dt5.Columns.Item(0).ColumnName
-                    Me.ComboBox4.DisplayMember = dt5.Columns.Item(0).ColumnName
+                                                                       cmbProcess.SelectedValue))
+                    Me.cmbIndividual.DataSource = dt5
+                    Me.cmbIndividual.ValueMember = dt5.Columns.Item(0).ColumnName
+                    Me.cmbIndividual.DisplayMember = dt5.Columns.Item(0).ColumnName
 
                     clsSQLServer.Disconnect()
                 End If
@@ -392,10 +443,10 @@ Public Class SC_K20
     ''' <summary>
     ''' 
     ''' </summary>
-    Private Sub cmb_Syasyu_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmb_Syasyu.SelectedIndexChanged
+    Private Sub cmbProcess_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbProcess.SelectedIndexChanged
         Dim Selectsql As String
 
-        If String.IsNullOrEmpty(cmb_Syasyu.Text) Then
+        If String.IsNullOrEmpty(cmbProcess.Text) Then
         Else
             Try
                 'データベース接続
@@ -404,10 +455,10 @@ Public Class SC_K20
                     Selectsql = xml.GetSQL_Str("SELECT_005")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
-                                                                       cmb_Syasyu.SelectedValue))
-                    Me.ComboBox4.DataSource = dt5
-                    Me.ComboBox4.ValueMember = dt5.Columns.Item(0).ColumnName
-                    Me.ComboBox4.DisplayMember = dt5.Columns.Item(0).ColumnName
+                                                                       cmbProcess.SelectedValue))
+                    Me.cmbIndividual.DataSource = dt5
+                    Me.cmbIndividual.ValueMember = dt5.Columns.Item(0).ColumnName
+                    Me.cmbIndividual.DisplayMember = dt5.Columns.Item(0).ColumnName
 
                     clsSQLServer.Disconnect()
                 End If
@@ -423,28 +474,63 @@ Public Class SC_K20
     ''' <summary>
     ''' 
     ''' </summary>
-    Private Sub ComboBox4_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox4.SelectedIndexChanged
+    Private Sub cmbIndividual_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbIndividual.SelectedIndexChanged
         txtProName.Text = String.Empty
     End Sub
 
     ''' <summary>
     ''' 
     ''' </summary>
-    Private Sub ComboBox4_TextChanged(sender As Object, e As EventArgs) Handles ComboBox4.TextChanged
-        Dim dt As New DataTable
-        If String.IsNullOrEmpty(ComboBox4.Text) Then
-            Me.ComboBox4.DataSource = dt5
-            Me.ComboBox4.ValueMember = dt5.Columns.Item(0).ColumnName
-            Me.ComboBox4.DisplayMember = dt5.Columns.Item(0).ColumnName
-        Else
-            Dim dv As DataView = New DataView(dt5)
-            dv.RowFilter = String.Format("{0} like '{1}%' ", "区分個体ＮＯ", ComboBox4.Text)
-            dt = dv.ToTable
-            Me.ComboBox4.DataSource = dt
-            Me.ComboBox4.ValueMember = dt.Columns.Item(0).ColumnName
-            Me.ComboBox4.DisplayMember = dt.Columns.Item(0).ColumnName
-        End If
+    Private Sub cmbIndividual_TextChanged(sender As Object, e As EventArgs) Handles cmbIndividual.TextChanged
+        txtProName.Text = String.Empty
+    End Sub
 
+    '払出年月日手入力禁止
+    Private Sub cmbDate_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbDate.KeyDown
+        If (e.KeyValue = Keys.C AndAlso e.Modifiers = Keys.Control AndAlso cmbDate.SelectedText.Length > 0) Then
+            Clipboard.SetText(cmbDate.SelectedText)
+        End If
+    End Sub
+    '払出年月日手入力禁止
+    Private Sub cmbDate_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles cmbDate.KeyPress
+        e.Handled = True
+    End Sub
+
+    '払出区分手入力禁止
+    Private Sub cmbDivision_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbDivision.KeyDown
+        If (e.KeyValue = Keys.C AndAlso e.Modifiers = Keys.Control AndAlso cmbDivision.SelectedText.Length > 0) Then
+            Clipboard.SetText(cmbDivision.SelectedText)
+        End If
+    End Sub
+    '払出区分手入力禁止
+    Private Sub cmbDivision_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles cmbDivision.KeyPress
+        e.Handled = True
+    End Sub
+
+    '振替区分手入力禁止
+    Private Sub cmbTransfer_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbTransfer.KeyDown
+        If (e.KeyValue = Keys.C AndAlso e.Modifiers = Keys.Control AndAlso cmbTransfer.SelectedText.Length > 0) Then
+            Clipboard.SetText(cmbTransfer.SelectedText)
+        End If
+    End Sub
+    '振替区分手入力禁止
+    Private Sub cmbTransfer_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles cmbTransfer.KeyPress
+        e.Handled = True
+    End Sub
+
+    '工程コード手入力禁止
+    Private Sub cmbProcess_KeyDown(sender As Object, e As KeyEventArgs) Handles cmbProcess.KeyDown
+        If (e.KeyValue = Keys.C AndAlso e.Modifiers = Keys.Control AndAlso cmbProcess.SelectedText.Length > 0) Then
+            Clipboard.SetText(cmbProcess.SelectedText)
+        End If
+    End Sub
+    '工程コード手入力禁止
+    Private Sub cmbProcess_KeyPress(sender As Object, e As KeyPressEventArgs) _
+        Handles cmbProcess.KeyPress
+        e.Handled = True
     End Sub
 
 End Class
