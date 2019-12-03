@@ -53,6 +53,20 @@ Public Class ParentTemplate
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Dim ProductNamePlantCode As String
 
+        ''' <summary>
+        ''' 対象年月
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim TargetDate As String
+
+        ''' <summary>
+        ''' 払出区分
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim Division As String
+        Dim DiviCode As String
+
+
     End Structure
 
     Public Shared formParameter As New Parameter

@@ -235,6 +235,9 @@
       <Message ID="I029">
         <Text>　登録しました。</Text>
       </Message>
+      <Message ID="I030">
+        <Text>　取消しました。</Text>
+      </Message>
 
       <Message ID="I101">
         <Text>　メール送信開始</Text>
@@ -302,11 +305,17 @@
       <Message ID="W0016">
         <Text>在庫データの更新に失敗しました。</Text>
       </Message>
+      <Message ID="W0017">
+        <Text>払出データの取消に失敗しました。</Text>
+      </Message>
       <Message ID="W0030">
         <Text>{0}は{1}桁で入力してください。</Text>
       </Message>
       <Message ID="W0066">
         <Text>更新対象データが消されました。</Text>
+      </Message>
+      <Message ID="W0067">
+        <Text>　当該品名が存在しません。</Text>
       </Message>
       <Message ID="W0099">
         <Text>修正内容が更新されていませんため、画面を閉じてよろしいですか？</Text>
