@@ -124,16 +124,16 @@ Public Class SC_K21
     ''' </summary>
     Private Sub btnProcess_Click(sender As Object, e As EventArgs) Handles btnProcess.Click
 
-        'パラメータ.対象年月
-        formParameter.TargetDate = Me.cmbDate.Text
+        ''パラメータ.対象年月
+        'formParameter.TargetDate = Me.cmbDate.Text
 
-        'パラメータ.払出区分
-        formParameter.Division = Me.cmbDivision.Text
-        formParameter.DiviCode = Me.cmbDivision.SelectedValue
+        ''パラメータ.払出区分
+        'formParameter.Division = Me.cmbDivision.Text
+        'formParameter.DiviCode = Me.cmbDivision.SelectedValue
 
-        Dim frm As New SC_K21A()
-        frm.ShowDialog()
-        Me.Show()
+        'Dim frm As New SC_K21A()
+        'frm.ShowDialog()
+        'Me.Show()
     End Sub
 
     ''' <summary>
@@ -141,16 +141,16 @@ Public Class SC_K21
     ''' </summary>
     Private Sub btnProduct_Click(sender As Object, e As EventArgs) Handles btnProduct.Click
 
-        'パラメータ.対象年月
-        formParameter.TargetDate = Me.cmbDate.Text
+        ''パラメータ.対象年月
+        'formParameter.TargetDate = Me.cmbDate.Text
 
-        'パラメータ.払出区分
-        formParameter.Division = Me.cmbDivision.Text
-        formParameter.DiviCode = Me.cmbDivision.SelectedValue
+        ''パラメータ.払出区分
+        'formParameter.Division = Me.cmbDivision.Text
+        'formParameter.DiviCode = Me.cmbDivision.SelectedValue
 
-        Dim frm As New SC_K21B()
-        frm.ShowDialog()
-        Me.Show()
+        'Dim frm As New SC_K21B()
+        'frm.ShowDialog()
+        'Me.Show()
     End Sub
 
     ''' <summary>
@@ -158,16 +158,16 @@ Public Class SC_K21
     ''' </summary>
     Private Sub btnProcessvariety_Click(sender As Object, e As EventArgs) Handles btnProcessvariety.Click
 
-        'パラメータ.対象年月
-        formParameter.TargetDate = Me.cmbDate.Text
+        ''パラメータ.対象年月
+        'formParameter.TargetDate = Me.cmbDate.Text
 
-        'パラメータ.払出区分
-        formParameter.Division = Me.cmbDivision.Text
-        formParameter.DiviCode = Me.cmbDivision.SelectedValue
+        ''パラメータ.払出区分
+        'formParameter.Division = Me.cmbDivision.Text
+        'formParameter.DiviCode = Me.cmbDivision.SelectedValue
 
-        Dim frm As New SC_K21C()
-        frm.ShowDialog()
-        Me.Show()
+        'Dim frm As New SC_K21C()
+        'frm.ShowDialog()
+        'Me.Show()
     End Sub
 
     ''' <summary>

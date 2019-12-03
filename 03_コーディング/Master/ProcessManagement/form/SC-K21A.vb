@@ -28,10 +28,10 @@ Public Class SC_K21A
         lblMaster.Text = FORM_NAME
         Me.Text = "[" & Me.Name & "]" & FORM_NAME
 
-        '対象年月
-        Me.txtDate.Text = formParameter.TargetDate
-        '払出区分
-        Me.txtDivision.Text = formParameter.Division
+        ''対象年月
+        'Me.txtDate.Text = formParameter.TargetDate
+        ''払出区分
+        'Me.txtDivision.Text = formParameter.Division
 
         Dim strSelect As String
         Dim dt As New DataTable
@@ -42,10 +42,10 @@ Public Class SC_K21A
 
                 strSelect = xml.GetSQL_Str("SELECT_001")
 
-                dt = clsSQLServer.GetDataTable(String.Format(strSelect,
-                                                                       businessCode,
-                                                                       txtDate.Text,
-                                                                       formParameter.DiviCode))
+                'dt = clsSQLServer.GetDataTable(String.Format(strSelect,
+                '                                                       businessCode,
+                '                                                       txtDate.Text,
+                '                                                       formParameter.DiviCode))
                 clsSQLServer.Disconnect()
 
             End If
