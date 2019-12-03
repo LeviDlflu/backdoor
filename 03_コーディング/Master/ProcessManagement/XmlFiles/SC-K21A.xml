@@ -1,0 +1,42 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-K21A>
+
+    <Selects>
+
+      <!--検索結果-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+            最新受払データ.大工程コード
+            ,工程マスタ.工程略称
+            ,COUNT(最新受払データ.大工程コード)　AS 数量
+          FROM
+            (SELECT
+              RANK() OVER (PARTITION BY 事業所コード,個体NO ORDER BY シーケンス DESC) AS RANKNO
+              ,事業所コード
+              ,大工程コード
+              ,受払年月日
+              ,受払区分
+              ,払出区分
+            FROM
+              受払データ) AS 最新受払データ
+          LEFT JOIN 工程マスタ
+            ON 最新受払データ.大工程コード = 工程マスタ.大工程コード
+          WHERE
+            最新受払データ.RANKNO = 1
+            AND 最新受払データ.事業所コード = '{0}'
+            AND 最新受払データ.受払区分 = '8'
+            AND CONVERT(VARCHAR(7),最新受払データ.受払年月日,111) = '{1}'
+            AND 最新受払データ.払出区分 = '{2}'
+          GROUP BY
+            最新受払データ.大工程コード
+            ,工程マスタ.工程略称
+          ORDER BY
+            最新受払データ.大工程コード
+        </Text>
+      </SQL>
+
+    </Selects>
+</SC-K21A>
+</Configuration>
