@@ -15,7 +15,7 @@
     Private Const COL_KYABI As String = "キャビ"
 
     Private Const CONST_SYSTEM_NAME As String = "成形実績明細画面"
-    Private Const FORM_NAME As String = "Molding achievement detail(成形実績明細)"
+    Private Const FORM_NAME As String = "Molding achievement reference details(成形実績参照詳細)"
 
     Dim gridCells As DataGridViewCellCollection
 
@@ -26,22 +26,31 @@
 
         gridCells = SC_K16.gridCells
 
-        lblMaster.Text = FORM_NAME
+        Me.lblMaster.Text = FORM_NAME
         Me.Text = "[" & Me.Name & "]" & FORM_NAME
+
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Me.btnFinish.Text = "Return" & vbCrLf & "(戻る)"
 
         Dim dt As New DataTable
 
         dt.Columns.Add("Code", GetType(String))
         dt.Columns.Add("Name", GetType(String))
+        '判定
         dt.Rows.Add("0", "ショット")
         dt.Rows.Add("1", "合格")
         dt.Rows.Add("2", "不良")
         dt.Rows.Add("3", "調整")
 
-        '自動ラベルフラグ
         Me.cmbJudgment.DataSource = dt
         Me.cmbJudgment.ValueMember = dt.Columns.Item(0).ColumnName
         Me.cmbJudgment.DisplayMember = dt.Columns.Item(1).ColumnName
+
+        Me.txtProcess.Text = formParameter.Process
+        Me.txtProductName.Text = formParameter.ProductName
+        Me.txtMoneyType.Text = formParameter.Mold
+        Me.dtpWorkingFrom.Value = formParameter.SearchDateFrom
+        Me.dtpWorkingTo.Value = formParameter.SearchDateTo
 
     End Sub
 
@@ -158,7 +167,7 @@
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
-        Me.Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
         setGrid(createGridData())
     End Sub

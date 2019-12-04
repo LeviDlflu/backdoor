@@ -33,6 +33,7 @@ Partial Class SC_K16
         Me.cmbProduct = New System.Windows.Forms.ComboBox()
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.cmbActualMonth = New System.Windows.Forms.ComboBox()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.dtpActualTo = New ProcessManagement.CustomDateTimePicker()
         Me.dtpActualFrom = New ProcessManagement.CustomDateTimePicker()
@@ -55,7 +56,6 @@ Partial Class SC_K16
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.cmbActualMonth = New System.Windows.Forms.ComboBox()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -66,7 +66,7 @@ Partial Class SC_K16
         '
         Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
         Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnExcel.Location = New System.Drawing.Point(144, 66)
+        Me.btnExcel.Location = New System.Drawing.Point(138, 66)
         Me.btnExcel.Name = "btnExcel"
         Me.btnExcel.Size = New System.Drawing.Size(117, 53)
         Me.btnExcel.TabIndex = 271
@@ -77,7 +77,7 @@ Partial Class SC_K16
         '
         Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
         Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.btnSearch.Location = New System.Drawing.Point(21, 66)
+        Me.btnSearch.Location = New System.Drawing.Point(15, 66)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 53)
         Me.btnSearch.TabIndex = 270
@@ -221,6 +221,15 @@ Partial Class SC_K16
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(469, 102)
         Me.Panel3.TabIndex = 315
+        '
+        'cmbActualMonth
+        '
+        Me.cmbActualMonth.BackColor = System.Drawing.SystemColors.Window
+        Me.cmbActualMonth.FormattingEnabled = True
+        Me.cmbActualMonth.Location = New System.Drawing.Point(139, 75)
+        Me.cmbActualMonth.Name = "cmbActualMonth"
+        Me.cmbActualMonth.Size = New System.Drawing.Size(121, 21)
+        Me.cmbActualMonth.TabIndex = 334
         '
         'Label56
         '
@@ -452,15 +461,6 @@ Partial Class SC_K16
         Me.Label40.Size = New System.Drawing.Size(97, 19)
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
-        '
-        'cmbActualMonth
-        '
-        Me.cmbActualMonth.BackColor = System.Drawing.SystemColors.Window
-        Me.cmbActualMonth.FormattingEnabled = True
-        Me.cmbActualMonth.Location = New System.Drawing.Point(139, 75)
-        Me.cmbActualMonth.Name = "cmbActualMonth"
-        Me.cmbActualMonth.Size = New System.Drawing.Size(121, 21)
-        Me.cmbActualMonth.TabIndex = 334
         '
         'SC_K16
         '

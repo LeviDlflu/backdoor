@@ -41,10 +41,10 @@ Public Class SC_Z01A
     ''' <param name="e">e</param>
     Private Sub SC_Z01A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        lblMaster.Text = FORM_NAME
+        Me.lblMaster.Text = FORM_NAME
         Me.Text = "[Z-01A]" & FORM_NAME
 
-        lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
         Me.btnFinish.Text = "Return" & vbCrLf & "(戻る)"
 

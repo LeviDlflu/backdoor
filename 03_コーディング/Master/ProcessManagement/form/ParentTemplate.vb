@@ -66,6 +66,23 @@ Public Class ParentTemplate
         Dim Division As String
         Dim DiviCode As String
 
+        ''' <summary>
+        ''' 金型
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim Mold As String
+
+        ''' <summary>
+        ''' 検索開始日
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim SearchDateFrom As String
+
+        ''' <summary>
+        ''' 検索終了日
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim SearchDateTo As String
 
     End Structure
 

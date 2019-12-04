@@ -65,6 +65,15 @@ Public Class SC_K16
             'データベース接続
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
+                '工程：パラメータ用
+                strSelect = xml.GetSQL_Str("SELECT_008")
+                dt = clsSQLServer.GetDataTable(strSelect)
+
+                If dt.Rows.Count > 0 AndAlso Not String.IsNullOrEmpty(dt.Rows(0).Item(0).ToString) Then
+                    'パラメータ.工程
+                    formParameter.Process = dt.Rows(0).Item(0).ToString
+                End If
+
                 '実績月
                 strSelect = xml.GetSQL_Str("SELECT_007")
                 dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode))
@@ -124,61 +133,6 @@ Public Class SC_K16
                                 TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
     End Sub
-
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-
-        dt.Columns.Add(New DataColumn(COL_EQUIPMENT, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_GOODS_ABBREVIATION, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_CUSTOMER_PART_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_MONEY_TYPE, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_INSTRUCTION_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_SHOTS_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_PASSING_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_FAILURE_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_ADJUSTMENT_NUMBER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_OTHER_PAYOUT, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_PASSING_RATE, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_DEFECTIVE_RATE, GetType(System.String)))
-
-
-        For item As Integer = 0 To 3
-            Dim addRow As DataRow = dt.NewRow
-
-            If item = 3 Then
-                addRow(COL_GOODS_ABBREVIATION) = "合計"
-                addRow(COL_INSTRUCTION_NUMBER) = item
-                addRow(COL_SHOTS_NUMBER) = item
-                addRow(COL_PASSING_NUMBER) = item
-                addRow(COL_FAILURE_NUMBER) = item
-                addRow(COL_ADJUSTMENT_NUMBER) = item
-                addRow(COL_OTHER_PAYOUT) = item
-                addRow(COL_PASSING_RATE) = 90.25
-                addRow(COL_DEFECTIVE_RATE) = 3.65
-            Else
-                addRow(COL_EQUIPMENT) = "設備" & item
-                addRow(COL_GOODS_ABBREVIATION) = "品名略称" & item
-                addRow(COL_CUSTOMER_PART_NUMBER) = "客先部品番号" & item
-                addRow(COL_MONEY_TYPE) = item
-                addRow(COL_INSTRUCTION_NUMBER) = item
-                addRow(COL_SHOTS_NUMBER) = item
-                addRow(COL_PASSING_NUMBER) = item
-                addRow(COL_FAILURE_NUMBER) = item
-                addRow(COL_ADJUSTMENT_NUMBER) = item
-                addRow(COL_OTHER_PAYOUT) = item
-                addRow(COL_PASSING_RATE) = 90.25
-                addRow(COL_DEFECTIVE_RATE) = 3.65
-            End If
-
-            dt.Rows.Add(addRow)
-        Next
-
-        Return dt
-
-    End Function
 
     ''' <summary>
     ''' 　グリッドを設定する
@@ -276,9 +230,17 @@ Public Class SC_K16
             If rdoRange.Checked = True Then
                 '作業年月日
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_003"), dtpActualFrom.DateTimePicker1.Text, dtpActualTo.DateTimePicker1.Text))
+                'パラメータ.検索開始日
+                formParameter.SearchDateFrom = dtpActualFrom.DateTimePicker1.Text
+                'パラメータ.検索終了日
+                formParameter.SearchDateTo = dtpActualTo.DateTimePicker1.Text
             Else
                 '作業年月
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_004"), cmbActualMonth.Text))
+                'パラメータ.検索開始日
+                formParameter.SearchDateFrom = cmbActualMonth.Text
+                'パラメータ.検索終了日
+                formParameter.SearchDateTo = cmbActualMonth.Text
             End If
 
             '設備NO
@@ -363,6 +325,10 @@ Public Class SC_K16
         If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex > -1 Then
 
             gridCells = gridData.Rows(e.RowIndex).Cells
+            'パラメータ.品名略称
+            formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
+            'パラメータ.金型
+            formParameter.Mold = gridData.CurrentRow.Cells(COL_MONEY_TYPE).Value.ToString
 
             Dim frm As New SC_K16A()
             frm.ShowDialog()
