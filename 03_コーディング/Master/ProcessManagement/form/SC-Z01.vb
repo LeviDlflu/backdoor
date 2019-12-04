@@ -190,7 +190,7 @@ Public Class SC_Z01
         '列の幅の設定
         gridData.Columns(0).Width = 50
         gridData.Columns(1).Width = 95
-        gridData.Columns(2).Width = 190
+        gridData.Columns(2).Width = 170
         gridData.Columns(3).Width = 110
         gridData.Columns(4).Width = 100
         gridData.Columns(5).Width = 95

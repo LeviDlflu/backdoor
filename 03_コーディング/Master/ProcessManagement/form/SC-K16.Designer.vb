@@ -55,7 +55,7 @@ Partial Class SC_K16
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.dtpActualMonth = New ProcessManagement.CustomDateTimePicker()
+        Me.cmbActualMonth = New System.Windows.Forms.ComboBox()
         Me.Panel4.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -169,7 +169,7 @@ Partial Class SC_K16
         Me.chkSimilar.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.chkSimilar.Location = New System.Drawing.Point(788, 106)
         Me.chkSimilar.Name = "chkSimilar"
-        Me.chkSimilar.Size = New System.Drawing.Size(453, 37)
+        Me.chkSimilar.Size = New System.Drawing.Size(400, 37)
         Me.chkSimilar.TabIndex = 324
         Me.chkSimilar.Text = "* Similar search(Search for product names start with entered)※類似検索(入力した文字で始まる品名を検" &
     "索)"
@@ -209,7 +209,7 @@ Partial Class SC_K16
         '
         Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.dtpActualMonth)
+        Me.Panel3.Controls.Add(Me.cmbActualMonth)
         Me.Panel3.Controls.Add(Me.Label56)
         Me.Panel3.Controls.Add(Me.dtpActualTo)
         Me.Panel3.Controls.Add(Me.dtpActualFrom)
@@ -453,13 +453,14 @@ Partial Class SC_K16
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
         '
-        'dtpActualMonth
+        'cmbActualMonth
         '
-        Me.dtpActualMonth.BackColor = System.Drawing.SystemColors.Window
-        Me.dtpActualMonth.Location = New System.Drawing.Point(139, 75)
-        Me.dtpActualMonth.Name = "dtpActualMonth"
-        Me.dtpActualMonth.Size = New System.Drawing.Size(145, 21)
-        Me.dtpActualMonth.TabIndex = 333
+        Me.cmbActualMonth.BackColor = System.Drawing.SystemColors.Window
+        Me.cmbActualMonth.FormattingEnabled = True
+        Me.cmbActualMonth.Location = New System.Drawing.Point(139, 75)
+        Me.cmbActualMonth.Name = "cmbActualMonth"
+        Me.cmbActualMonth.Size = New System.Drawing.Size(121, 21)
+        Me.cmbActualMonth.TabIndex = 334
         '
         'SC_K16
         '
@@ -521,5 +522,5 @@ Partial Class SC_K16
     Friend WithEvents Label40 As Label
     Friend WithEvents dtpActualFrom As CustomDateTimePicker
     Friend WithEvents dtpActualTo As CustomDateTimePicker
-    Friend WithEvents dtpActualMonth As CustomDateTimePicker
+    Friend WithEvents cmbActualMonth As ComboBox
 End Class

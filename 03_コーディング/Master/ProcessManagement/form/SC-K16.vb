@@ -49,11 +49,13 @@ Public Class SC_K16
         Me.dtpActualFrom.DateTimePicker1.MinDate = Date.Now.AddMonths(-2)
         dtpActualTo.DateTimePicker1.MaxDate = dtpActualFrom.DateTimePicker1.Value.AddMonths(1)
         dtpActualTo.DateTimePicker1.MinDate = dtpActualFrom.DateTimePicker1.Value
+
+        dtpActualFrom.TextBox1.Enabled = False
+        dtpActualTo.TextBox1.Enabled = False
+
         '実績月
-        dtpActualMonth.DateTimePicker1.CustomFormat = "yyyy/MM"
-        dtpActualMonth.TextBox1.Text = Format(Now, "yyyy/MM")
-        dtpActualMonth.TextBox1.BackColor = Color.LightGray
-        dtpActualMonth.Enabled = True
+        cmbActualMonth.BackColor = Color.LightGray
+        cmbActualMonth.Enabled = False
 
         Try
 
@@ -62,6 +64,13 @@ Public Class SC_K16
 
             'データベース接続
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                '実績月
+                strSelect = xml.GetSQL_Str("SELECT_007")
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode))
+                Me.cmbActualMonth.DataSource = dt
+                Me.cmbActualMonth.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbActualMonth.DisplayMember = dt.Columns.Item(0).ColumnName
 
                 '設備
                 strSelect = xml.GetSQL_Str("SELECT_001")
@@ -84,12 +93,11 @@ Public Class SC_K16
                 Me.cmbVariety.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmbVariety.DisplayMember = dt.Columns.Item(1).ColumnName
 
-                clsSQLServer.Disconnect()
-
             End If
-
         Catch ex As Exception
             Throw
+        Finally
+            clsSQLServer.Disconnect()
         End Try
     End Sub
 
@@ -238,8 +246,8 @@ Public Class SC_K16
         dgvRow.Cells(COL_GOODS_ABBREVIATION).Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         gridData.Columns(COL_DETAILS).Width = 55
-        gridData.Columns(COL_EQUIPMENT).Width = 100
-        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 130
+        gridData.Columns(COL_EQUIPMENT).Width = 120
+        gridData.Columns(COL_GOODS_ABBREVIATION).Width = 185
         gridData.Columns(COL_CUSTOMER_PART_NUMBER).Width = 110
         gridData.Columns(COL_MONEY_TYPE).Width = 60
         gridData.Columns(COL_INSTRUCTION_NUMBER).Width = 85
@@ -267,14 +275,10 @@ Public Class SC_K16
             '範囲検索の場合
             If rdoRange.Checked = True Then
                 '作業年月日
-                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_001"), dtpActualFrom.DateTimePicker1.Text, dtpActualTo.DateTimePicker1.Text))
-                '受払年月日
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_003"), dtpActualFrom.DateTimePicker1.Text, dtpActualTo.DateTimePicker1.Text))
             Else
                 '作業年月
-                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_002"), dtpActualFrom.DateTimePicker1.Text))
-                '受払年月
-                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_004"), dtpActualFrom.DateTimePicker1.Text))
+                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_004"), cmbActualMonth.Text))
             End If
 
             '設備NO
@@ -374,20 +378,21 @@ Public Class SC_K16
     Private Sub RadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles rdoRange.CheckedChanged
         If rdoRange.Checked = True Then
             '実績月
-            dtpActualMonth.DateTimePicker1.Enabled = False
-            dtpActualMonth.TextBox1.BackColor = Color.LightGray
-            dtpActualMonth.Enabled = True
+            cmbActualMonth.Enabled = False
+            cmbActualMonth.BackColor = Color.LightGray
             '実績日
             dtpActualFrom.DateTimePicker1.Enabled = True
             dtpActualTo.DateTimePicker1.Enabled = True
+
             dtpActualFrom.TextBox1.BackColor = Color.Yellow
             dtpActualTo.TextBox1.BackColor = Color.Yellow
         Else
-            dtpActualMonth.DateTimePicker1.Enabled = True
-            dtpActualMonth.TextBox1.BackColor = Color.Yellow
+            cmbActualMonth.Enabled = True
+            cmbActualMonth.BackColor = Color.Yellow
 
             dtpActualFrom.DateTimePicker1.Enabled = False
             dtpActualTo.DateTimePicker1.Enabled = False
+
             dtpActualFrom.TextBox1.BackColor = Color.LightGray
             dtpActualTo.TextBox1.BackColor = Color.LightGray
         End If
@@ -433,6 +438,7 @@ Public Class SC_K16
                 clsSQLServer.Disconnect()
             End Try
         Else
+            Me.cmbProduct.DataSource = Nothing
             Me.cmbProduct.Enabled = False
         End If
 
