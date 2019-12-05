@@ -1,4 +1,7 @@
-﻿Public Class SC_K16A
+﻿Imports PUCCommon
+Imports System.Text
+
+Public Class SC_K16A
     Dim headerName As Hashtable = New Hashtable From {
                                 {"個体NO", "Individual NO" & vbCrLf & "(個体NO)"},
                                 {"判定日付・時間", "Judgment date・time" & vbCrLf & "(判定日付・時間)"},
@@ -17,14 +20,13 @@
     Private Const CONST_SYSTEM_NAME As String = "成形実績明細画面"
     Private Const FORM_NAME As String = "Molding achievement reference details(成形実績参照詳細)"
 
-    Dim gridCells As DataGridViewCellCollection
+    Dim xml As New clsGetSqlXML("SC-K16A.xml", "SC-K16A")
+
 
     ''' <summary>
     ''' 初期表示
     ''' </summary>
     Private Sub SC_K16A_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-        gridCells = SC_K16.gridCells
 
         Me.lblMaster.Text = FORM_NAME
         Me.Text = "[" & Me.Name & "]" & FORM_NAME
@@ -46,11 +48,13 @@
         Me.cmbJudgment.ValueMember = dt.Columns.Item(0).ColumnName
         Me.cmbJudgment.DisplayMember = dt.Columns.Item(1).ColumnName
 
-        Me.txtEquipment.Text = formParameter.Equipment
-        Me.txtProductName.Text = formParameter.ProductName
-        Me.txtMold.Text = formParameter.Mold
-        Me.txtWorkingFrom.Text = formParameter.SearchDateFrom
-        Me.txtWorkingTo.Text = formParameter.SearchDateTo
+        Me.txtEquipment.Text = SC_K16.cmbEquipment.SelectedText
+        Me.txtProductName.Text = SC_K16.cmbProduct.SelectedText
+        Me.txtMold.Text = SC_K16.cmbMold.SelectedText
+        Me.txtWorkingFrom.Text = SC_K16.dtpActualFrom.TextBox1.Text
+        Me.txtWorkingTo.Text = SC_K16.dtpActualTo.TextBox1.Text
+
+        btnSearch.PerformClick()
 
     End Sub
 
@@ -78,36 +82,6 @@
         End If
 
     End Sub
-
-    ''' <summary>
-    ''' 　グリッド用のデータを作成
-    ''' </summary>
-    Private Function createGridData() As DataTable
-        Dim dt As New DataTable
-
-        dt.Columns.Add(New DataColumn(COL_INDIVIDUAL_NO, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_JUDGMENT_DATE_TIME, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_COUNT, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_FAILURE_REASON, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_WORKER, GetType(System.String)))
-        dt.Columns.Add(New DataColumn(COL_KYABI, GetType(System.String)))
-
-        For item As Integer = 0 To 3
-            Dim addRow As DataRow = dt.NewRow
-
-            addRow(COL_INDIVIDUAL_NO) = "個体NO" & item
-            addRow(COL_JUDGMENT_DATE_TIME) = Format(Now, "yyyy/MM/dd HH:mm")
-            addRow(COL_COUNT) = item
-            addRow(COL_FAILURE_REASON) = "不良原因" & item
-            addRow(COL_WORKER) = "作業者" & item
-            addRow(COL_KYABI) = item
-
-            dt.Rows.Add(addRow)
-        Next
-
-        Return dt
-
-    End Function
 
     ''' <summary>
     ''' 　グリッドを設定する
@@ -139,6 +113,8 @@
 
             '横位置
             Select Case col.Name
+                Case COL_JUDGMENT_DATE_TIME
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 Case COL_COUNT
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                 Case Else
@@ -146,13 +122,12 @@
             End Select
         Next
 
-        gridData.Columns(COL_INDIVIDUAL_NO).Width = 100
-        gridData.Columns(COL_JUDGMENT_DATE_TIME).Width = 120
-        gridData.Columns(COL_COUNT).Width = 70
-        gridData.Columns(COL_FAILURE_REASON).Width = 150
-        gridData.Columns(COL_WORKER).Width = 100
-        gridData.Columns(COL_KYABI).Width = 100
-
+        gridData.Columns(COL_INDIVIDUAL_NO).Width = 150
+        gridData.Columns(COL_JUDGMENT_DATE_TIME).Width = 200
+        gridData.Columns(COL_COUNT).Width = 120
+        gridData.Columns(COL_FAILURE_REASON).Width = 450
+        gridData.Columns(COL_WORKER).Width = 150
+        gridData.Columns(COL_KYABI).Width = 140
 
         '複数選択不可
         gridData.MultiSelect = False
@@ -169,6 +144,46 @@
 
         Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
 
-        setGrid(createGridData())
+        Try
+
+            Dim dt As New DataTable
+            Dim strSelect As String
+            Dim sqlFilter As New StringBuilder
+
+            'データベース接続
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                'ビュー
+                strSelect = xml.GetSQL_Str("SELECT_001")
+                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_001"), formParameter.Individual))
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode, sqlFilter.ToString))
+
+                If dt.Rows.Count = 0 Then
+
+                    gridData.Columns.Clear()
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           systemName)
+
+                    Return
+
+                ElseIf dt.Rows.Count > 1000 Then
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
+                           vbExclamation,
+                           systemName)
+
+                End If
+
+                setGrid(dt)
+
+            End If
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
+
     End Sub
 End Class

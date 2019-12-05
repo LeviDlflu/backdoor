@@ -1,6 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Text
-Imports System.Windows.Forms.VisualStyles
+﻿Imports System.Text
 Imports PUCCommon
 
 Public Class SC_K16
@@ -228,17 +226,9 @@ Public Class SC_K16
             If rdoRange.Checked = True Then
                 '作業年月日
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_003"), dtpActualFrom.DateTimePicker1.Text, dtpActualTo.DateTimePicker1.Text))
-                'パラメータ.検索開始日
-                formParameter.SearchDateFrom = dtpActualFrom.DateTimePicker1.Text
-                'パラメータ.検索終了日
-                formParameter.SearchDateTo = dtpActualTo.DateTimePicker1.Text
             Else
                 '作業年月
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_004"), cmbActualMonth.Text))
-                'パラメータ.検索開始日
-                formParameter.SearchDateFrom = cmbActualMonth.Text
-                'パラメータ.検索終了日
-                formParameter.SearchDateTo = cmbActualMonth.Text
             End If
 
             '設備NO
@@ -323,14 +313,13 @@ Public Class SC_K16
         If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex > -1 Then
 
             gridCells = gridData.Rows(e.RowIndex).Cells
-            'パラメータ.品名略称
-            formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
-            'パラメータ.金型
-            formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
-            'パラメータ.設備
-            formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
-            '個体NO
-            formParameter.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
+            If String.IsNullOrEmpty(gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString) Then
+                'パラメータ.個体NO
+                formParameter.Individual = String.Empty
+            Else
+                'パラメータ.個体NO
+                formParameter.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
+            End If
 
             Dim frm As New SC_K16A()
             frm.ShowDialog()
@@ -418,11 +407,11 @@ Public Class SC_K16
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub gridData_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles gridData.CellFormatting
-        If e.ColumnIndex > 4 And e.ColumnIndex < 11 Then
+        If e.ColumnIndex > 5 And e.ColumnIndex < 12 Then
             If IsDBNull(e.Value) = False Then
                 e.Value = Format(e.Value, "####,##")
             End If
-        ElseIf e.ColumnIndex > 10 Then
+        ElseIf e.ColumnIndex > 11 Then
             If IsDBNull(e.Value) = False Then
                 e.Value = Format(e.Value / 100, "##0.00%")
             End If

@@ -67,30 +67,6 @@ Public Class ParentTemplate
         Dim DiviCode As String
 
         ''' <summary>
-        ''' 設備
-        ''' </summary>
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        Dim Equipment As String
-
-        ''' <summary>
-        ''' 金型
-        ''' </summary>
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        Dim Mold As String
-
-        ''' <summary>
-        ''' 検索開始日
-        ''' </summary>
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        Dim SearchDateFrom As String
-
-        ''' <summary>
-        ''' 検索終了日
-        ''' </summary>
-        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
-        Dim SearchDateTo As String
-
-        ''' <summary>
         ''' 個体NO
         ''' </summary>
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>

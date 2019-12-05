@@ -1,0 +1,76 @@
+﻿<?xml version="1.0"?>
+<Configuration>
+  <SC-K16A>
+    <Selects>
+      
+      <!--ビュー-->
+      <SQL ID="SELECT_001">
+        <Text>
+          SELECT
+          個体NO,
+          作業時間 AS 判定日付・時間,
+          数量,
+          判定理由 AS 不良原因,
+          氏名 AS 作業者,
+          キャビ
+          FROM
+          K16A
+          WHERE
+          事業所コード='{0}'
+          {1}
+        </Text>
+      </SQL>
+      
+    </Selects>
+
+    <!--条件-->
+    <Wheres>
+      <SQL ID="WHERE_001">
+        <Text>
+          AND 個体NO = '{0}'
+        </Text>
+      </SQL>
+      <!--<SQL ID="WHERE_002">
+        <Text>
+          AND 受払年月='{0}'
+        </Text>
+      </SQL>-->
+      <SQL ID="WHERE_003">
+        <Text>
+          AND 作業年月日 BETWEEN '{0}' AND '{1}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_004">
+        <Text>
+          AND 作業年月='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_005">
+        <Text>
+          AND 設備NO='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_006">
+        <Text>
+          AND 品種コード='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_007">
+        <Text>
+          AND 金型='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_008">
+        <Text>
+          AND 品名コード='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_009">
+        <Text>
+          AND 品名略称 LIKE '{0}%'
+        </Text>
+      </SQL>
+    </Wheres>
+    
+  </SC-K16A>
+</Configuration>

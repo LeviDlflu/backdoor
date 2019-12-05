@@ -143,8 +143,20 @@
           SUM(不良数) as 不良数,
           SUM(調整数) as 調整数,
           SUM(その他払出) as その他払出,
-          SUM(合格率) as 合格率,
-          SUM(不良率) as 不良率
+          ISNULL(
+          ROUND(
+          CONVERT(FLOAT, SUM(合格数)) / NULLIF(SUM(ショット数), 0) * 100
+          , 2
+          )
+          , 0
+          ) 合格率,
+          ISNULL(
+          ROUND(
+          CONVERT(FLOAT, (SUM(不良数) + SUM(調整数))) / NULLIF(SUM(ショット数), 0) * 100
+          , 2
+          )
+          , 0
+          ) AS 不良率
           FROM
           K16
           WHERE
