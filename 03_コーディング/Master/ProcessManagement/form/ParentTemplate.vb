@@ -67,6 +67,18 @@ Public Class ParentTemplate
         Dim DiviCode As String
 
         ''' <summary>
+        ''' 設備
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim Equipment As String
+
+        ''' <summary>
+        ''' 金型
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim Mold As String
+
+        ''' <summary>
         ''' 個体NO
         ''' </summary>
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>

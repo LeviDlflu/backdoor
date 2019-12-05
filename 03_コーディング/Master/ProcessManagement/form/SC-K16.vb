@@ -314,9 +314,21 @@ Public Class SC_K16
 
             gridCells = gridData.Rows(e.RowIndex).Cells
             If String.IsNullOrEmpty(gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString) Then
+                'パラメータ.設備
+                formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
+                'パラメータ.品名略称
+                formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
+                'パラメータ.金型
+                formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
                 'パラメータ.個体NO
                 formParameter.Individual = String.Empty
             Else
+                'パラメータ.品名略称
+                formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
+                'パラメータ.金型
+                formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
+                'パラメータ.設備
+                formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
                 'パラメータ.個体NO
                 formParameter.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
             End If
