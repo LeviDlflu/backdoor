@@ -90,6 +90,12 @@ Public Class ParentTemplate
         <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
         Dim SearchDateTo As String
 
+        ''' <summary>
+        ''' 個体NO
+        ''' </summary>
+        <MarshalAs(UnmanagedType.ByValTStr, SizeConst:=32)>
+        Dim Individual As String
+
     End Structure
 
     Public Shared formParameter As New Parameter

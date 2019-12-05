@@ -344,7 +344,7 @@ Partial Class SC_K16
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 31)
+        Me.Label45.Location = New System.Drawing.Point(13, 28)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 304
@@ -364,7 +364,7 @@ Partial Class SC_K16
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 10)
+        Me.Label53.Location = New System.Drawing.Point(7, 8)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 295

@@ -48,7 +48,7 @@
 
         Me.txtEquipment.Text = formParameter.Equipment
         Me.txtProductName.Text = formParameter.ProductName
-        Me.txtMoneyType.Text = formParameter.Mold
+        Me.txtMold.Text = formParameter.Mold
         Me.txtWorkingFrom.Text = formParameter.SearchDateFrom
         Me.txtWorkingTo.Text = formParameter.SearchDateTo
 

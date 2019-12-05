@@ -19,10 +19,10 @@ Partial Class SC_Z01A
     'コード エディターを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnDesc = New System.Windows.Forms.Button()
         Me.btnAsc = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -99,14 +99,14 @@ Partial Class SC_Z01A
         Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridData.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridData.EnableHeadersVisualStyles = False
         Me.gridData.Location = New System.Drawing.Point(48, 60)
@@ -120,7 +120,7 @@ Partial Class SC_Z01A
         Me.lblSearchTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(1151, 24)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1171, 24)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(124, 14)
         Me.lblSearchTime.TabIndex = 310
@@ -131,7 +131,7 @@ Partial Class SC_Z01A
         Me.Label65.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(1009, 21)
+        Me.Label65.Location = New System.Drawing.Point(1029, 21)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -142,7 +142,7 @@ Partial Class SC_Z01A
         Me.Label66.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label66.Location = New System.Drawing.Point(1014, 44)
+        Me.Label66.Location = New System.Drawing.Point(1034, 44)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(71, 14)
         Me.Label66.TabIndex = 309
@@ -203,38 +203,38 @@ Partial Class SC_Z01A
         Me.gridDataList.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.gridDataList.BackgroundColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.gridDataList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.gridDataList.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.gridDataList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.gridDataList.Cursor = System.Windows.Forms.Cursors.Default
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.gridDataList.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.gridDataList.DefaultCellStyle = DataGridViewCellStyle7
         Me.gridDataList.EnableHeadersVisualStyles = False
         Me.gridDataList.Location = New System.Drawing.Point(611, 129)
         Me.gridDataList.MultiSelect = False
         Me.gridDataList.Name = "gridDataList"
         Me.gridDataList.ReadOnly = True
         Me.gridDataList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        DataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle12.Padding = New System.Windows.Forms.Padding(1)
-        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.gridDataList.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle8.Padding = New System.Windows.Forms.Padding(1)
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.gridDataList.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.gridDataList.RowHeadersVisible = False
         Me.gridDataList.RowTemplate.Height = 21
         Me.gridDataList.Size = New System.Drawing.Size(683, 55)
@@ -366,7 +366,7 @@ Partial Class SC_Z01A
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 30)
+        Me.Label45.Location = New System.Drawing.Point(13, 28)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 303
@@ -376,7 +376,7 @@ Partial Class SC_Z01A
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 10)
+        Me.Label53.Location = New System.Drawing.Point(7, 8)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 299

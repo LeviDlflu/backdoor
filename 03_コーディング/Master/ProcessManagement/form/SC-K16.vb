@@ -20,10 +20,11 @@ Public Class SC_K16
                                 {"不良率", "Failure rate" & vbCrLf & "(不良率)"}
                             }
     Private Const COL_DETAILS As String = "詳細"
+    Private Const COL_INDIVIDUAL As String = "区分個体NO"
     Private Const COL_EQUIPMENT As String = "設備"
     Private Const COL_GOODS_ABBREVIATION As String = "品名略称"
     Private Const COL_CUSTOMER_PART_NUMBER As String = "客先部品番号"
-    Private Const COL_MONEY_TYPE As String = "金型"
+    Private Const COL_MOLD As String = "金型"
     Private Const COL_INSTRUCTION_NUMBER As String = "指示数"
     Private Const COL_SHOTS_NUMBER As String = "ショット数"
     Private Const COL_PASSING_NUMBER As String = "合格数"
@@ -139,6 +140,7 @@ Public Class SC_K16
         gridData.Columns.Add(btn)
 
         For Each col As DataColumn In dtData.Columns
+
             Dim addCol As New DataGridViewTextBoxColumn()
             addCol.DataPropertyName = col.ColumnName
             If headerName(col.ColumnName) IsNot Nothing Then
@@ -147,6 +149,11 @@ Public Class SC_K16
                 addCol.HeaderText = col.ColumnName
             End If
             addCol.Name = col.ColumnName
+
+            If col.ColumnName.Equals(COL_INDIVIDUAL) Then
+                addCol.Visible = False
+            End If
+
             gridData.Columns.Add(addCol)
         Next
 
@@ -174,7 +181,7 @@ Public Class SC_K16
             Select Case col.Name
                 Case COL_EQUIPMENT, COL_GOODS_ABBREVIATION, COL_CUSTOMER_PART_NUMBER
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                Case COL_MONEY_TYPE
+                Case COL_MOLD
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
                 Case Else
                     col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
@@ -194,7 +201,7 @@ Public Class SC_K16
         gridData.Columns(COL_EQUIPMENT).Width = 120
         gridData.Columns(COL_GOODS_ABBREVIATION).Width = 185
         gridData.Columns(COL_CUSTOMER_PART_NUMBER).Width = 110
-        gridData.Columns(COL_MONEY_TYPE).Width = 60
+        gridData.Columns(COL_MOLD).Width = 60
         gridData.Columns(COL_INSTRUCTION_NUMBER).Width = 85
         gridData.Columns(COL_SHOTS_NUMBER).Width = 85
         gridData.Columns(COL_PASSING_NUMBER).Width = 85
@@ -319,9 +326,11 @@ Public Class SC_K16
             'パラメータ.品名略称
             formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
             'パラメータ.金型
-            formParameter.Mold = gridData.CurrentRow.Cells(COL_MONEY_TYPE).Value.ToString
+            formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
             'パラメータ.設備
             formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
+            '個体NO
+            formParameter.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
 
             Dim frm As New SC_K16A()
             frm.ShowDialog()

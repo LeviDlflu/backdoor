@@ -146,9 +146,10 @@ Partial Class SC_Z01
         '
         'lblSearchTime
         '
+        Me.lblSearchTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(1163, 19)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1182, 24)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(124, 14)
         Me.lblSearchTime.TabIndex = 310
@@ -157,9 +158,10 @@ Partial Class SC_Z01
         '
         'Label65
         '
+        Me.Label65.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(1021, 17)
+        Me.Label65.Location = New System.Drawing.Point(1040, 22)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -167,9 +169,10 @@ Partial Class SC_Z01
         '
         'Label66
         '
+        Me.Label66.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label66.Location = New System.Drawing.Point(1029, 40)
+        Me.Label66.Location = New System.Drawing.Point(1048, 45)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(71, 14)
         Me.Label66.TabIndex = 309
@@ -509,7 +512,7 @@ Partial Class SC_Z01
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 30)
+        Me.Label45.Location = New System.Drawing.Point(13, 28)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 303
@@ -519,7 +522,7 @@ Partial Class SC_Z01
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 10)
+        Me.Label53.Location = New System.Drawing.Point(7, 8)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 299

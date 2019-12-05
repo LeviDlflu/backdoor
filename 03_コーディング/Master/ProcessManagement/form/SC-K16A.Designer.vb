@@ -22,7 +22,7 @@ Partial Class SC_K16A
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SC_K16A))
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.txtMoneyType = New System.Windows.Forms.TextBox()
+        Me.txtMold = New System.Windows.Forms.TextBox()
         Me.txtProductName = New System.Windows.Forms.TextBox()
         Me.txtEquipment = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
@@ -72,7 +72,7 @@ Partial Class SC_K16A
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel4.Controls.Add(Me.txtWorkingTo)
         Me.Panel4.Controls.Add(Me.txtWorkingFrom)
-        Me.Panel4.Controls.Add(Me.txtMoneyType)
+        Me.Panel4.Controls.Add(Me.txtMold)
         Me.Panel4.Controls.Add(Me.txtProductName)
         Me.Panel4.Controls.Add(Me.txtEquipment)
         Me.Panel4.Controls.Add(Me.Label41)
@@ -94,21 +94,21 @@ Partial Class SC_K16A
         Me.Panel4.Size = New System.Drawing.Size(1353, 224)
         Me.Panel4.TabIndex = 297
         '
-        'txtMoneyType
+        'txtMold
         '
-        Me.txtMoneyType.BackColor = System.Drawing.SystemColors.Control
-        Me.txtMoneyType.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtMoneyType.Location = New System.Drawing.Point(899, 170)
-        Me.txtMoneyType.Name = "txtMoneyType"
-        Me.txtMoneyType.ReadOnly = True
-        Me.txtMoneyType.Size = New System.Drawing.Size(138, 21)
-        Me.txtMoneyType.TabIndex = 335
+        Me.txtMold.BackColor = System.Drawing.SystemColors.Control
+        Me.txtMold.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.txtMold.Location = New System.Drawing.Point(922, 170)
+        Me.txtMold.Name = "txtMold"
+        Me.txtMold.ReadOnly = True
+        Me.txtMold.Size = New System.Drawing.Size(138, 21)
+        Me.txtMold.TabIndex = 335
         '
         'txtProductName
         '
         Me.txtProductName.BackColor = System.Drawing.SystemColors.Control
         Me.txtProductName.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtProductName.Location = New System.Drawing.Point(506, 170)
+        Me.txtProductName.Location = New System.Drawing.Point(520, 170)
         Me.txtProductName.Name = "txtProductName"
         Me.txtProductName.ReadOnly = True
         Me.txtProductName.Size = New System.Drawing.Size(362, 21)
@@ -132,7 +132,7 @@ Partial Class SC_K16A
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(74, 14)
         Me.Label41.TabIndex = 331
-        Me.Label41.Text = "Work data"
+        Me.Label41.Text = "Work date"
         '
         'Label56
         '
@@ -157,7 +157,7 @@ Partial Class SC_K16A
         '
         Me.Label36.AutoSize = True
         Me.Label36.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Label36.Location = New System.Drawing.Point(896, 135)
+        Me.Label36.Location = New System.Drawing.Point(919, 135)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(38, 14)
         Me.Label36.TabIndex = 329
@@ -167,7 +167,7 @@ Partial Class SC_K16A
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label39.Location = New System.Drawing.Point(896, 153)
+        Me.Label39.Location = New System.Drawing.Point(919, 153)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(43, 14)
         Me.Label39.TabIndex = 330
@@ -177,7 +177,7 @@ Partial Class SC_K16A
         '
         Me.Label59.AutoSize = True
         Me.Label59.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label59.Location = New System.Drawing.Point(503, 153)
+        Me.Label59.Location = New System.Drawing.Point(517, 153)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(43, 14)
         Me.Label59.TabIndex = 321
@@ -187,7 +187,7 @@ Partial Class SC_K16A
         '
         Me.Label60.AutoSize = True
         Me.Label60.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.Label60.Location = New System.Drawing.Point(503, 135)
+        Me.Label60.Location = New System.Drawing.Point(517, 135)
         Me.Label60.Name = "Label60"
         Me.Label60.Size = New System.Drawing.Size(61, 14)
         Me.Label60.TabIndex = 320
@@ -240,7 +240,7 @@ Partial Class SC_K16A
         Me.cmbJudgment.FormattingEnabled = True
         Me.cmbJudgment.Location = New System.Drawing.Point(30, 101)
         Me.cmbJudgment.Name = "cmbJudgment"
-        Me.cmbJudgment.Size = New System.Drawing.Size(165, 21)
+        Me.cmbJudgment.Size = New System.Drawing.Size(101, 21)
         Me.cmbJudgment.TabIndex = 296
         '
         'Label53
@@ -249,9 +249,9 @@ Partial Class SC_K16A
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
         Me.Label53.Location = New System.Drawing.Point(7, 8)
         Me.Label53.Name = "Label53"
-        Me.Label53.Size = New System.Drawing.Size(162, 19)
+        Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 295
-        Me.Label53.Text = "Search condition"
+        Me.Label53.Text = "Search criteria"
         '
         'Label54
         '
@@ -386,7 +386,7 @@ Partial Class SC_K16A
 
     Friend WithEvents btnSearch As Button
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents txtMoneyType As TextBox
+    Friend WithEvents txtMold As TextBox
     Friend WithEvents txtProductName As TextBox
     Friend WithEvents txtEquipment As TextBox
     Friend WithEvents Label41 As Label
