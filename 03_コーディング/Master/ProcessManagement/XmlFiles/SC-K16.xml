@@ -165,18 +165,6 @@
           作業年月 DESC
         </Text>
       </SQL>
-
-      <!--工程マスタ-->
-      <SQL ID="SELECT_008">
-        <Text>
-          SELECT
-          (大工程コード+ ':' +工程略称) AS 工程略称
-          FROM
-          工程マスタ
-          WHERE
-          大工程コード='10'
-        </Text>
-      </SQL>
       
     </Selects>
 

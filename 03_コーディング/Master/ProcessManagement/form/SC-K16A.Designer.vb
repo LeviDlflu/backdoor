@@ -24,12 +24,10 @@ Partial Class SC_K16A
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.txtMoneyType = New System.Windows.Forms.TextBox()
         Me.txtProductName = New System.Windows.Forms.TextBox()
-        Me.txtProcess = New System.Windows.Forms.TextBox()
+        Me.txtEquipment = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
-        Me.dtpWorkingTo = New System.Windows.Forms.DateTimePicker()
-        Me.dtpWorkingFrom = New System.Windows.Forms.DateTimePicker()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
         Me.Label59 = New System.Windows.Forms.Label()
@@ -48,6 +46,8 @@ Partial Class SC_K16A
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
+        Me.txtWorkingFrom = New System.Windows.Forms.TextBox()
+        Me.txtWorkingTo = New System.Windows.Forms.TextBox()
         Me.Panel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,14 +70,14 @@ Partial Class SC_K16A
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.txtWorkingTo)
+        Me.Panel4.Controls.Add(Me.txtWorkingFrom)
         Me.Panel4.Controls.Add(Me.txtMoneyType)
         Me.Panel4.Controls.Add(Me.txtProductName)
-        Me.Panel4.Controls.Add(Me.txtProcess)
+        Me.Panel4.Controls.Add(Me.txtEquipment)
         Me.Panel4.Controls.Add(Me.Label41)
         Me.Panel4.Controls.Add(Me.Label56)
         Me.Panel4.Controls.Add(Me.Label42)
-        Me.Panel4.Controls.Add(Me.dtpWorkingTo)
-        Me.Panel4.Controls.Add(Me.dtpWorkingFrom)
         Me.Panel4.Controls.Add(Me.Label36)
         Me.Panel4.Controls.Add(Me.Label39)
         Me.Panel4.Controls.Add(Me.Label59)
@@ -96,36 +96,33 @@ Partial Class SC_K16A
         '
         'txtMoneyType
         '
-        Me.txtMoneyType.BackColor = System.Drawing.Color.White
-        Me.txtMoneyType.Enabled = False
+        Me.txtMoneyType.BackColor = System.Drawing.SystemColors.Control
         Me.txtMoneyType.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtMoneyType.Location = New System.Drawing.Point(900, 177)
+        Me.txtMoneyType.Location = New System.Drawing.Point(899, 170)
         Me.txtMoneyType.Name = "txtMoneyType"
         Me.txtMoneyType.ReadOnly = True
-        Me.txtMoneyType.Size = New System.Drawing.Size(54, 21)
+        Me.txtMoneyType.Size = New System.Drawing.Size(138, 21)
         Me.txtMoneyType.TabIndex = 335
         '
         'txtProductName
         '
-        Me.txtProductName.BackColor = System.Drawing.Color.White
-        Me.txtProductName.Enabled = False
+        Me.txtProductName.BackColor = System.Drawing.SystemColors.Control
         Me.txtProductName.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtProductName.Location = New System.Drawing.Point(505, 178)
+        Me.txtProductName.Location = New System.Drawing.Point(506, 170)
         Me.txtProductName.Name = "txtProductName"
         Me.txtProductName.ReadOnly = True
         Me.txtProductName.Size = New System.Drawing.Size(362, 21)
         Me.txtProductName.TabIndex = 334
         '
-        'txtProcess
+        'txtEquipment
         '
-        Me.txtProcess.BackColor = System.Drawing.Color.White
-        Me.txtProcess.Enabled = False
-        Me.txtProcess.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtProcess.Location = New System.Drawing.Point(319, 176)
-        Me.txtProcess.Name = "txtProcess"
-        Me.txtProcess.ReadOnly = True
-        Me.txtProcess.Size = New System.Drawing.Size(154, 21)
-        Me.txtProcess.TabIndex = 333
+        Me.txtEquipment.BackColor = System.Drawing.SystemColors.Control
+        Me.txtEquipment.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.txtEquipment.Location = New System.Drawing.Point(318, 171)
+        Me.txtEquipment.Name = "txtEquipment"
+        Me.txtEquipment.ReadOnly = True
+        Me.txtEquipment.Size = New System.Drawing.Size(154, 21)
+        Me.txtEquipment.TabIndex = 333
         '
         'Label41
         '
@@ -140,7 +137,7 @@ Partial Class SC_K16A
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(150, 181)
+        Me.Label56.Location = New System.Drawing.Point(140, 174)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(21, 14)
         Me.Label56.TabIndex = 278
@@ -155,26 +152,6 @@ Partial Class SC_K16A
         Me.Label42.Size = New System.Drawing.Size(57, 14)
         Me.Label42.TabIndex = 332
         Me.Label42.Text = "(作業日)"
-        '
-        'dtpWorkingTo
-        '
-        Me.dtpWorkingTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dtpWorkingTo.CustomFormat = "yyyy/MM/dd"
-        Me.dtpWorkingTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpWorkingTo.Location = New System.Drawing.Point(172, 176)
-        Me.dtpWorkingTo.Name = "dtpWorkingTo"
-        Me.dtpWorkingTo.Size = New System.Drawing.Size(116, 21)
-        Me.dtpWorkingTo.TabIndex = 277
-        '
-        'dtpWorkingFrom
-        '
-        Me.dtpWorkingFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.dtpWorkingFrom.CustomFormat = "yyyy/MM/dd"
-        Me.dtpWorkingFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpWorkingFrom.Location = New System.Drawing.Point(31, 176)
-        Me.dtpWorkingFrom.Name = "dtpWorkingFrom"
-        Me.dtpWorkingFrom.Size = New System.Drawing.Size(116, 21)
-        Me.dtpWorkingFrom.TabIndex = 276
         '
         'Label36
         '
@@ -200,7 +177,7 @@ Partial Class SC_K16A
         '
         Me.Label59.AutoSize = True
         Me.Label59.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label59.Location = New System.Drawing.Point(506, 157)
+        Me.Label59.Location = New System.Drawing.Point(503, 153)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(43, 14)
         Me.Label59.TabIndex = 321
@@ -222,9 +199,9 @@ Partial Class SC_K16A
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label37.Location = New System.Drawing.Point(315, 135)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(61, 14)
+        Me.Label37.Size = New System.Drawing.Size(77, 14)
         Me.Label37.TabIndex = 301
-        Me.Label37.Text = "Process"
+        Me.Label37.Text = "Equipment"
         '
         'Label43
         '
@@ -234,7 +211,7 @@ Partial Class SC_K16A
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(43, 14)
         Me.Label43.TabIndex = 306
-        Me.Label43.Text = "(工程)"
+        Me.Label43.Text = "(設備)"
         '
         'Label44
         '
@@ -314,14 +291,15 @@ Partial Class SC_K16A
         Me.gridData.Name = "gridData"
         Me.gridData.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.[Single]
         Me.gridData.RowTemplate.Height = 23
-        Me.gridData.Size = New System.Drawing.Size(1002, 249)
+        Me.gridData.Size = New System.Drawing.Size(1272, 249)
         Me.gridData.TabIndex = 312
         '
         'lblSearchTime
         '
+        Me.lblSearchTime.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblSearchTime.AutoSize = True
         Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.lblSearchTime.Location = New System.Drawing.Point(915, 24)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1185, 24)
         Me.lblSearchTime.Name = "lblSearchTime"
         Me.lblSearchTime.Size = New System.Drawing.Size(124, 14)
         Me.lblSearchTime.TabIndex = 310
@@ -329,9 +307,10 @@ Partial Class SC_K16A
         '
         'Label65
         '
+        Me.Label65.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(773, 21)
+        Me.Label65.Location = New System.Drawing.Point(1043, 21)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -339,9 +318,10 @@ Partial Class SC_K16A
         '
         'Label66
         '
+        Me.Label66.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label66.AutoSize = True
         Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.Label66.Location = New System.Drawing.Point(777, 44)
+        Me.Label66.Location = New System.Drawing.Point(1047, 44)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(71, 14)
         Me.Label66.TabIndex = 309
@@ -366,6 +346,22 @@ Partial Class SC_K16A
         Me.Label40.Size = New System.Drawing.Size(97, 19)
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
+        '
+        'txtWorkingFrom
+        '
+        Me.txtWorkingFrom.Location = New System.Drawing.Point(31, 170)
+        Me.txtWorkingFrom.Name = "txtWorkingFrom"
+        Me.txtWorkingFrom.ReadOnly = True
+        Me.txtWorkingFrom.Size = New System.Drawing.Size(100, 21)
+        Me.txtWorkingFrom.TabIndex = 336
+        '
+        'txtWorkingTo
+        '
+        Me.txtWorkingTo.Location = New System.Drawing.Point(167, 170)
+        Me.txtWorkingTo.Name = "txtWorkingTo"
+        Me.txtWorkingTo.ReadOnly = True
+        Me.txtWorkingTo.Size = New System.Drawing.Size(100, 21)
+        Me.txtWorkingTo.TabIndex = 336
         '
         'SC_K16A
         '
@@ -392,12 +388,10 @@ Partial Class SC_K16A
     Friend WithEvents Panel4 As Panel
     Friend WithEvents txtMoneyType As TextBox
     Friend WithEvents txtProductName As TextBox
-    Friend WithEvents txtProcess As TextBox
+    Friend WithEvents txtEquipment As TextBox
     Friend WithEvents Label41 As Label
     Friend WithEvents Label56 As Label
     Friend WithEvents Label42 As Label
-    Friend WithEvents dtpWorkingTo As DateTimePicker
-    Friend WithEvents dtpWorkingFrom As DateTimePicker
     Friend WithEvents Label36 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents Label59 As Label
@@ -416,4 +410,6 @@ Partial Class SC_K16A
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label
     Friend WithEvents Label40 As Label
+    Friend WithEvents txtWorkingTo As TextBox
+    Friend WithEvents txtWorkingFrom As TextBox
 End Class

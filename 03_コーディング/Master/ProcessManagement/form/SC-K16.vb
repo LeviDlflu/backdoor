@@ -65,15 +65,6 @@ Public Class SC_K16
             'データベース接続
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                '工程：パラメータ用
-                strSelect = xml.GetSQL_Str("SELECT_008")
-                dt = clsSQLServer.GetDataTable(strSelect)
-
-                If dt.Rows.Count > 0 AndAlso Not String.IsNullOrEmpty(dt.Rows(0).Item(0).ToString) Then
-                    'パラメータ.工程
-                    formParameter.Process = dt.Rows(0).Item(0).ToString
-                End If
-
                 '実績月
                 strSelect = xml.GetSQL_Str("SELECT_007")
                 dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode))
@@ -329,6 +320,8 @@ Public Class SC_K16
             formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
             'パラメータ.金型
             formParameter.Mold = gridData.CurrentRow.Cells(COL_MONEY_TYPE).Value.ToString
+            'パラメータ.設備
+            formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
 
             Dim frm As New SC_K16A()
             frm.ShowDialog()

@@ -5,7 +5,7 @@
                                 {"数量", "Count" & vbCrLf & "(数量)"},
                                 {"不良原因", "Failure reason" & vbCrLf & "(不良原因)"},
                                 {"作業者", "Worker" & vbCrLf & "(作業者)"},
-                                {"キャビ", "Kyabi" & vbCrLf & "(キャビ)"}
+                                {"キャビ", "Caviar" & vbCrLf & "(キャビ)"}
                             }
     Private Const COL_INDIVIDUAL_NO As String = "個体NO"
     Private Const COL_JUDGMENT_DATE_TIME As String = "判定日付・時間"
@@ -46,11 +46,11 @@
         Me.cmbJudgment.ValueMember = dt.Columns.Item(0).ColumnName
         Me.cmbJudgment.DisplayMember = dt.Columns.Item(1).ColumnName
 
-        Me.txtProcess.Text = formParameter.Process
+        Me.txtEquipment.Text = formParameter.Equipment
         Me.txtProductName.Text = formParameter.ProductName
         Me.txtMoneyType.Text = formParameter.Mold
-        Me.dtpWorkingFrom.Value = formParameter.SearchDateFrom
-        Me.dtpWorkingTo.Value = formParameter.SearchDateTo
+        Me.txtWorkingFrom.Text = formParameter.SearchDateFrom
+        Me.txtWorkingTo.Text = formParameter.SearchDateTo
 
     End Sub
 
