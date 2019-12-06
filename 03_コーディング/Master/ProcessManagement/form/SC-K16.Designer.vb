@@ -490,14 +490,12 @@ Partial Class SC_K16
     Friend WithEvents btnExcel As Button
     Friend WithEvents btnSearch As Button
     Friend WithEvents Panel4 As Panel
-    Friend WithEvents cmbMold As ComboBox
     Friend WithEvents Label36 As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents Label35 As Label
     Friend WithEvents Label64 As Label
     Friend WithEvents chkSimilar As CheckBox
     Friend WithEvents Label59 As Label
-    Friend WithEvents cmbProduct As ComboBox
     Friend WithEvents Label60 As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label56 As Label
@@ -505,12 +503,10 @@ Partial Class SC_K16
     Friend WithEvents rdoRange As RadioButton
     Friend WithEvents Label55 As Label
     Friend WithEvents Label47 As Label
-    Friend WithEvents cmbVariety As ComboBox
     Friend WithEvents Label37 As Label
     Friend WithEvents Label43 As Label
     Friend WithEvents Label44 As Label
     Friend WithEvents Label45 As Label
-    Friend WithEvents cmbEquipment As ComboBox
     Friend WithEvents Label53 As Label
     Friend WithEvents Label54 As Label
     Friend WithEvents Panel1 As Panel
@@ -523,4 +519,8 @@ Partial Class SC_K16
     Friend WithEvents dtpActualFrom As CustomDateTimePicker
     Friend WithEvents dtpActualTo As CustomDateTimePicker
     Friend WithEvents cmbActualMonth As ComboBox
+    Friend WithEvents cmbMold As ComboBox
+    Friend WithEvents cmbProduct As ComboBox
+    Friend WithEvents cmbVariety As ComboBox
+    Friend WithEvents cmbEquipment As ComboBox
 End Class

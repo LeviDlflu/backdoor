@@ -35,6 +35,7 @@ Public Class SC_K16
     Public gridCells As DataGridViewCellCollection
 
     Dim xml As New clsGetSqlXML("SC-K16.xml", "SC-K16")
+    Dim sqlFilter As StringBuilder
 
     ''' <summary>
     ''' 初期表示
@@ -98,6 +99,7 @@ Public Class SC_K16
         Finally
             clsSQLServer.Disconnect()
         End Try
+
     End Sub
 
 
@@ -122,6 +124,7 @@ Public Class SC_K16
                                 e.InheritedRowStyle.ForeColor,
                                 TextFormatFlags.Right Or TextFormatFlags.VerticalCenter)
         End If
+
     End Sub
 
     ''' <summary>
@@ -135,6 +138,7 @@ Public Class SC_K16
         btn.Name = COL_DETAILS
         btn.HeaderText = headerName(COL_DETAILS)
         btn.DefaultCellStyle.NullValue = COL_DETAILS
+
         gridData.Columns.Add(btn)
 
         For Each col As DataColumn In dtData.Columns
@@ -193,6 +197,7 @@ Public Class SC_K16
         '合計
         Dim dgvRow As DataGridViewRow = gridData.Rows(gridData.Rows.Count - 1)
         dgvRow.DefaultCellStyle.BackColor = Color.LightCyan
+
         dgvRow.Cells(COL_GOODS_ABBREVIATION).Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 
         gridData.Columns(COL_DETAILS).Width = 55
@@ -218,12 +223,11 @@ Public Class SC_K16
         Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
         Me.lblSearchTime.Visible = True
 
-        Dim sqlFilter As New StringBuilder
-
+        sqlFilter = New StringBuilder
         Try
 
             '範囲検索の場合
-            If rdoRange.Checked = True Then
+            If rdoRange.Checked Then
                 '作業年月日
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_003"), dtpActualFrom.DateTimePicker1.Text, dtpActualTo.DateTimePicker1.Text))
             Else
@@ -232,24 +236,28 @@ Public Class SC_K16
             End If
 
             '設備NO
-            If String.IsNullOrWhiteSpace(cmbEquipment.SelectedValue) = False Then
+            If Not String.IsNullOrWhiteSpace(cmbEquipment.SelectedValue) Then
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_005"), cmbEquipment.SelectedValue))
             End If
 
             '品種コード
-            If String.IsNullOrWhiteSpace(cmbVariety.SelectedValue) = False Then
+            If Not String.IsNullOrWhiteSpace(cmbVariety.SelectedValue) Then
                 sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_006"), cmbVariety.SelectedValue))
 
                 '品名
-                If String.IsNullOrWhiteSpace(cmbProduct.SelectedValue) = False And chkSimilar.Checked = True Then
-
-                    Dim strProduct As String() = cmbProduct.Text.Split(":")
+                If String.IsNullOrEmpty(cmbProduct.SelectedValue) Then
+                    If Not String.IsNullOrEmpty(cmbProduct.Text) Then
+                        If chkSimilar.Checked Then
+                            '品名略称
+                            sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_009"), cmbProduct.Text))
+                        Else
+                            '品名略称
+                            sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_010"), cmbProduct.Text))
+                        End If
+                    End If
+                Else
                     '品名コード
-                    sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_008"), strProduct(1)))
-
-                    '品名略称
-                    sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_009"), strProduct(0)))
-
+                    sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_008"), cmbProduct.SelectedValue))
                 End If
             End If
 
@@ -310,32 +318,46 @@ Public Class SC_K16
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
-        If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex > -1 Then
+        If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS AndAlso e.RowIndex > -1 Then
 
             gridCells = gridData.Rows(e.RowIndex).Cells
-            If String.IsNullOrEmpty(gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString) Then
-                'パラメータ.設備
-                formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
-                'パラメータ.品名略称
-                formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
-                'パラメータ.金型
-                formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
-                'パラメータ.個体NO
-                formParameter.Individual = String.Empty
-            Else
-                'パラメータ.品名略称
-                formParameter.ProductName = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
-                'パラメータ.金型
-                formParameter.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
-                'パラメータ.設備
-                formParameter.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
-                'パラメータ.個体NO
-                formParameter.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
-            End If
 
             Dim frm As New SC_K16A()
+
+            If String.IsNullOrEmpty(gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString) Then
+                'パラメータ.設備
+                frm.Equipment = cmbEquipment.Text
+                'パラメータ.品名略称
+                frm.Product = cmbProduct.Text
+                'パラメータ.金型
+                frm.Mold = cmbMold.Text
+                'パラメータ.個体NO
+                frm.Individual = String.Empty
+                'パラメータ.検索条件
+                frm.WhereInfo = sqlFilter.ToString
+            Else
+                'パラメータ.品名略称
+                frm.Product = gridData.CurrentRow.Cells(COL_GOODS_ABBREVIATION).Value.ToString
+                'パラメータ.金型
+                frm.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
+                'パラメータ.設備
+                frm.Equipment = gridData.CurrentRow.Cells(COL_EQUIPMENT).Value.ToString
+                'パラメータ.個体NO
+                frm.Individual = gridData.CurrentRow.Cells(COL_INDIVIDUAL).Value.ToString
+                'パラメータ.検索条件
+                frm.WhereInfo = String.Empty
+            End If
+
+            If rdoRange.Checked Then
+                frm.WorkingFrom = dtpActualFrom.TextBox1.Text
+                frm.WorkingTo = dtpActualTo.TextBox1.Text
+            Else
+                frm.WorkingFrom = cmbActualMonth.SelectedValue
+                frm.WorkingTo = cmbActualMonth.SelectedValue
+            End If
+
             frm.ShowDialog()
-            Me.Show()
+            'Me.Show()
         End If
     End Sub
 
@@ -395,9 +417,10 @@ Public Class SC_K16
                     Me.cmbProduct.ValueMember = dt.Columns.Item(0).ColumnName
                     Me.cmbProduct.DisplayMember = dt.Columns.Item(1).ColumnName
 
-                    Me.cmbProduct.Enabled = True
-
                     clsSQLServer.Disconnect()
+
+                    Me.cmbProduct.Enabled = True
+                    Me.chkSimilar.Enabled = True
 
                 End If
 
@@ -409,6 +432,7 @@ Public Class SC_K16
         Else
             Me.cmbProduct.DataSource = Nothing
             Me.cmbProduct.Enabled = False
+            Me.chkSimilar.Enabled = False
         End If
 
     End Sub

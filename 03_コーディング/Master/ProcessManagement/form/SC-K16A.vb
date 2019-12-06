@@ -21,7 +21,77 @@ Public Class SC_K16A
     Private Const FORM_NAME As String = "Molding achievement reference details(成形実績参照詳細)"
 
     Dim xml As New clsGetSqlXML("SC-K16A.xml", "SC-K16A")
+    Private searchInfo As String
 
+    '検索条件
+    Public Property WhereInfo() As String
+        Get
+            Return searchInfo
+        End Get
+        Set(ByVal Value As String)
+            searchInfo = Value
+        End Set
+    End Property
+
+    '個体NO
+    Public Property Individual() As String
+        Get
+            Return lblIndividual.Text
+        End Get
+        Set(ByVal Value As String)
+            lblIndividual.Text = Value
+        End Set
+    End Property
+
+    '設備
+    Public Property Equipment() As String
+        Get
+            Return txtEquipment.Text
+        End Get
+        Set(ByVal Value As String)
+            txtEquipment.Text = Value
+        End Set
+    End Property
+
+    '品名
+    Public Property Product() As String
+        Get
+            Return txtProductName.Text
+        End Get
+        Set(ByVal Value As String)
+            txtProductName.Text = Value
+        End Set
+    End Property
+
+    '金型
+    Public Property Mold() As String
+        Get
+            Return txtMold.Text
+        End Get
+        Set(ByVal Value As String)
+            txtMold.Text = Value
+        End Set
+    End Property
+
+    '検索開始日
+    Public Property WorkingFrom() As String
+        Get
+            Return txtWorkingFrom.Text
+        End Get
+        Set(ByVal Value As String)
+            txtWorkingFrom.Text = Value
+        End Set
+    End Property
+
+    '検索終了日
+    Public Property WorkingTo() As String
+        Get
+            Return txtWorkingTo.Text
+        End Get
+        Set(ByVal Value As String)
+            txtWorkingTo.Text = Value
+        End Set
+    End Property
 
     ''' <summary>
     ''' 初期表示
@@ -39,22 +109,17 @@ Public Class SC_K16A
         dt.Columns.Add("Code", GetType(String))
         dt.Columns.Add("Name", GetType(String))
         '判定
-        dt.Rows.Add("0", "ショット")
-        dt.Rows.Add("1", "合格")
-        dt.Rows.Add("2", "不良")
-        dt.Rows.Add("3", "調整")
+        dt.Rows.Add("6", "ショット")
+        dt.Rows.Add("3", "合格")
+        dt.Rows.Add("4", "不良")
+        dt.Rows.Add("C", "調整")
 
         Me.cmbJudgment.DataSource = dt
         Me.cmbJudgment.ValueMember = dt.Columns.Item(0).ColumnName
         Me.cmbJudgment.DisplayMember = dt.Columns.Item(1).ColumnName
 
-        Me.txtEquipment.Text = SC_K16.cmbEquipment.SelectedText
-        Me.txtProductName.Text = SC_K16.cmbProduct.SelectedText
-        Me.txtMold.Text = SC_K16.cmbMold.SelectedText
-        Me.txtWorkingFrom.Text = SC_K16.dtpActualFrom.TextBox1.Text
-        Me.txtWorkingTo.Text = SC_K16.dtpActualTo.TextBox1.Text
-
-        btnSearch.PerformClick()
+        'データを検索する
+        Search(0)
 
     End Sub
 
@@ -141,8 +206,15 @@ Public Class SC_K16A
     ''' 検索ボタン押下
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+        'データを検索する
+        Search(1)
+    End Sub
 
-        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+    ''' <summary>
+    ''' データを検索する
+    ''' </summary>
+    ''' <param name="intPartten">0:画面初期化 1:検索ボタン押下する</param>
+    Private Sub Search(intPartten As Integer)
 
         Try
 
@@ -150,21 +222,32 @@ Public Class SC_K16A
             Dim strSelect As String
             Dim sqlFilter As New StringBuilder
 
+            Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+
             'データベース接続
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
-                'ビュー
-                strSelect = xml.GetSQL_Str("SELECT_001")
-                sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_001"), formParameter.Individual))
-                dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode, sqlFilter.ToString))
+                If String.IsNullOrEmpty(Individual) Then
+                    '検索条件より再検索
+                    strSelect = xml.GetSQL_Str("SELECT_001")
+                    sqlFilter.Append(WhereInfo)
+                Else
+                    'ビュー
+                    strSelect = xml.GetSQL_Str("SELECT_001")
+                    sqlFilter.Append(String.Format(xml.GetSQL_Str("WHERE_001"), Individual))
+                End If
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode, cmbJudgment.SelectedValue, sqlFilter.ToString))
 
                 If dt.Rows.Count = 0 Then
 
                     gridData.Columns.Clear()
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
-                           vbExclamation,
-                           systemName)
+                    If intPartten.Equals(1) Then
+                        '検索ボタン押下する場合
+                        MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                               vbExclamation,
+                               systemName)
+                    End If
 
                     Return
 

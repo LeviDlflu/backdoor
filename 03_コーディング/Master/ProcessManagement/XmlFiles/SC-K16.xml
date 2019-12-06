@@ -122,8 +122,8 @@
           FROM
           K16
           WHERE
-          事業所コード='{0}' AND
-          大工程コード='10'
+          事業所コード='{0}'
+          AND 大工程コード='10'
           {1}
         </Text>
       </SQL>
@@ -227,6 +227,11 @@
       <SQL ID="WHERE_009">
         <Text>
           AND 品名略称 LIKE '{0}%'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_010">
+        <Text>
+          AND 品名略称 = '{0}'
         </Text>
       </SQL>
     </Wheres>

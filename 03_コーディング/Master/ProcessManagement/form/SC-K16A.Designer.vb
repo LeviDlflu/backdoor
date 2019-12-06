@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class SC_K16A
     Inherits ProcessManagement.ParentTemplate
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,11 +17,13 @@ Partial Class SC_K16A
     'メモ: 以下のプロシージャは Windows フォーム デザイナーで必要です。
     'Windows フォーム デザイナーを使用して変更できます。  
     'コード エディターを使って変更しないでください。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SC_K16A))
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.txtWorkingTo = New System.Windows.Forms.TextBox()
+        Me.txtWorkingFrom = New System.Windows.Forms.TextBox()
         Me.txtMold = New System.Windows.Forms.TextBox()
         Me.txtProductName = New System.Windows.Forms.TextBox()
         Me.txtEquipment = New System.Windows.Forms.TextBox()
@@ -46,8 +48,7 @@ Partial Class SC_K16A
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.txtWorkingFrom = New System.Windows.Forms.TextBox()
-        Me.txtWorkingTo = New System.Windows.Forms.TextBox()
+        Me.lblIndividual = New System.Windows.Forms.Label()
         Me.Panel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,6 +71,7 @@ Partial Class SC_K16A
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel4.BackColor = System.Drawing.SystemColors.Window
         Me.Panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel4.Controls.Add(Me.lblIndividual)
         Me.Panel4.Controls.Add(Me.txtWorkingTo)
         Me.Panel4.Controls.Add(Me.txtWorkingFrom)
         Me.Panel4.Controls.Add(Me.txtMold)
@@ -93,6 +95,22 @@ Partial Class SC_K16A
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1353, 224)
         Me.Panel4.TabIndex = 297
+        '
+        'txtWorkingTo
+        '
+        Me.txtWorkingTo.Location = New System.Drawing.Point(167, 170)
+        Me.txtWorkingTo.Name = "txtWorkingTo"
+        Me.txtWorkingTo.ReadOnly = True
+        Me.txtWorkingTo.Size = New System.Drawing.Size(100, 21)
+        Me.txtWorkingTo.TabIndex = 336
+        '
+        'txtWorkingFrom
+        '
+        Me.txtWorkingFrom.Location = New System.Drawing.Point(31, 170)
+        Me.txtWorkingFrom.Name = "txtWorkingFrom"
+        Me.txtWorkingFrom.ReadOnly = True
+        Me.txtWorkingFrom.Size = New System.Drawing.Size(100, 21)
+        Me.txtWorkingFrom.TabIndex = 336
         '
         'txtMold
         '
@@ -347,21 +365,14 @@ Partial Class SC_K16A
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
         '
-        'txtWorkingFrom
+        'lblIndividual
         '
-        Me.txtWorkingFrom.Location = New System.Drawing.Point(31, 170)
-        Me.txtWorkingFrom.Name = "txtWorkingFrom"
-        Me.txtWorkingFrom.ReadOnly = True
-        Me.txtWorkingFrom.Size = New System.Drawing.Size(100, 21)
-        Me.txtWorkingFrom.TabIndex = 336
-        '
-        'txtWorkingTo
-        '
-        Me.txtWorkingTo.Location = New System.Drawing.Point(167, 170)
-        Me.txtWorkingTo.Name = "txtWorkingTo"
-        Me.txtWorkingTo.ReadOnly = True
-        Me.txtWorkingTo.Size = New System.Drawing.Size(100, 21)
-        Me.txtWorkingTo.TabIndex = 336
+        Me.lblIndividual.AutoSize = True
+        Me.lblIndividual.Location = New System.Drawing.Point(1078, 170)
+        Me.lblIndividual.Name = "lblIndividual"
+        Me.lblIndividual.Size = New System.Drawing.Size(0, 14)
+        Me.lblIndividual.TabIndex = 337
+        Me.lblIndividual.Visible = False
         '
         'SC_K16A
         '
@@ -412,4 +423,5 @@ Partial Class SC_K16A
     Friend WithEvents Label40 As Label
     Friend WithEvents txtWorkingTo As TextBox
     Friend WithEvents txtWorkingFrom As TextBox
+    Friend WithEvents lblIndividual As Label
 End Class
