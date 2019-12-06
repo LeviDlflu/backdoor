@@ -26,6 +26,7 @@ Public Class SC_K21
     Private Const COL_ISSUES_QUANTITY As String = "払出数量"
     Private Const COL_REMARKS As String = "備考"
     Private Const COL_PRODUCT_CODE As String = "品名コード"
+    Private Const PRODUCTION_NUMBER As String = "作番"
     Private Const PRODUCT_NAME_PLANT_CODE As String = "品名事業所コード"
     Private Const PACK_PRODUCT_NAME_ABBREVIATION As String = "パック品名略称"
     Private Const DELIVERY_DIVISION As String = "納入区分"
@@ -46,8 +47,6 @@ Public Class SC_K21
         Dim strSelect As String
         Dim dt1 As New DataTable
         Dim dt2 As New DataTable
-
-        init()
 
         Try
             'データベース接続
@@ -211,6 +210,7 @@ Public Class SC_K21
                         If row.Cells("sentaku").Value = True Then
                             insertCount = clsSQLServer.ExecuteQuery(String.Format(insertsql,
                                                                                   businessCode,
+                                                                                  row.Cells(PRODUCTION_NUMBER).Value,
                                                                                   row.Cells(COL_LOT_NO).Value,
                                                                                   row.Cells(COL_PRODUCT_CODE).Value,
                                                                                   row.Cells(PRODUCT_NAME_PLANT_CODE).Value,
@@ -340,14 +340,6 @@ Public Class SC_K21
         btnExcel.Enabled = True
     End Sub
 
-    ''' <summary>
-    ''' 初期化
-    ''' </summary>
-    Private Sub init()
-        Dim type As Type = gridData.GetType()
-        Dim pi As PropertyInfo = type.GetProperty("DoubleBuffered", BindingFlags.Instance Or BindingFlags.NonPublic)
-        pi.SetValue(gridData, True, Nothing)
-    End Sub
 
     ''' <summary>
     ''' 検索条件必須チェック

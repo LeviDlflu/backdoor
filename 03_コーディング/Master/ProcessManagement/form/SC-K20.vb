@@ -37,7 +37,7 @@ Public Class SC_K20
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 '払出区分
-                strSelect = xml.GetSQL_Str("SELECT_001")
+                strSelect = xml.GetSQL_Str("SELECT_003")
                 dt2 = clsSQLServer.GetDataTable(strSelect)
                 Me.cmbDivision.DataSource = dt2
                 Me.cmbDivision.ValueMember = dt2.Columns.Item(0).ColumnName
@@ -51,7 +51,7 @@ Public Class SC_K20
                 Me.cmbTransfer.DisplayMember = dt1.Columns.Item(1).ColumnName
 
                 '工程コード
-                strSelect = xml.GetSQL_Str("SELECT_002")
+                strSelect = xml.GetSQL_Str("SELECT_001")
                 dt1 = clsSQLServer.GetDataTable(strSelect)
                 Me.cmbProcess.DataSource = dt1
                 Me.cmbProcess.ValueMember = dt1.Columns.Item(0).ColumnName
@@ -99,10 +99,11 @@ Public Class SC_K20
             Return
         End If
 
-        selectSql = xml.GetSQL_Str("SELECT_003")
+        selectSql = xml.GetSQL_Str("SELECT_005")
 
         Try
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
                 searchResult = clsSQLServer.GetDataTable(String.Format(selectSql,
                                                                        businessCode,
                                                                        DIVISION,
@@ -128,7 +129,7 @@ Public Class SC_K20
             btnSearch.Enabled = True
             Return
         Else
-            txtProName.Text = searchResult.Rows(0).Item(5)
+            txtProName.Text = searchResult.Rows(0).Item(6)
         End If
 
         cmbIndividual.BackColor = Color.Yellow
@@ -184,12 +185,13 @@ Public Class SC_K20
 
                     insertCount = clsSQLServer.ExecuteQuery(String.Format(insertsql,
                                                                           businessCode,
-                                                                          cmbIndividual.SelectedValue,
                                                                           searchResult.Rows(0).Item(0)，
+                                                                          cmbIndividual.SelectedValue,
                                                                           searchResult.Rows(0).Item(1)，
                                                                           searchResult.Rows(0).Item(2)，
                                                                           searchResult.Rows(0).Item(3)，
                                                                           searchResult.Rows(0).Item(4)，
+                                                                          searchResult.Rows(0).Item(5)，
                                                                           DIVISION,
                                                                           cmbProcess.SelectedValue,
                                                                           cmbDate.SelectedValue,
@@ -215,10 +217,10 @@ Public Class SC_K20
 
                     updateCount = clsSQLServer.ExecuteQuery(String.Format(updatesql,
                                                                           businessCode，
-                                                                          searchResult.Rows(0).Item(1)，
                                                                           searchResult.Rows(0).Item(2)，
                                                                           searchResult.Rows(0).Item(3)，
                                                                           searchResult.Rows(0).Item(4)，
+                                                                          searchResult.Rows(0).Item(5)，
                                                                           DIVISION,
                                                                           CInt（txtQuantity.Text）,
                                                                           SCID,
@@ -391,7 +393,7 @@ Public Class SC_K20
                 'データベース接続
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     '個体NO
-                    Selectsql = xml.GetSQL_Str("SELECT_005")
+                    Selectsql = xml.GetSQL_Str("SELECT_002")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
                                                                        cmbProcess.SelectedValue))
@@ -423,7 +425,7 @@ Public Class SC_K20
                 'データベース接続
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     '個体NO
-                    Selectsql = xml.GetSQL_Str("SELECT_005")
+                    Selectsql = xml.GetSQL_Str("SELECT_002")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
                                                                        cmbProcess.SelectedValue))
@@ -452,7 +454,7 @@ Public Class SC_K20
                 'データベース接続
                 If clsSQLServer.Connect(clsGlobal.ConnectString) Then
                     '個体NO
-                    Selectsql = xml.GetSQL_Str("SELECT_005")
+                    Selectsql = xml.GetSQL_Str("SELECT_002")
                     dt5 = clsSQLServer.GetDataTable(String.Format(Selectsql,
                                                                        DIVISION,
                                                                        cmbProcess.SelectedValue))

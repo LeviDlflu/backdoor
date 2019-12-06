@@ -58,7 +58,7 @@ Partial Class SC_K00A
         Me.btnK15.Name = "btnK15"
         Me.btnK15.Size = New System.Drawing.Size(270, 53)
         Me.btnK15.TabIndex = 8
-        Me.btnK15.Text = "  Achievement reference by period  期間別実績照会(K-15)"
+        Me.btnK15.Text = "  Achievement reference by period   期間別実績照会(K-15)"
         Me.btnK15.UseVisualStyleBackColor = True
         '
         'btnK19
@@ -68,7 +68,7 @@ Partial Class SC_K00A
         Me.btnK19.Name = "btnK19"
         Me.btnK19.Size = New System.Drawing.Size(270, 53)
         Me.btnK19.TabIndex = 5
-        Me.btnK19.Text = "        Achievement management        実績管理(K-19)"
+        Me.btnK19.Text = "        Achievement management          実績管理(K-19)"
         Me.btnK19.UseVisualStyleBackColor = True
         '
         'btnK18
@@ -78,7 +78,7 @@ Partial Class SC_K00A
         Me.btnK18.Name = "btnK18"
         Me.btnK18.Size = New System.Drawing.Size(270, 53)
         Me.btnK18.TabIndex = 4
-        Me.btnK18.Text = "    Assembly progress management    組立進度管理(K-18)"
+        Me.btnK18.Text = "    Assembly progress management     組立進度管理(K-18)"
         Me.btnK18.UseVisualStyleBackColor = True
         '
         'btnK17
@@ -118,7 +118,7 @@ Partial Class SC_K00A
         Me.btnK13.Name = "btnK13"
         Me.btnK13.Size = New System.Drawing.Size(270, 53)
         Me.btnK13.TabIndex = 0
-        Me.btnK13.Text = "            The results on today              当日実績参照(K-13)"
+        Me.btnK13.Text = "           The results on today              当日実績参照(K-13)"
         Me.btnK13.UseVisualStyleBackColor = True
         '
         'SC_K00A

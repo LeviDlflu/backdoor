@@ -16,9 +16,9 @@
 
     End Sub
 
-    ''' <summary>
-    ''' GroupBox設定
-    ''' </summary>
+    '' <summary>
+    '' GroupBox設定
+    '' </summary>
     Private Sub GroupBox2_Paint(sender As Object, e As PaintEventArgs) Handles GroupBox2.Paint
         Dim gBox As GroupBox = sender
         e.Graphics.Clear(gBox.BackColor)

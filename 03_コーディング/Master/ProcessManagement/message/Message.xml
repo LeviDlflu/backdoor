@@ -320,6 +320,15 @@
       <Message ID="W0099">
         <Text>修正内容が更新されていませんため、画面を閉じてよろしいですか？</Text>
       </Message>
+      <Message ID="W1001">
+        <Text>前々月以前のデータは選択できません。</Text>
+      </Message>
+      <Message ID="W1002">
+        <Text>日付範囲の指定に誤りがあります。</Text>
+      </Message>
+      <Message ID="W1003">
+        <Text>日付範囲は最大１ヶ月後です。</Text>
+      </Message>
       <Message ID="W9001">
         <Text>対象レコードを選択してください。</Text>
       </Message>

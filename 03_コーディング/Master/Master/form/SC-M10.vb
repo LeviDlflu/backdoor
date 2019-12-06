@@ -5,22 +5,22 @@ Public Class SC_M10
 
     Dim HEADER_NAME As Hashtable = New Hashtable From {
                              {"選択", "Select" & vbCrLf & "(選択)"},
-                             {"設備NO", "Facility NO" & vbCrLf & "(設備NO)"},
-                             {"設備略称", "Facility abbreviation" & vbCrLf & "(設備略称)"},
-                             {"標準通過工程コード", "Standard passing process code" & vbCrLf & "(標準通過工程コード)"},
+                             {"設備NO", "Equipment NO" & vbCrLf & "(設備NO)"},
+                             {"設備名", "Equipment name" & vbCrLf & "(設備名)"},
+                             {"中工程コード", "Middle_process_code" & vbCrLf & "(中工程コード)"},
                              {"ラインコード", "Line Code" & vbCrLf & "(ラインコード)"},
-                             {"工程コード", "Process code" & vbCrLf & "(工程コード)"},
+                             {"大工程コード", "Large process code" & vbCrLf & "(大工程コード)"},
                              {"表示順序", "Display order" & vbCrLf & "(表示順序)"},
-                             {"自動ラベルフラグ", "Auto label flag" & vbCrLf & "(自動ラベルフラグ)"},
+                             {"自動ラベルフラグ", "Automatic label flag" & vbCrLf & "(自動ラベルフラグ)"},
                              {"備考", "Remarks" & vbCrLf & "(備考)"}
                             }
 
     Private Const COL_SENTAKU As String = "選択"
     Private Const COL_SCODE As String = "設備NO"
-    Private Const COL_SNAME As String = "設備略称"
-    Private Const COL_HKOUTEI As String = "標準通過工程コード"
+    Private Const COL_SNAME As String = "設備名"
+    Private Const COL_HKOUTEI As String = "中工程コード"
     Private Const COL_LINE As String = "ラインコード"
-    Private Const COL_KOUTEI As String = "工程コード"
+    Private Const COL_KOUTEI As String = "大工程コード"
     Private Const COL_ORDER As String = "表示順序"
     Private Const COL_LABEL As String = "自動ラベルフラグ"
     Private Const COL_BIKOU As String = "備考"
@@ -469,15 +469,36 @@ Public Class SC_M10
                     'データを追加
                     Dim sqlstr As String = xml.GetSQL_Str("INSERT_001")
 
+                    Dim ssr = String.Format(sqlstr, "0",
+                                                                txtScode.Text,
+                                                                txtSname.Text,
+                                                                "0",
+                                                                If(cmbCoutei.Text Is String.Empty, DBNull.Value, cmbCoutei.SelectedValue),
+                                                                cmbSkoutei.SelectedValue,
+                                                                If(cmbLine.Text Is String.Empty, DBNull.Value, cmbLine.SelectedValue),
+                                                                If(txtSort.Text Is String.Empty, "NULL", "'" & CInt(txtSort.Text) & "'"),
+                                                                If(cmbLabel.Text Is String.Empty, DBNull.Value, cmbLabel.SelectedValue),
+                                                                txtLabel.Text)
                     clsSQLServer.ExecuteQuery(String.Format(sqlstr, "0",
                                                                 txtScode.Text,
                                                                 txtSname.Text,
+                                                                "0",
+                                                                If(cmbCoutei.Text Is String.Empty, DBNull.Value, cmbCoutei.SelectedValue),
                                                                 cmbSkoutei.SelectedValue,
                                                                 If(cmbLine.Text Is String.Empty, DBNull.Value, cmbLine.SelectedValue),
-                                                                If(cmbCoutei.Text Is String.Empty, DBNull.Value, cmbCoutei.SelectedValue),
-                                                                If(txtSort.Text Is String.Empty, DBNull.Value, CInt(txtSort.Text)),
+                                                                If(txtSort.Text Is String.Empty, "NULL", "'" & CInt(txtSort.Text) & "'"),
                                                                 If(cmbLabel.Text Is String.Empty, DBNull.Value, cmbLabel.SelectedValue),
                                                                 txtLabel.Text))
+
+                    'clsSQLServer.ExecuteQuery(String.Format(sqlstr, "0",
+                    '                                            txtScode.Text,
+                    '                                            txtSname.Text,
+                    '                                            cmbSkoutei.SelectedValue,
+                    '                                            If(cmbLine.Text Is String.Empty, DBNull.Value, cmbLine.SelectedValue),
+                    '                                            If(cmbCoutei.Text Is String.Empty, DBNull.Value, cmbCoutei.SelectedValue),
+                    '                                            If(txtSort.Text Is String.Empty, DBNull.Value, CInt(txtSort.Text)),
+                    '                                            If(cmbLabel.Text Is String.Empty, DBNull.Value, cmbLabel.SelectedValue),
+                    '                                            txtLabel.Text))
 
                     clsSQLServer.Disconnect()
 
@@ -525,14 +546,59 @@ Public Class SC_M10
 
                             gridCells = gridData.Rows(i).Cells
 
-                            Dim strScode As String = gridCells(COL_SCODE).Value
-                            Dim strSname As String = gridCells(COL_SNAME).Value
-                            Dim strHkoutei As String = gridCells(COL_HKOUTEI).Value
-                            Dim strLine As String = gridCells(COL_LINE).Value
-                            Dim strKoutei As String = gridCells(COL_KOUTEI).Value
-                            Dim strOrder As String = gridCells(COL_ORDER).Value
-                            Dim strLabel As String = gridCells(COL_LABEL).Value
-                            Dim strBikou As String = gridCells(COL_BIKOU).Value
+                            Dim strScode, strSname, strHkoutei, strLine, strKoutei, strLabel, strBikou As String
+                            Dim strOrder
+
+                            If IsDBNull(gridCells(COL_SCODE).Value) Then
+                                strScode = String.Empty
+                            Else
+                                strScode = gridCells(COL_SCODE).Value
+                            End If
+                            If IsDBNull(gridCells(COL_SNAME).Value) Then
+                                strSname = String.Empty
+                            Else
+                                strSname = gridCells(COL_SNAME).Value
+                            End If
+                            If IsDBNull(gridCells(COL_HKOUTEI).Value) Then
+                                strHkoutei = String.Empty
+                            Else
+                                strHkoutei = gridCells(COL_HKOUTEI).Value
+                            End If
+                            If IsDBNull(gridCells(COL_LINE).Value) Then
+                                strLine = String.Empty
+                            Else
+                                strLine = gridCells(COL_LINE).Value
+                            End If
+                            If IsDBNull(gridCells(COL_KOUTEI).Value) Then
+                                strKoutei = String.Empty
+                            Else
+                                strKoutei = gridCells(COL_KOUTEI).Value
+                            End If
+                            If IsDBNull(gridCells(COL_ORDER).Value) Then
+                                strOrder = String.Empty
+                                'strOrder = DBNull.Value
+                            Else
+                                strOrder = gridCells(COL_ORDER).Value
+                            End If
+                            If IsDBNull(gridCells(COL_LABEL).Value) Then
+                                strLabel = String.Empty
+                            Else
+                                strLabel = gridCells(COL_LABEL).Value
+                            End If
+                            If IsDBNull(gridCells(COL_BIKOU).Value) Then
+                                strBikou = String.Empty
+                            Else
+                                strBikou = gridCells(COL_BIKOU).Value
+                            End If
+
+                            'Dim strScode As String = getdbdata(gridCells(COL_SCODE).Value)
+                            'Dim strSname As String = getdbdata(gridCells(COL_SNAME).Value)
+                            'Dim strHkoutei As String = getdbdata(gridCells(COL_HKOUTEI).Value)
+                            'Dim strLine As String = getdbdata(gridCells(COL_LINE).Value)
+                            'Dim strKoutei As String = getdbdata(gridCells(COL_KOUTEI).Value)
+                            'Dim strOrder As String = getdbdata(gridCells(COL_ORDER).Value)
+                            'Dim strLabel As String = getdbdata(gridCells(COL_LABEL).Value)
+                            'Dim strBikou As String = getdbdata(gridCells(COL_BIKOU).Value)
 
                             '必須チェック
                             '設備略称
@@ -582,9 +648,9 @@ Public Class SC_M10
                                 gridCells(COL_ORDER).Style.BackColor = Color.White
                             End If
 
+
                             'データを更新
                             Dim sqlstr As String = xml.GetSQL_Str("UPDATE_001")
-
                             clsSQLServer.ExecuteQuery(String.Format(sqlstr,
                                                                         strScode,
                                                                         strSname,
@@ -597,13 +663,13 @@ Public Class SC_M10
 
                             selectedCount = True
 
-                            clsSQLServer.Disconnect()
+                                clsSQLServer.Disconnect()
 
-                            btnSearch_Click(sender, e)
+                                btnSearch_Click(sender, e)
+
+                            End If
 
                         End If
-
-                    End If
                 Next
 
                 '選択されてないレコードがエラー発生する
@@ -711,5 +777,21 @@ Public Class SC_M10
         MsgBox("グリッドの内容がEXCEL出力される予定です。")
     End Sub
 
+
+    Function getdbdata(str As String)
+        Dim dbdata As String = String.Empty
+
+        If IsDBNull(str) Then
+            dbdata = String.Empty
+        Else
+            dbdata = str
+        End If
+
+        Return dbdata
+
+    End Function
+
 End Class
+
+
 

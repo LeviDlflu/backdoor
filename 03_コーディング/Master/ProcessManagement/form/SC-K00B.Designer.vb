@@ -52,7 +52,7 @@ Partial Class SC_K00B
         Me.btnK21.Name = "btnK21"
         Me.btnK21.Size = New System.Drawing.Size(270, 53)
         Me.btnK21.TabIndex = 273
-        Me.btnK21.Text = "        Other issues refer ・ cancel        その他出庫参照・取消(K-21)"
+        Me.btnK21.Text = "       Other issues refer ・ cancel         その他出庫参照・取消(K-21)"
         Me.btnK21.UseVisualStyleBackColor = True
         '
         'btnZ01
@@ -62,7 +62,7 @@ Partial Class SC_K00B
         Me.btnZ01.Name = "btnZ01"
         Me.btnZ01.Size = New System.Drawing.Size(270, 53)
         Me.btnZ01.TabIndex = 1
-        Me.btnZ01.Text = "               Stock inquiry                  在庫照会(Z-01)"
+        Me.btnZ01.Text = "                Stock inquiry                 在庫照会(Z-01)"
         Me.btnZ01.UseVisualStyleBackColor = True
         '
         'btnK20
