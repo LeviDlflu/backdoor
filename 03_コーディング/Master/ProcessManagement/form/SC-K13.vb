@@ -1,5 +1,5 @@
-﻿Imports System.Reflection
-Imports PUCCommon
+﻿Imports PUCCommon
+Imports System.Text
 
 Public Class SC_K13
     Dim headerName As Hashtable = New Hashtable From {
@@ -24,9 +24,9 @@ Public Class SC_K13
                              {"スポット判定", "Spot judgment" & vbCrLf & "スポット判定"}
                             }
     Private Const COL_DETAILS As String = "詳細"
-    Private Const COL_PRODUCT_NAME As String = "品名"
+    Private Const COL_PRODUCT_NAME As String = "品名略称"
     Private Const COL_CUSTOMER_PART_NO As String = "客先部品番号"
-    Private Const COL_MOLD As String = "金型"
+    Private Const COL_MOLD As String = "金型番号"
     Private Const COL_START As String = "着手"
     Private Const COL_COMPLETION As String = "完成"
     Private Const COL_DEFECT As String = "不良"
@@ -49,6 +49,8 @@ Public Class SC_K13
     Private Const COL_DEFECTIVE_FABRIC_FINISH As String = "生地不良(仕上)"
     Private Const COL_REPAINT_JUDGMENT As String = "再塗装判定"
     Private Const COL_SPOT_JUDGMENT As String = "スポット判定"
+
+    Private Const FORM_NAME_K14 As String = "The results before the previous days(前日以前実績参照)"
 
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
 
@@ -131,17 +133,17 @@ Public Class SC_K13
 
                 '設備
                 strSelect = xml.GetSQL_Str("SELECT_005")
-                dt = clsSQLServer.GetDataTable(Format(strSelect, cmbProcess.SelectedValue))
+                dt = clsSQLServer.GetDataTable(String.Format(strSelect, cmbProcess.SelectedValue))
                 Me.cmbFacility.DataSource = dt
                 Me.cmbFacility.ValueMember = dt.Columns.Item(0).ColumnName
                 Me.cmbFacility.DisplayMember = dt.Columns.Item(1).ColumnName
-
-                clsSQLServer.Disconnect()
 
             End If
 
         Catch ex As Exception
             Throw
+        Finally
+            clsSQLServer.Disconnect()
         End Try
 
     End Sub
@@ -166,14 +168,80 @@ Public Class SC_K13
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
+
+        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+        Me.lblSearchTime.Visible = True
+
         gridData.Columns.Clear()
-        If cmbProcess.SelectedItem = "" Or cmbProcess.SelectedItem = "SMD" Then
-            Patten1()
-            'ElseIf cmbProcess.SelectedItem = "SMM" Then
-            '    Patten2()
-            'ElseIf cmbProcess.SelectedItem = "SME" Then
-            '    Patten3()
-        End If
+
+        Try
+            If clsSQLServer.Connect(clsGlobal.ConnectString) Then
+
+                Dim strSql As String = String.Empty
+                Dim dt As New DataTable()
+                Dim sqlFilter As New StringBuilder
+
+                Select Case cmbProcess.SelectedValue
+                    Case "10", "20"
+                        '成形/成形仕上
+                        strSql = xml.GetSQL_Str("SELECT_006")
+                End Select
+
+                '区分
+                If Not String.IsNullOrEmpty(cmbSection.SelectedValue) Then
+                    sqlFilter.AppendLine(String.Format(xml.GetSQL_Str("WHERE_001"), cmbSection.SelectedValue))
+                End If
+
+                '車種
+                If Not String.IsNullOrEmpty(cmbVehicleType.SelectedValue) Then
+                    sqlFilter.AppendLine(String.Format(xml.GetSQL_Str("WHERE_002"), cmbVehicleType.SelectedValue))
+                End If
+
+                '設備
+                If Not String.IsNullOrEmpty(cmbFacility.SelectedValue) Then
+                    sqlFilter.AppendLine(String.Format(xml.GetSQL_Str("WHERE_003"), cmbFacility.SelectedValue))
+                End If
+
+                dt = clsSQLServer.GetDataTable(String.Format(strSql, businessCode, cmbProcess.SelectedValue, cmbVariety.SelectedValue, sqlFilter.ToString))
+
+                If dt.Rows.Count = 0 Then
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+                           vbExclamation,
+                           systemName)
+
+                    Return
+
+                ElseIf dt.Rows.Count > 1000 Then
+
+                    MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
+                           vbExclamation,
+                           systemName)
+
+                End If
+
+                Select Case cmbProcess.SelectedValue
+                    Case "10", "20"
+                        '成形/成形仕上
+                        Patten1(dt)
+                End Select
+
+                '複数選択不可
+                gridData.MultiSelect = False
+                '編集不可
+                gridData.AllowUserToDeleteRows = False
+                gridData.AllowUserToAddRows = False
+                gridData.AllowUserToResizeRows = False
+
+            End If
+
+        Catch ex As Exception
+            Throw
+        Finally
+            clsSQLServer.Disconnect()
+        End Try
+
+
     End Sub
 
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
@@ -185,29 +253,7 @@ Public Class SC_K13
 
     End Sub
 
-    Private Sub Patten1()
-
-        Dim dt As New DataTable
-
-        For i As Integer = 0 To PATTEN_1.Length - 1
-            dt.Columns.Add(New DataColumn(PATTEN_1(i), GetType(System.String)))
-        Next
-
-        Dim dr As DataRow
-
-        For index = 1 To 20
-            dr = dt.NewRow()
-            dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
-            dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
-            dr.Item(COL_MOLD) = COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & COL_MOLD & index
-            dr.Item(COL_COMPLETION_THE_DAY) = index
-            dr.Item(COL_COMPLETION_CORRECTION) = 2 & index
-            dr.Item(COL_DEFECT_THE_DAY) = index
-            dr.Item(COL_DEFECT_CORRECTION) = 0
-            dr.Item(COL_SP_PROP_TRANSFER_PASS) = 3 & index
-            dr.Item(COL_SP_PROP_TRANSFER_DEFECT) = 4 & index
-            dt.Rows.Add(dr)
-        Next
+    Private Sub Patten1(ByVal dt As DataTable)
 
         Dim btn As New DataGridViewButtonColumn()
         btn.Name = COL_DETAILS
@@ -245,76 +291,39 @@ Public Class SC_K13
         gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = headerName(COL_DEFECT)
         gridData.AutoResizeColumns()
 
-        'HeaderCells = {
-        '    New HeaderCell(0, 0, 2, 1, headerName(COL_DETAILS)),
-        '    New HeaderCell(0, 1, 2, 1, headerName(COL_PRODUCT_NAME)),
-        '    New HeaderCell(0, 2, 2, 1, headerName(COL_CUSTOMER_PART_NO)),
-        '    New HeaderCell(0, 3, 2, 1, headerName(COL_MOLD)),
-        '    New HeaderCell(0, 4, 1, 2, headerName(COL_COMPLETION)),
-        '    New HeaderCell(0, 6, 1, 2, headerName(COL_DEFECT)),
-        '    New HeaderCell(0, 8, 1, 2, headerName(COL_SP_PRO_TRANSFER))}
+        For Each col As DataGridViewColumn In gridData.Columns
+            col.SortMode = DataGridViewColumnSortMode.NotSortable
+            If col.Name = COL_DETAILS Then
+                col.ReadOnly = False
+            Else
+                col.ReadOnly = True
+            End If
 
-        'Dim btn As New DataGridViewButtonColumn()
-        'btn.Name = COL_DETAILS
-        'btn.HeaderText = headerName(COL_DETAILS)
-        'btn.DefaultCellStyle.NullValue = COL_DETAILS
-        'gridData.Columns.Add(btn)
+            '横位置
+            Select Case col.Name
+                Case COL_PRODUCT_NAME, COL_CUSTOMER_PART_NO
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case COL_MOLD
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Case Else
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End Select
+        Next
 
-        'dt.Columns.Add(COL_PRODUCT_NAME)
-        'dt.Columns.Add(COL_CUSTOMER_PART_NO)
-        'dt.Columns.Add(COL_MOLD)
-        'dt.Columns.Add(COL_COMPLETION_THE_DAY)
-        'dt.Columns.Add(COL_COMPLETION_CORRECTION)
-        'dt.Columns.Add(COL_DEFECT_THE_DAY)
-        'dt.Columns.Add(COL_DEFECT_CORRECTION)
-        'dt.Columns.Add(COL_SP_PROP_TRANSFER_PASS)
-        'dt.Columns.Add(COL_SP_PROP_TRANSFER_DEFECT)
 
-        'Dim dr As DataRow
+        'Grid幅設定する
+        gridData.Columns(COL_DETAILS).Width = 50
+        gridData.Columns(COL_PRODUCT_NAME).Width = 150
+        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 170
+        gridData.Columns(COL_MOLD).Width = 110
+        gridData.Columns(COL_COMPLETION_THE_DAY).Width = 120
+        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 120
+        gridData.Columns(COL_DEFECT_THE_DAY).Width = 120
+        gridData.Columns(COL_DEFECT_CORRECTION).Width = 120
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 120
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 120
 
-        'For index = 1 To 20
-        '    dr = dt.NewRow()
-        '    dr.Item(COL_PRODUCT_NAME) = COL_PRODUCT_NAME & index
-        '    dr.Item(COL_CUSTOMER_PART_NO) = COL_CUSTOMER_PART_NO & index
-        '    dr.Item(COL_MOLD) = COL_MOLD & COL_MOLD & COL_MOLD & index
-        '    dr.Item(COL_COMPLETION_THE_DAY) = index
-        '    dr.Item(COL_COMPLETION_CORRECTION) = 2 & index
-        '    dr.Item(COL_DEFECT_THE_DAY) = index
-        '    dr.Item(COL_DEFECT_CORRECTION) = 0
-        '    dr.Item(COL_SP_PROP_TRANSFER_PASS) = 3 & index
-        '    dr.Item(COL_SP_PROP_TRANSFER_DEFECT) = 4 & index
-        '    dt.Rows.Add(dr)
-        'Next
-
-        ''子タイトル設定する
-        'gridData.DataSource = dt
-        'gridData.Columns(COL_COMPLETION_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns(COL_SP_PROP_TRANSFER_PASS).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-        'gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-
-        'gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = headerName(COL_TODAY)
-
-        'gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = headerName(COL_CORRECTION)
-        'gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = headerName(COL_TODAY)
-        'gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = headerName(COL_CORRECTION)
-        'gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = headerName(COL_PASS)
-        'gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = headerName(COL_DEFECT)
-        'gridData.AutoResizeColumns()
-
-        ''Grid幅設定する
-        gridData.Columns(COL_DETAILS).Width = 60
-        gridData.Columns(COL_PRODUCT_NAME).Width = 130
-        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 150
-        gridData.Columns(COL_MOLD).Width = 100
-        gridData.Columns(COL_COMPLETION_THE_DAY).Width = 100
-        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 100
-        gridData.Columns(COL_DEFECT_THE_DAY).Width = 100
-        gridData.Columns(COL_DEFECT_CORRECTION).Width = 100
-        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 200
-        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 200
+        gridData.Columns.Item(dt.Columns.Count).Visible = False
     End Sub
 
     Private Sub Patten2()
@@ -488,6 +497,14 @@ Public Class SC_K13
         gridData.Columns(COL_DEFECT_CORRECTION).Width = 100
         gridData.Columns(COL_PASS).Width = 160
         gridData.Columns(COL_DEFECT).Width = 160
+    End Sub
+
+    Private Sub btnBeforeDay_Click(sender As Object, e As EventArgs) Handles btnBeforeDay.Click
+        Dim frm As New SC_K14()
+        frm.Text = "[K-14]" & FORM_NAME_K14
+        frm.lblMaster.Text = FORM_NAME_K14
+        frm.ShowDialog()
+        Me.Show()
     End Sub
 
 End Class

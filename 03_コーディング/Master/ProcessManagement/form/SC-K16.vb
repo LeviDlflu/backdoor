@@ -131,7 +131,7 @@ Public Class SC_K16
     ''' 　グリッドを設定する
     ''' </summary>
     ''' <param name="dtData">データソース</param>
-    Private Sub setGrid(ByRef dtData As DataTable)
+    Private Sub setGrid(ByVal dtData As DataTable)
         gridData.Columns.Clear()
 
         Dim btn As New DataGridViewButtonColumn()
@@ -269,7 +269,6 @@ Public Class SC_K16
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim strSql, strSql2 As String
-                Dim sqlWhere As String = String.Empty
                 Dim dt As New DataTable()
 
                 strSql = xml.GetSQL_Str("SELECT_005")

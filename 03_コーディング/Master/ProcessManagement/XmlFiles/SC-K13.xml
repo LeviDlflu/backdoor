@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0"?>
 <Configuration>
-  <SC-Z01>
+  <SC-K13>
     <Selects>
 
       <!--工程マスタ-->
@@ -12,7 +12,7 @@
           FROM
           工程マスタ
           WHERE
-          取消フラグ='0'
+          ISNULL(取消フラグ,'0')='0'
           ORDER BY
           大工程コード
         </Text>
@@ -27,7 +27,7 @@
           FROM
           品種マスタ
           WHERE
-          取消フラグ='0'
+          ISNULL(取消フラグ,'0')='0'
           ORDER BY
           表示順序,
           品種コード
@@ -38,17 +38,19 @@
       <SQL ID="SELECT_003">
         <Text>
           SELECT
-          '' AS コード,
-          '' AS コード名称
-          UNION SELECT
-          コード,
-          (コード+ ':' +コード名称) AS コード名称
+          '' AS コード
+          ,'' AS コード名称
+          ,NULL AS 表示順序
+          UNION ALL
+          SELECT
+          コード
+          ,(コード+ ':' +コード名称) AS コード名称
+          ,表示順序
           FROM
           コードマスタ
           WHERE
-          コード区分='ELTYPE' AND
-          <!--表示フラグ='1' AND-->
-          取消フラグ='0'
+          コード区分='ELTYPE'
+          AND ISNULL(取消フラグ,'0')='0'
           ORDER BY
           表示順序,
           コード
@@ -59,16 +61,19 @@
       <SQL ID="SELECT_004">
         <Text>
           SELECT
-          '' AS 車種コード,
-          '' AS 車種名
-          UNION SELECT
-          車種コード,
-          (車種コード+ ':' +車種名) AS 車種名
+          '' AS 車種コード
+          ,'' AS 車種名
+          ,NULL AS 表示順序
+          UNION ALL
+          SELECT
+          車種コード
+          ,(車種コード+ ':' +車種名) AS 車種名
+          ,表示順序
           FROM
           車種マスタ
           WHERE
           表示フラグ='1' AND
-          取消フラグ='0'
+          ISNULL(取消フラグ,'0')='0'
           ORDER BY
           表示順序,
           車種コード
@@ -79,20 +84,52 @@
       <SQL ID="SELECT_005">
         <Text>
           SELECT
-          '' AS 設備NO,
-          '' AS 設備名
-          UNION SELECT
-          設備NO,
-          (設備NO+ ':' +設備名) AS 設備名
+          '' AS 設備NO
+          ,'' AS 設備名
+          ,NULL AS 表示順序
+          UNION ALL
+          SELECT
+          設備NO
+          ,(設備NO+ ':' +設備名) AS 設備名
+          ,表示順序
           FROM
           設備マスタ
           WHERE
-          中工程コード='{0}' AND
-          設備NO !='0000' AND
-          取消フラグ='0'
+          大工程コード='{0}'
+          AND 設備NO !='0000'
+          AND ISNULL(取消フラグ,'0')='0'
           ORDER BY
           表示順序,
           設備NO
+        </Text>
+      </SQL>
+
+      <!--ビュー：成形/成形仕上-->
+      <SQL ID="SELECT_006">
+        <Text>
+          SELECT
+          品名略称
+          ,客先部品番号
+          ,金型番号
+          ,完成＿当日
+          ,完成＿訂正
+          ,不良＿当日
+          ,不良＿訂正
+          ,SP･試作･他工程振替＿合格
+          ,SP･試作･他工程振替＿不良
+          ,データ存在フラグ
+          FROM
+          K13_01
+          WHERE
+          事業所コード='{0}'
+          AND 大工程コード = '{1}'
+          AND 品種コード = '{2}'
+          AND 登録日 = CONVERT(VARCHAR, GETDATE(), 112)
+          {3}
+          ORDER BY
+          品名略称
+          ,客先部品番号
+          ,金型番号
         </Text>
       </SQL>
     </Selects>
@@ -100,9 +137,20 @@
     <Wheres>
       <SQL ID="WHERE_001">
         <Text>
+          AND 区分='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_002">
+        <Text>
+          AND 車種コード='{0}'
+        </Text>
+      </SQL>
+      <SQL ID="WHERE_003">
+        <Text>
+          AND 設備NO='{0}'
         </Text>
       </SQL>
     </Wheres>
     
-  </SC-Z01>
+  </SC-K13>
 </Configuration>

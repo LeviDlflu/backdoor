@@ -2,7 +2,6 @@
 
     Private Const FORM_NAME As String = "Achievement reference menu(実績参照メニュー)"
     Public Const FORM_NAME_K13 As String = "The results on today(当日実績参照)"
-    Public Const FORM_NAME_K14 As String = "The results before the previous days(前日以前実績参照)"
     Public Const FORM_NAME_K16 As String = "Molding achievement reference(成形実績参照)"
     Public Const FORM_NAME_K17 As String = "Defect analysis by mold(成形金型別不良分析)"
 
@@ -42,19 +41,6 @@
         frm.lblMaster.Text = FORM_NAME_K13
         frm.ShowDialog()
         Me.Show()
-    End Sub
-
-    ''' <summary>
-    ''' 前日以前実績参照(K-14)
-    ''' </summary>
-    Private Sub btnK14_Click(sender As Object, e As EventArgs) Handles btnK14.Click
-
-        Dim frm As New SC_K14()
-        frm.Text = "[K-14]" & FORM_NAME_K14
-        frm.lblMaster.Text = FORM_NAME_K14
-        frm.ShowDialog()
-        Me.Show()
-
     End Sub
 
     ''' <summary>

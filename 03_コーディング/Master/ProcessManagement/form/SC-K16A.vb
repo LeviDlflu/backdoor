@@ -194,6 +194,15 @@ Public Class SC_K16A
         gridData.Columns(COL_WORKER).Width = 150
         gridData.Columns(COL_KYABI).Width = 140
 
+        '判定より、表示項目の設定
+        Select Case cmbJudgment.SelectedValue
+            Case "6", "C"
+                gridData.Columns(COL_FAILURE_REASON).Visible = False
+                gridData.Columns(COL_KYABI).Visible = False
+            Case "3"
+                gridData.Columns(COL_FAILURE_REASON).Visible = False
+        End Select
+
         '複数選択不可
         gridData.MultiSelect = False
         '編集不可

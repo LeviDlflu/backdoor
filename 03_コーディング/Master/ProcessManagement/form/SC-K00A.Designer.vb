@@ -25,7 +25,6 @@ Partial Class SC_K00A
         Me.btnK18 = New System.Windows.Forms.Button()
         Me.btnK17 = New System.Windows.Forms.Button()
         Me.btnK16 = New System.Windows.Forms.Button()
-        Me.btnK14 = New System.Windows.Forms.Button()
         Me.btnK13 = New System.Windows.Forms.Button()
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
@@ -41,7 +40,6 @@ Partial Class SC_K00A
         Me.GroupBox2.Controls.Add(Me.btnK18)
         Me.GroupBox2.Controls.Add(Me.btnK17)
         Me.GroupBox2.Controls.Add(Me.btnK16)
-        Me.GroupBox2.Controls.Add(Me.btnK14)
         Me.GroupBox2.Controls.Add(Me.btnK13)
         Me.GroupBox2.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
         Me.GroupBox2.Location = New System.Drawing.Point(15, 172)
@@ -54,7 +52,7 @@ Partial Class SC_K00A
         'btnK15
         '
         Me.btnK15.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK15.Location = New System.Drawing.Point(680, 66)
+        Me.btnK15.Location = New System.Drawing.Point(360, 66)
         Me.btnK15.Name = "btnK15"
         Me.btnK15.Size = New System.Drawing.Size(270, 53)
         Me.btnK15.TabIndex = 8
@@ -64,7 +62,7 @@ Partial Class SC_K00A
         'btnK19
         '
         Me.btnK19.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK19.Location = New System.Drawing.Point(680, 166)
+        Me.btnK19.Location = New System.Drawing.Point(360, 147)
         Me.btnK19.Name = "btnK19"
         Me.btnK19.Size = New System.Drawing.Size(270, 53)
         Me.btnK19.TabIndex = 5
@@ -74,7 +72,7 @@ Partial Class SC_K00A
         'btnK18
         '
         Me.btnK18.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK18.Location = New System.Drawing.Point(360, 166)
+        Me.btnK18.Location = New System.Drawing.Point(40, 147)
         Me.btnK18.Name = "btnK18"
         Me.btnK18.Size = New System.Drawing.Size(270, 53)
         Me.btnK18.TabIndex = 4
@@ -84,7 +82,7 @@ Partial Class SC_K00A
         'btnK17
         '
         Me.btnK17.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK17.Location = New System.Drawing.Point(40, 166)
+        Me.btnK17.Location = New System.Drawing.Point(996, 66)
         Me.btnK17.Name = "btnK17"
         Me.btnK17.Size = New System.Drawing.Size(270, 53)
         Me.btnK17.TabIndex = 3
@@ -94,22 +92,12 @@ Partial Class SC_K00A
         'btnK16
         '
         Me.btnK16.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK16.Location = New System.Drawing.Point(1000, 66)
+        Me.btnK16.Location = New System.Drawing.Point(680, 66)
         Me.btnK16.Name = "btnK16"
         Me.btnK16.Size = New System.Drawing.Size(270, 53)
         Me.btnK16.TabIndex = 2
         Me.btnK16.Text = "    Molding achievement reference    成形実績参照(K-16)"
         Me.btnK16.UseVisualStyleBackColor = True
-        '
-        'btnK14
-        '
-        Me.btnK14.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnK14.Location = New System.Drawing.Point(360, 66)
-        Me.btnK14.Name = "btnK14"
-        Me.btnK14.Size = New System.Drawing.Size(270, 53)
-        Me.btnK14.TabIndex = 1
-        Me.btnK14.Text = "The results before the previous days前日以前実績参照(K-14)"
-        Me.btnK14.UseVisualStyleBackColor = True
         '
         'btnK13
         '
@@ -135,7 +123,6 @@ Partial Class SC_K00A
     End Sub
 
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents btnK14 As Button
     Friend WithEvents btnK13 As Button
     Friend WithEvents btnK17 As Button
     Friend WithEvents btnK16 As Button

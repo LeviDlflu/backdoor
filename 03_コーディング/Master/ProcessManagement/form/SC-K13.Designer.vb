@@ -43,7 +43,7 @@ Partial Class SC_K13
         Me.Label54 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.gridData = New ProcessManagement.DataGridViewMerge()
-        Me.Label67 = New System.Windows.Forms.Label()
+        Me.lblSearchTime = New System.Windows.Forms.Label()
         Me.Label65 = New System.Windows.Forms.Label()
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
@@ -56,8 +56,8 @@ Partial Class SC_K13
         'btnExcel
         '
         Me.btnExcel.BackColor = System.Drawing.SystemColors.Control
-        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnExcel.Location = New System.Drawing.Point(183, 66)
+        Me.btnExcel.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnExcel.Location = New System.Drawing.Point(138, 66)
         Me.btnExcel.Name = "btnExcel"
         Me.btnExcel.Size = New System.Drawing.Size(117, 53)
         Me.btnExcel.TabIndex = 271
@@ -67,8 +67,8 @@ Partial Class SC_K13
         'btnBeforeDay
         '
         Me.btnBeforeDay.BackColor = System.Drawing.SystemColors.Control
-        Me.btnBeforeDay.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnBeforeDay.Location = New System.Drawing.Point(329, 66)
+        Me.btnBeforeDay.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnBeforeDay.Location = New System.Drawing.Point(261, 66)
         Me.btnBeforeDay.Name = "btnBeforeDay"
         Me.btnBeforeDay.Size = New System.Drawing.Size(282, 53)
         Me.btnBeforeDay.TabIndex = 272
@@ -78,8 +78,8 @@ Partial Class SC_K13
         'btnSearch
         '
         Me.btnSearch.BackColor = System.Drawing.SystemColors.Control
-        Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btnSearch.Location = New System.Drawing.Point(35, 66)
+        Me.btnSearch.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btnSearch.Location = New System.Drawing.Point(15, 66)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(117, 53)
         Me.btnSearch.TabIndex = 270
@@ -127,30 +127,30 @@ Partial Class SC_K13
         'Label50
         '
         Me.Label50.AutoSize = True
-        Me.Label50.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label50.Location = New System.Drawing.Point(870, 53)
+        Me.Label50.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label50.Location = New System.Drawing.Point(871, 55)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(64, 16)
+        Me.Label50.Size = New System.Drawing.Size(58, 14)
         Me.Label50.TabIndex = 309
         Me.Label50.Text = "Facility"
         '
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label51.Location = New System.Drawing.Point(871, 75)
+        Me.Label51.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.Label51.Location = New System.Drawing.Point(871, 76)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(50, 16)
+        Me.Label51.Size = New System.Drawing.Size(43, 14)
         Me.Label51.TabIndex = 310
         Me.Label51.Text = "(設備)"
         '
         'Label35
         '
         Me.Label35.AutoSize = True
-        Me.Label35.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label35.Location = New System.Drawing.Point(447, 76)
+        Me.Label35.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.Label35.Location = New System.Drawing.Point(444, 76)
         Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(50, 16)
+        Me.Label35.Size = New System.Drawing.Size(43, 14)
         Me.Label35.TabIndex = 308
         Me.Label35.Text = "(区分)"
         '
@@ -167,10 +167,10 @@ Partial Class SC_K13
         'Label39
         '
         Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label39.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label39.Location = New System.Drawing.Point(444, 55)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(66, 16)
+        Me.Label39.Size = New System.Drawing.Size(58, 14)
         Me.Label39.TabIndex = 307
         Me.Label39.Text = "Section"
         '
@@ -179,7 +179,7 @@ Partial Class SC_K13
         Me.cmbVariety.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbVariety.BackColor = System.Drawing.Color.Yellow
         Me.cmbVariety.FormattingEnabled = True
-        Me.cmbVariety.Location = New System.Drawing.Point(238, 93)
+        Me.cmbVariety.Location = New System.Drawing.Point(239, 93)
         Me.cmbVariety.Name = "cmbVariety"
         Me.cmbVariety.Size = New System.Drawing.Size(168, 21)
         Me.cmbVariety.TabIndex = 295
@@ -187,40 +187,40 @@ Partial Class SC_K13
         'Label37
         '
         Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label37.Location = New System.Drawing.Point(236, 55)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(64, 16)
+        Me.Label37.Size = New System.Drawing.Size(57, 14)
         Me.Label37.TabIndex = 302
         Me.Label37.Text = "Variety"
         '
         'Label42
         '
         Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label42.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label42.Location = New System.Drawing.Point(656, 76)
         Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(50, 16)
+        Me.Label42.Size = New System.Drawing.Size(43, 14)
         Me.Label42.TabIndex = 306
         Me.Label42.Text = "(車種)"
         '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
+        Me.Label43.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label43.Location = New System.Drawing.Point(236, 76)
         Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(50, 16)
+        Me.Label43.Size = New System.Drawing.Size(43, 14)
         Me.Label43.TabIndex = 305
         Me.Label43.Text = "(品種)"
         '
         'Label44
         '
         Me.Label44.AutoSize = True
-        Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label44.Location = New System.Drawing.Point(34, 76)
+        Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.Label44.Location = New System.Drawing.Point(30, 76)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(66, 16)
+        Me.Label44.Size = New System.Drawing.Size(57, 14)
         Me.Label44.TabIndex = 304
         Me.Label44.Text = "(大工程)"
         '
@@ -228,7 +228,7 @@ Partial Class SC_K13
         '
         Me.Label45.AutoSize = True
         Me.Label45.Font = New System.Drawing.Font("MS UI Gothic", 14.0!)
-        Me.Label45.Location = New System.Drawing.Point(9, 30)
+        Me.Label45.Location = New System.Drawing.Point(13, 28)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(97, 19)
         Me.Label45.TabIndex = 303
@@ -239,7 +239,7 @@ Partial Class SC_K13
         Me.cmbVehicleType.AutoCompleteCustomSource.AddRange(New String() {"01：Mﾊﾞｯｸﾄﾞｱ"})
         Me.cmbVehicleType.BackColor = System.Drawing.Color.White
         Me.cmbVehicleType.FormattingEnabled = True
-        Me.cmbVehicleType.Location = New System.Drawing.Point(658, 93)
+        Me.cmbVehicleType.Location = New System.Drawing.Point(659, 93)
         Me.cmbVehicleType.Name = "cmbVehicleType"
         Me.cmbVehicleType.Size = New System.Drawing.Size(168, 21)
         Me.cmbVehicleType.TabIndex = 297
@@ -247,10 +247,10 @@ Partial Class SC_K13
         'Label52
         '
         Me.Label52.AutoSize = True
-        Me.Label52.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label52.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label52.Location = New System.Drawing.Point(656, 55)
         Me.Label52.Name = "Label52"
-        Me.Label52.Size = New System.Drawing.Size(103, 16)
+        Me.Label52.Size = New System.Drawing.Size(92, 14)
         Me.Label52.TabIndex = 301
         Me.Label52.Text = "Vehicle type"
         '
@@ -269,7 +269,7 @@ Partial Class SC_K13
         '
         Me.Label53.AutoSize = True
         Me.Label53.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label53.Location = New System.Drawing.Point(3, 10)
+        Me.Label53.Location = New System.Drawing.Point(7, 8)
         Me.Label53.Name = "Label53"
         Me.Label53.Size = New System.Drawing.Size(145, 19)
         Me.Label53.TabIndex = 299
@@ -278,10 +278,10 @@ Partial Class SC_K13
         'Label54
         '
         Me.Label54.AutoSize = True
-        Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label54.Location = New System.Drawing.Point(30, 55)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(118, 16)
+        Me.Label54.Size = New System.Drawing.Size(104, 14)
         Me.Label54.TabIndex = 300
         Me.Label54.Text = "Large Process"
         '
@@ -291,7 +291,7 @@ Partial Class SC_K13
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel1.Controls.Add(Me.gridData)
-        Me.Panel1.Controls.Add(Me.Label67)
+        Me.Panel1.Controls.Add(Me.lblSearchTime)
         Me.Panel1.Controls.Add(Me.Label65)
         Me.Panel1.Controls.Add(Me.Label66)
         Me.Panel1.Controls.Add(Me.Label38)
@@ -316,21 +316,21 @@ Partial Class SC_K13
         Me.gridData.Size = New System.Drawing.Size(1269, 334)
         Me.gridData.TabIndex = 312
         '
-        'Label67
+        'lblSearchTime
         '
-        Me.Label67.AutoSize = True
-        Me.Label67.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label67.Location = New System.Drawing.Point(1104, 19)
-        Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(144, 16)
-        Me.Label67.TabIndex = 310
-        Me.Label67.Text = "yyyy/MM/dd hh:mm"
+        Me.lblSearchTime.AutoSize = True
+        Me.lblSearchTime.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.lblSearchTime.Location = New System.Drawing.Point(1162, 24)
+        Me.lblSearchTime.Name = "lblSearchTime"
+        Me.lblSearchTime.Size = New System.Drawing.Size(124, 14)
+        Me.lblSearchTime.TabIndex = 310
+        Me.lblSearchTime.Text = "yyyy/MM/dd hh:mm"
         '
         'Label65
         '
         Me.Label65.AutoSize = True
         Me.Label65.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Bold)
-        Me.Label65.Location = New System.Drawing.Point(953, 16)
+        Me.Label65.Location = New System.Drawing.Point(1011, 21)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(136, 19)
         Me.Label65.TabIndex = 308
@@ -339,10 +339,10 @@ Partial Class SC_K13
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 12.0!)
-        Me.Label66.Location = New System.Drawing.Point(958, 39)
+        Me.Label66.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.Label66.Location = New System.Drawing.Point(1016, 44)
         Me.Label66.Name = "Label66"
-        Me.Label66.Size = New System.Drawing.Size(82, 16)
+        Me.Label66.Size = New System.Drawing.Size(71, 14)
         Me.Label66.TabIndex = 309
         Me.Label66.Text = "(検索時間)"
         '
@@ -414,7 +414,7 @@ Partial Class SC_K13
     Friend WithEvents Label54 As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents gridData As DataGridViewMerge
-    Friend WithEvents Label67 As Label
+    Friend WithEvents lblSearchTime As Label
     Friend WithEvents Label65 As Label
     Friend WithEvents Label66 As Label
     Friend WithEvents Label38 As Label
