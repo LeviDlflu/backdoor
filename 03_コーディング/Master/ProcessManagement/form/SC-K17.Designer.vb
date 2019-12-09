@@ -49,7 +49,6 @@ Partial Class SC_K17
         Me.Label45 = New System.Windows.Forms.Label()
         Me.Label53 = New System.Windows.Forms.Label()
         Me.Label54 = New System.Windows.Forms.Label()
-        Me.gridData = New ProcessManagement.DataGridViewMerge()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
         Me.Label68 = New System.Windows.Forms.Label()
@@ -59,7 +58,6 @@ Partial Class SC_K17
         Me.griData = New ProcessManagement.DataGridViewMerge()
         Me.Panel4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.griData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -377,20 +375,6 @@ Partial Class SC_K17
         Me.Label54.TabIndex = 297
         Me.Label54.Text = "Actual dates"
         '
-        'gridData
-        '
-        Me.gridData.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gridData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.gridData.Location = New System.Drawing.Point(14, 347)
-        Me.gridData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control
-        Me.gridData.MergeColumnNames = CType(resources.GetObject("gridData.MergeColumnNames"), System.Collections.Generic.List(Of String))
-        Me.gridData.Name = "gridData"
-        Me.gridData.RowTemplate.Height = 23
-        Me.gridData.Size = New System.Drawing.Size(1320, 315)
-        Me.gridData.TabIndex = 318
-        '
         'Label38
         '
         Me.Label38.AutoSize = True
@@ -454,7 +438,7 @@ Partial Class SC_K17
         'griData
         '
         Me.griData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.griData.Location = New System.Drawing.Point(18, 329)
+        Me.griData.Location = New System.Drawing.Point(10, 348)
         Me.griData.MergeColumnHeaderBackColor = System.Drawing.SystemColors.Control
         Me.griData.MergeColumnNames = CType(resources.GetObject("griData.MergeColumnNames"), System.Collections.Generic.List(Of String))
         Me.griData.Name = "griData"
@@ -471,7 +455,6 @@ Partial Class SC_K17
         Me.Controls.Add(Me.lblSearchTime)
         Me.Controls.Add(Me.Label65)
         Me.Controls.Add(Me.Label66)
-        Me.Controls.Add(Me.gridData)
         Me.Controls.Add(Me.Label38)
         Me.Controls.Add(Me.Label40)
         Me.Controls.Add(Me.Panel4)
@@ -483,7 +466,6 @@ Partial Class SC_K17
         Me.Controls.SetChildIndex(Me.Panel4, 0)
         Me.Controls.SetChildIndex(Me.Label40, 0)
         Me.Controls.SetChildIndex(Me.Label38, 0)
-        Me.Controls.SetChildIndex(Me.gridData, 0)
         Me.Controls.SetChildIndex(Me.Label66, 0)
         Me.Controls.SetChildIndex(Me.Label65, 0)
         Me.Controls.SetChildIndex(Me.lblSearchTime, 0)
@@ -493,7 +475,6 @@ Partial Class SC_K17
         Me.Panel4.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.gridData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.griData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -529,7 +510,6 @@ Partial Class SC_K17
     Friend WithEvents Label8 As Label
     Friend WithEvents chkSimilar As CheckBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents gridData As DataGridViewMerge
     Friend WithEvents Label38 As Label
     Friend WithEvents Label40 As Label
     Friend WithEvents Label68 As Label
