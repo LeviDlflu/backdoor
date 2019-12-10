@@ -3,30 +3,30 @@ Imports System.Text
 
 Public Class SC_K13
     Dim headerName As Hashtable = New Hashtable From {
-                             {"詳細", "Details" & vbCrLf & "詳細"},
-                             {"品名", "Product name" & vbCrLf & "品名"},
-                             {"客先部品番号", "Customer part number" & vbCrLf & "客先部品番号"},
-                             {"金型", "Mold" & vbCrLf & "金型"},
-                             {"着手", "Start" & vbCrLf & "着手"},
-                             {"完成", "Completion" & vbCrLf & "完成"},
-                             {"不良", "Defect" & vbCrLf & "不良"},
-                             {"SP･試作･他工程振替", "SP・Prototype・Other process transfer" & vbCrLf & "SP･試作･他工程振替"},
-                             {"当日", "Today" & vbCrLf & "当日"},
-                             {"訂正", "Correction" & vbCrLf & "訂正"},
-                             {"合格", "Pass" & vbCrLf & "合格"},
-                             {"生地", "Fabric" & vbCrLf & "生地"},
-                             {"直行", "Direct" & vbCrLf & "直行"},
-                             {"再塗装", "Repainting" & vbCrLf & "再塗装"},
-                             {"スポット", "Spot" & vbCrLf & "スポット"},
-                             {"生地不良成形", "Defective fabric molding" & vbCrLf & "生地不良成形"},
-                             {"生地不良仕上", "Defective fabric finish" & vbCrLf & "生地不良仕上"},
-                             {"再塗装判定", "Repaint judgment" & vbCrLf & "再塗装判定"},
-                             {"スポット判定", "Spot judgment" & vbCrLf & "スポット判定"}
+                             {"詳細", "Details" & vbCrLf & "(詳細)"},
+                             {"品名略称", "Product name" & vbCrLf & "(品名)"},
+                             {"客先部品番号", "Customer part number" & vbCrLf & "(客先部品番号)"},
+                             {"金型", "Mold" & vbCrLf & "(金型)"},
+                             {"着手", "Start" & vbCrLf & "(着手)"},
+                             {"完成", "Completion" & vbCrLf & "(完成)"},
+                             {"不良", "Defect" & vbCrLf & "(不良)"},
+                             {"SP･試作･他工程振替", "SP・Prototype・Other process transfer" & vbCrLf & "(SP･試作･他工程振替)"},
+                             {"当日", "Today" & vbCrLf & "(当日)"},
+                             {"訂正", "Correction" & vbCrLf & "(訂正)"},
+                             {"合格", "Pass" & vbCrLf & "(合格)"},
+                             {"生地", "Fabric" & vbCrLf & "(生地)"},
+                             {"直行", "Direct" & vbCrLf & "(直行)"},
+                             {"再塗装", "Repainting" & vbCrLf & "(再塗装)"},
+                             {"スポット", "Spot" & vbCrLf & "(スポット)"},
+                             {"生地不良＿成形", "Defective fabric (molding)" & vbCrLf & "生地不良(成形)"},
+                             {"生地不良＿仕上", "Defective fabric (finish)" & vbCrLf & "生地不良(仕上)"},
+                             {"再塗装判定", "Repaint judgment" & vbCrLf & "(再塗装判定)"},
+                             {"スポット判定", "Spot judgment" & vbCrLf & "(スポット判定)"}
                             }
     Private Const COL_DETAILS As String = "詳細"
     Private Const COL_PRODUCT_NAME As String = "品名略称"
     Private Const COL_CUSTOMER_PART_NO As String = "客先部品番号"
-    Private Const COL_MOLD As String = "金型番号"
+    Private Const COL_MOLD As String = "金型"
     Private Const COL_START As String = "着手"
     Private Const COL_COMPLETION As String = "完成"
     Private Const COL_DEFECT As String = "不良"
@@ -40,39 +40,27 @@ Public Class SC_K13
     Private Const COL_DEFECT_CORRECTION As String = "不良＿訂正"
     Private Const COL_SP_PROP_TRANSFER_PASS As String = "SP･試作･他工程振替＿合格"
     Private Const COL_SP_PROP_TRANSFER_DEFECT As String = "SP･試作･他工程振替＿不良"
-    Private Const COL_FABRIC As String = "生地"
-    Private Const COL_DIRECT As String = "直行"
-    Private Const COL_REPAINTING As String = "再塗装"
-    Private Const COL_SPOT As String = "スポット"
-    Private Const COL_COMPLETING_REPAINTING As String = "完成_再塗装"
-    Private Const COL_DEFECTIVE_FABRIC_MOLDING As String = "生地不良(成形)"
-    Private Const COL_DEFECTIVE_FABRIC_FINISH As String = "生地不良(仕上)"
+
+    Private Const COL_START_FABRIC As String = "着手＿生地"
+    Private Const COL_START_REPAINTING As String = "着手＿再塗装"
+    Private Const COL_COMPLETION_DIRECT As String = "完成＿直行"
+    Private Const COL_COMPLETING_REPAINTING As String = "完成＿再塗装"
+    Private Const COL_COMPLETING_SPOT As String = "完成＿スポット"
+
+    Private Const COL_DEFECTIVE_FABRIC_MOLDING As String = "生地不良＿成形"
+    Private Const COL_DEFECTIVE_FABRIC_FINISH As String = "生地不良＿仕上"
     Private Const COL_REPAINT_JUDGMENT As String = "再塗装判定"
     Private Const COL_SPOT_JUDGMENT As String = "スポット判定"
 
+    Private Const COL_FABRIC As String = "生地"
+    Private Const COL_REPAINTING As String = "再塗装"
+    Private Const COL_DIRECT As String = "直行"
+    Private Const COL_MOLDING As String = "成形"
+    Private Const COL_FINISH As String = "仕上"
+    Private Const COL_SPOT As String = "スポット"
+
     Private Const FORM_NAME_K14 As String = "The results before the previous days(前日以前実績参照)"
-
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
-
-
-    Dim PATTEN_1 As String() = {COL_PRODUCT_NAME,
-                                COL_CUSTOMER_PART_NO,
-                                COL_MOLD,
-                                COL_COMPLETION_THE_DAY,
-                                COL_COMPLETION_CORRECTION,
-                                COL_DEFECT_THE_DAY,
-                                COL_DEFECT_CORRECTION,
-                                COL_SP_PROP_TRANSFER_PASS,
-                                COL_SP_PROP_TRANSFER_DEFECT}
-    'Dim PATTEN_1 As String() = {COL_PRODUCT_NAME,
-    '                            COL_CUSTOMER_PART_NO,
-    '                            COL_MOLD,
-    '                            COL_TODAY,
-    '                            COL_CORRECTION,
-    '                            COL_TODAY,
-    '                            COL_CORRECTION,
-    '                            COL_PASS,
-    '                            COL_DEFECT}
 
     ''' <summary>
     ''' 列ヘッダーの行数
@@ -169,6 +157,7 @@ Public Class SC_K13
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
 
+        Dim dt As New DataTable()
         Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
         Me.lblSearchTime.Visible = True
 
@@ -178,13 +167,18 @@ Public Class SC_K13
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim strSql As String = String.Empty
-                Dim dt As New DataTable()
                 Dim sqlFilter As New StringBuilder
 
                 Select Case cmbProcess.SelectedValue
                     Case "10", "20"
                         '成形/成形仕上
                         strSql = xml.GetSQL_Str("SELECT_006")
+                    Case "30"
+                        '塗装
+                        strSql = xml.GetSQL_Str("SELECT_007")
+                    Case "40"
+                        '組立
+                        strSql = xml.GetSQL_Str("SELECT_008")
                 End Select
 
                 '区分
@@ -204,43 +198,57 @@ Public Class SC_K13
 
                 dt = clsSQLServer.GetDataTable(String.Format(strSql, businessCode, cmbProcess.SelectedValue, cmbVariety.SelectedValue, sqlFilter.ToString))
 
-                If dt.Rows.Count = 0 Then
+            End If
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W0008")),
+            clsSQLServer.Disconnect()
+
+            If dt.Rows.Count = 0 Then
+
+                MsgBox(String.Format(clsGlobal.MSG2("W0008")),
                            vbExclamation,
                            systemName)
 
-                    Return
+                Return
 
-                ElseIf dt.Rows.Count > 1000 Then
+            ElseIf dt.Rows.Count > 1000 Then
 
-                    MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
+                MsgBox(String.Format(clsGlobal.MSG2("W9004"), 1000),
                            vbExclamation,
                            systemName)
-
-                End If
-
-                Select Case cmbProcess.SelectedValue
-                    Case "10", "20"
-                        '成形/成形仕上
-                        Patten1(dt)
-                End Select
-
-                '複数選択不可
-                gridData.MultiSelect = False
-                '編集不可
-                gridData.AllowUserToDeleteRows = False
-                gridData.AllowUserToAddRows = False
-                gridData.AllowUserToResizeRows = False
 
             End If
+
+
+            Dim btn As New DataGridViewButtonColumn()
+            btn.Name = COL_DETAILS
+            btn.HeaderText = headerName(COL_DETAILS)
+            btn.DefaultCellStyle.NullValue = COL_DETAILS
+            gridData.Columns.Add(btn)
+
+            Select Case cmbProcess.SelectedValue
+                Case "10", "20"
+                    '成形/成形仕上
+                    Patten1(dt)
+                Case "30"
+                    '塗装
+                    Patten2(dt)
+                Case "40"
+                    '組立
+                    Patten3(dt)
+            End Select
+
+            '複数選択不可
+            gridData.MultiSelect = False
+            '編集不可
+            gridData.AllowUserToDeleteRows = False
+            gridData.AllowUserToAddRows = False
+            gridData.AllowUserToResizeRows = False
 
         Catch ex As Exception
             Throw
         Finally
             clsSQLServer.Disconnect()
         End Try
-
 
     End Sub
 
@@ -250,16 +258,9 @@ Public Class SC_K13
             frm.ShowDialog()
             Me.Show()
         End If
-
     End Sub
 
     Private Sub Patten1(ByVal dt As DataTable)
-
-        Dim btn As New DataGridViewButtonColumn()
-        btn.Name = COL_DETAILS
-        btn.HeaderText = headerName(COL_DETAILS)
-        btn.DefaultCellStyle.NullValue = COL_DETAILS
-        gridData.Columns.Add(btn)
 
         For Each col As DataColumn In dt.Columns
 
@@ -310,7 +311,6 @@ Public Class SC_K13
             End Select
         Next
 
-
         'Grid幅設定する
         gridData.Columns(COL_DETAILS).Width = 50
         gridData.Columns(COL_PRODUCT_NAME).Width = 150
@@ -326,177 +326,143 @@ Public Class SC_K13
         gridData.Columns.Item(dt.Columns.Count).Visible = False
     End Sub
 
-    Private Sub Patten2()
+    Private Sub Patten2(ByVal dt As DataTable)
 
-        'HeaderCells = {New HeaderCell(0, 0, 2, 1, headerName(COL_DETAILS)),
-        '    New HeaderCell(0, 1, 2, 1, headerName(COL_PRODUCT_NAME)),
-        'New HeaderCell(0, 2, 1, 2, headerName(COL_START)),
-        'New HeaderCell(0, 4, 1, 4, headerName(COL_COMPLETION)),
-        'New HeaderCell(0, 8, 1, 2, headerName(COL_DEFECT)),
-        'New HeaderCell(0, 10, 2, 1, headerName(COL_DEFECTIVE_FABRIC_MOLDING)),
-        'New HeaderCell(0, 11, 2, 1, headerName(COL_DEFECTIVE_FABRIC_FINISH)),
-        'New HeaderCell(0, 12, 2, 1, headerName(COL_REPAINT_JUDGMENT)),
-        'New HeaderCell(0, 13, 2, 1, headerName(COL_SPOT_JUDGMENT))}
+        For Each col As DataColumn In dt.Columns
 
-        Dim btn As New DataGridViewButtonColumn()
-        btn.Name = COL_DETAILS
-        btn.HeaderText = headerName(COL_DETAILS)
-        btn.DefaultCellStyle.NullValue = COL_DETAILS
-        gridData.Columns.Add(btn)
-
-        Dim dt As New DataTable
-
-        dt.Columns.Add(COL_PRODUCT_NAME)
-        dt.Columns.Add("生地")
-        dt.Columns.Add(COL_REPAINTING)
-        dt.Columns.Add("直行")
-        dt.Columns.Add(COL_COMPLETING_REPAINTING)
-        dt.Columns.Add("スポット")
-        dt.Columns.Add(COL_COMPLETION_CORRECTION)
-        dt.Columns.Add(COL_DEFECT_THE_DAY)
-        dt.Columns.Add(COL_DEFECT_CORRECTION)
-        dt.Columns.Add("生地不良(成形)")
-        dt.Columns.Add("生地不良(仕上)")
-        dt.Columns.Add("再塗装判定")
-        dt.Columns.Add("スポット判定")
-
-        Dim dr As DataRow
-
-        For index = 1 To 9
-            dr = dt.NewRow()
-            dr.Item("品名") = "品名" & index
-            dr.Item("生地") = "1" & index
-            dr.Item(COL_REPAINTING) = "2" & index
-            dr.Item("直行") = "3" & index
-            dr.Item(COL_COMPLETING_REPAINTING) = "4" & index
-            dr.Item("スポット") = "5" & index
-            dr.Item(COL_COMPLETION_CORRECTION) = "6" & index
-            dr.Item(COL_DEFECT_THE_DAY) = "7" & index
-            dr.Item(COL_DEFECT_CORRECTION) = "0"
-            dr.Item("生地不良(成形)") = "10" & index
-            dr.Item("生地不良(仕上)") = "13" & index
-            dr.Item("再塗装判定") = "20" & index
-            dr.Item("スポット判定") = "31" & index
-            dt.Rows.Add(dr)
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            If headerName(col.ColumnName) IsNot Nothing Then
+                addCol.HeaderText = headerName(col.ColumnName)
+            Else
+                addCol.HeaderText = col.ColumnName
+            End If
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
         Next
-        gridData.DataSource = dt
-        gridData.Columns(COL_FABRIC).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DIRECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_COMPLETING_REPAINTING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_SPOT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_REPAINT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_SPOT_JUDGMENT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+        gridData.DataSource = dt.Copy
+        gridData.ColumnHeadersHeight = 70
+        gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.AddSpanHeader(2, 2, headerName(COL_START))
+        gridData.AddSpanHeader(4, 4, headerName(COL_COMPLETION))
+        gridData.AddSpanHeader(8, 2, headerName(COL_DEFECT))
 
-        gridData.Columns(COL_FABRIC).HeaderText = headerName(COL_FABRIC)
-        gridData.Columns(COL_REPAINTING).HeaderText = headerName(COL_REPAINTING)
-        gridData.Columns(COL_DIRECT).HeaderText = headerName(COL_DIRECT)
+        gridData.Columns(COL_START_FABRIC).HeaderText = headerName(COL_FABRIC)
+        gridData.Columns(COL_START_REPAINTING).HeaderText = headerName(COL_REPAINTING)
+        gridData.Columns(COL_COMPLETION_DIRECT).HeaderText = headerName(COL_DIRECT)
         gridData.Columns(COL_COMPLETING_REPAINTING).HeaderText = headerName(COL_REPAINTING)
-        gridData.Columns(COL_SPOT).HeaderText = headerName(COL_SPOT)
+        gridData.Columns(COL_COMPLETING_SPOT).HeaderText = headerName(COL_SPOT)
         gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = headerName(COL_CORRECTION)
         gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = headerName(COL_TODAY)
         gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = headerName(COL_CORRECTION)
+
+        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).HeaderText = headerName(COL_DEFECTIVE_FABRIC_MOLDING)
+        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).HeaderText = headerName(COL_DEFECTIVE_FABRIC_FINISH)
+        gridData.Columns(COL_REPAINT_JUDGMENT).HeaderText = headerName(COL_REPAINT_JUDGMENT)
+        gridData.Columns(COL_SPOT_JUDGMENT).HeaderText = headerName(COL_SPOT_JUDGMENT)
+
         gridData.AutoResizeColumns()
 
+        For Each col As DataGridViewColumn In gridData.Columns
+            col.SortMode = DataGridViewColumnSortMode.NotSortable
+            If col.Name = COL_DETAILS Then
+                col.ReadOnly = False
+            Else
+                col.ReadOnly = True
+            End If
+
+            '横位置
+            Select Case col.Name
+                Case COL_PRODUCT_NAME
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End Select
+        Next
+
         'Grid幅設定する
-        gridData.Columns(COL_DETAILS).Width = 60
-        gridData.Columns(COL_PRODUCT_NAME).Width = 100
-        gridData.Columns(COL_FABRIC).Width = 60
-        gridData.Columns(COL_REPAINTING).Width = 60
-        gridData.Columns(COL_DIRECT).Width = 60
-        gridData.Columns(COL_COMPLETING_REPAINTING).Width = 60
-        gridData.Columns(COL_SPOT).Width = 60
-        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 60
-        gridData.Columns(COL_DEFECT_THE_DAY).Width = 60
-        gridData.Columns(COL_DEFECT_CORRECTION).Width = 60
-        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).Width = 160
-        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).Width = 160
-        gridData.Columns(COL_REPAINT_JUDGMENT).Width = 160
-        gridData.Columns(COL_SPOT_JUDGMENT).Width = 160
+        gridData.Columns(COL_DETAILS).Width = 50
+        gridData.Columns(COL_PRODUCT_NAME).Width = 140
+        gridData.Columns(COL_START_FABRIC).Width = 65
+        gridData.Columns(COL_START_REPAINTING).Width = 80
+        gridData.Columns(COL_COMPLETION_DIRECT).Width = 65
+        gridData.Columns(COL_COMPLETING_REPAINTING).Width = 80
+        gridData.Columns(COL_COMPLETING_SPOT).Width = 80
+        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 80
+        gridData.Columns(COL_DEFECT_THE_DAY).Width = 65
+        gridData.Columns(COL_DEFECT_CORRECTION).Width = 80
+        gridData.Columns(COL_DEFECTIVE_FABRIC_MOLDING).Width = 110
+        gridData.Columns(COL_DEFECTIVE_FABRIC_FINISH).Width = 110
+        gridData.Columns(COL_REPAINT_JUDGMENT).Width = 100
+        gridData.Columns(COL_SPOT_JUDGMENT).Width = 100
+
+        gridData.Columns.Item(dt.Columns.Count).Visible = False
 
     End Sub
 
-    Private Sub Patten3()
+    Private Sub Patten3(ByVal dt As DataTable)
 
-        'HeaderCells = {New HeaderCell(0, 0, 2, 1, headerName(COL_DETAILS)),
-        '    New HeaderCell(0, 1, 2, 1, headerName(COL_PRODUCT_NAME)),
-        'New HeaderCell(0, 2, 2, 1, headerName(COL_CUSTOMER_PART_NO)),
-        'New HeaderCell(0, 3, 2, 1, headerName(COL_START)),
-        'New HeaderCell(0, 4, 1, 2, headerName(COL_COMPLETION)),
-        'New HeaderCell(0, 6, 1, 2, headerName(COL_DEFECT)),
-        'New HeaderCell(0, 8, 1, 2, headerName(COL_SP_PRO_TRANSFER))}
+        For Each col As DataColumn In dt.Columns
 
-
-        Dim btn As New DataGridViewButtonColumn()
-        btn.Name = COL_DETAILS
-        btn.HeaderText = headerName(COL_DETAILS)
-        btn.DefaultCellStyle.NullValue = COL_DETAILS
-        gridData.Columns.Add(btn)
-
-        Dim dt As New DataTable
-
-        dt.Columns.Add(COL_PRODUCT_NAME)
-        dt.Columns.Add(COL_CUSTOMER_PART_NO)
-        dt.Columns.Add(COL_START)
-        dt.Columns.Add(COL_COMPLETION_THE_DAY)
-        dt.Columns.Add(COL_COMPLETION_CORRECTION)
-        dt.Columns.Add(COL_DEFECT_THE_DAY)
-        dt.Columns.Add(COL_DEFECT_CORRECTION)
-        dt.Columns.Add(COL_PASS)
-        dt.Columns.Add(COL_DEFECT)
-
-        Dim dr As DataRow
-
-        For index = 1 To 6
-            dr = dt.NewRow()
-            dr.Item(COL_PRODUCT_NAME) = "品名" & index
-            dr.Item(COL_CUSTOMER_PART_NO) = "客先部品番号" & index
-            dr.Item(COL_START) = 7 & index
-            dr.Item(COL_COMPLETION_THE_DAY) = 2 & index
-            dr.Item(COL_COMPLETION_CORRECTION) = 3 & index
-            dr.Item(COL_DEFECT_THE_DAY) = 5 & index
-            dr.Item(COL_DEFECT_CORRECTION) = 7 & index
-            dr.Item(COL_PASS) = 12 & index
-            dr.Item(COL_DEFECT) = 23 & index
-            dt.Rows.Add(dr)
+            Dim addCol As New DataGridViewTextBoxColumn()
+            addCol.DataPropertyName = col.ColumnName
+            If headerName(col.ColumnName) IsNot Nothing Then
+                addCol.HeaderText = headerName(col.ColumnName)
+            Else
+                addCol.HeaderText = col.ColumnName
+            End If
+            addCol.Name = col.ColumnName
+            gridData.Columns.Add(addCol)
         Next
 
-        gridData.DataSource = dt
-        gridData.Columns(COL_START).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_COMPLETION_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_COMPLETION_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECT_THE_DAY).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECT_CORRECTION).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_PASS).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        gridData.Columns(COL_DEFECT).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
+        gridData.DataSource = dt.Copy
+        gridData.ColumnHeadersHeight = 70
+        gridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing
+        gridData.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        gridData.AddSpanHeader(4, 2, headerName(COL_COMPLETION))
+        gridData.AddSpanHeader(6, 2, headerName(COL_DEFECT))
+        gridData.AddSpanHeader(8, 2, headerName(COL_SP_PRO_TRANSFER))
 
         gridData.Columns(COL_COMPLETION_THE_DAY).HeaderText = headerName(COL_TODAY)
         gridData.Columns(COL_COMPLETION_CORRECTION).HeaderText = headerName(COL_CORRECTION)
         gridData.Columns(COL_DEFECT_THE_DAY).HeaderText = headerName(COL_TODAY)
         gridData.Columns(COL_DEFECT_CORRECTION).HeaderText = headerName(COL_CORRECTION)
-        gridData.Columns(COL_PASS).HeaderText = headerName(COL_PASS)
-        gridData.Columns(COL_DEFECT).HeaderText = headerName(COL_DEFECT)
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).HeaderText = headerName(COL_PASS)
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).HeaderText = headerName(COL_DEFECT)
         gridData.AutoResizeColumns()
 
+        For Each col As DataGridViewColumn In gridData.Columns
+            col.SortMode = DataGridViewColumnSortMode.NotSortable
+            If col.Name = COL_DETAILS Then
+                col.ReadOnly = False
+            Else
+                col.ReadOnly = True
+            End If
+
+            '横位置
+            Select Case col.Name
+                Case COL_PRODUCT_NAME, COL_CUSTOMER_PART_NO
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Case Else
+                    col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+            End Select
+        Next
+
         'Grid幅設定する
-        gridData.Columns(COL_DETAILS).Width = 60
-        gridData.Columns(COL_PRODUCT_NAME).Width = 160
-        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 160
-        gridData.Columns(COL_START).Width = 160
-        gridData.Columns(COL_COMPLETION_THE_DAY).Width = 100
-        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 100
-        gridData.Columns(COL_DEFECT_THE_DAY).Width = 100
-        gridData.Columns(COL_DEFECT_CORRECTION).Width = 100
-        gridData.Columns(COL_PASS).Width = 160
-        gridData.Columns(COL_DEFECT).Width = 160
+        gridData.Columns(COL_DETAILS).Width = 50
+        gridData.Columns(COL_PRODUCT_NAME).Width = 150
+        gridData.Columns(COL_CUSTOMER_PART_NO).Width = 170
+        gridData.Columns(COL_START).Width = 110
+        gridData.Columns(COL_COMPLETION_THE_DAY).Width = 120
+        gridData.Columns(COL_COMPLETION_CORRECTION).Width = 120
+        gridData.Columns(COL_DEFECT_THE_DAY).Width = 120
+        gridData.Columns(COL_DEFECT_CORRECTION).Width = 120
+        gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 120
+        gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 120
+
+        gridData.Columns.Item(dt.Columns.Count).Visible = False
     End Sub
 
     Private Sub btnBeforeDay_Click(sender As Object, e As EventArgs) Handles btnBeforeDay.Click

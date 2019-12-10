@@ -220,9 +220,9 @@ Partial Class SC_K13
         Me.Label44.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
         Me.Label44.Location = New System.Drawing.Point(30, 76)
         Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(57, 14)
+        Me.Label44.Size = New System.Drawing.Size(43, 14)
         Me.Label44.TabIndex = 304
-        Me.Label44.Text = "(大工程)"
+        Me.Label44.Text = "(工程)"
         '
         'Label45
         '
@@ -281,9 +281,9 @@ Partial Class SC_K13
         Me.Label54.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label54.Location = New System.Drawing.Point(30, 55)
         Me.Label54.Name = "Label54"
-        Me.Label54.Size = New System.Drawing.Size(104, 14)
+        Me.Label54.Size = New System.Drawing.Size(61, 14)
         Me.Label54.TabIndex = 300
-        Me.Label54.Text = "Large Process"
+        Me.Label54.Text = "Process"
         '
         'Panel1
         '

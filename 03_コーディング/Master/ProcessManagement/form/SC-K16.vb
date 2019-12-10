@@ -220,11 +220,13 @@ Public Class SC_K16
     ''' 検索ボタン押下
     ''' </summary>
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
-        Me.lblSearchTime.Visible = True
 
-        sqlFilter = New StringBuilder
         Try
+            Dim dt As New DataTable()
+            sqlFilter = New StringBuilder
+
+            Me.lblSearchTime.Text = Format(Now, "yyyy/MM/dd HH:mm")
+            Me.lblSearchTime.Visible = True
 
             '範囲検索の場合
             If rdoRange.Checked Then
@@ -269,7 +271,6 @@ Public Class SC_K16
             If clsSQLServer.Connect(clsGlobal.ConnectString) Then
 
                 Dim strSql, strSql2 As String
-                Dim dt As New DataTable()
 
                 strSql = xml.GetSQL_Str("SELECT_005")
                 strSql2 = xml.GetSQL_Str("SELECT_006")
@@ -298,10 +299,11 @@ Public Class SC_K16
                 For Each row In countDT.Rows
                     dt.ImportRow(row)
                 Next
-
-                setGrid(dt)
-
             End If
+
+            clsSQLServer.Disconnect()
+
+            setGrid(dt)
 
         Catch ex As Exception
             Throw
@@ -412,16 +414,16 @@ Public Class SC_K16
                     '品名
                     strSelect = xml.GetSQL_Str("SELECT_003")
                     dt = clsSQLServer.GetDataTable(String.Format(strSelect, businessCode, cmbVariety.SelectedValue))
-                    Me.cmbProduct.DataSource = dt
-                    Me.cmbProduct.ValueMember = dt.Columns.Item(0).ColumnName
-                    Me.cmbProduct.DisplayMember = dt.Columns.Item(1).ColumnName
-
-                    clsSQLServer.Disconnect()
-
-                    Me.cmbProduct.Enabled = True
-                    Me.chkSimilar.Enabled = True
 
                 End If
+                clsSQLServer.Disconnect()
+
+                Me.cmbProduct.DataSource = dt
+                Me.cmbProduct.ValueMember = dt.Columns.Item(0).ColumnName
+                Me.cmbProduct.DisplayMember = dt.Columns.Item(1).ColumnName
+
+                Me.cmbProduct.Enabled = True
+                Me.chkSimilar.Enabled = True
 
             Catch ex As Exception
                 Throw
