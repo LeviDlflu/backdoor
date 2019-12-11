@@ -46,10 +46,10 @@ Public Class SC_K16A
     '設備
     Public Property Equipment() As String
         Get
-            Return txtEquipment.Text
+            Return txtFacility.Text
         End Get
         Set(ByVal Value As String)
-            txtEquipment.Text = Value
+            txtFacility.Text = Value
         End Set
     End Property
 

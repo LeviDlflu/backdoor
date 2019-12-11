@@ -321,7 +321,7 @@ Public Class SC_K16
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
         If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS AndAlso e.RowIndex > -1 Then
 
-            gridCells = gridData.Rows(e.RowIndex).Cells
+            'gridCells = gridData.Rows(e.RowIndex).Cells
 
             Dim frm As New SC_K16A()
 

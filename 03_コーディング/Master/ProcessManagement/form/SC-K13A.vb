@@ -14,9 +14,68 @@
     Private Const COL_CAUSE_FAILURE As String = "不良原因"
     Private Const COL_CAVIAR As String = "キャビ"
 
+    Private CMB_JUDGMENT As String()
+
+    '工程
+    Public Property Process() As String
+        Get
+            Return txtProcess.Text
+        End Get
+        Set(ByVal Value As String)
+            txtProcess.Text = Value
+        End Set
+    End Property
+
+    '設備
+    Public Property Facility() As String
+        Get
+            Return txtFacility.Text
+        End Get
+        Set(ByVal Value As String)
+            txtFacility.Text = Value
+        End Set
+    End Property
+
+    '品名
+    Public Property Product() As String
+        Get
+            Return txtProduct.Text
+        End Get
+        Set(ByVal Value As String)
+            txtProduct.Text = Value
+        End Set
+    End Property
+
+    '金型
+    Public Property Mold() As String
+        Get
+            Return txtMold.Text
+        End Get
+        Set(ByVal Value As String)
+            txtMold.Text = Value
+        End Set
+    End Property
+
+    '金型
+    Public Property Judgment() As String()
+        Get
+            Return CMB_JUDGMENT
+        End Get
+        Set(ByVal Value As String())
+            CMB_JUDGMENT = Value
+        End Set
+    End Property
+
     '初期処理
     Private Sub Init()
         Label67.Text = Format(Now, "yyyy/MM/dd HH:mm")
+
+        Select Case Process.Substring(0, Process.IndexOf(":"))
+            Case "10", "20"
+                txtMold.Visible = False
+                Label14.Visible = False
+                Label17.Visible = False
+        End Select
 
     End Sub
 

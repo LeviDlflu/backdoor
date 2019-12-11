@@ -22,11 +22,12 @@ Partial Class SC_K16A
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SC_K16A))
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lblIndividual = New System.Windows.Forms.Label()
         Me.txtWorkingTo = New System.Windows.Forms.TextBox()
         Me.txtWorkingFrom = New System.Windows.Forms.TextBox()
         Me.txtMold = New System.Windows.Forms.TextBox()
         Me.txtProductName = New System.Windows.Forms.TextBox()
-        Me.txtEquipment = New System.Windows.Forms.TextBox()
+        Me.txtFacility = New System.Windows.Forms.TextBox()
         Me.Label41 = New System.Windows.Forms.Label()
         Me.Label56 = New System.Windows.Forms.Label()
         Me.Label42 = New System.Windows.Forms.Label()
@@ -48,7 +49,6 @@ Partial Class SC_K16A
         Me.Label66 = New System.Windows.Forms.Label()
         Me.Label38 = New System.Windows.Forms.Label()
         Me.Label40 = New System.Windows.Forms.Label()
-        Me.lblIndividual = New System.Windows.Forms.Label()
         Me.Panel4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.gridData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +76,7 @@ Partial Class SC_K16A
         Me.Panel4.Controls.Add(Me.txtWorkingFrom)
         Me.Panel4.Controls.Add(Me.txtMold)
         Me.Panel4.Controls.Add(Me.txtProductName)
-        Me.Panel4.Controls.Add(Me.txtEquipment)
+        Me.Panel4.Controls.Add(Me.txtFacility)
         Me.Panel4.Controls.Add(Me.Label41)
         Me.Panel4.Controls.Add(Me.Label56)
         Me.Panel4.Controls.Add(Me.Label42)
@@ -95,6 +95,15 @@ Partial Class SC_K16A
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(1353, 224)
         Me.Panel4.TabIndex = 297
+        '
+        'lblIndividual
+        '
+        Me.lblIndividual.AutoSize = True
+        Me.lblIndividual.Location = New System.Drawing.Point(1078, 170)
+        Me.lblIndividual.Name = "lblIndividual"
+        Me.lblIndividual.Size = New System.Drawing.Size(0, 14)
+        Me.lblIndividual.TabIndex = 337
+        Me.lblIndividual.Visible = False
         '
         'txtWorkingTo
         '
@@ -132,15 +141,15 @@ Partial Class SC_K16A
         Me.txtProductName.Size = New System.Drawing.Size(362, 21)
         Me.txtProductName.TabIndex = 334
         '
-        'txtEquipment
+        'txtFacility
         '
-        Me.txtEquipment.BackColor = System.Drawing.SystemColors.Control
-        Me.txtEquipment.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
-        Me.txtEquipment.Location = New System.Drawing.Point(318, 171)
-        Me.txtEquipment.Name = "txtEquipment"
-        Me.txtEquipment.ReadOnly = True
-        Me.txtEquipment.Size = New System.Drawing.Size(154, 21)
-        Me.txtEquipment.TabIndex = 333
+        Me.txtFacility.BackColor = System.Drawing.SystemColors.Control
+        Me.txtFacility.Font = New System.Drawing.Font("MS UI Gothic", 10.0!)
+        Me.txtFacility.Location = New System.Drawing.Point(318, 171)
+        Me.txtFacility.Name = "txtFacility"
+        Me.txtFacility.ReadOnly = True
+        Me.txtFacility.Size = New System.Drawing.Size(154, 21)
+        Me.txtFacility.TabIndex = 333
         '
         'Label41
         '
@@ -217,9 +226,9 @@ Partial Class SC_K16A
         Me.Label37.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Bold)
         Me.Label37.Location = New System.Drawing.Point(315, 135)
         Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(77, 14)
+        Me.Label37.Size = New System.Drawing.Size(58, 14)
         Me.Label37.TabIndex = 301
-        Me.Label37.Text = "Equipment"
+        Me.Label37.Text = "Facility"
         '
         'Label43
         '
@@ -365,15 +374,6 @@ Partial Class SC_K16A
         Me.Label40.TabIndex = 307
         Me.Label40.Text = "(検索結果)"
         '
-        'lblIndividual
-        '
-        Me.lblIndividual.AutoSize = True
-        Me.lblIndividual.Location = New System.Drawing.Point(1078, 170)
-        Me.lblIndividual.Name = "lblIndividual"
-        Me.lblIndividual.Size = New System.Drawing.Size(0, 14)
-        Me.lblIndividual.TabIndex = 337
-        Me.lblIndividual.Visible = False
-        '
         'SC_K16A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
@@ -399,7 +399,7 @@ Partial Class SC_K16A
     Friend WithEvents Panel4 As Panel
     Friend WithEvents txtMold As TextBox
     Friend WithEvents txtProductName As TextBox
-    Friend WithEvents txtEquipment As TextBox
+    Friend WithEvents txtFacility As TextBox
     Friend WithEvents Label41 As Label
     Friend WithEvents Label56 As Label
     Friend WithEvents Label42 As Label

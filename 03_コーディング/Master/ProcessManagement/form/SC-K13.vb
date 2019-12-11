@@ -59,6 +59,14 @@ Public Class SC_K13
     Private Const COL_FINISH As String = "仕上"
     Private Const COL_SPOT As String = "スポット"
 
+    Private Const COL_HIDDEN_1 As String = "データ存在フラグ"
+    Private Const COL_HIDDEN_2 As String = "品名事業所コード"
+    Private Const COL_HIDDEN_3 As String = "パック品名略称"
+    Private Const COL_HIDDEN_4 As String = "納入先コード"
+    Private Const COL_HIDDEN_5 As String = "納入区分"
+    Private Const COL_HIDDEN_6 As String = "製品半製品区分"
+    Private Const COL_HIDDEN_7 As String = "設備"
+
     Private Const FORM_NAME_K14 As String = "The results before the previous days(前日以前実績参照)"
     Private Const CONST_SYSTEM_NAME As String = "B/D生産管理システム"
 
@@ -237,6 +245,15 @@ Public Class SC_K13
                     Patten3(dt)
             End Select
 
+            '画面非表示列
+            gridData.Columns(COL_HIDDEN_1).Visible = False
+            gridData.Columns(COL_HIDDEN_2).Visible = False
+            gridData.Columns(COL_HIDDEN_3).Visible = False
+            gridData.Columns(COL_HIDDEN_4).Visible = False
+            gridData.Columns(COL_HIDDEN_5).Visible = False
+            gridData.Columns(COL_HIDDEN_6).Visible = False
+            gridData.Columns(COL_HIDDEN_7).Visible = False
+
             '複数選択不可
             gridData.MultiSelect = False
             '編集不可
@@ -255,8 +272,24 @@ Public Class SC_K13
     Private Sub gridData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles gridData.CellContentClick
         If gridData.Columns(e.ColumnIndex).Name = COL_DETAILS And e.RowIndex >= 0 Then
             Dim frm As New SC_K13A()
+
+            'パラメータ.工程
+            frm.Process = cmbProcess.Text
+            'パラメータ.設備
+            frm.Facility = gridData.CurrentRow.Cells(COL_HIDDEN_7).Value.ToString
+            'パラメータ.品名略称
+            frm.Product = gridData.CurrentRow.Cells(COL_PRODUCT_NAME).Value.ToString
+
+            Select Case cmbProcess.SelectedValue
+                Case "10", "20"
+                    'パラメータ.金型
+                    frm.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
+            End Select
+
+            '★
+
             frm.ShowDialog()
-            Me.Show()
+            'Me.Show()
         End If
     End Sub
 
@@ -322,8 +355,6 @@ Public Class SC_K13
         gridData.Columns(COL_DEFECT_CORRECTION).Width = 120
         gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 120
         gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 120
-
-        gridData.Columns.Item(dt.Columns.Count).Visible = False
     End Sub
 
     Private Sub Patten2(ByVal dt As DataTable)
@@ -398,8 +429,6 @@ Public Class SC_K13
         gridData.Columns(COL_REPAINT_JUDGMENT).Width = 100
         gridData.Columns(COL_SPOT_JUDGMENT).Width = 100
 
-        gridData.Columns.Item(dt.Columns.Count).Visible = False
-
     End Sub
 
     Private Sub Patten3(ByVal dt As DataTable)
@@ -461,8 +490,6 @@ Public Class SC_K13
         gridData.Columns(COL_DEFECT_CORRECTION).Width = 120
         gridData.Columns(COL_SP_PROP_TRANSFER_PASS).Width = 120
         gridData.Columns(COL_SP_PROP_TRANSFER_DEFECT).Width = 120
-
-        gridData.Columns.Item(dt.Columns.Count).Visible = False
     End Sub
 
     Private Sub btnBeforeDay_Click(sender As Object, e As EventArgs) Handles btnBeforeDay.Click
