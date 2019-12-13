@@ -252,7 +252,6 @@ Public Class SC_K13
             gridData.Columns(COL_HIDDEN_4).Visible = False
             gridData.Columns(COL_HIDDEN_5).Visible = False
             gridData.Columns(COL_HIDDEN_6).Visible = False
-            gridData.Columns(COL_HIDDEN_7).Visible = False
 
             '複数選択不可
             gridData.MultiSelect = False
@@ -286,7 +285,17 @@ Public Class SC_K13
                     frm.Mold = gridData.CurrentRow.Cells(COL_MOLD).Value.ToString
             End Select
 
-            '★
+            'レコードのキー
+            'パラメータ.品名事業所コード
+            frm.ProductPlant = gridData.CurrentRow.Cells(COL_HIDDEN_2).Value.ToString
+            'パラメータ.パック品名略称
+            frm.PackProduct = gridData.CurrentRow.Cells(COL_HIDDEN_3).Value.ToString
+            'パラメータ.納入先コード
+            frm.DeliveryCode = gridData.CurrentRow.Cells(COL_HIDDEN_4).Value.ToString
+            'パラメータ.納入区分
+            frm.DeliveryDivision = gridData.CurrentRow.Cells(COL_HIDDEN_5).Value.ToString
+            'パラメータ.製品半製品区分
+            frm.SemiProduct = gridData.CurrentRow.Cells(COL_HIDDEN_6).Value.ToString
 
             frm.ShowDialog()
             'Me.Show()

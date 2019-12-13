@@ -15,6 +15,11 @@
     Private Const COL_CAVIAR As String = "キャビ"
 
     Private CMB_JUDGMENT As String()
+    Private KEY_PRODUCT_PLANT As String
+    Private KEY_PACK_PRODUCT As String
+    Private KEY_DELIVERY_CODE As String
+    Private KEY_DELIVERY_DIVISION As String
+    Private KEY_SEMI_PRODUCT As String
 
     '工程
     Public Property Process() As String
@@ -56,13 +61,63 @@
         End Set
     End Property
 
-    '金型
+    '判定
     Public Property Judgment() As String()
         Get
             Return CMB_JUDGMENT
         End Get
         Set(ByVal Value As String())
             CMB_JUDGMENT = Value
+        End Set
+    End Property
+
+    '品名事業所コード
+    Public Property ProductPlant() As String
+        Get
+            Return KEY_PRODUCT_PLANT
+        End Get
+        Set(ByVal Value As String)
+            KEY_PRODUCT_PLANT = Value
+        End Set
+    End Property
+
+    'パック品名略称
+    Public Property PackProduct() As String
+        Get
+            Return KEY_PACK_PRODUCT
+        End Get
+        Set(ByVal Value As String)
+            KEY_PACK_PRODUCT = Value
+        End Set
+    End Property
+
+    '納入先コード
+    Public Property DeliveryDivision() As String
+        Get
+            Return KEY_DELIVERY_CODE
+        End Get
+        Set(ByVal Value As String)
+            KEY_DELIVERY_CODE = Value
+        End Set
+    End Property
+
+    '納入区分
+    Public Property DeliveryCode() As String
+        Get
+            Return KEY_DELIVERY_DIVISION
+        End Get
+        Set(ByVal Value As String)
+            KEY_DELIVERY_DIVISION = Value
+        End Set
+    End Property
+
+    '製品半製品区分
+    Public Property SemiProduct() As String
+        Get
+            Return KEY_SEMI_PRODUCT
+        End Get
+        Set(ByVal Value As String)
+            KEY_SEMI_PRODUCT = Value
         End Set
     End Property
 
