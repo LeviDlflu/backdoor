@@ -241,7 +241,7 @@ Partial Class SC_Z01
         Me.GroupBox2.Size = New System.Drawing.Size(441, 71)
         Me.GroupBox2.TabIndex = 338
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Packing specifications(梱包仕様)"
+        Me.GroupBox2.Text = "Delivery division(納入区分)"
         '
         'Label25
         '
