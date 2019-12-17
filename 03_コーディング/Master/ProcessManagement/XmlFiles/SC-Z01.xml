@@ -11,9 +11,8 @@
           FROM
           コードマスタ
           WHERE
-          コード区分 IN ('005','032')
+          コード区分 = 'YARD'
           ORDER BY
-          コード区分 DESC,
           コード
         </Text>
       </SQL>
